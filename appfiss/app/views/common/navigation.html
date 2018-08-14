@@ -1,0 +1,39 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul side-navigation class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+                <div class="profile-element">
+                        <img alt="AppFiss" src="img/appfiss.png">
+                </div>
+                <div class="logo-element">
+                    <img alt="AppFiss" src="img/appfiss.png">
+                </div>
+            </li>
+
+            <li data-ng-class="{active: $state.includes('index')}" title="{{ 'locale-dashboard' | translate }}">
+                <a data-ui-sref="index.user-dashboard"><i class="fa fa-tachometer"></i> <span class="nav-label">{{ 'locale-dashboard' | translate }}</span> </a>
+            </li>
+            <li data-ng-class="{active: $state.includes('user-accounts')}" title="{{ 'locale-user-accounts' | translate }}">
+                <a data-ui-sref="user-accounts.list"><i class="fa fa-user-circle"></i> <span class="nav-label">{{ 'locale-user-accounts' | translate }}</span></a>
+            </li>
+            <li data-ng-class="{active: $state.includes('file-manager')}" title="{{ 'locale-files' | translate }}">
+                <a data-ui-sref="file-manager.list" title="{{ 'locale-files' | translate }}"><i class="fa fa-sitemap"></i> <span class="nav-label">{{ 'locale-files' | translate }}</span></a>
+            </li>
+            <li data-ng-class="{active: $state.includes('platform')}" title="{{ 'locale-ml-platform' | translate }}">
+                <a data-ui-sref="platform.list" title="{{ 'locale-ml-platform' | translate }}"><i class="fa fa-rocket"></i> <span class="nav-label">{{ 'locale-ml-platform' | translate }}</span></a>
+            </li>
+            <li ng-class="{active: $state.includes('configuration')}">
+                <a ui-sref="index.landing"><i class="fa fa-cogs"></i> <span class="nav-label">{{ 'locale-configuration' | translate }}</span> <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse" ng-class="{in: $state.includes('configuration')}">
+                    <li ui-sref-active="active"><a ui-sref="configuration.general">{{ 'locale-general' | translate }}</a></li>
+                    <li ui-sref-active="active"><a ui-sref="configuration.host">{{ 'locale-hosts' | translate }}</a></li>
+                </ul>
+            </li>
+            <li data-ng-class="{active: $state.includes('vault')}" title="{{ 'locale-vault' | translate }}">
+                <a data-ui-sref="vault"><i class="fa fa-key"></i> <span class="nav-label">{{ 'locale-vault' | translate }}</span></a>
+            </li>
+              
+        </ul>
+
+    </div>
+</nav>

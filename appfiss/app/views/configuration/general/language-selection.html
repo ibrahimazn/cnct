@@ -1,0 +1,30 @@
+<div class="inmodal">
+    <div class="modal-header">
+        <h4 class="modal-title">{{ "locale-language" | translate }}</h4>
+    </div>
+    <form name="languageForm"  method="POST" data-ng-submit="save()" novalidate>
+        <div class="ibox-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>{{ 'locale-default-language' | translate }}<span class="text-danger">*</span></label>
+                        <select required="true" class="form-control input-group" name="defaultLanguage" data-ng-model="defaultLanguage" ng-options="language as language.name for language in languageObject.list | orderBy: 'name'"
+                                data-ng-class="{ 'error' : languageForm.defaultLanguage.$invalid && languageForm.submitted}">
+                            <option value="">{{ "locale-select" | translate }}</option>
+                        </select>
+                        <div class="m-t-xs select-box validation-error-msg msg-large" ng-show="languageForm.defaultLanguage.$invalid && languageForm.submitted">
+                            <small ng-show="languageForm.defaultLanguage.$error">{{"locale-please-select-the-default-language" | translate}}</small>
+                        </div>
+                        <input type="hidden" data-ng-model="defaultLanguageOld" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <get-loader-image data-ng-if="showLoader"></get-loader-image>
+            <button data-ng-if="!showLoader" type="button" class="btn btn-white" ng-disabled="form.languageForm.$invalid" ng-click="cancel()">{{ 'locale-cancel' | translate }}</button>
+            <button class="btn btn-info pull-right"  data-ng-if="!showLoader"  type="submit" ng-disabled="form.languageForm.$invalid" >{{ "locale-update" | translate }}</button>
+        </div>
+    </form>
+</div>

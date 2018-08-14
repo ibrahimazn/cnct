@@ -1,0 +1,107 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-md-4 page-title">
+        <h2>{{ 'locale-hosts' | translate }}</h2>
+    </div>
+    <div class="col-lg-8 col-md-8 col-sm-9 text-right page-search">
+        <div class="floating-add">
+            <a class="btn btn-success m-r-md" data-ng-click="userAccountObject.addUserAccount()"><i class="fa fa-plus"></i> {{ 'locale-new' | translate }}</a>
+            <!--<a class="btn btn-success" data-ng-click="userAccountObject.addLdapUser()"><i class="fa fa-plus"></i> {{ 'locale-import-from-ldap' | translate }}</a>-->
+            <!--                <a class="btn btn-success" ng-disabled="true"><i class="fa fa-plus"></i> {{ 'locale-import-from-ldap' | translate }}</a>-->
+        </div>
+        <div class="search-wrapper text-right">
+            <div class="input-group m-r-md">
+                <input type="text" class="form-control" placeholder="{{ 'locale-search' | translate }}" data-ng-model="search" data-ng-change="userAccountObject.searchList(search, type)">
+                <div class="input-group-btn">
+                    <button class="btn btn-white" type="button" data-ng-click="userAccountObject.searchList(search, type)"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="filter-wrapper m-r-md">
+            <select class="form-control" name="type" data-ng-model="type" data-ng-options="type for type in roles">
+                <option value="">{{ "locale-select" | translate }}</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="row wrapper page-breadcrumb">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li>
+                <a data-ui-sref="index.user-dashboard"><i class="fa fa-home" aria-hidden="true"></i></a>
+            </li>
+            <li>
+                {{ "locale-configuration" | translate }}
+            </li>
+            <li class="active">
+                <strong>{{ "locale-hosts" | translate }}</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div  data-ng-init="hostObject.init()" data-ng-controller="hostController">
+        <websocket-loader-image data-ng-show="showLoader"></websocket-loader-image>
+        <div data-ng-if="global.webSocketLoaders.hostLoader" class="overlay"> 
+            <websocket-loader-image data-ng-show="global.webSocketLoaders.hostLoader"></websocket-loader-image>
+        </div> 
+
+        <div class="ibox" >
+            <div class="ibox-content">
+                <!--                <div data-ng-if="global.webSocketLoaders.hostLoader" class="overlay"> 
+                            <websocket-loader-image data-ng-show="global.webSocketLoaders.hostLoader"></websocket-loader-image>
+                        </div> -->
+                <div class="table-responsive">      
+                    <table class="table table-striped table-bordered table-hover dataTables-example" data-page-size="4" id="hosttable">
+                        <thead>
+                            <tr>
+                                <th><i  data-ng-click="hostObject.hostChangeSort('name', paginationObject.currentPage, sort)" class="fa pull-right" data-ng-class="sort.descending && sort.column == 'name' ? 'fa-sort-desc' : 'fa-sort-asc'"aria-hidden="true"></i>{{'locale-name'| translate}}</th>
+                                <th colspan="2">{{'locale-cpu'| translate}}</th>
+                                <th colspan="2">{{'locale-memory'| translate}}</th>
+                                <th><i  data-ng-click="hostObject.hostChangeSort('type', paginationObject.currentPage, sort)" class="fa pull-right" data-ng-class="sort.descending && sort.column == 'type' ? 'fa-sort-desc' : 'fa-sort-asc'" ></i>{{'locale-ostype'| translate}}</th>
+                                <th><i  data-ng-click="hostObject.hostChangeSort('status', paginationObject.currentPage, sort)"class="fa pull-right"data-ng-class="sort.descending && sort.column == 'status' ? 'fa-sort-desc' : 'fa-sort-asc'"></i>{{'locale-status'| translate}}</th>
+                                <th><i  data-ng-click="hostObject.hostChangeSort('resourceState', paginationObject.currentPage, sort)"class="fa pull-right"data-ng-class="sort.descending && sort.column == 'resourceState' ? 'fa-sort-desc' : 'fa-sort-asc'"></i>{{'locale-resourcestate'| translate}}</th>
+                                <th>{{'locale-action'| translate}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th></th>
+                                <th>{{'locale-capacity'| translate}}<br>({{'locale-core'| translate}})</th>
+                                <th>{{'locale-used'| translate}}</th>
+                                <th>{{'locale-capacity'| translate}}<br>(GB)</th>
+                                <th>{{'locale-used'| translate}}</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+
+                            </tr>
+                            <tr data-ng-repeat="host in hostList">
+                                <td>{{host.name}}</td>
+                                <td>{{host.cpuCores}}</td>
+                                <td data-ng-class="(host.cpuUsed > 90) ? 'table-col-danger': (host.cpuUsed >= 80 ? 'table-col-warning':'table-col-light')"><label>{{host.cpuUsed}} </label></td>
+                                <td>{{host.memoryTotal / global.Math.pow(2, 30) | number : 2}}</td>
+                                <td data-ng-class="(host.memoryUsedPercentage > 90) ? 'table-col-danger': (host.memoryUsedPercentage >= 80 ? 'table-col-warning':'table-col-light')" title="{{ host.memoryUsedPercentage > 100 ? 'local-provisioning-percentage' : '' | translate}}">{{host.memoryUsedPercentage| number :2}}%</td>
+                                <td>{{host.type}}</td>
+                                <!--<td>{{host.status}}</td>-->
+                                <td><img data-ng-if="host.status == 'UP'" title="UP" src="img/running.png" alt="" height="25" width="25" class="m-r-5">
+                                    <img data-ng-if="host.status != 'UP'" title="Disconnected" src="img/stopped.png" alt="" height="25" width="25" class="m-r-5">
+                                </td>
+                                <td>{{host.resourceState}}</td>
+                                <td>
+                                    <a href="javascript:void(0);" data-ng-if="host.resourceState == 'ENABLED' && host.status == 'UP'" data-ng-click="hostObject.disableHost(host)" class="btn btn-dark btn-circle m-b-xs" title="{{'locale-disable'| translate}}"><i class="fa fa-ban"></i></a>
+                                    <a href="javascript:void(0);" data-ng-if="host.resourceState == 'DISABLED' && host.status == 'UP'" data-ng-click="hostObject.enableHost(host)" class="btn btn-dark btn-circle m-b-xs" title="{{'locale-enable'| translate}}"><i class="fa fa-check"></i></a>
+                                    <a href="javascript:void(0);" data-ng-if="host.resourceState == 'ENABLED' && host.status == 'UP'" data-ng-click="hostObject.reconnectHost(host)" class="btn btn-dark btn-circle m-b-xs" title="{{ 'reconnect' | translate }}"><i class="fa fa-undo"></i></a>
+                                    <a href="javascript:void(0);"  data-ng-click="hostObject.moreInformation(host)" class="btn btn-dark btn-circle m-b-xs" title="{{'locale-more-info'|translate }}"><i class="fa fa-info-circle"></i></a>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+                     
+
+        </div>
+    </div>
+</div>

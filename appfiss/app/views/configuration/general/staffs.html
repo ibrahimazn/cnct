@@ -1,0 +1,101 @@
+<div class="wrapper wrapper-content animated fadeInRight clients" data-ng-controller="staffCtrl">
+    <websocket-loader-image data-ng-show="showLoader"></websocket-loader-image>
+    <div class="row" data-ng-show="!showLoader">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-4 count-widget">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-content clearfix warning-element">
+                            <div class="row">
+                                <div class="col-md-4 col-xs-4">
+                                    <h5><i class="fa fa-3x fa-user-plus"></i></h5>
+                                </div>
+                                <div class="col-md-8 col-xs-8 text-right">
+                                    <span class="label label-warning">{{ 'locale-total' | translate }}</span>
+                                    <h1 class="no-margins m-t-sm">{{totalCounts}}</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 no-padding">
+                    <a ui-sref="configuration.general" class="btn m-b-sm btn-light">
+                        <i class="fa fa-arrow-circle-left"></i> {{ "locale-back" | translate}}
+                    </a>
+                </div>
+                
+                <div class="col-lg-8 col-md-7 col-sm-10 col-xs-10 pull-right search">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a has-permission="CREATE_STAFF" ui-sref="configuration.general.addstaffs" class="btn m-b-sm btn-info pull-right">{{ "locale-add-staffs" | translate}}</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="pull-right m-l-sm refresh text-right">
+                                <a class="btn btn-default pull-right" title="{{ 'locale-refresh' | translate }}" data-ng-click="list(1)"><i class="fa fa-refresh"></i></a>
+                            </div>
+                            <div class="pull-right m-l-sm search-list w200">
+                                <div class="pull-right">
+                                    <form data-ng-submit="searchList(quickSearch)">
+                                        <div class="quick-search pull-right">
+                                            <div class="input-group">
+                                                <input data-ng-model="quickSearch" id="sshkey_list_search" type="text" valid-characters class="form-control input-medium" placeholder="{{ 'quick-search' | translate }}" aria-describedby="quicksearch-go">
+                                                <a class="input-group-addon" id="quicksearch-go" data-ng-click="searchList(quickSearch)"><i class="fa fa-search"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <span class="pull-right m-l-sm m-t-sm">
+                                        </span>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ibox">
+                <div class="ibox-content">
+                    <form name="computeofferCtrlForm"  method="POST" data-ng-submit="savecomputeOffer(computeOffer)" novalidate>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class=" table table-striped table-bordered table-draggable dataTables-example" data-page-size="4">
+                                        <thead>
+                                            <tr>
+                                                <th data-ng-click="changeSort('userName', paginationObject.currentPage, sort)">{{ 'locale-clients' | translate }}<i class="fa pull-right" data-ng-class="sort.descending && sort.column === 'userName' ? 'fa-sort-desc' : 'fa-sort-asc'"  aria-hidden="true"></i></th>
+                                                <th data-ng-click="changeSort('email', paginationObject.currentPage, sort)">{{ 'locale-email' | translate }}<i class="fa pull-right" data-ng-class="sort.descending && sort.column === 'email' ? 'fa-sort-desc' : 'fa-sort-asc'"  aria-hidden="true"></i></th>
+                                                <th data-ng-click="changeSort('primaryPhone', paginationObject.currentPage, sort)">{{ 'locale-phone' | translate }}<i class="fa pull-right" data-ng-class="sort.descending && sort.column === 'primaryPhone' ? 'fa-sort-desc' : 'fa-sort-asc'"  aria-hidden="true"></i></th>
+                                                <th data-ng-click="changeSort('status', paginationObject.currentPage, sort)">{{ 'locale-status' | translate }}<i class="fa pull-right" data-ng-class="sort.descending && sort.column === 'status' ? 'fa-sort-desc' : 'fa-sort-asc'"  aria-hidden="true"></i></th>
+                                                <th>{{ 'locale-action' | translate }}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody data-ng-hide="clientList.length > 0">
+                                            <tr>
+                                                <td class="col-md-9 col-sm-9" colspan="9">{{ 'no-records' | translate }}</td>
+                                            </tr>
+                                        </tbody>
+                                        <tbody data-ng-show="clientList.length > 0">
+                                            <tr data-ng-repeat="client in clientList| orderBy:'firstName'">
+                                                <td class="text-info"><a ui-sref="clients.clients-dashboard({id: {{ client.id}}})" class="text-primary">{{ client.firstName}}</a></td>
+                                                <td>{{client.email}}</td>
+                                                <td>{{client.primaryPhone}}</td>
+                                                <td>{{client.status}}</td>
+                                                <td> 
+                                                    <a has-permission="EDIT_STAFF" ui-sref="configuration.general.editstaffs({id: {{ client.id}}})" class="btn btn-default btn-circle" title="{{ 'locale-edit' | translate }}"><i class="fa fa-edit"></i></a>
+                                                    <a has-permission="DELETE_STAFF" data-ng-if="superAdmin.id !== client.id" class="btn btn-default btn-circle" data-ng-click="deleteClient(client)" title="{{ 'locale-delete' | translate }}"><i class="fa fa-trash"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+
+                                    </table>
+                                    <pagination-content> </pagination-content> 
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

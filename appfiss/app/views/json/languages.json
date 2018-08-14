@@ -1,0 +1,11 @@
+[
+    {
+        "id": 1,
+        "name": "English",
+        "languageCode": "en",
+        "status": "ENABLED",
+        "isDefault": true,
+        "createdDateTime": null,
+        "updatedDateTime": null
+    }
+]

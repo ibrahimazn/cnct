@@ -1,0 +1,33 @@
+<div class="inmodal" >
+    <div class="modal-header">
+        <h4 class="modal-title ">{{ 'locale-more-info' | translate}}</h4>
+    </div>
+    <div class="modal-body white-bg">
+        <div class="row">
+           <table class="table table-condensed table-striped" cellspacing="1" cellpadding="1">
+                    <tbody>
+                        <tr>
+                            <td><b>{{'locale-name' | translate}}</b></td>
+                            <td>{{host.name}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>{{'locale-ostype' | translate}}</b></td>
+                            <td>{{host.type}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>{{'locale-cluster-name' | translate}}</b></td>
+                            <td>{{host.cluster.name}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>{{'locale-ip-address' | translate}}</b></td>
+                            <td>{{host.hostIpaddress}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
+    </div>
+    <div class="modal-footer text-center">
+        <button type="button"  class="btn btn-white " ng-click="cancel()" data-dismiss="modal">{{ 'locale-cancel' | translate }}</button>
+       
+    </div>
+</div>

@@ -1,0 +1,135 @@
+<form role="form" id="userAccountForm" name="userAccountForm" novalidate data-ng-submit="userAccountObject.update(userAccountForm, userAccount)">
+    <div class="modal-header" modaldraggable>
+        <button type="button" data-ng-click="cancel();" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" data-ng-hide="userAccountElement.updateButton"><i class="fa fa-plus-circle m-r-sm"></i>{{ 'locale-add-user' | translate }}</h4>
+        <h4 class="modal-title" data-ng-if="userAccountElement.updateButton"><i class="fa fa-edit m-r-sm"></i>{{ 'locale-edit-user' | translate }}</h4>
+    </div>
+    <div class="modal-body">
+        <get-ancode-loader-full-overlay data-ng-if="userAccountElement.editLoader"></get-ancode-loader-full-overlay>
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group"
+                     data-ng-class="{'has-error': userAccountForm.firstName.$invalid && userAccountForm.submitted}">
+                    <label> {{ 'locale-first-name' | translate }} <span class="required"> * </span> </label>
+                    <input readonly type="text" name="firstName" class="form-control" data-ng-model="userAccount.firstName" required="true">
+                    <div class="input-icon right"
+                         data-ng-if="userAccountForm.firstName.$invalid && userAccountForm.submitted">
+                        <i data-uib-tooltip="{{ 'locale-first-name-required' | translate }}" data-tooltip-placement="left"
+                           class="fa fa-warning"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group" data-ng-if="userAccount.lastName!=''">
+                    <label> {{ 'locale-last-name' | translate }} </label>
+                    <input readonly type="text" name="lastName" class="form-control" data-ng-model="userAccount.lastName">
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group"
+                     data-ng-class="{'has-error': userAccountForm.userName.$invalid && userAccountForm.submitted}">
+                    <label> {{ 'locale-username' | translate }} <span class="required"> * </span> </label>
+                    <input readonly type="text" name="userName" class="form-control" data-ng-model="userAccount.userName" required="true">
+                    <div class="input-icon right"
+                         data-ng-if="userAccountForm.userName.$invalid && userAccountForm.submitted">
+                        <i data-uib-tooltip="{{ 'locale-username-required' | translate }}" data-tooltip-placement="left"
+                           class="fa fa-warning"></i>
+                        <!--<small ng-show="userAccountForm.userName.$error">{{ userAccountForm.userName.errorMessage}} </small>-->
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group"
+                     data-ng-class="{'has-error': userAccountForm.email.$invalid && userAccountForm.submitted}">
+                    <label> {{ 'locale-email' | translate }} </label>
+                    <input type="email" name="email" class="form-control" data-ng-model="userAccount.email" data-ng-pattern="/^([_a-zA-Z0-9-]+)(\.[_a-zA-Z0-9-]+)*@([a-zA-Z0-9-]+\.)+([a-zA-Z]{2,})$/">
+                    <div class="input-icon right"
+                         data-ng-if="userAccountForm.email.$invalid && userAccountForm.submitted">
+                        <i data-ng-if="userAccountForm.email.$error.pattern" data-uib-tooltip="{{ 'locale-valid-email' | translate }}" data-tooltip-placement="left"
+                           class="fa fa-warning"></i>
+                    </div>
+                </div>
+            </div>
+            <!--            <div class="col-md-6 col-sm-6">
+                            <div class="form-group"
+                                 data-ng-class="{'has-error': userAccountForm.password.$invalid && userAccountForm.submitted}">
+                                <label> {{ 'locale-password' | translate }} <span class="required"> * </span> </label>
+                                <input readonly type="password" name="password" class="form-control" data-ng-model="userAccount.password" required="true">
+                                <div class="input-icon right"
+                                     data-ng-if="userAccountForm.password.$invalid && userAccountForm.submitted">
+                                    <i data-uib-tooltip="{{ 'locale-password-required' | translate }}" data-tooltip-placement="left"
+                                       class="fa fa-warning"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-group"
+                                 data-ng-class="{'has-error': userAccountForm.confirmPassword.$invalid && userAccountForm.submitted}">
+                                <label> {{ 'locale-confirm-password' | translate }} <span class="required"> * </span> </label>
+                                <input readonly type="password" name="confirmPassword" class="form-control" data-ng-model="userAccount.password">
+                                <div class="input-icon right"
+                                     data-ng-if="userAccountForm.confirmPassword.$invalid && userAccountForm.submitted">
+                                    <i data-uib-tooltip="{{ 'locale-confirm-password-required' | translate }}" data-tooltip-placement="left"
+                                       class="fa fa-warning"></i>
+                                </div>
+                            </div>
+                        </div>-->
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group"
+                     data-ng-class="{'has-error': userAccountForm.mobilePhone.$invalid && userAccountForm.submitted}">
+                    <label> {{ 'locale-mobile-phone' | translate }}  </label>
+                    <input type="text" name="mobilePhone" class="form-control" data-ng-model="userAccount.mobilePhone" data-ng-pattern="/^[0-9-+ ]{10,}$/">
+                    <div class="input-icon right"
+                         data-ng-if="userAccountForm.mobilePhone.$invalid && userAccountForm.submitted">
+                        <i data-ng-if="userAccountForm.mobilePhone.$error.pattern" data-uib-tooltip="{{ 'locale-valid-phone' | translate }}" data-tooltip-placement="left"
+                           class="fa fa-warning"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group" data-ng-class="{'has-error': userAccountForm.userType.$invalid && userAccountForm.submitted}">
+                    <label> {{ 'locale-user-type' | translate }} <span class="required"> * </span> </label>
+                    <select name="userType" class="form-control"
+                            data-ng-model="userAccount.userType" ng-options="userType for userType in roles" required>
+                        <option value="">{{ "locale-select" | translate }}</option>
+                    </select>
+                    <div class="input-icon right"
+                          data-ng-if="userAccountForm.userType.$invalid && userAccountForm.submitted">
+                        <i data-uib-tooltip="{{ 'locale-user-type-is-required' | translate }}" data-tooltip-placement="left"
+                           class="fa fa-warning"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group file-upload"
+                     data-ng-class="{'has-error': userAccountForm.profileImgFile.$invalid && userAccountForm.submitted}">
+                    <label> {{ 'locale-profile-image' | translate }} </label>
+                    <!--<label><b>{{ userAccount.profileImgFile || ''}}</b></label>-->
+                    <!--                    <input type="file" name="profileImgFile" class="" data-ng-model="userAccount.profileImgFile">-->
+                    <!--<input accept=".jpg, .jpeg, .png"  class="" type="file"  id="profileImgFile" name="profileImgFile" data-file-model="userAccount.profileImgFile" >-->
+                     <!--<input ngf-select accept="image/x-png,image/jpg,image/jpeg" ngf-model-invalid="errorFile" ngf-max-size="8KB" type="file"  id="profileImgFile" name="profileImgFile" data-file-model="userAccount.profileImgFile" required>{{}}-->
+                    <input type="file" ng-model="userAccount.profileImgFile" ngf-select image-with-preview name="profileImgFile"  class="no-padding form-control"
+                           accept=".jpg, .jpeg, .png" ngf-max-size="2MB"  ngf-model="image"
+                           ngf-model-invalid="errorFile">
+                    
+                    <!--<img ngf-thumbnail="userAccount.profImage" class="thumb"> <button ng-click="userAccount.profileImgFile = null"><i class="fa fa-close"></i></button>-->
+                    <div class="input-icon right"
+                         data-ng-if="userAccountForm.profileImgFile.$invalid && userAccountForm.submitted">
+                        <i data-uib-tooltip="{{ 'locale-profile-image-required' | translate }}" data-tooltip-placement="left"
+                           class="fa fa-warning" data-ng-if="userAccountForm.profileImgFile.$error.required"></i>
+                        <i data-uib-tooltip="File too large {{errorFile.size / 1000000|number:1}}MB: max 2M" data-tooltip-placement="left"
+                           class="fa fa-warning" data-ng-if="userAccountForm.profileImgFile.$error.maxSize"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-ng-click="cancel();">{{ 'locale-cancel' | translate }}</button>
+        <button type="submit" class="btn btn-info" data-ng-hide="userAccountElement.updateButton">{{ 'locale-save' | translate }}</button>
+        <button type="submit" class="btn btn-info" data-ng-if="userAccountElement.updateButton">{{ 'locale-update' | translate }}</button>
+    </div>
+</form> 

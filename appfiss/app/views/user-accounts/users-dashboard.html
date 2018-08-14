@@ -1,0 +1,252 @@
+<div data-ng-controller="userAccountCtrl">
+    <div class="row wrapper border-bottom white-bg page-heading" >
+        <div class="col-md-4 page-title">
+            <h2>{{ 'locale-user-config' | translate }}</h2>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-9 text-right page-search">
+
+        </div>
+    </div>
+    <div class="row wrapper page-breadcrumb">
+        <div class="col-lg-12">
+            <ol class="breadcrumb">
+                <li>
+                    <a ui-sref="index.user-dashboard"><i class="fa fa-home" aria-hidden="true"></i></a>
+                </li>
+                <li >
+                    <a ui-sref="user-accounts.list">{{ 'locale-user-accounts' | translate }}</a>
+                </li>
+                <li class="active">
+                    <strong>{{ 'locale-user-config' | translate }}</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight" data-ng-controller="userAccountCtrl">        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="ibox">
+                    <div class="ibox-title ibox-heading">
+                        <h5 class="pull-left">{{user.firstName}}</h5> 
+                        <div class="label label-primary pull-right">User Details</div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="clearfix">
+                            <ul class="list-group no-border">
+                                <li class="col-md-6 col-sm-6 list-group-item">
+                                    <div class="row">
+                                        <div class="col-md-4 font-bold"><b>{{ 'locale-first-name' | translate }}</b></div>
+                                        <div class="col-md-8">{{user.firstName}}</div>
+                                    </div>
+                                </li>
+                                <li class="col-md-6 col-sm-6 list-group-item">
+                                    <div class="row">
+                                        <div class="col-md-4 font-bold"><b>{{ 'locale-last-name' | translate }}</b></div>
+                                        <div class="col-md-8">{{user.lastName}}</div>
+                                    </div>
+                                </li>
+
+                                <li class="col-md-6 col-sm-6 list-group-item">
+                                    <div class="row">
+                                        <div class="col-md-4 font-bold"><b>{{ 'locale-email' | translate }}</b></div>
+                                        <div class="col-md-8">{{user.email}}</div>
+                                    </div>
+                                </li>
+                                <li class="col-md-6 col-sm-6 list-group-item">
+                                    <div class="row">
+                                        <div class="col-md-4 font-bold"><b>{{ 'locale-username' | translate }}</b></div>
+                                        <div class="col-md-8">{{user.userName}}</div>
+                                    </div>
+                                </li>
+                                <li class="col-md-6 col-sm-6 list-group-item">
+                                    <div class="row">
+                                        <div class="col-md-4 font-bold"><b>{{ 'locale-mobile-phone' | translate }}</b></div>
+                                        <div class="col-md-8">{{user.primaryPhone}}</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <uib-tabset class="ibox-content-tab">
+            <uib-tab>
+                <uib-tab-heading >
+                    <i class="fa fa-gitlab"></i> {{"locale-git-config"| translate}}
+                </uib-tab-heading>
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <form class="m-t-xs" name="gitForm" novalidate>
+                                    <div class="inmodal">
+                                        <!--                                        <div class="text-primary" >
+                                                                                    <h2>{{'locale-git-config'| translate }}</h2>
+                                                                                </div>-->
+
+                                        <div class="m-t-xs" >
+                                            <div class="row">
+                                                <div class="col-md-12" >
+                                                    <div class="form-group">
+                                                        <label>{{ 'locale-git-url'| translate }}<span class="text-danger">*</span></label>
+                                                        <input class="form-control" data-ng-class="{'error': gitForm.gitUrl.$invalid && gitForm.submitted}" 
+                                                               required="true" type="text" placeholder="{{ 'locale-git-url'| translate }}" id="gitUrl" name="gitUrl" data-ng-model="user.gitUrl" >
+                                                        <div class="m-t-xs validation-error-msg" ng-show="gitForm.gitUrl.$invalid && gitForm.submitted">
+                                                            <small ng-show="gitForm.gitUrl.$error">{{ 'error-giturl' | translate }}</small>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label>{{ 'locale-username'| translate }}<span class="text-danger">*</span></label>
+                                                        <input class="form-control" data-ng-class="{'error': gitForm.username.$invalid && gitForm.submitted}" 
+                                                               required="true" type="text" placeholder="{{ 'locale-username' | translate }}" id="username" name="username" data-ng-model="user.gitUserName" >
+                                                        <div class="m-t-xs validation-error-msg" ng-show="gitForm.username.$invalid && gitForm.submitted">
+                                                            <small ng-show="gitForm.username.$error">{{ 'error-gituser' | translate }}</small>
+                                                        </div>
+                                                    </div> 
+
+                                                    <div class="form-group">
+                                                        <label>{{ 'locale-password'| translate }}<span class="text-danger">*</span></label>
+                                                        <input class="form-control" data-ng-class="{'error': gitForm.password.$invalid && gitForm.submitted}" 
+                                                               required="true" type="password" placeholder="{{ 'locale-password' | translate }}" id="password" name="password" data-ng-model="user.gitPassword" >
+                                                        <div class="m-t-xs validation-error-msg" ng-show="gitForm.password.$invalid && gitForm.submitted">
+                                                            <small ng-show="gitForm.password.$error">{{ 'error-confirm-password' | translate }}</small>
+                                                        </div>
+                                                    </div> 
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div >
+                                            <button type="button"  class="btn btn-default " ng-click="cancel()" data-dismiss="modal">{{ 'locale-cancel' | translate }}</button>
+                                            <button type="submit"  class="btn btn-success btn-danger2" data-ng-click="ok(user)" data-dismiss="modal">{{ 'locale-ok' | translate }}</button>
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+            </uib-tab>            
+            <uib-tab data-ng-click="invoiceSelect()">
+                <uib-tab-heading>
+                    <i class="fa fa-file"></i> {{"locale-ceph-config"| translate}}
+                </uib-tab-heading>
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <form class="m-t-xs" name="cephForm" novalidate>
+                                    <div class="inmodal">
+                                        <!--                                        <div class="text-primary" >
+                                                                                    <h2>{{'locale-git-config'| translate }}</h2>
+                                                                                </div>-->
+
+                                        <div class="m-t-xs" >
+                                            <div class="row">
+                                                <div class="col-md-12" >
+                                                    <div class="form-group">
+                                                        <label>{{ 'locale-volume-name'| translate }}<span class="text-danger">*</span></label>
+                                                        <input class="form-control" data-ng-class="{'error': cephForm.volumeName.$invalid && cephForm.submitted}" 
+                                                               required="true" type="text" placeholder="{{ 'locale-volume-name'| translate }}" id="volumeName" name="volumeName" data-ng-model="user.volumeName" >
+                                                        <div class="m-t-xs validation-error-msg" ng-show="gitForm.cephForm.$invalid && cephForm.submitted">
+                                                            <small ng-show="cephForm.volumeName.$error">{{ 'error-volumeName' | translate }}</small>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label>{{ 'locale-pvc-id'| translate }}<span class="text-danger">*</span></label>
+                                                        <input class="form-control" data-ng-class="{'error': cephForm.username.$invalid && cephForm.submitted}" 
+                                                               required="true" type="text" placeholder="{{ 'locale-pvc-id' | translate }}" id="pvc" name="pvc" data-ng-model="user.pvc" >
+                                                        <div class="m-t-xs validation-error-msg" ng-show="cephForm.pvc.$invalid && gitForm.submitted">
+                                                            <small ng-show="gitForm.pvc.$error">{{ 'error-pvc' | translate }}</small>
+                                                        </div>
+                                                    </div> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div >
+                                            <button type="button"  class="btn btn-default " ng-click="cancel()" data-dismiss="modal">{{ 'locale-cancel' | translate }}</button>
+                                            <button type="submit"  class="btn btn-success btn-danger2" data-ng-click="ok(user)" data-dismiss="modal">{{ 'locale-ok' | translate }}</button>
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>          
+            </uib-tab>
+            <uib-tab>
+                <uib-tab-heading>
+                    <i class="fa fa-sitemap"></i> {{"locale-ldap-config"| translate}}
+                </uib-tab-heading>
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <form class="m-t-xs" name="ldapForm" novalidate>
+                                    <div class="inmodal">
+                                        <!--                                        <div class="text-primary" >
+                                                                                    <h2>{{'locale-git-config'| translate }}</h2>
+                                                                                </div>-->
+
+                                        <div class="m-t-xs" >
+                                            <div class="row">
+                                                <div class="col-md-12" >
+                                                    <div class="form-group">
+                                                        <label>{{ 'locale-ldap-url'| translate }}<span class="text-danger">*</span></label>
+                                                        <input class="form-control" data-ng-class="{'error': ldapForm.ldapUrl.$invalid && ldapForm.submitted}" 
+                                                               required="true" type="text" placeholder="{{ 'locale-ldap-url'| translate }}" id="ldapUrl" name="ldapUrl" data-ng-model="user.ldapUrl" >
+                                                        <div class="m-t-xs validation-error-msg" ng-show="ldapForm.ldapUrl.$invalid && ldapForm.submitted">
+                                                            <small ng-show="ldapForm.ldapUrl.$error">{{ 'error-ldap-url' | translate }}</small>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label>{{ 'locale-ldap-basedn'| translate }}<span class="text-danger">*</span></label>
+                                                        <input class="form-control" data-ng-class="{'error': ldapForm.basedn.$invalid && ldapForm.submitted}" 
+                                                               required="true" type="text" placeholder="{{ 'locale-ldap-basedn'| translate }}" id="basedn" name="basedn" data-ng-model="user.ldapBaseDn" >
+                                                        <div class="m-t-xs validation-error-msg" ng-show="ldapForm.basedn.$invalid && ldapForm.submitted">
+                                                            <small ng-show="ldapForm.basedn.$error">{{ 'error-ldap-basedn' | translate }}</small>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label>{{ 'locale-username'| translate }}<span class="text-danger">*</span></label>
+                                                        <input class="form-control" data-ng-class="{'error': ldapForm.username.$invalid && ldapForm.submitted}" 
+                                                               required="true" type="text" placeholder="{{ 'locale-username' | translate }}" id="username" name="username" data-ng-model="user.ldapUserName" >
+                                                        <div class="m-t-xs validation-error-msg" ng-show="ldapForm.username.$invalid && ldapForm.submitted">
+                                                            <small ng-show="ldapForm.username.$error">{{ 'error-gituser' | translate }}</small>
+                                                        </div>
+                                                    </div> 
+
+                                                    <div class="form-group">
+                                                        <label>{{ 'locale-password'| translate }}<span class="text-danger">*</span></label>
+                                                        <input class="form-control" data-ng-class="{'error': ldapForm.password.$invalid && ldapForm.submitted}" 
+                                                               required="true" type="password" placeholder="{{ 'locale-password' | translate }}" id="password" name="password" data-ng-model="user.ldapPassword" >
+                                                        <div class="m-t-xs validation-error-msg" ng-show="ldapForm.password.$invalid && ldapForm.submitted">
+                                                            <small ng-show="ldapForm.password.$error">{{ 'error-password' | translate }}</small>
+                                                        </div>
+                                                    </div> 
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div >
+                                            <button type="button"  class="btn btn-default " ng-click="cancel()" data-dismiss="modal">{{ 'locale-cancel' | translate }}</button>
+                                            <button type="submit"  class="btn btn-success btn-danger2" data-ng-click="ok(user)" data-dismiss="modal">{{ 'locale-ok' | translate }}</button>
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>            
+            </uib-tab>  
+        </uib-tabset>
+    </div>
+</div>

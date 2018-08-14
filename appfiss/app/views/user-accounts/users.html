@@ -1,0 +1,104 @@
+<div data-ng-controller="userAccountCtrl">
+    <div class="row wrapper border-bottom white-bg page-heading" >
+        <div class="col-md-4 page-title">
+            <h2>{{ 'locale-user-accounts' | translate }}</h2>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-9 text-right page-search">
+            <div class="floating-add">
+                <a class="btn btn-success m-r-md" data-ng-click="userAccountObject.addUserAccount()"><i class="fa fa-plus"></i> {{ 'locale-new' | translate }}</a>
+                <!--<a class="btn btn-success" data-ng-click="userAccountObject.addLdapUser()"><i class="fa fa-plus"></i> {{ 'locale-import-from-ldap' | translate }}</a>-->
+                <!--                <a class="btn btn-success" ng-disabled="true"><i class="fa fa-plus"></i> {{ 'locale-import-from-ldap' | translate }}</a>-->
+            </div>
+            <div class="search-wrapper text-right">
+                <div class="input-group m-r-md">
+                    <input type="text" class="form-control" placeholder="{{ 'locale-search' | translate }}" data-ng-model="search" data-ng-change="userAccountObject.searchList(search, type)">
+                    <div class="input-group-btn">
+                        <button class="btn btn-white" type="button" data-ng-click="userAccountObject.searchList(search, type)"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="filter-wrapper m-r-md">
+                <select class="form-control" name="type" data-ng-model="type" data-ng-options="type for type in roles">
+                    <option value="">All Status</option>
+                    <option value="suspended">Suspended</option>
+                    <option value="disabled">Disabled</option>
+                    <option value="deleted">Deleted</option>
+
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row wrapper page-breadcrumb">
+        <div class="col-lg-12">
+            <ol class="breadcrumb">
+                <li>
+                    <a ui-sref="index.user-dashboard"><i class="fa fa-home" aria-hidden="true"></i></a>
+                </li>
+                <li class="active">
+                    <strong>{{ 'locale-user-accounts' | translate }}</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="wrapper wrapper-content animated fadeInRight userLists" >
+        <websocket-loader-image data-ng-show="showLoader"></websocket-loader-image>
+        <!--    <div class="cssload-container" data-ng-show="showLoader">
+                <div class="cssload-loading"><i></i><i></i><i></i><i></i></div>
+            </div>-->
+        <div class="row" data-ng-show="!showLoader">
+            <div class="col-md-12">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <form   novalidate>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class=" table table-striped table-bordered table-draggable dataTables-example" data-page-size="4">
+                                            <thead>
+                                                <tr>
+                                                    <th data-ng-if="state !== 'Verification Pending'" data-ng-click="changeSort('userName', paginationObject.currentPage, sort)">{{ 'locale-name' | translate }}<i class="fa pull-right" data-ng-class="sort.descending && sort.column == 'userName' ? 'fa-sort-desc' : 'fa-sort-asc'"  aria-hidden="true"></i></th>
+                                                    <th data-ng-click="changeSort('email', paginationObject.currentPage, sort)">{{ 'locale-email' | translate }}<i class="fa pull-right" data-ng-class="sort.descending && sort.column == 'email' ? 'fa-sort-desc' : 'fa-sort-asc'"  aria-hidden="true"></i></th>
+                                                    <th data-ng-if="state !== 'Verification Pending'" data-ng-click="changeSort('primaryPhone', paginationObject.currentPage, sort)">{{ 'locale-phone' | translate }}<i class="fa pull-right" data-ng-class="sort.descending && sort.column == 'primaryPhone' ? 'fa-sort-desc' : 'fa-sort-asc'"  aria-hidden="true"></i></th>
+                                                    <th data-ng-click="changeSort('actualCreatedDate', paginationObject.currentPage, sort)">{{ 'locale-created-date' | translate }}<i class="fa pull-right" data-ng-class="sort.descending && sort.column == 'actualCreatedDate' ? 'fa-sort-desc' : 'fa-sort-asc'"  aria-hidden="true"></i></th>
+                                                    <th data-ng-click="changeSort('status', paginationObject.currentPage, sort)">{{ 'locale-status' | translate }}<i class="fa pull-right" data-ng-class="sort.descending && sort.column == 'status' ? 'fa-sort-desc' : 'fa-sort-asc'"  aria-hidden="true"></i></th>
+                                                    <th>{{ 'locale-action' | translate }}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody data-ng-hide="userAccountElement.userLists.length > 0">
+                                                <tr>
+                                                    <td class="col-md-9 col-sm-9" colspan="9">{{ 'locale-no-record-found' | translate }}</td>
+                                                </tr>
+                                            </tbody>
+                                            <tbody data-ng-show="userAccountElement.userLists.length > 0">
+                                                <tr data-ng-repeat="userList in userAccountElement.userLists">
+                                                    <td data-ng-if="userList.status !== 'VERIFICATION_PENDING'" class="text-info"><a data-ng-click="userAccountObject.getUser($index)" ui-sref="user-accounts.dashboard({id: {{ userList.id}}})" class="text-primary">{{ userList.firstName}}</a></td>
+                                                    <td>{{userList.email}}</td>
+                                                    <td data-ng-if="userList.status !== 'VERIFICATION_PENDING'">{{userList.primaryPhone}}</td>
+                                                    <td>{{userList.createdDateTime * 1000| date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                                    <td>{{userList.status}}</td>
+                                                    <td>
+                                                        <a has-permission="EDIT_USER" ui-sref="userLists.edit({id: {{ userList.id}}})" data-ng-if="userList.status !== 'VERIFICATION_PENDING'" class="btn btn-dark btn-circle" title="{{ 'locale-edit' | translate }}"><i class="fa fa-edit"></i></a>
+                                                        <a has-permission="DISABLE_USER" class="btn btn-dark btn-circle"  data-ng-if="userList.status == 'ENABLED' && userList.userType != 'ADMIN'" data-ng-click="disableUserResource(userList)" title="{{ 'locale-disable' | translate }}"><i class="fa fa-ban"></i></a>
+                                                        <a has-permission="ENABLE_USER" class="btn btn-dark btn-circle" data-ng-if="userList.status == 'DISABLED' && userList.userType != 'ADMIN'" data-ng-click="enableUserAccount(userList)" title="{{ 'locale-enable' | translate }}"><i class="fa fa-check"></i></a>
+                                                        <a has-permission="SUSPEND_USER" class="btn btn-dark btn-circle" data-ng-if="userList.status !== 'VERIFICATION_PENDING' && userList.status != 'SUSPENDED' && userList.status != 'DISABLED' && userList.userType != 'ADMIN'" data-ng-click="suspendUserResource(userList)" title="{{ 'locale-suspend' | translate }}"><i class="fa fa-minus-circle"></i></a>
+                                                        <a has-permission="RESUME_USER" class="btn btn-dark btn-circle" data-ng-if="userList.status == 'SUSPENDED' && userList.userType != 'ADMIN'" data-ng-click="resumeUserResource(userList)" title="{{ 'locale-resume' | translate }}"><i class="fa fa-play-circle"></i></a>
+                                                        <a has-permission="DELETE_USER" class="btn btn-dark btn-circle" data-ng-if="userList.status == 'VERIFICATION_PENDING'" data-ng-click="deleteClient(userList)" title="{{ 'locale-delete' | translate }}"><i class="fa fa-trash"></i></a>
+                                                        <a has-permission="LOGIN_AS_USER" class="btn btn-dark btn-circle" data-ng-if="userList.status == 'ENABLED'" data-ng-click="loginAsUser(userList)" title="{{ 'locale-login-as-user' | translate }}"><i class="fa fa-user"></i></a>
+                                                        <a has-permission="CHANGE_PASSWORD" class="btn btn-dark btn-circle" data-ng-if="userList.userType != 'ADMIN'" data-ng-click="resetPassword(userList)" title="{{'locale-change-password'| translate}}"><i class="fa fa-rotate-left"></i></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+
+                                        </table>
+                                        <pagination-content> </pagination-content>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

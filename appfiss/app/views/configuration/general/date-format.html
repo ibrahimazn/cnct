@@ -1,0 +1,37 @@
+<div class="inmodal">
+    <div class="modal-header">
+        <h4 class="modal-title">{{"locale-dateformat"| translate }}</h4>
+    </div>
+    <form name="dateFormatConfigForm"  method="POST" data-ng-submit="saveDateFormat(dateFormat)" novalidate>
+        <div class="row" >
+            <div class="col-md-12 col-sm-12">
+                <div class="hpanel">
+                    <div class="panel-heading">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>{{ 'locale-dateformat' | translate }}<span class="text-danger">*</span></label>
+                                    <select required="true" class="form-control input-group" name="format" data-ng-model="dateFormat.format" ng-options="format for (id, format) in dateFormatObject.dateFormatList"
+                                            data-ng-class="{ 'error' : dateFormatConfigForm.format.$invalid && dateFormatConfigForm.submitted}">
+                                        <option value="">{{ "locale-select" | translate }}</option>
+                                    </select>
+                                    <div class="m-t-xs select-box validation-error-msg" ng-show="dateFormatConfigForm.format.$invalid && dateFormatConfigForm.submitted">
+                                        <small ng-show="dateFormatConfigForm.format.$error">{{ 'locale-choose-dateformat' | translate }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <get-loader-image data-ng-if="showLoader"></get-loader-image>
+            <button data-ng-if="!showLoader" type="button" class="btn btn-white" ng-disabled="form.dateFormatConfigForm.$invalid" ng-click="cancel()">{{ 'locale-cancel' | translate }}</button>
+            <button class="btn btn-info pull-right"  data-ng-if="!showLoader"  type="submit" ng-disabled="form.dateFormatConfigForm.$invalid" >{{ "locale-update" | translate }}</button>
+        </div>
+    </form>
+</div>

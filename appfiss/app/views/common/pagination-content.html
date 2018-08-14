@@ -1,0 +1,29 @@
+<div class="row" data-ng-if="paginationObject.totalItems > global.CONTENT_MIN_LIMITS">
+    <div class="col-sm-6 col-md-6 col-xs-12 m-t-md">
+        <div class="col-sm-6 col-md-6 shown-page m-t-sm" data-ng-show="paginationObject.totalItems > (((paginationObject.currentPage - 1) * (paginationObject.limit * 1)) + (paginationObject.limit * 1))">
+            <div class="" id="example1_info" role="status" aria-live="polite">
+                {{ 'locale-showing' | translate }}{{ ((paginationObject.currentPage - 1) * paginationObject.limit) + 1}} {{ "locale-to" | translate }} {{ ((paginationObject.limit * paginationObject.currentPage / paginationObject.limit) * paginationObject.limit)}} {{ "locale-of" | translate }} {{ paginationObject.totalItems}} {{ "locale-entries" | translate }}
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-6 shown-page m-t-sm" data-ng-hide="paginationObject.totalItems > (((paginationObject.currentPage - 1) * (paginationObject.limit * 1)) + (paginationObject.limit * 1))"><div class="" id="example1_info" role="status" aria-live="polite">{{ "locale-showing" | translate }} {{ ((paginationObject.currentPage - 1) * paginationObject.limit) + 1}} {{ "locale-to" | translate }} {{ paginationObject.totalItems}} {{ "locale-of" | translate }} {{ paginationObject.totalItems}} {{ "locale-entries" | translate }}</div></div>
+        <div class="col-sm-6 col-md-6 shown-entry m-t-sm">
+            <div class="" id="example1_length">
+                <div class="pull-left m-r-sm">{{ "locale-show" | translate }} </div>
+                <select class="pull-left m-r-sm" data-ng-model="paginationObject.limit" data-ng-change=" paginationObject.pagingMethod(paginationObject.currentPage, paginationAddtionalObject); updatePagination(paginationObject.limit)" aria-controls="example1" >
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>    <div class="pull-left m-r-sm"> {{ "locale-entries" | translate }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-6">
+        <div class="col-sm-12  paging_simple_numbers" id="example1_paginate">
+            <ul uib-pagination boundary-links="true" total-items="paginationObject.totalItems" items-per-page="paginationObject.limit" max-size="5"  ng-model="paginationObject.currentPage" ng-change="paginationObject.pagingMethod(paginationObject.currentPage, paginationAddtionalObject)" class="pull-right pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+        </div>
+
+    </div>
+</div>
+
+

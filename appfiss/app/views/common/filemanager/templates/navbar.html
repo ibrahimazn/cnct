@@ -1,0 +1,40 @@
+<div class="filemanager-header">
+    <div class="row">
+        <div class="col-sm-5 col-md-5 col-xsm-7">
+            <div ng-show="!config.breadcrumb">
+                <a class="navbar-brand hidden-xs ng-binding" href="">angular-{{"filemanager" | translate}}</a>
+            </div>
+            <div ng-include="config.tplPath + '/current-folder-breadcrumb.html'" ng-show="config.breadcrumb">
+            </div>
+        </div>
+        <div class="col-sm-3 col-md-3 col-xsm-4 text-right">
+          
+        </div>
+        <div class="col-sm-3 col-md-3 col-xsm-4 text-right">
+            <div class="filemanager-search">
+                <input type="text" class="form-control search-file" placeholder="{{'search' | translate}}..." ng-model="$parent.query">
+            </div>
+        </div>
+        <div class="col-sm-1 col-md-1 col-xsm-1">
+            <div class="navbar-collapse">
+                <div class="navbar-form navbar-right text-right">
+                    <div class="pull-left visible-xs" ng-if="fileNavigator.currentPath.length">
+                        <button class="btn btn-primary btn-flat m-t-xs" ng-click="fileNavigator.upDir()">
+                            <i class="glyphicon glyphicon-chevron-left"></i>
+                        </button>
+                        {{fileNavigator.getCurrentFolderName() | strLimit : 12}}
+                    </div>
+                    <button class="btn btn-dark btn-sm m-t-xs" ng-click="$parent.setTemplate('main-icons.html')" ng-show="$parent.viewTemplate !=='main-icons.html'" title="{{'icons' | translate}}">
+                        <i class="glyphicon glyphicon-th-large"></i>
+                    </button>
+                    <button class="btn btn-dark btn-sm m-t-xs" ng-click="$parent.setTemplate('main-table.html')" ng-show="$parent.viewTemplate !=='main-table.html'" title="{{'list' | translate}}">
+                        <i class="glyphicon glyphicon-th-list"></i>
+                    </button>
+                    
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

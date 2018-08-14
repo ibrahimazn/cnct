@@ -1,0 +1,31 @@
+[
+    {
+        "id": 1,
+        "name": "h2oflow",
+        "platformTool": "h20flow",
+        "description": "h20flow",
+        "imageName": "h20flow",
+        "image": "10.160.0.2:31757/assistanz/h20flow-libraries:v1",
+        "internalPort": "8787",
+        "type": "Launchers",
+        "isActive": true,
+        "user": null,
+        "userId": null,
+        "projectId": null,
+        "deploymentName": null
+    }, {
+        "id": 2,
+        "name": "jupyter",
+        "platformTool": "Jupyter",
+        "description": "Jupyter",
+        "imageName": "centos-jupyter",
+        "image": "10.160.0.2:31757/assistanz/jupyter:latest",
+        "internalPort": "8888",
+        "type": "Launchers",
+        "isActive": true,
+        "user": null,
+        "userId": null,
+        "projectId": null,
+        "deploymentName": null
+    }
+]

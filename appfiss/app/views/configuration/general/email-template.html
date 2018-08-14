@@ -1,0 +1,71 @@
+<div class="inmodal">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="modal-header">
+                <h4 class="modal-title">{{ "locale-email-template" | translate }}</h4>
+            </div>
+        </div>
+    </div>
+    <form name="emailTemplateForm"  method="POST" data-ng-submit="saveEmailTemplate(emailTemplate, file)" novalidate>
+        <div class="ibox-content">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{ 'locale-language' | translate }}<span class="text-danger">*</span></label>
+                        <select focus-me="shouldBeOpen" required="true" class="form-control input-group" name="emailLanguage" data-ng-model="emailTemplate.emailLanguage" data-ng-change="selectLanguage(emailTemplate.emailLanguage.id)" ng-options="language as language.name for language in emailTemplateObject.list | orderBy: 'name'"
+                                data-ng-class="{ 'error' : emailTemplateForm.emailLanguage.$invalid && emailTemplateForm.submitted}">
+                            <option value="">{{ "locale-select" | translate }}</option>
+                        </select>
+                        <div class="m-t-xs select-box validation-error-msg" ng-show="emailTemplateForm.emailLanguage.$invalid && emailTemplateForm.submitted">
+                            <small ng-show="emailTemplateForm.emailLanguage.$error">{{ 'invalid-language' | translate }}</small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>{{ 'select-event' | translate }}<span class="text-danger">*</span></label>
+                        <select required="true" class="form-control input-group" name="eventName" data-ng-model="emailTemplate.eventName" data-ng-change="emailEventList(emailTemplate.eventName)" ng-options="event.eventName for event in eventsList | unique:'eventName'"
+                                data-ng-class="{ 'error' : emailTemplateForm.eventName.$invalid && emailTemplateForm.submitted}"> 
+                            <option value="">{{ "locale-select" | translate }}</option>
+                        </select>
+                        <div class="m-t-xs select-box validation-error-msg" ng-show="emailTemplateForm.eventName.$invalid && emailTemplateForm.submitted">
+                            <small ng-show="emailTemplateForm.eventName.$error">{{ 'invalid-event' | translate }}</small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>{{ 'upload-template' | translate }}<span class="text-danger">*</span></label>
+                        <input type="file" name="file" accept=".htm,.html" class="custom-file-input" file-model="file" data-ng-class="{'error': !file && emailTemplateForm.submitted}"/>
+                        <div class="m-t-xs validation-error-msg" ng-show="emailTemplateForm.file.$invalid && emailTemplateForm.submitted">
+                            <small ng-show="emailTemplateForm.file.$error">{{ 'invalid-template' | translate }}</small>
+                        </div>
+                        <div>
+                            <span><label>{{emailTemplate.fileName}}</label></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div><label>{{ 'locale-subject' | translate }}<span class="text-danger">*</span></label></div>
+                        <div><textarea rows="3" cols="40" class="form-control" required="true" id="subject" name="subject" data-ng-model="emailTemplate.subject" data-ng-class="{'error': emailTemplateForm.subject.$invalid && emailTemplateForm.submitted}" >
+                            </textarea></div>
+                        <div class="m-t-xs validation-error-msg" ng-show="emailTemplateForm.subject.$invalid && emailTemplateForm.submitted">
+                            <small ng-show="emailTemplateForm.subject.$error">{{ 'invalid-subject' | translate }}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" data-ng-show ="emailTemplate.eventName">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-bolt"></i>&nbsp;&nbsp;{{ 'event-details' | translate }}</h3>
+                    </div>
+                    <div class="panel-body no-padding">
+                        <ul class="list-group">
+                            <li class="list-group-item no-padding" data-ng-repeat="event in eventsBasedList"><code>$</code><code>{</code>{{event.eventLiterals}}<code>}</code> - {{event.description}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <get-loader-image data-ng-if="showLoader"></get-loader-image>
+            <button data-ng-if="!showLoader" type="button" class="btn btn-white" ng-disabled="form.emailTemplateForm.$invalid" ng-click="cancel()">{{ 'locale-cancel' | translate }}</button>
+            <button class="btn btn-info pull-right"  data-ng-if="!showLoader"  type="submit" ng-disabled="form.emailTemplateForm.$invalid" >{{ "locale-update" | translate }}</button>
+        </div>
+    </form>
+</div>

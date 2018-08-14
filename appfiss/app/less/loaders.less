@@ -1,0 +1,85 @@
+// end demo-specific
+
+.loader {
+  position: relative;
+  margin: 0 auto;
+    &:before {
+        content: '';
+        display: block;
+        padding-top: 100%;
+    }
+}
+
+.loader-lg{width: 100px;}
+.loader-md{width: 75px;}
+.loader-sm{width: 50px;}
+.loader-xs{width: 25px;}
+.modal-footer .loader{text-align: left;}
+.loader-logo{position: absolute; color: @loader-logo-color;}
+
+.loader-lg .loader-logo{font-size: 30px; margin: -73px 0 0 33px;}
+.loader-md .loader-logo{font-size: 24px; margin: -57px 0 0 24px;}
+.loader-sm .loader-logo{font-size: 18px; margin: -38px 0 0 14px;}
+.loader-xs .loader-logo{font-size: 11px; margin: -20px 0 0 6px;}
+
+.loader-container{position: relative;}
+.container-overlay{opacity: 0.8; display: flex; align-items:center; background: #fff; width:100%; height:100%; z-index:10; top:0; left:0; position:absolute;}
+.full-overlay{opacity: 0.8; display: flex; align-items:center; background: #fff; width:100%; height:100%; z-index:10; top:0; left:0; position:fixed;}
+
+.circular {
+  animation: rotate 2s linear infinite;
+  height: 100%;
+  transform-origin: center center;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.path {
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+  stroke-linecap: round;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124px;
+  }
+}
+
+@keyframes color {
+  100%,
+  0% {
+    stroke: @loader-blue;
+  }
+  40% {
+    stroke: @loader-green;
+  }
+  66% {
+    stroke: @loader-blue;
+  }
+  80%,
+  90% {
+    stroke: @loader-green;
+  }
+}

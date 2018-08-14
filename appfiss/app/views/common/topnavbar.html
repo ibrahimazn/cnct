@@ -1,0 +1,55 @@
+<div class="row">
+    <nav class="navbar" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <span minimaliza-sidebar></span>
+        </div>
+        <div class="pull-left m-t-sm m-l-sm btn">
+               <a ui-sref="activity.log">{{ 'locale-activity' | translate }}  <span class="label label-warning"></span> </a>
+        </div>
+        <ul class="nav navbar-top-links navbar-right pull-right">
+             <li class="pull-left lang" uib-dropdown >
+                <a class="btn btn-white" uib-dropdown-toggle href>
+                    <span class="clear">
+                        <span class="text-muted text-xs block"> <div class="pull-left m-r-sm" data-ng-if="language == 'en'"></div>
+                            <div class="pull-left m-r-sm" data-ng-if="language == 'es'"><img src="img/flags/16/es.png"></div>
+                            <div class="pull-left m-r-sm" data-ng-if="language == 'en'"><img src="img/flags/16/en.png"></div> 
+                            <div class="pull-left m-r-sm" data-ng-if="language == 'pt'"><img src="img/flags/16/pt.png"></div> 
+                            <b class="caret"></b>
+                        </span>
+                    </span>
+                </a>
+                <ul uib-dropdown-menu class=" m-t-xs">
+                    <li data-ng-repeat="langObj in languageList" data-ng-if="langObj.name != 'Spanish'" ><a class="btn btn-white set_en" data-ng-click="changeLanguage(langObj)"><img ng-src="img/flags/16/{{langObj.languageCode}}.png"> {{langObj.name}}</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+            <li class="dropdown">
+                <a class="dropdown-toggle text-center" data-toggle="dropdown">
+                    <i class="fa fa-user-circle-o"></i> 
+                    <span class="clear">
+                        <span class="block">
+                            <strong class="font-bold">{{ mainObject.userName}}</strong>
+                        </span>
+                        <span class="text-muted text-xs block">{{ 'locale-admin' | translate }}<b class="caret"></b></span>
+                    </span>
+                </a>
+                <ul class="dropdown-menu dropdown-messages">
+                    <li>
+                        <a data-ui-sref="app.login" data-ng-click="mainObject.logout()">
+                            <i class="fa fa-sign-out"></i> Log out
+                        </a>  
+                    </li>
+
+                    <li class="divider"></li>
+                    <li>
+                        <a data-ui-sref="user.profile" href="#/user/profile">
+                            <i class="fa fa-user-circle"></i> My Profile
+                        </a> 
+                    </li>
+                </ul>
+            </li>
+
+
+        </ul>
+    </nav>
+</div>

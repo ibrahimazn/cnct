@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Analyze Dashboard",
+        "pages": "1 Page",
+        "tiles": "4 Tiles",
+        "privacy": "Public"
+    },
+    {
+        "name": "Project1 Dashboard",
+        "pages": "2 Pages",
+        "tiles": "8 Tiles",
+        "privacy": "Private"
+    },
+    {
+        "name": "Test Dashboard",
+        "pages": "1 Page",
+        "tiles": "2 Tiles",
+        "privacy": "Public"
+    },
+    {
+        "name": "Default Dashboard",
+        "pages": "2 Pages",
+        "tiles": "2 Tiles",
+        "privacy": "Public"
+    }
+]

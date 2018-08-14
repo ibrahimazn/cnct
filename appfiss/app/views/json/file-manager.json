@@ -1,0 +1,40 @@
+{
+    "result": [{
+            "name": ".H2OData",
+            "permission": "-rw-r--r--",
+            "size": 3028,
+            "lastModifiedDate": "2018-03-21T13:44:35.577599Z",
+            "isDir": false
+        }, {
+            "name": ".H2Ohistory",
+            "permission": "-rw-r--r--",
+            "size": 7673,
+            "lastModifiedDate": "2018-03-21T13:44:35.571599Z",
+            "isDir": false
+        }, {
+            "name": ".h20",
+            "permission": "drwxr-xr-x",
+            "size": 15,
+            "lastModifiedDate": "2018-03-26T17:45:02.028749Z",
+            "isDir": true
+        }, {
+            "name": "Flowproject",
+            "permission": "drwxr-xr-x",
+            "size": 2,
+            "lastModifiedDate": "2018-03-21T11:19:48.125551Z",
+            "isDir": true
+        }, {
+            "name": "final_model.fl",
+            "permission": "-rw-r--r--",
+            "size": 20,
+            "lastModifiedDate": "2018-03-21T13:43:43.05293Z",
+            "isDir": false
+        }, {
+            "name": "h20",
+            "permission": "drwxr-xr-x",
+            "size": 1,
+            "lastModifiedDate": "2018-03-21T11:20:31.424183Z",
+            "isDir": true
+        }],
+    "status": "success"
+}

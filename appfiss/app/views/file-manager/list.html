@@ -1,0 +1,80 @@
+<div data-ng-controller="fileManagerDetailsCtrl">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-6 page-title">
+            <h2>{{ 'locale-files' | translate }}</h2>
+        </div>
+        <div class="col-lg-6 text-right">
+            <div class="floating-add m-r-md">
+                <!--                <a data-ng-click="filerManagerDetailsObject.showGitServer('lg')" class="btn btn-success">
+                                    <i class="fa fa-github"></i> {{ 'locale-git-server' | translate }}
+                                </a>-->
+            </div>
+        </div>
+    </div>
+    <div class="row wrapper page-breadcrumb">
+        <div class="col-lg-12">
+            <ol class="breadcrumb">
+                <li>
+                    <a data-ui-sref="index.user-dashboard"><i class="fa fa-home" aria-hidden="true"></i></a>
+                </li>                
+                <li class="active">
+                    {{ 'locale-files' | translate }}
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content">
+        <div class="ibox float-e-margins no-margins">
+            <div class="ibox-content">
+                <div class="row m-b-md">
+                    <div class="col-md-8 col-md-offset-4">
+                        <div class="pull-right upload-btn-wrapper">
+                            <button class="btn btn-dark pull-right" title="{{ 'locale-upload' | translate }}">
+                                <i class="fa fa-upload m-r-xs"></i>{{ 'locale-upload' | translate }}
+                            </button>
+                            <input type="file" id="fileid" name="myfile" custom-on-change="uploadFile" />
+                        </div>
+                        <div class="pull-right m-r-sm">
+                            <a class="btn btn-light pull-right" title="{{ 'locale-pull' | translate }}" data-ng-click='gitPull("md")'><i class="fa fa-arrow-circle-down m-r-xs"></i>{{ 'locale-pull' | translate }}</a>
+                        </div>
+                        <div class="pull-right m-r-sm">
+                            <a class="btn btn-light pull-right" title="{{ 'locale-push' | translate }}"  data-ui-sref="file-manager.status"><i class="fa fa-arrow-circle-up m-r-xs"></i>{{ 'locale-push' | translate }}</a>
+                        </div>
+                        <div class="pull-right m-r-sm">
+                            <div class="btn-group" uib-dropdown is-open="status.isopen">
+                                <button id="single-button" type="button" class="btn btn-info pull-right" title="{{ 'locale-launcher' | translate }}" uib-dropdown-toggle>
+                                    <i class="fa fa-rocket m-r-xs"></i>{{ 'locale-ml-platform' | translate }}
+                                </button>
+                                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                                    <li role="menuitem">
+                                        <div class="scroll-body" slimscroll="{height: 200,size:4,distance:5}">
+                                            <ul class="launchers-dropdown">
+                                                <li role="menuitem" data-ng-repeat="launcher in filerManagerElement.launchersLists">
+                                                    <!--<a data-ng-click="filerManagerDetailsObject.launchEditor(launcher)">-->
+                                                    <!--data-ng-click="filerManagerDetailsObject.startLauncher('md')"-->
+                                                    <a data-ng-click="filerManagerDetailsObject.launchEditor(launcher)" >
+                                                        <div class="launcher-icon">
+                                                            <img data-ng-if="launcher.name.includes('rstudio')" src="img/launchers/rstudio.png" alt="rstudio" title="rstudio" class="img-responsive"/>
+                                                            <img data-ng-if="launcher.name.includes('jupyter')" src="img/launchers/jupyter.png" alt="jupyter" title="jupyter" class="img-responsive"/>
+                                                            <img data-ng-if="launcher.name.includes('h2o')" src="img/launchers/h2-flow.png" alt="H2O Flow launcher" title="H2O Flow launcher" class="img-responsive"/>
+                                                        </div>
+                                                        <div class="launcher-des">
+                                                            <span>{{ launcher.platformTool}}</span>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="filemanager-area">
+                    <angular-filemanager></angular-filemanager>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

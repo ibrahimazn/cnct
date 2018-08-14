@@ -1,0 +1,142 @@
+<div data-ng-controller="staffCtrl">
+<div  class="wrapper wrapper-content animated fadeInRight">
+   
+    <div class="row">
+        <form name="profileForm" method="POST" data-ng-submit="updateStaff(user)" novalidate role="form">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-content"> 
+                    <div class="row" >
+                        
+                            <div class="col-sm-4 text-left">
+                                <div class="form-group">
+                                    <label>{{ 'locale-fname' | translate }}<span class="text-danger">*</span></label>
+                                    <input class="form-control" data-ng-class="{'error': profileForm.firstName.$invalid && profileForm.submitted}" 
+                                           required="true" type="text" placeholder="{{ 'locale-fname' | translate }}" id="firstName" name="firstName" data-ng-model="user.firstName" >
+                                    <div class="m-t-xs validation-error-msg" ng-show="profileForm.firstName.$invalid && profileForm.submitted">
+                                        <small ng-show="profileForm.firstName.$error">{{ 'error-fname' | translate }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 text-left">
+                                <div class="form-group">
+                                    <label>{{ 'locale-lname' | translate }}<span class="text-danger">*</span></label>
+                                    <input class="form-control" data-ng-class="{'error': profileForm.lastName.$invalid && profileForm.submitted}" 
+                                           required="true" type="text" placeholder="{{ 'locale-lname' | translate }}" id="lastName" name="lastName" data-ng-model="user.lastName" >
+                                    <div class="m-t-xs validation-error-msg" ng-show="profileForm.lastName.$invalid && profileForm.submitted">
+                                        <small ng-show="profileForm.lastName.$error">{{ 'error-lname' | translate }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 text-left">
+                                <div class="form-group">
+                                    <label>{{ 'locale-address' | translate }}<span class="text-danger">*</span></label>
+                                    <input class="form-control" data-ng-class="{'error': profileForm.address.$invalid && profileForm.submitted}" 
+                                           required="true" type="text" placeholder="{{ 'locale-address' | translate }}" id="address" name="address" data-ng-model="user.address" >
+                                    <div class="m-t-xs validation-error-msg" ng-show="profileForm.address.$invalid && profileForm.submitted">
+                                        <small ng-show="profileForm.address.$error">{{ 'error-address' | translate }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 text-left">
+                                <div class="form-group">
+                                    <label>{{ 'locale-city' | translate }}<span class="text-danger">*</span></label>
+                                    <input class="form-control" data-ng-class="{'error': profileForm.city.$invalid && profileForm.submitted}" 
+                                           required="true" type="text" placeholder="{{ 'locale-city' | translate }}" id="city" name="city" data-ng-model="user.city" >
+                                    <div class="m-t-xs validation-error-msg" ng-show="profileForm.city.$invalid && profileForm.submitted">
+                                        <small ng-show="profileForm.city.$error">{{ 'error-city' | translate }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 text-left">
+                                <div class="form-group">
+                                    <label>{{ 'locale-country' | translate }}<span class="text-danger">*</span></label>
+                                    <input class="form-control" data-ng-class="{'error': profileForm.country.$invalid && profileForm.submitted}" 
+                                           required="true" type="text" placeholder="{{ 'locale-country' | translate }}" id="country" name="country" data-ng-model="user.country" >
+                                    <div class="m-t-xs validation-error-msg" ng-show="profileForm.country.$invalid && profileForm.submitted">
+                                        <small ng-show="profileForm.country.$error">{{ 'error-country' | translate }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 text-left">
+                                <div class="form-group">
+                                    <label>{{ 'locale-postal-code' | translate }}<span class="text-danger">*</span></label>
+                                    <input class="form-control" data-ng-class="{'error': profileForm.postalCode.$invalid && profileForm.submitted}" 
+                                           required="true" type="text" placeholder="{{ 'locale-postal-code' | translate }}" id="postalCode" name="postalCode" data-ng-model="user.postalCode" >
+                                    <div class="m-t-xs validation-error-msg" ng-show="profileForm.postalCode.$invalid && profileForm.submitted">
+                                        <small ng-show="profileForm.postalCode.$error">{{ 'error-postal-code' | translate }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 text-left">
+                                <div class="form-group">
+                                    <label>{{ 'locale-primary-email' | translate }}<span class="text-danger">*</span></label>
+                                    <div class="clear"></div>
+                                    <label class="text-primary" >{{user.email}} </label>
+                                    <div class="m-t-xs validation-error-msg" ng-show="profileForm.email.$invalid && profileForm.submitted">
+                                        <small ng-show="profileForm.email.$error">{{ 'error-primary-email' | translate }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 text-left">
+                                <div class="form-group">
+                                    <label>{{ 'locale-secondary-email' | translate }}</label>
+                                    <input class="form-control" data-ng-class="{'error': profileForm.secondaryEmail.$invalid && profileForm.submitted}" 
+                                           type="email" placeholder="{{ 'locale-secondary-email' | translate }}" id="secondaryEmail" name="secondaryEmail" data-ng-model="user.secondaryEmail" >
+                                    <div class="m-t-xs validation-error-msg" ng-show="profileForm.secondaryEmail.$invalid && profileForm.submitted">
+                                        <small ng-show="profileForm.secondaryEmail.$error">{{ 'error-secondary-email' | translate }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 text-left">
+                                <div class="form-group">
+                                    <label>{{ 'locale-primary-phone' | translate }}<span class="text-danger">*</span></label>
+                                    <input class="form-control" valid-number data-ng-class="{'error': profileForm.primaryPhone.$invalid && profileForm.submitted}" 
+                                           required="true" type="text" placeholder="{{ 'locale-primary-phone' | translate }}" id="primaryPhone" name="primaryPhone" data-ng-model="user.primaryPhone" >
+                                    <div class="m-t-xs validation-error-msg" ng-show="profileForm.primaryPhone.$invalid && profileForm.submitted">
+                                        <small ng-show="profileForm.primaryPhone.$error">{{ 'error-primary-phone' | translate }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 text-left">
+                                <div class="form-group">
+                                    <label>{{ 'locale-secondary-phone' | translate }}</label>
+                                    <input class="form-control" valid-number data-ng-class="{'error': profileForm.secondaryPhone.$invalid && profileForm.submitted}" 
+                                            type="text" placeholder="{{ 'locale-secondary-phone' | translate }}" id="secondaryPhone" name="secondaryPhone" data-ng-model="user.secondaryPhone" >
+                                    <div class="m-t-xs validation-error-msg" ng-show="profileForm.secondaryPhone.$invalid && profileForm.submitted">
+                                        <small ng-show="profileForm.secondaryPhone.$error">{{ 'error-secondary-phone' | translate }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-ng-if="superAdmin.id !== user.id" class="col-sm-4 text-left">
+                                <div class="form-group">
+                                    <label>{{ 'locale-role' | translate }}<span class="text-danger">*</span></label>
+                                    <select required="true" class="form-control input-group" name="role" data-ng-model="user.role" ng-options="role.name for role in rootRoleList"
+                                            data-ng-class="{ 'error' : profileForm.role.$invalid && profileForm.submitted}">
+                                        <option value="">{{ "locale-select" | translate }}</option>
+                                    </select>
+                                    <div class="m-t-xs select-box validation-error-msg" ng-show="profileForm.role.$invalid && profileForm.submitted">
+                                        <small ng-show="profileForm.role.$error">{{"error-locale-role" | translate}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-footer">
+                            <div class="col-md-6 col-md-offset-6">
+                                <div class="form-group no-bottom-margin">
+                                    <button type="submit" class="btn m-l-sm pull-right btn-primary">{{ 'locale-update' | translate }}</button>
+                                    <a ui-sref="configuration.general.staffs" class="btn btn-default pull-right" >{{ 'locale-cancel' | translate }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>  
+    </div>
+</div>
+</div>

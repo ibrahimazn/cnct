@@ -1,0 +1,208 @@
+<div data-ng-controller="userProfileCtrl">
+    <div class="row wrapper border-bottom page-heading">
+        <div class="col-lg-12 page-title">
+            <h2>{{'locale-profile' | translate }}</h2>
+        </div>
+    </div>
+    <div class="row wrapper page-breadcrumb">
+        <div class="col-lg-12">
+            <ol class="breadcrumb">
+                <li>
+                    <a data-ui-sref="index.user-dashboard"><i class="fa fa-home" aria-hidden="true"></i></a>
+                </li>
+                <li class="active">
+                    {{ 'locale-profile' | translate }}
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row dashboard-widget">
+            <div class="col-md-5">
+                <div class="profile-image">
+                    <img src="img/a4.jpg" class="img-circle circle-border m-b-md" alt="profile">
+                </div>
+                <div class="profile-info">
+                    <div class="">
+                        <div>
+                            <h2 class="no-margins">
+                                Alex Smith
+                            </h2>
+                            <h4>Admin</h4>
+                            <i class="fa fa-user fa-fw"></i> alexsmith08<br>
+                            <i class="fa fa-envelope fa-fw"></i> admin@mailprovider.com
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <table class="table small">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <strong>06</strong> Projects (Member of)
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>02</strong> Projects (Owned)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>12</strong> Launchers
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row m-t-sm">
+            <div class="col-lg-7">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title border-bottom">
+                        <h5>{{ 'locale-personal-details' | translate }}</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <form role="form" id="profileForm" name="profileForm" novalidate data-ng-submit="">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group" data-ng-class="{'has-error': profileForm.firstName.$invalid && profileForm.submitted}">
+                                        <label> {{ 'locale-first-name' | translate }} </label>
+                                        <input type="text" name="firstName" class="form-control" data-ng-model="profile.firstName" data-ng-init="profile.firstName='Alex'">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group" data-ng-class="{'has-error': profileForm.lastName.$invalid && profileForm.submitted}">
+                                        <label> {{ 'locale-last-name' | translate }} </label>
+                                        <input type="text" name="lastName" class="form-control" data-ng-model="profile.lastName" data-ng-init="profile.lastName='Smith'">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group" data-ng-class="{'has-error': profileForm.userName.$invalid && profileForm.submitted}">
+                                        <label> {{ 'locale-username' | translate }} </label>
+                                        <input type="text" name="userName" class="form-control" data-ng-model="profile.userName" data-ng-init="profile.userName='alexsmith08'">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group" data-ng-class="{'has-error': profileForm.password.$invalid && profileForm.submitted}" data-ng-init="profile.password='password'">
+                                        <label> {{ 'locale-password' | translate }} </label>
+                                        <input type="password" name="password" class="form-control" data-ng-model="profile.password">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group" data-ng-class="{'has-error': profileForm.userEmail.$invalid && profileForm.submitted}" data-ng-init="profile.userEmail='admin@mailprovider.com'">
+                                        <label> {{ 'locale-email' | translate }} </label>
+                                        <input type="email" name="userEmail" class="form-control" data-ng-model="profile.userEmail">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group"
+                                        data-ng-class="{'has-error': profileForm.profileImgFile.$invalid && profileForm.submitted}">
+                                       <label> {{ 'locale-profile-image' | translate }} <span class="required"> * </span>  </label>
+                                       <input accept=".jpg, .jpeg, .png"  class="" type="file"  id="profileImgFile" name="profileImgFile" data-file-model="userAccount.profileImgFile" >
+                                       <div class="input-icon right"
+                                            data-ng-if="profileForm.profileImgFile.$invalid && profileForm.submitted">
+                                           <i data-uib-tooltip="{{ 'locale-profile-image-required' | translate }}" data-tooltip-placement="left"
+                                              class="fa fa-warning"></i>
+                                       </div>
+                                   </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 text-right">
+                                    <button type="button" class="btn btn-default" data-ng-click="cancel();">{{ 'locale-cancel' | translate }}</button>
+                                    <button type="submit" class="btn btn-info">{{ 'locale-update' | translate }}</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title border-bottom">
+                        <h5>{{ 'locale-activities' | translate }}</h5>
+                        <div class="ibox-tools">
+                            <span class="label label-warning-light pull-right">06</span>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                            <div class="scroll-body" slimscroll="{height: 307,size:4,distance:0}">
+                            <div class="feed-activity-list">
+                                <div class="feed-element">
+                                    <a href="" class="pull-left">
+                                        <div class="rounded-25 border-xs-info text-info">M</div>
+                                    </a>
+                                    <div class="media-body ">
+                                        <small class="pull-right m-l-md">5m ago</small>
+                                        <strong>Manikandan</strong>  pushed to branch <strong>ui-demo</strong> at <strong>anCode / AppFiss-UI </strong>. <br>
+                                        <small class="text-muted">Today 5:60 pm - 16.01.2018</small>
+                                    </div>
+                                </div>
+
+                                <div class="feed-element">
+                                    <a href="" class="pull-left">
+                                        <div class="rounded-25 border-xs-danger text-danger">J</div>
+                                    </a>
+                                    <div class="media-body ">
+                                        <small class="pull-right m-l-md">2h ago</small>
+                                        <strong>Jamseer</strong> added <strong>Manikandan</strong>, <strong>Prakash</strong> to the project <strong>AppFiss</strong>. <br>
+                                        <small class="text-muted">Today 2:10 pm - 16.01.2018</small>
+                                    </div>
+                                </div>
+                                <div class="feed-element">
+                                    <a href="" class="pull-left">
+                                        <div class="rounded-25 border-xs-danger text-danger">J</div>
+                                    </a>
+                                    <div class="media-body ">
+                                        <small class="pull-right m-l-md">2h ago</small>
+                                        <strong>Jamseer</strong> created a new Project called <strong>AppFiss</strong> site. <br>
+                                        <small class="text-muted">Today 2:05 pm - 16.01.2018</small>
+                                    </div>
+                                </div>
+                                <div class="feed-element">
+                                    <a href="" class="pull-left">
+                                        <div class="rounded-25 border-xs-success text-success">S</div>
+                                    </a>
+                                    <div class="media-body ">
+                                        <small class="pull-right m-l-md">5h ago</small>
+                                        <strong>Safia</strong>  pushed to branch <strong>master</strong> at <strong>anCode / AppFiss-UI </strong>. <br>
+                                        <small class="text-muted">Yesterday 1:21 pm - 15.01.2018</small>
+                                    </div>
+                                </div>
+                                <div class="feed-element">
+                                    <a href="" class="pull-left">
+                                        <div class="rounded-25 border-xs-success text-success">S</div>
+                                    </a>
+                                    <div class="media-body ">
+                                        <small class="pull-right m-l-md">23h ago</small>
+                                        <strong>Safia</strong>  created new dashboard called <strong>CPU Monitoring</strong> at <strong>anCode </strong> project. <br>
+                                        <small class="text-muted">2 days ago at 2:30 am - 11.06.2017</small>
+                                    </div>
+                                </div>
+                                <div class="feed-element">
+                                    <a href="" class="pull-left">
+                                        <div class="rounded-25 border-xs-warning text-warning">P</div>
+                                    </a>
+                                    <div class="media-body ">
+                                        <small class="pull-right m-l-md">46h ago</small>
+                                        <strong>Prakash</strong>  added new role <strong>Data Analyst</strong> to <strong>Manikandan </strong> at <strong>anCode </strong> project. <br>
+                                        <small class="text-muted">3 days ago at 7:58 pm - 10.06.2017</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

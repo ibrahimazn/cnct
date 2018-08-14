@@ -1,0 +1,155 @@
+
+<form name="themeSettingsForm"  method="POST" data-ng-submit="themeSettingsObject.savethemeSettings(themeSettings)" data-ng-controller="themeSettingsCtrl" novalidate>
+    <div class="wrapper wrapper-content animated fadeInUp">
+        <div class="ibox">
+            <div class="ibox-content p-xs ibox-heading">
+                <h3>{{ 'locale-general-settings' | translate }}</h3>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>{{ 'locale-default-language' | translate }}</label>
+                            <select data-ng-change="themeSettingsObject.findThemeSettingsByLanguage(themeSettings.language)"  class="form-control" name="language" data-ng-model="themeSettings.language" ng-options="language as language.name for language in themeSettingsForm.languageList | orderBy: 'name'">
+                                <option value="">{{ "locale-select" | translate }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>{{ 'locale-pagetitle' | translate }}</label>
+                            <input class="form-control" 
+                                   type="text" id="headerTitle" name="headerTitle" data-ng-model="themeSettings.headerTitle" >
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 m-b-md">
+                        <div class="form-group ">
+                            <label>{{ 'header-links' | translate }}</label>
+                            <div  data-ng-repeat="headerLink in themeSettings.headers">
+                                <div class="col-md-4 col-sm-5 no-padding"><div class="bg-light p-xs"><input type="text" data-ng-model="headerLink.name" name="" placeholder="{{ 'locale-header-name' | translate }}" class="form-control"></div></div>
+                                <div class="col-md-5 col-sm-5 no-padding"><div class="bg-light p-xs"><input type="text" data-ng-model="headerLink.url" name="" placeholder="{{ 'locale-header-url' | translate }}" class="form-control"></div></div>
+                                <div class="col-md-1  col-sm-2 no-padding" ng-hide="themeSettings.headers.length == '1'"><div class="bg-light p-xs"><label class="btn btn-danger"  data-ng-click="themeSettingsObject.removeHeaderLink()">-</label></div></div>
+                                <div class="col-md-1 col-sm-2 add-link" ng-show="$last"><div class="bg-light p-xs"><label class="btn btn-primary"  data-ng-click="themeSettingsObject.addHeaderLink()">+</label></div></div>
+                                <div class=""><input type="hidden"  data-ng-init="headerLink.headerType = 'HEADER'" data-ng-model="headerLink.headerType" name="" value="HEADER" class="form-control"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<!--                <div class="row">
+                    <div class="col-md-6">
+                        <label>Choose Color Theme</label>
+                        <ul class="theme-options">
+                            <li><a data-ng-click="selectTheme('app/styles/theme1.css', 'theme1')" class="theme1"></a></li>
+                            <li><a data-ng-click="selectTheme('app/styles/theme2.css', 'theme2')" class="theme2"></a></li>
+                        </ul>
+                    </div>
+                </div>-->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group clearfix">
+                            <div class="pull-left">
+                                <label>{{ 'upload-logo' | translate }}</label>
+                                <input accept=".jpg, .jpeg"  class="" type="file"  id="logo" name="logoImgFile" data-file-model="themeSettings.logoImgFile" >
+                            </div>
+                            <div class="pull-left">
+                                <img data-ng-if="themeSettings.favIconImage"  ng-src="{{themeSettings.logoImage}}" class="img-thumbnail"  alt="" height="100" width="150" />
+                            </div>
+                        </div>
+                        <div class="m-t-md">
+                            <div class="bg-info p-xs b-r-xl">{{ 'logo-file-help' | translate }}</div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group clearfix">
+                            <div class="pull-left">
+                                <label>{{ 'upload-fav-icon' | translate }}</label>
+                                <input accept=".ico" class=""  type="file" id="favicon" name="favicon" data-file-model="themeSettings.favicon" >
+                            </div>
+                            <div class="pull-left">
+                                <img data-ng-if="themeSettings.favIconImage" ng-src="{{themeSettings.favIconImage}}" class="img-thumbnail" alt="" height="50" width="50" />
+                            </div>
+                        </div>
+                        <div class="m-t-md">
+                            <div class="bg-info p-xs b-r-xl">{{ 'favicon-file-help' | translate }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ibox">
+            <div class="ibox-content p-xs ibox-heading">
+                <h3>{{"locale-page-contents"| translate }}</h3>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>{{ 'welcome-content-admin' | translate }}</label>
+                            <summernote name="welcomeContent"  height="100"  data-ng-model="themeSettings.welcomeContent" config = "summernoteThemeOpttion" ></summernote>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>{{ 'welcome-content-user' | translate }}</label>
+                            <summernote name="welcomeContentUser"  height="100"  data-ng-model="themeSettings.welcomeContentUser"  config = "summernoteThemeOpttion" ></summernote>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>{{ 'footer-content' | translate }}</label>
+                            <summernote name="footerContent"  height="100"  data-ng-model="themeSettings.footerContent"  config="themeSettings.summernoteOpt" ></summernote>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>{{ 'terms-condition' | translate }}</label>
+                            <summernote name="termsCondition"  height="100"  data-ng-model="themeSettings.termsCondition"  config="themeSettings.summernoteOpt" ></summernote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ibox">
+            <div class="ibox-content p-xs ibox-heading">
+                <h3>{{"locale-messages"| translate }}</h3>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>{{ 'maintenance-message' | translate }}</label>
+                            <summernote name="maintenanceMessage"  height="100"  data-ng-model="themeSettings.maintenanceMessage"  config="themeSettings.summernoteOpt" ></summernote>
+                        </div>
+                        <div class="form-group">
+                            <label>{{ 'broadcast-maintenance-message' | translate }}</label>
+                            <input class="i-checks"  type="checkbox" id="isbroadCast" name="isbroadCast" data-ng-model="themeSettings.isbroadCast" >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ibox">
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-6 col-md-offset-6">
+                            <div class="form-group no-bottom-margin">
+                                <get-loader-image data-ng-if="showLoader"></get-loader-image>
+                                <button class="btn m-l-xs btn-info pull-right"  data-ng-if="!showLoader"  type="submit" ng-disabled="form.themeSettingsForm.$invalid" >{{ "locale-update" | translate }}</button>
+                                <a ui-sref="configuration.general" class="btn btn-white pull-right">{{ "locale-cancel" | translate }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

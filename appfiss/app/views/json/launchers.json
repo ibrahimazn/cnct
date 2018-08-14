@@ -1,0 +1,133 @@
+[
+    {
+        "id": 2,
+        "uid": "dae53d50-2cf9-11e8-b7d2-42010aa00002",
+        "name": "h2oflow",
+        "user": "appfiss@assistanz.com",
+        "userId": 1,
+        "projectId": 2,
+        "namespace": {
+            "id": 2,
+            "name": "appfiss",
+            "isActive": true,
+            "createdBy": 2
+        },
+        "namespaceId": 2,
+        "volume": {
+            "id": 1,
+            "uid": "28630db0-2ce8-11e8-b7d2-42010aa00002",
+            "name": "appfiss-volume",
+            "user": null,
+            "namespace": "appfiss",
+            "pvc": "pvc-28630db0-2ce8-11e8-b7d2-42010aa00002",
+            "createdBy": 2,
+            "status": "PROVISIONINGSUCCEEDED"
+        },
+        "volumeId": 1,
+        "appImage": {
+            "id": 1,
+            "name": "h2oflow",
+            "platformTool": "h2oflow",
+            "description": "H2OFlow",
+            "imageName": "h2oflow",
+            "image": "10.160.0.2:31757/assistanz/h2oflow-libraries:v1",
+            "internalPort": "8787",
+            "type": "Launchers",
+            "isActive": true,
+            "user": null,
+            "userId": null,
+            "projectId": null,
+            "deploymentName": null
+        },
+        "appImageId": 1,
+        "service": {
+            "id": 2,
+            "name": "h2oflow1521631225628",
+            "namespace": "ibrahim",
+            "label": "h2oflow1521631225628",
+            "port": "8787",
+            "nodePort": "30418"
+        },
+        "serviceId": 2,
+        "type": "Launchers",
+        "isActive": true,
+        "message": "Scaled up replica set h2oflow1521631225628-7459b5f6fb to 1",
+        "pod": {
+            "id": 87,
+            "uid": "dae84167-2cf9-11e8-b7d2-42010aa00002",
+            "name": "h2oflow1521631225628-7459b5f6fb-nh7pc",
+            "host": "k8snode1.assistanz.com",
+            "message": "Created container",
+            "isActive": true
+        },
+        "podId": 87,
+        "deploymentType": null,
+        "envProcess": null,
+        "createdAt": 1521631226000
+    }, {
+        "id": 3,
+        "uid": "3f06f3c6-2cfa-11e8-b7d2-42010aa00002",
+        "name": "jupyter1521631394284",
+        "user": "appfiss@assistanz.com",
+        "userId": 1,
+        "projectId": 2,
+        "namespace": {
+            "id": 2,
+            "name": "ibrahim",
+            "isActive": true,
+            "createdBy": 2
+        },
+        "namespaceId": 2,
+        "volume": {
+            "id": 1,
+            "uid": "28630db0-2ce8-11e8-b7d2-42010aa00002",
+            "name": "ibrahim-volume",
+            "user": null,
+            "namespace": "ibrahim",
+            "pvc": "pvc-28630db0-2ce8-11e8-b7d2-42010aa00002",
+            "createdBy": 2,
+            "status": "PROVISIONINGSUCCEEDED"
+        },
+        "volumeId": 1,
+        "appImage": {
+            "id": 1,
+            "name": "jupyter",
+            "platformTool": "jupyter",
+            "description": "jupyter",
+            "imageName": "jupyter",
+            "image": "10.160.0.2:31757/assistanz/jupyter-libraries:v1",
+            "internalPort": "8787",
+            "type": "Launchers",
+            "isActive": true,
+            "user": null,
+            "userId": null,
+            "projectId": null,
+            "deploymentName": null
+        },
+        "appImageId": 1,
+        "service": {
+            "id": 3,
+            "name": "jupyter1521631394284",
+            "namespace": "ibrahim",
+            "label": "jupyter1521631394284",
+            "port": "8787",
+            "nodePort": "31763"
+        },
+        "serviceId": 3,
+        "type": "Launchers",
+        "isActive": true,
+        "message": "Scaled up replica set jupyter1521631394284-74fb85776f to 1",
+        "pod": {
+            "id": 88,
+            "uid": "3f09c1c9-2cfa-11e8-b7d2-42010aa00002",
+            "name": "jupyter1521631394284-74fb85776f-fzz2v",
+            "host": "k8snode2.assistanz.com",
+            "message": "Created container",
+            "isActive": true
+        },
+        "podId": 88,
+        "deploymentType": null,
+        "envProcess": null,
+        "createdAt": 1521631394000
+    }
+]

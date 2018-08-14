@@ -1,0 +1,57 @@
+{
+  "name": "appfiss",
+  "version": "1.0.0",
+  "authors": [
+    "appFiss"
+  ],
+  "description": "APPFiss - Serverless ML platform App",
+  "main": "app/index.html",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "appPath": "app",
+  "dependencies": {
+    "angular-animate": "~1.5.0",
+    "angular-sanitize": "~1.5.0",
+    "angular-messages": "~1.5.0",
+    "angular-aria": "~1.5.0",
+    "angular-resource": "~1.5.0",
+    "angular-ui-router": "~0.2.15",
+    "bootstrap": "~3.3.7",
+    "angular-bootstrap": "~2.5.0",
+    "angular-translate": "~2.11.1",
+    "angular-translate-storage-local": "~2.11.1",
+    "angular-translate-loader-static-files": "~2.11.1",
+    "angular-translate-loader-static-files": "~2.11.1",
+    "angular-local-storage": "~0.2.2",
+    "angularjs-toaster": "~2.0.0",
+    "moment": "~2.10.6",
+    "animate.css": "~3.4.0",
+    "angular": "~1.5.0",
+    "pace": "~1.0.2",
+    "metisMenu": "~2.0.2",
+    "fontawesome": "~4.7.0",
+    "jquery": "^3.1.1",
+    "angular-slimscroll": "1.1.5",
+    "angular-ui-select2": "0.0.5",
+    "ng-switchery": "1.0.0-alpha7",
+    "c3-angular":"1.4.0",
+    "angular-ui-sortable":"0.18.0",
+    "angular-toastr":"2.1.1",
+    "angular-gridster":"0.13.14",
+    "ng-file-upload": "^12.0.1",
+    "sockjs-client": "0.3.4",
+    "angular-bootstrap-duallistbox": "0.1.0",
+    "tagged-infinite-scroll": "1.1.1",
+    "ng-tags-input": "3.2.0",
+    "angular-sanitize": "1.6.9",
+    "angular-ui-grid": "4.4.3"
+  },
+  "resolutions": {
+    "angular": "~1.5.0",
+    "jquery": "^3.1.1"
+  }
+}

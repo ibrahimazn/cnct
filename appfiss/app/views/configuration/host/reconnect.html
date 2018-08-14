@@ -1,0 +1,20 @@
+<div class="inmodal" >
+    <div class="modal-header">
+        <h4 class="modal-title "> {{ 'locale-confirm' | translate }}</h4>
+    </div>
+    <div class="modal-body white-bg">
+        <div class="row">
+            <div class="col-md-2">
+                <i class="fa fa-warning text-warning m-t-sm fa-2x"></i>
+            </div>
+            <div class="col-md-10">
+                <!--<h2 class="no-padding no-margins">{{ 'locale-restart-message' | translate }}</h2>-->
+                <p class="m-t-sm">{{ 'locale-reconnect-host' | translate }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer text-center">
+        <button type="button"  class="btn btn-white " ng-click="cancel()" data-dismiss="modal">{{ 'locale-cancel' | translate }}</button>
+        <button type="button"  class="btn btn-primary btn-danger2" ng-click="ok(host)" data-dismiss="modal">{{ 'locale-ok' | translate }}</button>
+    </div>
+</div>

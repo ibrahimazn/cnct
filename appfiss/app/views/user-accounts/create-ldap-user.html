@@ -1,0 +1,165 @@
+<form role="form" id="userAccountForm" name="ldapUserForm" novalidate data-ng-submit="userAccountObject.save(userAccount)">
+    <div class="modal-header" modaldraggable>
+        <button type="button" data-ng-click="cancel();" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" data-ng-hide="userAccountElement.updateButton"><i class="fa fa-plus-circle m-r-sm"></i>{{ 'locale-import-user-from-ldap' | translate }}</h4>
+        <h4 class="modal-title" data-ng-if="userAccountElement.updateButton"><i class="fa fa-edit m-r-sm"></i>{{ 'locale-edit-user' | translate }}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group"
+                     data-ng-class="{'has-error': ldapUserForm.providerUrl.$invalid && ldapUserForm.submitted}">
+                    <label> {{ 'locale-provider-url' | translate }} </label>
+                    <input type="url" name="providerUrl" class="form-control" data-ng-model="userAccount.providerUrl">
+                    <div class="input-icon right"
+                         data-ng-if="ldapUserForm.providerUrl.$invalid && ldapUserForm.submitted">
+                        <i data-uib-tooltip="{{ 'locale-provider-url-required' | translate }}" data-tooltip-placement="left"
+                           class="fa fa-warning"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group"
+                     data-ng-class="{'has-error': ldapUserForm.secondaryProviderUrl.$invalid && ldapUserForm.submitted}">
+                    <label> {{ 'locale-secondary-provider-url' | translate }} </label>
+                    <input type="url" name="secondaryProviderUrl" class="form-control" data-ng-model="userAccount.secondaryProviderUrl">
+                    <div class="input-icon right"
+                         data-ng-if="ldapUserForm.secondaryProviderUrl.$invalid && ldapUserForm.submitted">
+                        <i data-uib-tooltip="{{ 'locale-secondary-provider-url-required' | translate }}" data-tooltip-placement="left"
+                           class="fa fa-warning"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group"
+                     data-ng-class="{'has-error': ldapUserForm.connectionMode.$invalid && ldapUserForm.submitted}">
+                    <label> {{ 'locale-connection-mode' | translate }} </label>  
+                    <div class="m-b-sm">
+                        <div class="radio radio-info radio-inline">
+                            <input type="radio" id="inlineRadio1" value="connectionMode1" name="radioInline" checked="">
+                            <label for="inlineRadio1"> Non-SSL </label>
+                        </div>
+                        <div class="radio radio-info radio-inline">
+                            <input type="radio" id="inlineRadio2" value="connectionMode2" name="radioInline">
+                            <label for="inlineRadio2"> SSL </label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="radio radio-info radio-inline">
+                            <input type="radio" id="inlineRadio3" value="connectionMode3" name="radioInline">
+                            <label for="inlineRadio3"> Specify username and Password Manually </label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="radio radio-info radio-inline">
+                            <input type="radio" id="inlineRadio4" value="connectionMode4" name="radioInline">
+                            <label for="inlineRadio4"> Use an account stored password manager pro</label>
+                        </div>
+                    </div>
+                    <div class="input-icon right"
+                         data-ng-if="ldapUserForm.connectionMode.$invalid && ldapUserForm.submitted">
+                        <i data-uib-tooltip="{{ 'locale-connection-mode-required' | translate }}" data-tooltip-placement="left"
+                           class="fa fa-warning"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group"
+                     data-ng-class="{'has-error': ldapUserForm.username.$invalid && ldapUserForm.submitted}">
+                    <label> {{ 'locale-username' | translate }} </label>
+                    <input type="text" name="username" class="form-control" data-ng-model="userAccount.username">
+                    <div class="input-icon right"
+                         data-ng-if="ldapUserForm.username.$invalid && ldapUserForm.submitted">
+                        <i data-uib-tooltip="{{ 'locale-username-required' | translate }}" data-tooltip-placement="left"
+                           class="fa fa-warning"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group"
+                     data-ng-class="{'has-error': ldapUserForm.password.$invalid && ldapUserForm.submitted}">
+                    <label> {{ 'locale-password' | translate }} </label>
+                    <input type="password" name="password" class="form-control" data-ng-model="userAccount.password">
+                    <div class="input-icon right"
+                         data-ng-if="ldapUserForm.password.$invalid && ldapUserForm.submitted">
+                        <i data-uib-tooltip="{{ 'locale-password-required' | translate }}" data-tooltip-placement="left"
+                           class="fa fa-warning"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group"
+                     data-ng-class="{'has-error': ldapUserForm.baseDn.$invalid && ldapUserForm.submitted}">
+                    <label> {{ 'locale-base-dn' | translate }} </label>
+                    <input type="text" name="baseDn" class="form-control" data-ng-model="userAccount.baseDn">
+                    <div class="input-icon right"
+                         data-ng-if="ldapUserForm.email.$invalid && ldapUserForm.submitted">
+                        <i data-uib-tooltip="{{ 'locale-base-dn-required' | translate }}" data-tooltip-placement="left"
+                           class="fa fa-warning"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group"
+                     data-ng-class="{'has-error': ldapUserForm.searchFilter.$invalid && ldapUserForm.submitted}">
+                    <label> {{ 'locale-search-filter' | translate }} </label>
+                    <input type="text" name="searchFilter" class="form-control" data-ng-model="userAccount.searchFilter">
+                    <div class="input-icon right"
+                         data-ng-if="ldapUserForm.searchFilter.$invalid && ldapUserForm.submitted">
+                        <i data-uib-tooltip="{{ 'locale-search-filter-required' | translate }}" data-tooltip-placement="left"
+                           class="fa fa-warning"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    <label> {{ 'locale-group-name' | translate }}</label>
+                    <input type="text" name="groupName" class="form-control" data-ng-model="userAccount.groupName">
+                    <div class="input-icon right"
+                         data-ng-if="ldapUserForm.groupName.$invalid && ldapUserForm.submitted">
+                        <i data-uib-tooltip="{{ 'locale-group-name-required' | translate }}" data-tooltip-placement="left"
+                           class="fa fa-warning"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    <label> {{ 'locale-prefix' | translate }}</label>
+                    <input type="text" name="prefix" class="form-control" data-ng-model="userAccount.prefix">
+                    <div class="input-icon right"
+                         data-ng-if="ldapUserForm.prefix.$invalid && ldapUserForm.submitted">
+                        <i data-uib-tooltip="{{ 'locale-prefix-required' | translate }}" data-tooltip-placement="left"
+                           class="fa fa-warning"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    <label> {{ 'locale-ldap-server-type' | translate }}</label>
+                    <input type="text" name="ldapServerType" class="form-control" data-ng-model="userAccount.ldapServerType">
+                    <div class="input-icon right"
+                         data-ng-if="ldapUserForm.ldapServerType.$invalid && ldapUserForm.submitted">
+                        <i data-uib-tooltip="{{ 'locale-ldap-server-type-required' | translate }}" data-tooltip-placement="left"
+                           class="fa fa-warning"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    <label> {{ 'locale-first-name-attribute-label' | translate }}</label>
+                    <input type="text" name="firstNameAttributeLabel" class="form-control" data-ng-model="userAccount.firstNameAttributeLabel">
+                    <div class="input-icon right"
+                         data-ng-if="ldapUserForm.firstNameAttributeLabel.$invalid && ldapUserForm.submitted">
+                        <i data-uib-tooltip="{{ 'locale-first-name-attribute-label-required' | translate }}" data-tooltip-placement="left"
+                           class="fa fa-warning"></i>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-ng-click="cancel();">{{ 'locale-cancel' | translate }}</button>
+        <button type="submit" class="btn btn-info" data-ng-hide="userAccountElement.updateButton">{{ 'locale-import' | translate }}</button>
+        <button type="submit" class="btn btn-info" data-ng-if="userAccountElement.updateButton">{{ 'locale-update' | translate }}</button>
+    </div>
+</form> 

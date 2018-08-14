@@ -1,0 +1,103 @@
+<div class="inmodal">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="modal-header">
+
+                <h4 class="modal-title">{{ 'login-security' | translate }}</h4>
+
+            </div>
+        </div>
+    </div>
+    <form name="loginSecurityForm"  method="POST" data-ng-submit="saveloginSecurity(loginsecurity)" novalidate>
+
+        <div class="ibox-content">
+              <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{ 'max-login-failure' | translate }}<span class="text-danger">*</span></label>
+                        <input class="form-control" data-ng-class="{'error': loginSecurityForm.maxloginFailure.$invalid && loginSecurityForm.submitted}" required="true" type="text" id="maxloginFailure" name="maxloginFailure" data-ng-model="loginsecurity.maxLoginFailure" >
+                        <div class="validation-error-msg m-t-xs validation-error-msg msg-large" ng-show="loginSecurityForm.maxloginFailure.$invalid && loginSecurityForm.submitted">
+                            <small ng-show="loginSecurityForm.maxloginFailure.$error">{{ 'max-attempt' | translate }}</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{ 'min-time-to-unlock-account' | translate }}<span class="text-danger">*</span></label>
+                        <input class="form-control" data-ng-class="{'error': loginSecurityForm.unlockaccount.$invalid && loginSecurityForm.submitted}" required="true" type="text" id="name" name="unlockaccount" data-ng-model="loginsecurity.unlockTime" >
+                        <div class="validation-error-msg m-t-xs validation-error-msg" ng-show="loginSecurityForm.unlockaccount.$invalid && loginSecurityForm.submitted">
+                            <small ng-show="loginSecurityForm.unlockaccount.$error">{{ 'invalid-account' | translate }}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{ 'locale-remember-me' | translate }}<span class="text-danger">*</span></label>
+                        <input class="form-control" data-ng-class="{'error': loginSecurityForm.rememberMe.$invalid && loginSecurityForm.submitted}" 
+                               required="true" type="text"  id="rememberMe" name="rememberMe" data-ng-model="loginsecurity.rememberMeExpiryDays" >
+                        <div class="validation-error-msg m-t-xs validation-error-msg msg-large" ng-show="loginSecurityForm.rememberMe.$invalid && loginSecurityForm.submitted">
+                            <small ng-show="loginSecurityForm.rememberMe.$error">{{ 'remember-me' | translate }}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{ 'locale-session-timeouts' | translate }}<span class="text-danger">*</span></label>
+                        <input class="form-control" data-ng-class="{'error': loginSecurityForm.sessionTimeout.$invalid && loginSecurityForm.submitted}" 
+                               required="true" type="text" id="sessionTimeout" name="sessionTimeout" data-ng-model="loginsecurity.sessionTime" >
+                        <div class="validation-error-msg m-t-xs validation-error-msg" ng-show="loginSecurityForm.sessionTimeout.$invalid && loginSecurityForm.submitted">
+                            <small ng-show="loginSecurityForm.sessionTimeout.$error">{{ 'session-timeout' | translate }}</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{ 'verification-link-expiry' | translate }}<span class="text-danger">*</span></label>
+                        <input class="form-control" data-ng-class="{'error': loginSecurityForm.verificationEmailExpiry.$invalid && loginSecurityForm.submitted}" 
+                               required="true" type="text" id="verificationEmailExpiry" name="verificationEmailExpiry" data-ng-model="loginsecurity.linkExpireTime" >
+                        <div class="validation-error-msg m-t-xs validation-error-msg" ng-show="loginSecurityForm.verificationEmailExpiry.$invalid && loginSecurityForm.submitted">
+                            <small ng-show="loginSecurityForm.verificationEmailExpiry.$error">{{ 'link-expiry' | translate }}</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{ 'unregisted-users-remove' | translate }}<span class="text-danger">*</span></label>
+                        <input class="form-control" data-ng-class="{'error': loginSecurityForm.unregisterUserRemoval.$invalid && loginSecurityForm.submitted}" 
+                               required="true" type="text" id="unregisterUserRemoval" name="unregisterUserRemoval" data-ng-model="loginsecurity.userRemovalPeriod" >
+                        <div class="validation-error-msg m-t-xs validation-error-msg msg-large" ng-show="loginSecurityForm.unregisterUserRemoval.$invalid && loginSecurityForm.submitted">
+                            <small ng-show="loginSecurityForm.unregisterUserRemoval.$error">{{ 'user-removal' | translate }}</small>
+                        </div>
+                    </div>
+                </div>
+                   <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{ 'token-expiry' | translate }}<span class="text-danger">*</span></label>
+                        <input class="form-control" data-ng-class="{'error': loginSecurityForm.tokenExpiry.$invalid && loginSecurityForm.submitted}" 
+                               required="true" type="text" id="tokenExpiry" name="tokenExpiry" data-ng-model="loginsecurity.tokenExpireTime" >
+                        <div class="validation-error-msg m-t-xs validation-error-msg msg-large" ng-show="loginSecurityForm.tokenExpiry.$invalid && loginSecurityForm.submitted">
+                            <small ng-show="loginSecurityForm.tokenExpiry.$error">{{ 'user-removal' | translate }}</small>
+                        </div>
+                    </div>
+                </div>
+                  
+                  <div class="col-md-6">
+                    <div class="m-t-lg form-group">
+                        <label>{{ 'enable-captcha' | translate }}</label>
+                       <input class="form-control m-l-xs" 
+                               icheck type="checkbox" id="capcha" name="capcha" data-ng-model="loginsecurity.enableCaptcha" >
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+             <get-loader-image data-ng-if="showLoader"></get-loader-image>
+                <button data-ng-if="!showLoader" type="button" class="btn btn-white" ng-disabled="form.loginSecurityForm.$invalid" ng-click="cancel()">{{ 'locale-cancel' | translate }}</button>
+                <button class="btn btn-info pull-right"  data-ng-if="!showLoader"  type="submit" ng-disabled="form.loginSecurityForm.$invalid" >{{ "locale-update" | translate }}</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,114 @@
+<div class="inmodal">
+    <div class="modal-header">
+        <h4 class="modal-title">{{ 'email-configuration' | translate }}</h4>
+    </div>
+    <form name="emailConfigForm"  method="POST" data-ng-submit="save(emailConfig)" novalidate>
+        <div class="ibox-content">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{ 'locale-default-language' | translate }}<span class="text-danger">*</span></label>
+                        <select required="true" class="form-control input-group" name="emailLanguage" data-ng-model="emailConfig.emailLanguage" data-ng-change="changeDetails(emailConfig.emailLanguage.id)"  ng-options="language as language.name for language in emailConfigObject.languageList | orderBy: 'name'"
+                                data-ng-class="{ 'error' : emailConfigForm.emailLanguage.$invalid && emailConfigForm.submitted}">
+                            <option value="">{{ "locale-select" | translate }}</option>
+                        </select>
+                        <div class="m-t-xs select-box validation-error-msg" ng-show="emailConfigForm.emailLanguage.$invalid && emailConfigForm.submitted">
+                            <small ng-show="emailConfigForm.emailLanguage.$error">{{"invalid-default" | translate}}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{ 'application-url' | translate }}<span class="text-danger">*</span></label>
+                        <input class="form-control" data-ng-class="{'error': emailConfigForm.applicationUrlForAdmin.$invalid && emailConfigForm.submitted}" 
+                               required="true" type="url" id="applicationUrlForAdmin" name="applicationUrlForAdmin" data-ng-model="emailConfig.applicationUrlForAdmin" >
+                        <div class="m-t-xs validation-error-msg" ng-show="emailConfigForm.applicationUrlForAdmin.$invalid && emailConfigForm.submitted">
+                            <small ng-show="emailConfigForm.applicationUrlForAdmin.$error">{{ 'invalid-admin-app' | translate }}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{ 'locale-user-url' | translate }}<span class="text-danger">*</span></label>
+                        <input class="form-control" data-ng-class="{'error': emailConfigForm.applicationUrlForUser.$invalid && emailConfigForm.submitted}" 
+                               required="true" type="url" id="applicationUrlForUser" name="applicationUrlForUser" data-ng-model="emailConfig.applicationUrlForUser" >
+                        <div class="m-t-xs validation-error-msg" ng-show="emailConfigForm.applicationUrlForUser.$invalid && emailConfigForm.submitted">
+                            <small ng-show="emailConfigForm.applicationUrlForUser.$error">{{ 'invalid-user-app' | translate }}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{ 'locale-username' | translate }}<span class="text-danger">*</span></label>
+                        <input class="form-control" data-ng-class="{'error': emailConfigForm.userName.$invalid && emailConfigForm.submitted}" 
+                               required="true" type="text" id="userName" name="userName" data-ng-model="emailConfig.userName" >
+                        <div class="m-t-xs validation-error-msg" ng-show="emailConfigForm.userName.$invalid && emailConfigForm.submitted">
+                            <small ng-show="emailConfigForm.userName.$error">{{"locale-invalid-username" | translate}}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{ 'locale-password' | translate }}<span class="text-danger">*</span></label>
+                        <input class="form-control" data-ng-class="{'error': emailConfigForm.password.$invalid && emailConfigForm.submitted}" 
+                               required="true" type="password" id="password" name="password" data-ng-model="emailConfig.password" >
+                        <div class="m-t-xs validation-error-msg" ng-show="emailConfigForm.password.$invalid && emailConfigForm.submitted">
+                            <small ng-show="emailConfigForm.password.$error">{{"error-password" | translate}}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{ 'locale-host' | translate }}<span class="text-danger">*</span></label>
+                        <input class="form-control" data-ng-class="{'error': emailConfigForm.host.$invalid && emailConfigForm.submitted}" 
+                               required="true" type="text" id="host" name="host" data-ng-model="emailConfig.host" >
+                        <div class="m-t-xs validation-error-msg" ng-show="emailConfigForm.host.$invalid && emailConfigForm.submitted">
+                            <small ng-show="emailConfigForm.host.$error">{{"locale-invalid-host" | translate}}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{ 'locale-port' | translate }}<span class="text-danger">*</span></label>
+                        <input class="form-control" data-ng-class="{'error': emailConfigForm.port.$invalid && emailConfigForm.submitted}" 
+                               required="true" valid-number type="text" id="port" name="port" data-ng-model="emailConfig.port" >
+                        <div class="m-t-xs validation-error-msg" ng-show="emailConfigForm.port.$invalid && emailConfigForm.submitted">
+                            <small ng-show="emailConfigForm.port.$error">{{"locale-invalid-port" | translate}}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{ 'locale-from' | translate }}<span class="text-danger">*</span></label>
+                        <input class="form-control" data-ng-class="{'error': emailConfigForm.emailFrom.$invalid && emailConfigForm.submitted}" 
+                               required="true" valid-email type="email" id="emailFrom" name="emailFrom" data-ng-model="emailConfig.emailFrom" >
+                        <div class="m-t-xs validation-error-msg" ng-show="emailConfigForm.emailFrom.$invalid && emailConfigForm.submitted">
+                            <small ng-show="emailConfigForm.emailFrom.$error">{{"locale-invalid-from-email" | translate }}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{ 'sender-name' | translate }}<span class="text-danger">*</span></label>
+                        <input class="form-control" data-ng-class="{'error': emailConfigForm.senderName.$invalid && emailConfigForm.submitted}" required="true" type="text" id="senderName" name="senderName" data-ng-model="emailConfig.senderName" >
+                        <div class="m-t-xs validation-error-msg" ng-show="emailConfigForm.senderName.$invalid && emailConfigForm.submitted">
+                            <small ng-show="emailConfigForm.senderName.$error">{{"locale-invalid-host" | translate}}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>{{ 'locale-ssl' | translate }}</label>
+                        <input class="form-control m-l-xs" data-ng-class="{'error': emailConfigForm.ssl.$invalid && emailConfigForm.submitted}" 
+                               icheck type="checkbox" id="ssl" name="ssl" data-ng-model="emailConfig.ssl" >
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <get-loader-image data-ng-if="showLoader"></get-loader-image>
+            <button data-ng-if="!showLoader" type="button" class="btn btn-white" ng-disabled="form.emailConfigForm.$invalid" ng-click="cancel()">{{ 'locale-cancel' | translate }}</button>
+            <button class="btn btn-info pull-right"  data-ng-if="!showLoader"  type="submit" ng-disabled="form.emailConfigForm.$invalid" >{{ "locale-update" | translate }}</button>
+        </div>
+    </form>
+</div>
