@@ -1,0 +1,15 @@
+17--windows--CPU--Average cpu usage on (%)--{Template OS Windows:perf_counter[\Processor(_Total)\% Processor Time]:avg(T)}=N--%--CPU Usage is {#CURRENT-VALUE}, {#STATE} your {#SEVERITY} threshold of {#N} % for {#T} minutes
+18--windows--CPU--Load average for 1 min--{Template OS Windows:system.cpu.load[percpu,avg1]:avg(T)}=N--val--1 minute load average is {#CURRENT-VALUE}, {#STATE} your {#SEVERITY} threshold of value {#N} for {#T} minutes 
+19--windows--CPU--Load average for 5 min--{Template OS Windows:system.cpu.load[percpu,avg5]:avg(T)}=N--val--5 minute load average is {#CURRENT-VALUE}, {#STATE} your {#SEVERITY} threshold of value {#N} for {#T} minutes 
+20--windows--Memory--Memory usage on (%)--{Template OS Windows:vm.memory.size[pused]:avg(T)}=N--%--Memory usage is {#CURRENT-VALUE}, {#STATE} your {#SEVERITY} threshold of {#N} % for {#T} minutes 
+21--windows--Disk--Total Disk time in (%)--{Template OS Windows:perf_counter[\234(_Total)\200]:avg(T)}=N--%--Total Disk Time is {#CURRENT-VALUE}, {#STATE} your {#SEVERITY} threshold of {#N} for {#T} minutes
+22--windows--Disk--Average Disk Bytes/Read--{Template OS Windows:perf_counter[\234(_Total)\226]:avg(T)}=N--B--Average Disk Bytes/Read is {#CURRENT-VALUE}, {#STATE} your {#SEVERITY} threshold of {#N} for {#T} minutes
+23--windows--Disk--Average Disk Bytes/Write--{Template OS Windows:perf_counter[\234(_Total)\228]:avg(T)}=N--B--Average Disk Bytes/Write is {#CURRENT-VALUE}, {#STATE} your {#SEVERITY} threshold of {#N} for {#T} minutes
+24--windows--Networks--Incoming network traffic on {#IFNAME}--{Template OS Windows:net.if.in[{#IFNAME}]:avg(T)}=N--B--Incoming network traffic on {#IFNAME} is {#CURRENT-VALUE}, {#STATE} your {#SEVERITY} threshold of {#N} for {#T} minutes
+25--windows--Networks--Outgoing network traffic on {#IFNAME}--{Template OS Windows:net.if.out[{#IFNAME}]:avg(T)}=N--B--Outgoing network traffic on {#IFNAME} is {#CURRENT-VALUE}, {#STATE} your {#SEVERITY} threshold of {#N} for {#T} minutes
+26--windows--FileSystem--Used disk space on {#FSNAME}(%)--{Template OS Windows:vfs.fs.size[{#FSNAME},pused]:avg(T)}>N--%--Disk usage on {#FSNAME} is {#CURRENT-VALUE}, {#STATE} your {#SEVERITY} threshold of {#N} % for {#T} minutes 
+27--windows--FileSystem--Free disk space on {#FSNAME} (%)--{Template OS Windows:vfs.fs.size[{#FSNAME},pfree]:avg(T)}>N--%--Free disk space on {#FSNAME} is {#CURRENT-VALUE}, {#STATE} your {#SEVERITY} threshold of {#N} % for {#T} minutes 
+28--windows--Dashboard--Zabbix agent on {HOST.NAME} is unreachable for 5 minutes--{Template OS Windows:agent.ping:nodata(T)}=N--up/down--no
+29--windows--Dashboard--{HOST.NAME} has just been changed--{Template OS Windows:system.uptime:change(T)}<N--val--no
+30--windows--Disk--Disk Read Time in (%)--{Template OS Windows:perf_counter[\234(_Total)\202]:avg(T)}=N--%--Disk Read Time is {#CURRENT-VALUE}, {#STATE} your {#SEVERITY} threshold of {#N} for {#T} minutes
+31--windows--Disk--Disk Write TIme in (%)--{Template OS Windows:perf_counter[\234(_Total)\204]:avg(T)}=N--%--Disk Write Time is {#CURRENT-VALUE}, {#STATE} your {#SEVERITY} threshold of {#N} for {#T} minutes

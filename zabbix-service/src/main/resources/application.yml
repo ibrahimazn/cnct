@@ -1,0 +1,119 @@
+﻿spring:
+    application:
+        name: ldap-zabbix-service
+    data:
+        mongodb:
+            authentication-database: ${MONGO_AUTH_DB:admin}
+            database: ${MONGO_ZABBIX_DB:zabbix}
+            username: ${MONGO_ZABBIX_USER:root}
+            password: ${MONGO_ZABBIX_PASSSWORD:l3tm3in}
+            host: ${MONGO_ZABBIX_HOST:localhost}
+            port: ${MONGO_PORT:27017}
+            repositories:
+                enabled: true
+    batch:
+        job:
+            enabled: false
+    # RabbitMQ Properties
+    rabbit:
+        host: ${RABBITMQ_ZABBIX_HOST:rabbitmqqa2.assistanz24x7.com}
+        vhost: /
+        username: ${RABBITMQ_ZABBIX_USERNAME:panda}
+        password: ${RABBITMQ_ZABBIX_PASSWORD:l3tm3in}
+        exchange:
+            name: ${RABBITMQ_CS_ZABBIX_EXCHANGE:cloudstack-eventsQA1}
+    # CS server Routing key
+        server:
+            action:
+                pattern: "*.ActionEvent.*.*.*"
+                queue: ${RABBITMQ_ZABBIX_ACTION_EVENT:ActionEventZabbix}
+            asynchJob:
+                pattern: "*.AsyncJobEvent.*.*.*"
+                queue: ${RABBITMQ_ZABBIX_ASYNC_EVENT:CSAsynchEventZabbix}
+            zabbix:
+                pattern: "*.ZabbixStateEvent.*.*.*"
+                queue: ${RABBITMQ_ZABBIX_EVENT:CSZabbixEvent}
+                
+cloudstack:
+    apiUrl: ${CLOUDSTACK_LDAP_URL:http://qaacs.assistanz24x7.com:8080/client/api}
+    apiKey: ${CLOUDSTACK_API_KEY:YN-tnnGtLk2GqQO34msVi9WWywtcHQ-MiKStKTBtYUX7Y8vMGUq81jOnMMLHhnn6j7_C3woFKTlYtjFvQ90EMA}
+    secretKey: ${CLOUDSTACK_SECRET_KEY:QIYW5b4nbSfUB-mD3UnRRMWoVMCFTpj6hOc8gJz-cutJ0uIEdc0nnKxDzuTeT4uwoFX8WX1ZNh62V07uhuihPA} 
+        
+security:
+    basic:
+        enabled: false
+
+logging:
+    level:
+        org.springframework.boot.autoconfigure.security.AuthenticationManagerConfiguration: INFO
+
+management:
+    port: ${ZABBIX_MANA_PORT:8989}
+    address: ${ZABBIX_MANA_ADDRESS:localhost}
+    security:
+        enabled: ${ZABBIX_SECURITY:true}
+
+server:
+    port: ${LDAP_SYNC_PORT:8989}
+    context-path: /connector
+    ssl:
+        key-store: ${KEY_STORE:/root/assistanz.jks}
+        key-store-password: ${KEY_STORE_PASSWORD:l3tm3in}
+        key-password: ${KEY_PASSWORD:l3tm3in}
+        enabled: ${KEY_ENABLED:false}
+        key-alias: ${KEY_ALIAS:assistanzcert}
+        protocol: ${KEY_PROTOCOL:TLS}
+error:
+    whitelabel:
+        enabled: false    
+endpoints:
+    health:
+        sensitive: false    
+backend:
+    username: ${BACKEND_LDAPS_USERNAME:admin}
+    password: ${BACKEND_LDAPS_PASSWORD:d0n0tNtr@!Pnd}
+    role: /
+---
+
+error:
+    whitelabel:
+        enabled: false
+---
+
+aes:
+    salt:
+        secretKey: DA97AA70B21ADCCA89708EFC05C7E2F2
+---
+
+metrics:
+    heartbeat: ${METRICS_HEART_BEAT:30}
+---
+
+ldap:
+    url: ${LDAP_URL:ldap://192.168.231.30:389}
+    userDn: ${LDAP_DN:cn=ld-admin,dc=az-rnd,dc=local}
+    base: ${LDAP_BASE:dc=az-rnd,dc=local}
+    password: ${LDAP_PASS:l3tm3in}
+    enable: ${LDAP_ENABLE:true}
+---
+zabbix:
+    proxy: ${ZABBIX_URL:http://zabbixqa.assistanz.com/zabbix/api_jsonrpc.php}
+    secKey: ${ZABBIX_SECKEY:0c00bf4a94ee00f43653a92dcf8db7f5}
+    diskRule: custom.vfs.discover_disks--Disk discovery--5
+    fsRule: vfs.fs.discovery--Mounted filesystem discovery--5
+    netRule: net.if.discovery--Network interface discovery--5
+    mediatype: ${ZABBIX_MEDIA:4}
+    defaultuser: ${ZABBIX_USERID:1}
+    hosts: ${EXCLUDE_HOST_IDS:10396,10398}
+    delay: ${ITEM_PROTOTYPE_DELAY:15}
+    graph:
+        width: ${ZABBIX_GRAPH_WIDTH:900}
+        height: ${ZABBIX_GRAPH_HEIGHT:200}
+---
+notification:
+    connector: ${NOTIFICATION_CONNECTOR_API:http://localhost:8083/connector/notification/api}
+---
+allow:
+    origin:
+        access:
+            control: ${ALLOW_ORIGIN_ACCESS_CONTROL:*}

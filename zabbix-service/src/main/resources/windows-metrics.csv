@@ -1,0 +1,34 @@
+54-windows-CPU-CPU utilization(%)-perf_counter[\Processor(_Total)\% Processor Time]-0-0-1-true-%-1-30-0-true
+55-windows-CPU-Processor load (15 min average)-system.cpu.load[percpu,avg15]-0-0-1-true-val-1-30-0-false
+56-windows-CPU-Processor load (1 min average)-system.cpu.load[percpu,avg1]-0-0-1-true-val-0-30-0-true
+57-windows-CPU-Processor load (5 min average)-system.cpu.load[percpu,avg5]-0-0-1-false-val-0-30-0-true
+58-windows-Memory-Total memory-vm.memory.size[total]-0-3-0-true-B-1-30-1-false
+59-windows-Memory-Used memory-vm.memory.size[used]-0-3-0-true-B-1-30-1-false
+60-windows-Memory-Free memory-vm.memory.size[free]-0-3-0-true-B-0-30-1-false
+61-windows-Memory-Free memory(%)-vm.memory.size[pfree]-0-0-0-true-%-0-30-1-false
+62-windows-Memory-Used memory(%)-vm.memory.size[pused]-0-0-0-true-%-1-30-1-true
+63-windows-Memory-Total swap space-system.swap.size[,total]-0-3-0-true-B-1-30-0-false
+64-windows-Memory-Used swap space-system.swap.size[,used]-0-0-0-true-%-1-30-0-false
+65-windows-Memory-Free swap space-system.swap.size[,free]-0-3-0-true-B-0-30-0-false
+66-windows-Disk-Average Disk Bytes/Read-perf_counter[\234(_Total)\226]-0-0-0-true-Bps-1-30-0-true
+67-windows-Disk-Average Disk Bytes/Write-perf_counter[\234(_Total)\228]-0-0-0-true-Bps-1-30-0-true
+68-windows-Disk-Average disk read queue length-perf_counter[\234(_Total)\1402]-0-0-1-true-val-1-30-0-false
+69-windows-Disk-Average disk write queue length-perf_counter[\234(_Total)\1404]-0-0-1-true-val-1-30-0-false
+70-windows-Disk-File write bytes per second-perf_counter[\2\18]-0-0-1-true-B-1-30-0-false
+71-windows-Disk-File read bytes per second-perf_counter[\2\16]-0-0-1-true-B-1-30-0-false
+72-windows-Dashboard-Number of processes-proc.num[]-0-3-0-false-val-1-30-1-false
+73-windows-Dashboard-System information-system.uname-0-1-1-false-val-1-30-1-false
+74-windows-Dashboard-Number of threads-perf_counter[\2\250]-0-3-0-false-val-1-30-1-false
+75-windows-Dashboard-System uptime-system.uptime-0-3-0-false-val-1-30-1-false
+76-windows-Dashboard-Host name of zabbix_agentd running-agent.hostname-0-1-1-false-val-1-30-1-false
+77-windows-Dashboard-agent ping-agent.ping-0-3-0-false-val-1-30-1-false
+78-windows-FileSystem-Free disk space on {#FSNAME}-vfs.fs.size[{#FSNAME},free]-0-3-0-true-B-0-5-0-false
+79-windows-FileSystem-Free disk space on {#FSNAME}(%)-vfs.fs.size[{#FSNAME},pfree]-0-0-0-true-%-0-5-0-true
+80-windows-FileSystem-Total disk space on {#FSNAME}-vfs.fs.size[{#FSNAME},total]-0-3-0-true-B-0-5-0-false
+81-windows-FileSystem-Used disk space on {#FSNAME}-vfs.fs.size[{#FSNAME},used]-0-3-0-true-B-0-5-0-false
+82-windows-FileSystem-Used disk space on {#FSNAME}(%)-vfs.fs.size[{#FSNAME},pused]-0-0-0-true-%-1-5-0-true
+83-windows-Networks-Incoming network traffic on {#IFNAME}-net.if.in[{#IFNAME}]-0-3-0-true-bps-1-5-0-true
+84-windows-Networks-Outgoing network traffic on {#IFNAME}-net.if.out[{#IFNAME}]-0-3-0-true-bps-1-5-0-true
+85-windows-Disk-Disk Read time (%)-perf_counter[\234(_Total)\202]-0-0-0-true-%-0-30-0-true
+86-windows-Disk-Total Disk time (%)-perf_counter[\234(_Total)\200]-0-0-0-true-%-0-30-0-true
+87-windows-Disk-Disk Write TIme (%)-perf_counter[\234(_Total)\204]-0-0-0-true-%-0-30-0-true

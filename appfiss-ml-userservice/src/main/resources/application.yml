@@ -1,0 +1,111 @@
+# Server properties
+server:
+    port: ${ACCOUNT_PORT:8086}
+    max-http-header-size: 10000000
+app:
+    authserver:
+        host: ${AUTH_HOST:localhost}
+        port: ${AUTH_PORT:9090}
+        url: http://${AUTH_HOST:localhost}:${AUTH_PORT:9090}/${AUTH_CONTEXT:auth}
+    deploymentserver:
+        host: ${DEPLOYMENT_HOST:localhost}
+        port: ${DELOYMENT_PORT:8083}
+        url: http://${DEPLOYMENT:localhost}:${DEPLOYMENT_PORT:8083}/${DEPLOYMENT_CONTEXT:deployment}
+    gitconnector:
+        url: http://${GIT_FILE_HOST:localhost}:${GIT_FILE_PORT:8089}/${GIT_CONTEXT:git}
+# Data source configuration
+spring:
+    # MYSQL data source properties
+    datasource:
+        driverClassName: org.mariadb.jdbc.Driver
+        url: jdbc:mariadb://${APPFISS_DB_HOST:localhost}:${APPFISS_DB_PORT:3306}/${APPFISS_DB_NAME:appfiss}?characterEncoding=utf8
+        username: ${APPFISS_DB_USERNAME:root}
+        password: ${APPFISS_DB_PASSWORD:l3tm3in}
+        testWhileIdle: true
+        timeBetweenEvictionRunsMillis: 60000
+        validationQuery: SELECT 1
+
+    jpa:
+        database: MYSQL
+        show-sql: true
+        hibernate:
+            ddl-auto: create-drop
+            dialect: org.hibernate.dialect.MySQL5Dialect
+            naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
+            show_sql: ${APPFISS_DB_SHOW_SQL:true}
+            format_sql: ${APPFISS_DB_FORMAT_SQL:true}
+    
+    http:
+        multipart:
+            enabled: true
+            max-file-size: 100MB
+            max-request-size: 100MB            
+security:
+    oauth2:
+        resource:
+            userInfoUri: http://${AUTH_HOST:localhost}:${AUTH_PORT:8087}/${AUTH_CONTEXT:auth}/user
+            jwt:
+                keyUri: http://${AUTH_HOST:localhost}:${AUTH_PORT:8087}/${AUTH_CONTEXT:auth}/oauth/token_key
+     
+---
+zuul:
+     host:
+         connect-timeout-millis: ${ZUUL_CONNECT_TIMEOUT:60000}
+         socket-timeout-millis: ${ZUUL_SOCKET_TIMEOUT:60000}
+  
+     routes:
+          auth-service:
+             path: ${AUTH_PATH:/auths/**}
+             url: ${AUTH_URL:http://localhost:8087}
+          deployment-service:
+              path: ${CONTAINER_PATH:/deployment/**}
+              url: ${CONTAINER_URL:http://localhost:8088}
+              customSensitiveHeaders: true
+          git-service:
+              path: ${GIT_PATH:/git/**}
+              url: ${GIT_URL:http://localhost:8089}
+          file-service:
+              path: ${GIT_PATH:/files/**}
+              url: ${GIT_URL:http://localhost:8090}
+     ws:
+         brokerages:
+             container-service:
+                 end-points: /container/container-ws
+                 brokers: /topic
+                 destination-prefixes: /ancode
+# Profile image properties
+profile:
+    image:
+        dir: ${PROFILE_IMAGE_DIR:/home/az.lan/azn0084/profiles/}
+fileimport:
+    temp:
+        dir: ${FILE_IMPORT_DIR:/home/az.lan/azn0084/profiles/}
+            
+---
+
+# AES salt key
+aes:
+    salt:
+        secretKey: ${AES_SALT_KEY:DA97AA70B21ADCCA89708EFC05C7E2F2}  
+         
+kubernete:
+    agent: ${KUBE_AGENT:http://192.168.4.100:6100}
+    secKey: ${KUBE_KEY:eVBaXmU5XcbMhdorUMpUO6eQI1Jv8pDK}
+    port: ${KUBE_FILE_PORT:6200}
+    
+---
+ldap:   
+    url: ${LDAP_URL:ldap://192.168.231.30:389}
+    userDn: ${LDAP_DN:cn=ld-admin,dc=az-rnd,dc=local}
+    base: ${LDAP_BASE:dc=az-rnd,dc=local}
+    password: ${LDAP_PASS:l3tm3in}
+    enable: ${LDAP_ENABLE:true}   
+    dnPatterns: uid={0},ou=appfiss
+    groupSearchBase: ou=appfiss
+    userSearchBase: ou=appfiss
+    userDnDc: /${LDAP_BASE:dc=az-rnd,dc=local}
+    dnPatternUid: uid={0}
+
+
+  
+    

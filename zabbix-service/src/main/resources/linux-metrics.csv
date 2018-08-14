@@ -1,0 +1,53 @@
+1-linux-CPU-CPU idle time(%)-system.cpu.util[,idle]-0-0-1-true-%-0-30-0-false
+2-linux-CPU-CPU interrupt time(%)-system.cpu.util[,interrupt]-0-0-1-true-%-0-30-0-false
+3-linux-CPU-CPU iowait time(%)-system.cpu.util[,iowait]-0-0-1-true-%-0-30-0-false
+4-linux-CPU-CPU user time(%)-system.cpu.util[,user]-0-0-1-true-%-1-30-0-false
+5-linux-CPU-CPU system time(%)-system.cpu.util[,system]-0-0-1-true-%-1-30-0-false
+6-linux-CPU-CPU steal time(%)-system.cpu.util[,steal]-0-0-1-true-%-0-30-0-false
+7-linux-CPU-CPU nice time(%)-system.cpu.util[,nice]-0-0-1-true-%-0-30-0-false
+8-linux-CPU-CPU softirq time-system.cpu.util[,softirq]-0-0-1-true-%-0-30-0-false
+9-linux-CPU-Context switches per second-system.cpu.switches-0-3-0-true-sps-0-30-0-false
+10-linux-CPU-Interrupts per second-system.cpu.intr-0-3-0-true-ips-0-30-0-false
+11-linux-CPU-CPU utilization(%)-system.cpu.util-0-0-1-true-%-1-30-0-true
+12-linux-CPU-Processor load (1 min average per core)-system.cpu.load[percpu,avg1]-0-0-1-true-val-0-30-0-true
+13-linux-CPU-Processor load (5 min average per core)-system.cpu.load[percpu,avg5]-0-0-1-true-val-0-30-0-true
+14-linux-CPU-Processor load (15 min average per core)-system.cpu.load[percpu,avg15]-0-0-1-true-val-1-30-0-false
+15-linux-Memory-Total memory-vm.memory.size[total]-0-3-0-true-B-1-30-1-false
+16-linux-Memory-Used memory-vm.memory.size[used]-0-3-0-true-B-1-30-1-false
+17-linux-Memory-Available memory-vm.memory.size[available]-0-3-0-true-B-0-30-1-false
+18-linux-Memory-Used memory(%)-vm.memory.size[pused]-0-0-0-true-%-1-30-0-true
+19-linux-Memory-Total swap space-system.swap.size[,total]-0-3-0-true-B-1-30-0-false
+20-linux-Memory-Used swap space-system.swap.size[,used]-0-0-0-true-B-1-30-0-false
+21-linux-Memory-Free swap space-system.swap.size[,free]-0-3-0-true-B-0-30-0-false
+22-linux-Memory-Used swap space(%)-system.swap.size[,pused]-0-0-0-true-%-0-30-0-true
+23-linux-Memory-Pages Swapped In -system.swap.in[,pages]-0-3-0-true-B-0-30-0-false
+24-linux-Memory-Pages Swapped Out-system.swap.out[,pages]-0-3-0-true-B-0-30-0-false
+25-linux-Dashboard-Host name-system.hostname-0-1-1-false-val-1-30-1-false
+26-linux-Dashboard-System information-system.uname-0-1-1-false-val-1-30-1-false
+27-linux-Dashboard-Host boot time-system.boottime-0-3-0-false-unixtime-1-30-1-false
+28-linux-Dashboard-System uptime-system.uptime-0-3-0-false-uptime-1-30-1-false
+29-linux-Dashboard-Host local time-system.localtime-0-3-0-false-unixtime-1-30-0-false
+30-linux-Dashboard-Maximum number of opened files-kernel.maxfiles-0-3-0-false-val-1-30-1-false
+31-linux-Dashboard-Maximum number of processes-kernel.maxproc-0-3-0-false-val-1-30-1-false
+32-linux-Dashboard-Number of logged in users-system.users.num-0-3-0-false-val-1-30-1-false
+33-linux-Dashboard-Checksum of /etc/passwd-vfs.file.cksum[/etc/passwd]-0-3-0-false-val-0-30-0-false
+34-linux-Dashboard-Number of running processes-proc.num[,,run]-0-3-0-false-val-1-30-1-false
+35-linux-Dashboard-Host name of zabbix_agentd running-agent.hostname-0-1-1-false-val-1-30-1-false
+36-linux-Dashboard-agent ping-agent.ping-0-3-0-false-val-1-30-1-false
+37-linux-FileSystem-Total disk space on {#FSNAME}-vfs.fs.size[{#FSNAME},total]-0-3-0-true-B-0-5-0-false
+38-linux-FileSystem-Used disk space on {#FSNAME}-vfs.fs.size[{#FSNAME},used]-0-3-0-true-B-0-5-0-false
+39-linux-FileSystem-Free disk space on {#FSNAME}-vfs.fs.size[{#FSNAME},free]-0-3-0-true-B-0-5-0-false
+40-linux-FileSystem-Free disk space on {#FSNAME}(%)-vfs.fs.size[{#FSNAME},pfree]-0-0-0-true-%-0-5-0-true
+41-linux-FileSystem-Used disk space on {#FSNAME}(%)-vfs.fs.size[{#FSNAME},pused]-0-0-0-true-%-1-5-0-true
+42-linux-FileSystem-Free inodes on {#FSNAME} (%)-vfs.fs.inode[{#FSNAME},pfree]-0-0-0-true-%-0-5-0-true
+43-linux-Networks-Incoming network traffic on {#IFNAME}-net.if.in[{#IFNAME}]-0-3-0-true-bps-1-5-0-true
+44-linux-Networks-Outgoing network traffic on {#IFNAME}-net.if.out[{#IFNAME}]-0-3-0-true-bps-1-5-0-true
+45-linux-Networks-Network status on {#IFNAME}-net.if.carrier.status[{#IFNAME}]-0-3-0-false-val-0-5-0-false
+46-linux-Disk-Disk:{#DEVICENAME}:Read:Bytes/sec-custom.vfs.dev.read.sectors[{#DEVICENAME}]-0-3-0-true-B/sec-1-5-0-true
+47-linux-Disk-Disk:{#DEVICENAME}:Write:Bytes/sec-custom.vfs.dev.write.sectors[{#DEVICENAME}]-0-3-0-true-B/sec-1-5-0-true
+48-linux-Disk-Disk:{#DEVICENAME}:Read:Ops per second-custom.vfs.dev.read.ops[{#DEVICENAME}]-0-3-0-true-ops/s-0-5-0-false
+49-linux-Disk-Disk:{#DEVICENAME}:Write:Ops per second-custom.vfs.dev.write.ops[{#DEVICENAME}]-0-3-0-true-ops/s-0-5-0-false
+50-linux-Disk-Disk:{#DEVICENAME}:IO:Currently Active-custom.vfs.dev.io.active[{#DEVICENAME}]-0-3-0-true-io-0-5-0-false
+51-linux-Disk-Disk:{#DEVICENAME}:IO:ms-custom.vfs.dev.io.ms[{#DEVICENAME}]-0-3-0-true-ms-0-5-0-false
+52-linux-Disk-Disk:{#DEVICENAME}:Read Time:ms-custom.vfs.dev.read.ms[{#DEVICENAME}]-0-3-0-true-ms-0-5-0-false
+53-linux-Disk-Disk:{#DEVICENAME}:write Time :ms-custom.vfs.dev.write.ms[{#DEVICENAME}]-0-3-0-true-ms-0-5-0-false
