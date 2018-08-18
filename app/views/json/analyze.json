@@ -1,0 +1,30 @@
+[
+    {
+        "name": "Analyze crm_and_web_history_enriched_prepared",
+        "dataset": "crm_and_web_history_enriched_prepared"
+    },
+    {
+        "name": "Analyze crm_and_web_history_enriched",
+        "dataset": "crm_and_web_history_enriched"
+    },
+    {
+        "name": "Analyze crm_and_web_history_enriched",
+        "dataset": "crm_and_web_history_enriched"
+    },
+    {
+        "name": "Audit CRM by predicting revenue on all data",
+        "dataset": "crm_and_web_history_enriched"
+    },
+    {
+        "name": "Predict revenue using historical navigational data on the web site",
+        "dataset": "web_history_prepared"
+    },
+    {
+        "name": "Analyze crm_and_web_history_enriched_prepared",
+        "dataset": "crm_and_web_history_enriched_prepared"
+    },
+    {
+        "name": "Analyze crm_and_web_history_enriched",
+        "dataset": "crm_and_web_history_enriched"
+    }
+]

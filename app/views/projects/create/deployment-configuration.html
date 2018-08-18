@@ -1,0 +1,145 @@
+<form role="form" id="deploymentConfigForm" name="deploymentConfigForm" novalidate data-ng-submit="projectsObject.saveDeploymentConfig(deploymentConfigForm.$valid, datasets)">
+    <div class="project-create-form">
+        <div class="row m-t-md">
+            <div class="col-md-12">
+                <h2>{{ 'locale-deployment-configuration' | translate }}</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="borders p-sm">
+                    <uib-tabset class="secondary-tab" active="deploymentConfigTab">
+                        <uib-tab index="0">
+                            <uib-tab-heading><span class="hidden-xs">{{ 'locale-offline' | translate }}</span></uib-tab-heading>
+                            <div class="m-t-md" data-ng-if="deploymentConfigTab == 0">
+                                <div class="form-group">
+                                    <label> {{ 'locale-platform' | translate }} {{}}</label>
+
+                                    <div data-ng-repeat="platformTools in platformTools">
+                                        <div class="checkbox checkbox-success">
+                                            <input  type="checkbox" id="{{platformTools}}" data-ng-model="platformTools.checked" data-ng-change="projectsObject.optionToggled(trainingEnginesLists, 'trainingEngines')" aria-label="Single checkbox One"/> 
+                                            <label for="{{platformTools}}">{{platformTools.name}} </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="bg-info-light clearfix m-t-md ">            
+                                    <div class="col-md-12 col-sm-4">
+                                        <h4 class="n-m-t sub-title">{{ 'locale-environment-variable' | translate}}</h4>
+                                        <div data-ng-repeat="additionalParameter in additionalParameters">
+                                            <div class="row m-b-md">
+                                                <div class="col-sm-5" data-ng-class="{'has-error': deploymentConfigForm['name_' + $index].$invalid && deploymentConfigFormSubmitted}">
+                                                    <input class="form-control" name="name_{{$index}}" data-ng-model="additionalParameter.name" placeholder="NAME" type="text" data-ng-required="additionalParameter.path" data-ng-blur="projectsObject.checkDuplicationDeployment(additionalParameter, 'offline')">
+                                                    <div class="input-icon right" 
+                                                         data-ng-if="deploymentConfigForm['name_' + $index].$invalid && deploymentConfigFormSubmitted">
+                                                        <i data-uib-tooltip="{{ 'locale-name-is-required' | translate }}" data-tooltip-placement="left" 
+                                                           class="fa fa-warning"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-5" data-ng-class="{'has-error': deploymentConfigForm['path_' + $index].$invalid && deploymentConfigFormSubmitted}">
+                                                    <input class="form-control" name="path_{{$index}}" data-ng-model="additionalParameter.path" placeholder="PATH" type="text"  data-ng-required="additionalParameter.name" data-ng-class="{'error': userGroupForm.path.$invalid && formSubmitted}">
+                                                    <div class="input-icon right" 
+                                                         data-ng-if="deploymentConfigForm['path_' + $index].$invalid && deploymentConfigFormSubmitted">
+                                                        <i data-uib-tooltip="{{ 'locale-path-is-required' | translate }}" data-tooltip-placement="left" 
+                                                           class="fa fa-warning"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-1"><a class="btn btn-success m-t-xs pull-left btn-xs"  data-ng-if="$index == 0" data-ng-click="projectsObject.addMoreAdditionalParameters()"><i class="fa fa-plus"></i></a>
+                                                    <a class="btn btn-danger m-t-xs pull-left btn-xs" data-ng-if="$index != 0"data-ng-click="projectsObject.deleteOneAdditionalParameters(additionalParameter)"><i class="fa fa-times"></i></a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </uib-tab>
+                        <uib-tab index="1">
+                            <uib-tab-heading><span class="hidden-xs">{{ 'locale-online' | translate }}</span></uib-tab-heading>
+                            <div data-ng-if="deploymentConfigTab == 1">
+                                <div class="m-t-md">
+                                    <h4 class="sub-title">{{ 'locale-target-location' | translate }} </h4>
+                                    <div class="form-group"
+                                         data-ng-class="{'has-error': projectDatasetForm.url.$invalid && projectDatasetFormSubmitted}">
+                                        <label> {{ 'locale-deployment-url' | translate }} </label>
+                                        <input type="url" name="url" class="form-control" data-ng-model="datasets.deploymentUrl">
+                                        <div class="input-icon right"
+                                             data-ng-if="projectDatasetForm.url.$invalid && projectDatasetFormSubmitted">
+                                            <i data-uib-tooltip="{{ 'locale-invalid-url' | translate }}" data-tooltip-placement="left"
+                                               class="fa fa-warning"></i>
+                                        </div>
+                                    </div>
+                                    <div class="form-group"
+                                         data-ng-class="{'has-error': projectDatasetForm.authUrlInput.$invalid && projectDatasetFormSubmitted}">
+                                        <label>{{ 'locale-auth-url' | translate }}</label>
+                                        <input type="text" name="authUrlInput" class="form-control" data-ng-model="datasets.authUrlInput">
+                                        <div class="input-icon right" 
+                                             data-ng-if="projectDatasetForm.authUrlInput.$invalid && projectDatasetFormSubmitted">
+                                            <i data-uib-tooltip="{{ 'locale-url-is-required' | translate }}" data-tooltip-placement="left" 
+                                               class="fa fa-warning"></i>
+                                        </div>  
+                                    </div>
+                                    <div class="bg-info-light p-sm">
+                                        <h4 class="sub-title">{{ 'locale-additional-parameters' | translate }} </h4>
+                                        <!--<div class="scroll-body" slimscroll="{height: 75,size:4,distance:5}">-->
+                                        <div data-ng-repeat="onlineAdditionalParameter in onlineAdditionalParameters">
+                                            <div class="row m-b-sm">
+                                                <div class="col-sm-5" data-ng-class="{'has-error': deploymentConfigForm['keyName_' + $index].$invalid && deploymentConfigFormSubmitted}">
+                                                    <input class="form-control" name="keyName_{{$index}}" data-ng-model="onlineAdditionalParameter.keyName" placeholder="KEY NAME" type="text" data-ng-blur="projectsObject.checkDuplicationDeployment(onlineAdditionalParameter, 'online')" data-ng-required="onlineAdditionalParameter.keyValue">
+                                                    <div class="input-icon right" 
+                                                         data-ng-if="deploymentConfigForm['keyName_' + $index].$invalid && deploymentConfigFormSubmitted">
+                                                        <i data-uib-tooltip="{{ 'locale-key-name-is-required' | translate }}" data-tooltip-placement="left" 
+                                                           class="fa fa-warning"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-5" data-ng-class="{'has-error': deploymentConfigForm['keyValue_' + $index].$invalid && deploymentConfigFormSubmitted}">
+                                                    <input class="form-control" name="keyValue_{{$index}}" data-ng-model="onlineAdditionalParameter.keyValue" data-ng-required="onlineAdditionalParameter.keyName" placeholder="Value" type="text" data-ng-class="{'error': userGroupForm.userEmail.$invalid && formSubmitted}">
+                                                    <div class="input-icon right" 
+                                                         data-ng-if="deploymentConfigForm['keyValue_' + $index].$invalid && deploymentConfigFormSubmitted">
+                                                        <i data-uib-tooltip="{{ 'locale-value-is-required' | translate }}" data-tooltip-placement="left" 
+                                                           class="fa fa-warning"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    <a class="btn btn-success m-t-xs pull-left btn-xs"  data-ng-if="$index == 0" data-ng-click="projectsObject.onlineAdditionalParameter()"><i class="fa fa-plus"></i></a>
+                                                    <a class="btn btn-danger m-t-xs pull-left btn-xs" data-ng-if="$index != 0"data-ng-click="projectsObject.deleteOneOnlineAdditionalParameters(onlineAdditionalParameter)"><i class="fa fa-times"></i></a></div>
+                                            </div>
+                                        </div>
+                                        <!--</div>-->
+                                    </div>
+                                </div>
+                                <div class="m-t-md">
+                                    <h4 class="sub-title">{{ 'locale-cicd-config' | translate }} </h4> 
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': cicdConfigForm.cicdUrl.$invalid && cicdConfigForm.submitted}">
+                                                <label> {{ 'locale-cicd-url' | translate }} </label>
+                                                <input type="text" name="cicdUrl" class="form-control" data-ng-model="cicdConfig.cicdUrl">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': cicdConfigForm.username.$invalid && cicdConfigForm.submitted}">
+                                                <label> {{ 'locale-username' | translate }} </label>
+                                                <input type="text" name="username" class="form-control" data-ng-model="cicdConfig.username">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': cicdConfigForm.password.$invalid && cicdConfigForm.submitted}">
+                                                <label> {{ 'locale-password' | translate }} </label>
+                                                <input type="password" name="password" class="form-control" data-ng-model="cicdConfig.password">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </uib-tab>
+                    </uib-tabset>
+                </div>
+            </div>
+        </div>
+        <div class="m-t-md">
+            <button type="submit" class="btn btn-dark btn-sm btn-shadow text-uppercase">{{ 'locale-next' | translate }}</button>
+        </div>
+    </div>
+</form>

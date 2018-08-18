@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Filter rows/cells on value",
+        "id":"0"
+    },
+    {
+        "name": "Normalize measure",
+        "id":"1"
+    },
+    {
+        "name": "Split column",
+        "id":"3"
+    }
+]

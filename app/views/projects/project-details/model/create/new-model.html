@@ -1,0 +1,83 @@
+<form data-ng-show="!model.chooseFiles" role="form" id="modelForm" name="modelForm" novalidate data-ng-submit="checkValidation(modelForm,1)">
+    <div class="m-t-md">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xsm-6">
+                <div class="form-group"
+                     data-ng-class="{'has-error': modelForm.name.$invalid && modelFormSubmitted}">
+                    <label>{{ 'locale-model-name' | translate }}  <span class="required">*</span></label>
+                    <input type="text" name="name" class="form-control" data-ng-model="model.name" required>
+                    <div class="input-icon right"
+                         data-ng-if="modelForm.name.$invalid && modelFormSubmitted">
+                    <i data-uib-tooltip="{{ 'locale-model-name-is-required' | translate }}"
+                       data-tooltip-placement="left" class="fa fa-warning"></i>
+                   </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xsm-6">
+                <div class="form-group"
+                     data-ng-class="{'has-error': modelForm.dataset.$invalid && modelFormSubmitted}">
+                    <label>{{ 'locale-dataset' | translate }} <span class="required">*</span></label>
+                    <select class="form-control" name="dataset"  data-ng-model="model.dataSet" ng-options="dataset.name for dataset in datasetLists" required>
+                        <option value="">{{ "locale-select" | translate }}</option>
+                    </select>
+                    <div class="input-icon right"
+                         data-ng-if="modelForm.dataset.$invalid && modelFormSubmitted">
+                    <i data-uib-tooltip="{{ 'locale-model-dataset-is-required' | translate }}"
+                       data-tooltip-placement="left" class="fa fa-warning"></i>
+                   </div>
+                </div>
+            </div>
+            <div data-ng-if="model.dataSet" class="col-md-3 col-sm-6 col-xsm-6">
+                <div class="form-group"
+                     data-ng-class="{'has-error': modelForm.chooseFile.$invalid && modelFormSubmitted}">
+                    <label>{{ 'locale-data-file' | translate }} <span class="required">*</span> </label>
+                    <input readonly type="text" name="chooseFile" class="form-control" ng-focus="chooseDataset('dataset')"  data-ng-model="model.datasetFile" required>
+                    <div class="input-icon right"
+                         data-ng-if="modelForm.chooseFile.$invalid && modelFormSubmitted">
+                    <i data-uib-tooltip="{{ 'locale-model-file-is-required' | translate }}"
+                       data-tooltip-placement="left" class="fa fa-warning"></i>
+                   </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xsm-6">
+                <div class="form-group"
+                     data-ng-class="{'has-error': modelForm.type.$invalid && modelFormSubmitted}">
+                    <label>{{ 'locale-model-type' | translate}} <span class="required">*</span> </label>
+                    <select class="form-control" name="type" data-ng-model="model.modelTypes" required>
+                        <option value=""> {{ "locale-select" | translate }}</option>
+                        <option value="CUSTOM"> Custom</option>
+                        <option value="PREDEFINED">Predefined</option>
+                    </select>
+                    <div class="input-icon right"
+                         data-ng-if="modelForm.type.$invalid && modelFormSubmitted">
+                    <i data-uib-tooltip="{{ 'locale-model-type-is-required' | translate }}"
+                       data-tooltip-placement="left" class="fa fa-warning"></i>
+                   </div>
+                </div>
+            </div>
+<!--            <div class="col-md-3">
+                <a class="btn btn-info m-t-md">
+                    {{ 'locale-choose-file' | translate }}
+                </a>
+            </div>-->
+            <div class="col-md-3 col-sm-6 col-xsm-6 no-label">
+                <button class="btn btn-info" type="submit">{{ 'locale-save-continue' | translate }} <i class="fa fa-arrow-circle-right"></i></button>
+            </div>
+        </div>
+    </div>
+</form>
+<div data-ng-show="model.chooseFiles" class="row">
+    <div class="ibox-content">
+        <div class="filemanager-area">
+    <div class="filemanager-area">
+        <angular-filemanager></angular-filemanager>
+    <div class="row m-t-md">
+        <div class="col-md-12">
+                        <a class="btn btn-success pull-right" data-ng-click="fileChoosed()">{{ 'locale-ok' | translate }}</a>
+                        <a class="btn btn-light  pull-right  m-r-md" data-ng-click="model.chooseFiles = false">{{ 'locale-back' | translate }}</a>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>

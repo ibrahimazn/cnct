@@ -1,0 +1,932 @@
+[
+    {
+        "id": 1,
+        "name": "ADMIN",
+        "groups": [
+            {
+                "id": 1,
+                "name": "Project",
+                "permissions": [
+                    {
+                        "id": 1,
+                        "name": "Create Project",
+                        "checked": true
+                    },
+                    {
+                        "id": 2,
+                        "name": "Update Project Status",
+                        "checked": false
+                    },
+                    {
+                        "id": 3,
+                        "name": "Delete Project",
+                        "checked": true
+                    },
+                    {
+                        "id": 4,
+                        "name": "Assign Users to Projects",
+                        "checked": false
+                    },
+                    {
+                        "id": 5,
+                        "name": "Project Resource Quota Modification",
+                        "checked": true
+                    },
+                    {
+                        "id": 6,
+                        "name": "Release Users to Projects",
+                        "checked": false
+                    },
+                    {
+                        "id": 7,
+                        "name": "Modeling",
+                        "checked": true
+                    },
+                    {
+                        "id": 8,
+                        "name": "Muning",
+                        "checked": false
+                    },
+                    {
+                        "id": 9,
+                        "name": "Scoring",
+                        "checked": false
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "name": "Department",
+                "permissions": [
+                    {
+                        "id": 10,
+                        "name": "Create Department",
+                        "checked": false
+                    },
+                    {
+                        "id": 11,
+                        "name": "Update Department Status",
+                        "checked": true
+                    },
+                    {
+                        "id": 12,
+                        "name": "Delete Department",
+                        "checked": false
+                    },
+                    {
+                        "id": 13,
+                        "name": "Department Resource Quota Modification",
+                        "checked": false
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "name": "User Account",
+                "permissions": [
+                    {
+                        "id": 14,
+                        "name": "Create User",
+                        "checked": false
+                    },
+                    {
+                        "id": 15,
+                        "name": "Update User",
+                        "checked": false
+                    },
+                    {
+                        "id": 16,
+                        "name": "Delete User",
+                        "checked": false
+                    },
+                    {
+                        "id": 17,
+                        "name": "Enable User",
+                        "checked": false
+                    },
+                    {
+                        "id": 19,
+                        "name": "Disable User",
+                        "checked": false
+                    },
+                    {
+                        "id": 18,
+                        "name": "Reset User Password",
+                        "checked": false
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "name": "Roles",
+                "permissions": [
+                    {
+                        "id": 21,
+                        "name": "Create Roles",
+                        "checked": false
+                    },
+                    {
+                        "id": 22,
+                        "name": "Update Roles",
+                        "checked": true
+                    },
+                    {
+                        "id": 23,
+                        "name": "Delete Roles",
+                        "checked": false
+                    },
+                    {
+                        "id": 24,
+                        "name": "Enable Roles",
+                        "checked": false
+                    },
+                    {
+                        "id": 25,
+                        "name": "Disable Roles",
+                        "checked": false
+                    },
+                    {
+                        "id": 26,
+                        "name": "Assign Roles",
+                        "checked": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Software Development",
+        "groups": [
+            {
+                "id": 1,
+                "name": "Project",
+                "permissions": [
+                    {
+                        "id": 1,
+                        "name": "Create Project",
+                        "checked": true
+                    },
+                    {
+                        "id": 2,
+                        "name": "Update Project Status",
+                        "checked": false
+                    },
+                    {
+                        "id": 3,
+                        "name": "Delete Project",
+                        "checked": false
+                    },
+                    {
+                        "id": 4,
+                        "name": "Assign Users to Projects",
+                        "checked": false
+                    },
+                    {
+                        "id": 5,
+                        "name": "Project Resource Quota Modification",
+                        "checked": false
+                    },
+                    {
+                        "id": 6,
+                        "name": "Release Users to Projects",
+                        "checked": false
+                    },
+                    {
+                        "id": 7,
+                        "name": "Modeling",
+                        "checked": false
+                    },
+                    {
+                        "id": 8,
+                        "name": "Muning",
+                        "checked": false
+                    },
+                    {
+                        "id": 9,
+                        "name": "Scoring",
+                        "checked": false
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "name": "Department",
+                "permissions": [
+                    {
+                        "id": 10,
+                        "name": "Create Department",
+                        "checked": false
+                    },
+                    {
+                        "id": 11,
+                        "name": "Update Department Status",
+                        "checked": false
+                    },
+                    {
+                        "id": 12,
+                        "name": "Delete Department",
+                        "checked": false
+                    },
+                    {
+                        "id": 13,
+                        "name": "Department Resource Quota Modification",
+                        "checked": false
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "name": "User Account",
+                "permissions": [
+                    {
+                        "id": 14,
+                        "name": "Create User",
+                        "checked": false
+                    },
+                    {
+                        "id": 15,
+                        "name": "Update User",
+                        "checked": false
+                    },
+                    {
+                        "id": 16,
+                        "name": "Delete User",
+                        "checked": false
+                    },
+                    {
+                        "id": 17,
+                        "name": "Enable User",
+                        "checked": false
+                    },
+                    {
+                        "id": 19,
+                        "name": "Disable User",
+                        "checked": false
+                    },
+                    {
+                        "id": 18,
+                        "name": "Reset User Password",
+                        "checked": false
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "name": "Roles",
+                "permissions": [
+                    {
+                        "id": 21,
+                        "name": "Create Roles",
+                        "checked": false
+                    },
+                    {
+                        "id": 22,
+                        "name": "Update Roles",
+                        "checked": false
+                    },
+                    {
+                        "id": 23,
+                        "name": "Delete Roles",
+                        "checked": false
+                    },
+                    {
+                        "id": 24,
+                        "name": "Enable Roles",
+                        "checked": false
+                    },
+                    {
+                        "id": 25,
+                        "name": "Disable Roles",
+                        "checked": false
+                    },
+                    {
+                        "id": 26,
+                        "name": "Assign Roles",
+                        "checked": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "UI Development",
+        "groups": [
+            {
+                "id": 1,
+                "name": "Project",
+                "permissions": [
+                    {
+                        "id": 1,
+                        "name": "Create Project",
+                        "checked": true
+                    },
+                    {
+                        "id": 2,
+                        "name": "Update Project Status",
+                        "checked": false
+                    },
+                    {
+                        "id": 3,
+                        "name": "Delete Project",
+                        "checked": false
+                    },
+                    {
+                        "id": 4,
+                        "name": "Assign Users to Projects",
+                        "checked": false
+                    },
+                    {
+                        "id": 5,
+                        "name": "Project Resource Quota Modification",
+                        "checked": false
+                    },
+                    {
+                        "id": 6,
+                        "name": "Release Users to Projects",
+                        "checked": false
+                    },
+                    {
+                        "id": 7,
+                        "name": "Modeling",
+                        "checked": false
+                    },
+                    {
+                        "id": 8,
+                        "name": "Muning",
+                        "checked": false
+                    },
+                    {
+                        "id": 9,
+                        "name": "Scoring",
+                        "checked": false
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "name": "Department",
+                "permissions": [
+                    {
+                        "id": 10,
+                        "name": "Create Department",
+                        "checked": false
+                    },
+                    {
+                        "id": 11,
+                        "name": "Update Department Status",
+                        "checked": false
+                    },
+                    {
+                        "id": 12,
+                        "name": "Delete Department",
+                        "checked": false
+                    },
+                    {
+                        "id": 13,
+                        "name": "Department Resource Quota Modification",
+                        "checked": false
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "name": "User Account",
+                "permissions": [
+                    {
+                        "id": 14,
+                        "name": "Create User",
+                        "checked": false
+                    },
+                    {
+                        "id": 15,
+                        "name": "Update User",
+                        "checked": false
+                    },
+                    {
+                        "id": 16,
+                        "name": "Delete User",
+                        "checked": false
+                    },
+                    {
+                        "id": 17,
+                        "name": "Enable User",
+                        "checked": false
+                    },
+                    {
+                        "id": 19,
+                        "name": "Disable User",
+                        "checked": false
+                    },
+                    {
+                        "id": 18,
+                        "name": "Reset User Password",
+                        "checked": false
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "name": "Roles",
+                "permissions": [
+                    {
+                        "id": 21,
+                        "name": "Create Roles",
+                        "checked": false
+                    },
+                    {
+                        "id": 22,
+                        "name": "Update Roles",
+                        "checked": false
+                    },
+                    {
+                        "id": 23,
+                        "name": "Delete Roles",
+                        "checked": false
+                    },
+                    {
+                        "id": 24,
+                        "name": "Enable Roles",
+                        "checked": false
+                    },
+                    {
+                        "id": 25,
+                        "name": "Disable Roles",
+                        "checked": false
+                    },
+                    {
+                        "id": 26,
+                        "name": "Assign Roles",
+                        "checked": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Java Development",
+        "groups": [
+            {
+                "id": 1,
+                "name": "Project",
+                "permissions": [
+                    {
+                        "id": 1,
+                        "name": "Create Project",
+                        "checked": false
+                    },
+                    {
+                        "id": 2,
+                        "name": "Update Project Status",
+                        "checked": true
+                    },
+                    {
+                        "id": 3,
+                        "name": "Delete Project",
+                        "checked": false
+                    },
+                    {
+                        "id": 4,
+                        "name": "Assign Users to Projects",
+                        "checked": false
+                    },
+                    {
+                        "id": 5,
+                        "name": "Project Resource Quota Modification",
+                        "checked": false
+                    },
+                    {
+                        "id": 6,
+                        "name": "Release Users to Projects",
+                        "checked": false
+                    },
+                    {
+                        "id": 7,
+                        "name": "Modeling",
+                        "checked": false
+                    },
+                    {
+                        "id": 8,
+                        "name": "Muning",
+                        "checked": false
+                    },
+                    {
+                        "id": 9,
+                        "name": "Scoring",
+                        "checked": false
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "name": "Department",
+                "permissions": [
+                    {
+                        "id": 10,
+                        "name": "Create Department",
+                        "checked": false
+                    },
+                    {
+                        "id": 11,
+                        "name": "Update Department Status",
+                        "checked": false
+                    },
+                    {
+                        "id": 12,
+                        "name": "Delete Department",
+                        "checked": false
+                    },
+                    {
+                        "id": 13,
+                        "name": "Department Resource Quota Modification",
+                        "checked": false
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "name": "User Account",
+                "permissions": [
+                    {
+                        "id": 14,
+                        "name": "Create User",
+                        "checked": false
+                    },
+                    {
+                        "id": 15,
+                        "name": "Update User",
+                        "checked": false
+                    },
+                    {
+                        "id": 16,
+                        "name": "Delete User",
+                        "checked": false
+                    },
+                    {
+                        "id": 17,
+                        "name": "Enable User",
+                        "checked": false
+                    },
+                    {
+                        "id": 19,
+                        "name": "Disable User",
+                        "checked": false
+                    },
+                    {
+                        "id": 18,
+                        "name": "Reset User Password",
+                        "checked": false
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "name": "Roles",
+                "permissions": [
+                    {
+                        "id": 21,
+                        "name": "Create Roles",
+                        "checked": false
+                    },
+                    {
+                        "id": 22,
+                        "name": "Update Roles",
+                        "checked": false
+                    },
+                    {
+                        "id": 23,
+                        "name": "Delete Roles",
+                        "checked": false
+                    },
+                    {
+                        "id": 24,
+                        "name": "Enable Roles",
+                        "checked": false
+                    },
+                    {
+                        "id": 25,
+                        "name": "Disable Roles",
+                        "checked": false
+                    },
+                    {
+                        "id": 26,
+                        "name": "Assign Roles",
+                        "checked": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Tester",
+        "groups": [
+            {
+                "id": 1,
+                "name": "Project",
+                "permissions": [
+                    {
+                        "id": 1,
+                        "name": "Create Project",
+                        "checked": false
+                    },
+                    {
+                        "id": 2,
+                        "name": "Update Project Status",
+                        "checked": true
+                    },
+                    {
+                        "id": 3,
+                        "name": "Delete Project",
+                        "checked": false
+                    },
+                    {
+                        "id": 4,
+                        "name": "Assign Users to Projects",
+                        "checked": false
+                    },
+                    {
+                        "id": 5,
+                        "name": "Project Resource Quota Modification",
+                        "checked": false
+                    },
+                    {
+                        "id": 6,
+                        "name": "Release Users to Projects",
+                        "checked": false
+                    },
+                    {
+                        "id": 7,
+                        "name": "Modeling",
+                        "checked": false
+                    },
+                    {
+                        "id": 8,
+                        "name": "Muning",
+                        "checked": false
+                    },
+                    {
+                        "id": 9,
+                        "name": "Scoring",
+                        "checked": false
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "name": "Department",
+                "permissions": [
+                    {
+                        "id": 10,
+                        "name": "Create Department",
+                        "checked": false
+                    },
+                    {
+                        "id": 11,
+                        "name": "Update Department Status",
+                        "checked": false
+                    },
+                    {
+                        "id": 12,
+                        "name": "Delete Department",
+                        "checked": false
+                    },
+                    {
+                        "id": 13,
+                        "name": "Department Resource Quota Modification",
+                        "checked": false
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "name": "User Account",
+                "permissions": [
+                    {
+                        "id": 14,
+                        "name": "Create User",
+                        "checked": false
+                    },
+                    {
+                        "id": 15,
+                        "name": "Update User",
+                        "checked": false
+                    },
+                    {
+                        "id": 16,
+                        "name": "Delete User",
+                        "checked": false
+                    },
+                    {
+                        "id": 17,
+                        "name": "Enable User",
+                        "checked": false
+                    },
+                    {
+                        "id": 19,
+                        "name": "Disable User",
+                        "checked": false
+                    },
+                    {
+                        "id": 18,
+                        "name": "Reset User Password",
+                        "checked": false
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "name": "Roles",
+                "permissions": [
+                    {
+                        "id": 21,
+                        "name": "Create Roles",
+                        "checked": false
+                    },
+                    {
+                        "id": 22,
+                        "name": "Update Roles",
+                        "checked": false
+                    },
+                    {
+                        "id": 23,
+                        "name": "Delete Roles",
+                        "checked": false
+                    },
+                    {
+                        "id": 24,
+                        "name": "Enable Roles",
+                        "checked": false
+                    },
+                    {
+                        "id": 25,
+                        "name": "Disable Roles",
+                        "checked": false
+                    },
+                    {
+                        "id": 26,
+                        "name": "Assign Roles",
+                        "checked": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "name": "Project Manager",
+        "groups": [
+            {
+                "id": 1,
+                "name": "Project",
+                "permissions": [
+                    {
+                        "id": 1,
+                        "name": "Create Project",
+                        "checked": false
+                    },
+                    {
+                        "id": 2,
+                        "name": "Update Project Status",
+                        "checked": true
+                    },
+                    {
+                        "id": 3,
+                        "name": "Delete Project",
+                        "checked": false
+                    },
+                    {
+                        "id": 4,
+                        "name": "Assign Users to Projects",
+                        "checked": false
+                    },
+                    {
+                        "id": 5,
+                        "name": "Project Resource Quota Modification",
+                        "checked": true
+                    },
+                    {
+                        "id": 6,
+                        "name": "Release Users to Projects",
+                        "checked": false
+                    },
+                    {
+                        "id": 7,
+                        "name": "Modeling",
+                        "checked": true
+                    },
+                    {
+                        "id": 8,
+                        "name": "Muning",
+                        "checked": false
+                    },
+                    {
+                        "id": 9,
+                        "name": "Scoring",
+                        "checked": false
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "name": "Department",
+                "permissions": [
+                    {
+                        "id": 10,
+                        "name": "Create Department",
+                        "checked": false
+                    },
+                    {
+                        "id": 11,
+                        "name": "Update Department Status",
+                        "checked": false
+                    },
+                    {
+                        "id": 12,
+                        "name": "Delete Department",
+                        "checked": false
+                    },
+                    {
+                        "id": 13,
+                        "name": "Department Resource Quota Modification",
+                        "checked": false
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "name": "User Account",
+                "permissions": [
+                    {
+                        "id": 14,
+                        "name": "Create User",
+                        "checked": false
+                    },
+                    {
+                        "id": 15,
+                        "name": "Update User",
+                        "checked": false
+                    },
+                    {
+                        "id": 16,
+                        "name": "Delete User",
+                        "checked": false
+                    },
+                    {
+                        "id": 17,
+                        "name": "Enable User",
+                        "checked": false
+                    },
+                    {
+                        "id": 19,
+                        "name": "Disable User",
+                        "checked": false
+                    },
+                    {
+                        "id": 18,
+                        "name": "Reset User Password",
+                        "checked": false
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "name": "Roles",
+                "permissions": [
+                    {
+                        "id": 21,
+                        "name": "Create Roles",
+                        "checked": false
+                    },
+                    {
+                        "id": 22,
+                        "name": "Update Roles",
+                        "checked": false
+                    },
+                    {
+                        "id": 23,
+                        "name": "Delete Roles",
+                        "checked": false
+                    },
+                    {
+                        "id": 24,
+                        "name": "Enable Roles",
+                        "checked": false
+                    },
+                    {
+                        "id": 25,
+                        "name": "Disable Roles",
+                        "checked": false
+                    },
+                    {
+                        "id": 26,
+                        "name": "Assign Roles",
+                        "checked": false
+                    }
+                ]
+            }
+        ]
+    }
+]

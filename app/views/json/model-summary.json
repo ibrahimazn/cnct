@@ -1,0 +1,30 @@
+[
+    {
+        "label": "Model Name",
+        "value": "predictive-modeling-os"
+    },
+    {
+        "label": "Model Type",
+        "value": "Custom"
+    },
+    {
+        "label": "Latest version",
+        "value": "cf6c1e72-6d0f-4644-8e74-3ac1058d897b"
+    },
+    {
+        "label": "Label column",
+        "value": "COLUMN5"
+    },
+    {
+        "label": "Model Creation Date",
+        "value": "1 Mar 2018, 12:48 PM"
+    },
+    {
+        "label": "Runtime environment",
+        "value": "spark-2.0"
+    },
+    {
+        "label": "Training / Validation Data split",
+        "value": "Train: 60%, Test: 20%, Holdout: 20%"
+    }
+]

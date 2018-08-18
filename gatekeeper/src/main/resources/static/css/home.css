@@ -1,0 +1,10 @@
+.admin-message-text {
+    font-style: normal;
+    font-size: 22px;
+    color: #004080;
+}
+
+.access-denied .fa{font-size:70px;}
+.access-denied h1{font-weight:bold; font-size:24px; text-transform:uppercase;}
+.access-denied .panel-body{min-height:400px; padding-top:100px;}
+.access-denied .panel-heading{font-weight:500;}

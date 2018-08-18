@@ -1,0 +1,625 @@
+<div data-ng-controller="chartAnalyzeCtrl">
+    <div class="row m-t-lg chart-analyze">
+        <div class="col-md-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <uib-tabset active="modelDetailsTab" class="secondary-tab">
+                        <uib-tab index="1">
+                            <uib-tab-heading><span class="hidden-xs">{{ 'locale-columns' | translate }} </span></uib-tab-heading>
+                            <div class="m-t-md">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="{{ 'locale-search' | translate }}" data-ng-model="search">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-white" type="button"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div ui-sortable="sortableOptions" class="first" ng-model="chartAnalyzeLists">
+                                        <div class="bg-info-light p-md text-center no-step" data-ng-if="chartAnalyzeLists.length == 0">
+                                            <h3>No Graph Found</h3>
+                                        </div>
+                                        <div ng-repeat="chartAnalyzeList in chartAnalyzeLists track by $index" class="bg-info-light m-t-xs no-padding">
+                                            <label class="m-l-xs">
+                                                <span class="font-bold text-lg text-info" data-ng-if="chartAnalyzeList.type == 'symbol'">#</span>
+                                                <span class="font-bold text-lg text-success" data-ng-if="chartAnalyzeList.type == 'char'">A</span>
+                                                {{ chartAnalyzeList.name}} 
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>                                
+                            </div>
+                        </uib-tab>
+                        <uib-tab index="2">
+                            <uib-tab-heading><span class="hidden-xs">{{ 'locale-sampling-engine' | translate }} </span></uib-tab-heading>
+                            <div class="m-t-md">
+                                <div class="scroll-body" slimscroll="{height: 260,size:4,distance:0}">
+                                    <form role="form" id="designSampleForm" name="sampleEngineForm" novalidate data-ng-submit="chartAnalyzeObject.save(sampleEngine)">
+
+                                        <small class="m-t-xs block">{{ 'locale-select-which-part-of-the-dataset' | translate }}</small>
+                                        <div class="form-group m-b-md" data-ng-class="{'has-error': sampleEngineForm.useSampleScript.$invalid && sampleEngineForm.Submitted}">
+                                            <div class="checkbox checkbox-success">
+                                                <input class="form-control" name="useSampleScript" value="useSampleScript" type="checkbox" data-ng-model="sampleEngine.useSampleScript">
+                                                <label for="useSampleScript">
+                                                    {{ 'locale-use-same-sample-as-script' | translate }}
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div  data-ng-hide="sampleEngine.useSampleScript">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': sampleEngineForm.samplingMethod.$invalid && sampleEngineForm.submitted}">
+                                                <label> {{ 'locale-sampling-method' | translate }} </label>
+                                                <select class="form-control" name="samplingMethod" data-ng-init="sampleEngine.samplingMethod = 'firstRecords'" data-ng-model="sampleEngine.samplingMethod">
+                                                    <option value=""> {{ 'locale-dataset' | translate }} </option>
+                                                    <option value="firstRecords">First records</option>
+                                                    <option value="randomNbRecords">Random (nb. records)</option>
+                                                    <option value="randomApproxRatio">Random (approx. ratio)</option>
+                                                    <option value="stratifiedNbRecords">Stratified (nb. records)</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group m-b-md" data-ng-class="{'has-error': sampleEngineForm.filterRecords.$invalid && sampleEngineForm.submitted}">
+                                                <div class="checkbox checkbox-success">
+                                                    <input class="form-control" name="filterRecords" value="filterRecords" type="checkbox" data-ng-model="sampleEngine.filterRecords">
+                                                    <label for="filterRecords">
+                                                        {{ 'locale-filter-records' | translate }}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group" data-ng-class="{'has-error': sampleEngineForm.noOfRecords.$invalid && sampleEngineForm.submitted}">
+                                                <label> {{ 'locale-percentage-to-use' | translate }} </label>
+                                                <input type="number" name="percentageToUse" class="form-control" data-ng-model="sampleEngine.percentageToUse">
+                                            </div>
+                                        </div>
+                                    </form> 
+                                </div>
+                                <div data-ng-hide="sampleEngine.useSampleScript">
+                                    <a class="btn btn-success btn-block">{{ 'locale-save-refresh-sample' | translate }} </a>
+                                    <a >{{ 'locale-save-no-forced-refresh' | translate }}</a>
+                                </div>
+                                <div data-ng-if="sampleEngine.useSampleScript">
+                                    <a  class="btn btn-success btn-block">{{ 'locale-save' | translate }} </a>
+                                    <small class="m-t-xs block">{{ 'locale-to-force-a-refresh' | translate }}</small>
+                                </div>
+                            </div>
+                        </uib-tab>                       
+                    </uib-tabset>
+                    <hr>                  
+                    <uib-accordion close-others="oneAtATime">
+
+                        <div uib-accordion-group class="panel-info" is-open="status.animation">
+                            <uib-accordion-heading>
+                                Animation  <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.animation, 'glyphicon-chevron-right': !status.animation}"></i>
+                            </uib-accordion-heading>
+                            <div ui-sortable="sortableOptions" class="axis-container connected-apps-container" ng-model="selectedAnimation">
+                                <label class="bg-info-light no-padding m-l-sm" ng-repeat="list in selectedAnimation track by $index">
+                                    <span data-uib-dropdown  auto-close="outsideClick">
+                                        <a id="animation" data-uib-dropdown-toggle 
+                                           title=" {{ 'locale-menu' | translate }}">
+                                            <i class="fa fa-caret-down m-r-xxs"></i> 
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-left p-xs" data-uib-dropdown-menu role="menu" aria-labelledby="animation">
+                                            <li role="menuitem">
+                                                <div>                                                         
+                                                    <label> {{ 'locale-sorting' | translate }} </label>
+                                                    <select class="form-control input-sm" name="compute" data-ng-init="chartAnalyze.animationSorting = 'Natural ordering'" data-ng-model="chartAnalyze.animationSorting">
+                                                        <option value="Natural ordering">Natural ordering</option>
+                                                        <option value="Count of records, descending">Count of records, descending</option>
+                                                        <option value="Count of records, ascending">Count of records, ascending</option>
+                                                        <option value="Count of records, descending">Count of records, descending</option>
+                                                        <option value="Count of records, ascending">Count of records, ascending</option>
+                                                    </select>
+                                                </div>
+                                            </li>
+                                            <li role='menuitem'>    
+                                                <label class="m-t-sm">{{ 'locale-max-displayed-values' | translate }}</label>
+                                                <div class="input-group">                                                       
+                                                    <input type="number" class="form-control input-sm" data-ng-model="animationSearch">
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-white btn-sm" type="button"><i class="fa fa-refresh"></i></button>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li role="menuitem">
+                                                <label class="m-t-sm">{{ 'locale-others' | translate}} </label>
+                                                <div class="checkbox checkbox-success">
+                                                    <input class="form-control" name="groupsExtra" value="groupsExtra" type="checkbox" data-ng-model="chartAnalyze.animationGroupsExtra">
+                                                    <label for="groupsExtra">
+                                                        {{ 'locale-group-extra-values-in-others-category' | translate }}
+                                                    </label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </span>
+                                    <span> {{list.name}} </span>
+                                    <a><i class="fa fa-trash pull-right" data-ng-click="chartAnalyzeObject.delete(list, 'animation')"></i></a>
+                                </label>
+                            </div>
+                        </div>                        
+                        <div uib-accordion-group class="panel-info" is-open="status.subcharts">
+                            <uib-accordion-heading>
+                                Subcharts  <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.subcharts, 'glyphicon-chevron-right': !status.subcharts}"></i>
+                            </uib-accordion-heading>
+                            <div ui-sortable="sortableOptions" class="axis-container connected-apps-container" ng-model="selectedSubcharts">
+                                <label class="bg-info-light no-padding m-l-sm" ng-repeat="list in selectedSubcharts track by $index">
+                                    <span data-uib-dropdown  auto-close="outsideClick">
+                                        <a id="animation" data-uib-dropdown-toggle 
+                                           title=" {{ 'locale-menu' | translate }}">
+                                            <i class="fa fa-caret-down m-r-xxs"></i> 
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-left p-xs" data-uib-dropdown-menu role="menu" aria-labelledby="animation">
+                                            <li role="menuitem">
+                                                <div>                                                         
+                                                    <label> {{ 'locale-sorting' | translate }} </label>
+                                                    <select class="form-control input-sm" name="compute" data-ng-init="chartAnalyze.subchartsSorting = 'Natural ordering'" data-ng-model="chartAnalyze.subchartsSorting">
+                                                        <option value="Natural ordering">Natural ordering</option>
+                                                        <option value="Count of records, descending">Count of records, descending</option>
+                                                        <option value="Count of records, ascending">Count of records, ascending</option>
+                                                        <option value="Count of records, descending">Count of records, descending</option>
+                                                        <option value="Count of records, ascending">Count of records, ascending</option>
+                                                    </select>
+                                                </div>
+                                            </li>
+                                            <li role='menuitem'>    
+                                                <label class="m-t-sm">{{ 'locale-max-displayed-values' | translate }}</label>
+                                                <div class="input-group">                                                       
+                                                    <input type="number" class="form-control input-sm" data-ng-model="subchartsSearch">
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-white btn-sm" type="button"><i class="fa fa-refresh"></i></button>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li role="menuitem">
+                                                <label class="m-t-sm">{{ 'locale-others' | translate}} </label>
+                                                <div class="checkbox checkbox-success">
+                                                    <input class="form-control" name="groupsExtra" value="groupsExtra" type="checkbox" data-ng-model="chartAnalyze.subchartsGroupsExtra">
+                                                    <label for="groupsExtra">
+                                                        {{ 'locale-group-extra-values-in-others-category' | translate }}
+                                                    </label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </span>
+                                    <span> {{list.name}} </span>
+                                    <a><i class="fa fa-trash pull-right" data-ng-click="chartAnalyzeObject.delete(list, 'subcharts')"></i></a>
+                                </label>
+                            </div>
+                        </div>
+                        <div uib-accordion-group class="panel-info" is-open="status. tooltip">
+                            <uib-accordion-heading>
+                                Tooltip <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.tooltip, 'glyphicon-chevron-right': !status.tooltip}"></i>
+                            </uib-accordion-heading>
+                            <div ui-sortable="sortableOptions" class="axis-container connected-apps-container" ng-model="selectedTooltip">
+                                <label  class="bg-info-light no-padding m-l-sm" ng-repeat="list in selectedTooltip track by $index">
+                                    <span data-uib-dropdown  auto-close="outsideClick">
+                                        <a id="tooltipList" data-uib-dropdown-toggle title="{{ 'locale-menu' | translate }}">
+                                            <i class="fa fa-caret-down m-r-xxs"></i> 
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-top p-xs" data-uib-dropdown-menu role="menu" aria-labelledby="tooltipList">
+                                            <li role="menuitem">
+                                                <div>                                                         
+                                                    <label> {{ 'locale-compute' | translate }} </label>
+                                                    <select class="form-control input-sm" name="compute" data-ng-init="chartAnalyze.tooltipCompute = 'NORMAL'" data-ng-model="chartAnalyze.tooltipCompute">
+                                                        <option value="PERCENTAGE">Percentage scale</option>
+                                                        <option value="AVG_RATIO">Ratio to average</option>
+                                                        <option value="NORMAL">Normal</option>
+                                                        <option value="CUMULATIVE">Cumulative values</option>
+                                                        <option value="CUMULATIVE_PERCENTAGE">Cumulative percentage scale</option>
+                                                        <option value="DIFFERENCE">Differencial values</option>
+                                                    </select>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </span>
+                                    <span>{{list.name}}</span>
+                                    <a data-ng-click="chartAnalyzeObject.delete(list, 'tooltip')"><i class="fa fa-trash pull-right"></i></a> 
+                                </label>
+                            </div>
+                        </div>
+                        <div uib-accordion-group class="panel-info" is-open="status.filters">
+                            <uib-accordion-heading>
+                                Filters <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.filters, 'glyphicon-chevron-right': !status.filters}"></i>
+                            </uib-accordion-heading>
+                            <div ui-sortable="sortableOptions" class="axis-container connected-apps-container" ng-model="selectedFilter">
+                                <label  class="bg-info-light no-padding m-l-sm" ng-repeat="list in selectedFilter track by $index">
+                                    <span data-uib-dropdown  auto-close="outsideClick">
+                                        <a id="filterList" data-uib-dropdown-toggle title="{{ 'locale-menu' | translate }}">
+                                            <i class="fa fa-caret-down m-r-xxs"></i> 
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-top p-xs" data-uib-dropdown-menu role="menu" aria-labelledby="filterList">
+                                            <li role="menuitem">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control input-sm" placeholder="{{ 'locale-search' | translate }}">
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-white btn-sm" type="button"><i class="fa fa-search"></i></button>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <div class="checkbox checkbox-success">
+                                                <input class="form-control" name="noValue" value="noValue" type="checkbox" data-ng-model="chartAnalyze.noValue">
+                                                <label for="noValue">
+                                                    No Value(0)
+                                                </label>
+                                            </div>
+                                        </ul>
+                                    </span>
+                                    <span>{{list.name}}</span>
+                                    <a data-ng-click="chartAnalyzeObject.delete(list, 'filter')"><i class="fa fa-trash pull-right"></i></a> 
+                                </label>
+                            </div>
+                        </div>
+                        <div uib-accordion-group class="panel-info" is-open="status.display">
+                            <uib-accordion-heading>
+                                Display  <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.display, 'glyphicon-chevron-right': !status.display}"></i>
+                            </uib-accordion-heading>                            
+                            <div>                                                         
+                                <label> {{ 'locale-display-legent' | translate }} </label>
+                                <select class="form-control input-sm" name="compute" data-ng-init="chartAnalyze.displayLegent = 'In the Sidebar'"  data-ng-model="chartAnalyze.displayLegent">
+                                    <option value="In the Sidebar" selected="selected">In the Sidebar</option>
+                                    <option value="Next to chart">Next to chart</option>
+                                    <option value="In Chart" >In Chart</option>
+                                </select>
+                            </div>
+                            <div class="m-t-sm" data-ng-if="chartAnalyze.displayLegent != 'In the Sidebar'">                                                         
+                                <label> {{ 'locale-placement' | translate }} </label>
+                                <select class="form-control input-sm" name="placement" data-ng-init="chartAnalyze.placement = 'Top'" data-ng-model="chartAnalyze.placement">
+                                    <option value="Top" selected="selected">Top</option>
+                                    <option value="Bottom">Bottom</option>
+                                    <option value="Left">Left</option>
+                                    <option value="Right">Right</option>
+                                </select>
+                            </div>
+                            <div class="checkbox checkbox-success">
+                                <input class="form-control" name="displayChart" value="displayChart" type="checkbox" data-ng-model="chartAnalyze.displayChart">
+                                <label for="displayChart">
+                                    Display value in chart 
+                                </label>
+                            </div>
+                        </div>
+                        <div uib-accordion-group class="panel-info" is-open="status.open2">
+                            <uib-accordion-heading>
+                                Color   <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open2, 'glyphicon-chevron-right': !status.open2}"></i>
+                            </uib-accordion-heading>
+                            <div>                                                         
+                                <label> {{ 'locale-palette' | translate }} </label>
+                                <select class="form-control input-sm" name="compute" data-ng-init="chartAnalyze.colorPalette = 'Default'" data-ng-model="chartAnalyze.colorPalette">
+                                    <option value="Default">Default</option>
+                                    <option value="DSS Next">DSS Next</option>
+                                    <option value="Pastel" selected="selected">Pastel</option>
+                                    <option value="Corporate">Corporate</option>
+                                </select>
+                                <small class="text-info">{{ 'locale-add-other-color-palettes-with-plugins' | translate}}</small>
+                            </div>
+                            <div class="m-t-sm">                                                         
+                                <label> {{ 'locale-opacity' | translate }} </label>
+                                <input type="range" id="myRange" min="1" max="100">
+                            </div>
+                        </div>
+                    </uib-accordion>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content main-ibox-content">
+                    <div class="row m-b-md">
+                        <div class="col-md-1 col-sm-1 col-xsm-1">
+                            <label class="p-xs">{{ 'locale-show' | translate }}</label>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xsm-9">
+                            <div ui-sortable="sortableOptions" class="axis-container connected-apps-container" ng-model="selectedYaxis">
+                                <div class="btn-group" data-uib-dropdown  auto-close="outsideClick">
+                                    <a id="yAxis"  class="btn btn-default no-margins no-borders p-xs" type="button" data-uib-dropdown-toggle 
+                                       title="{{ 'locale-y-axis' | translate }}">
+                                        Y <i class="fa fa-caret-down"></i> 
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-right p-xs" data-uib-dropdown-menu role="menu" aria-labelledby="yAxis">
+                                        <li role="menuitem">
+                                            <div class="checkbox checkbox-success">
+                                                <input class="form-control" name="showAxisLabel" value="showAxisLabel" type="checkbox" data-ng-model="chartAnalyze.showAxisLabel">
+                                                <label for="showAxisLabel">
+                                                    {{ 'locale-show-axis-label' | translate }}
+                                                </label>
+                                            </div>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control input-sm" placeholder="{{ 'locale-refresh' | translate }}">
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-white btn-sm" type="button"><i class="fa fa-refresh"></i></button>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li role="menuitem">
+                                            <div class="checkbox checkbox-success">
+                                                <input class="form-control" name="forceInclusion" value="forceInclusion" type="checkbox" data-ng-model="chartAnalyze.forceInclusion">
+                                                <label for="forceInclusion">
+                                                    {{ 'locale-force-inclusion-of-zero-in-axis' | translate }}
+                                                </label>
+                                            </div>
+                                            <div class="checkbox checkbox-success">
+                                                <input class="form-control" name="logScale" value="logScale" type="checkbox" data-ng-model="chartAnalyze.logScale">
+                                                <label for="logScale">
+                                                    {{ 'locale-log-scale' | translate }}
+                                                </label>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <label  class="bg-info-light no-padding m-r-sm " ng-repeat="list in selectedYaxis track by $index">
+                                    <span data-uib-dropdown  auto-close="outsideClick">
+                                        <a id="xAxis" data-uib-dropdown-toggle 
+                                           title="{{ 'locale-y-axis' | translate }}">
+                                            <i class="fa fa-caret-down m-r-xxs"></i> 
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-right p-xs" data-uib-dropdown-menu role="menu" aria-labelledby="xAxis">
+                                            <li role="menuitem">
+                                                <div>                                                         
+                                                    <label> {{ 'locale-compute' | translate }} </label>
+                                                    <select class="form-control input-sm" name="compute" data-ng-init="chartAnalyze.compute = 'NORMAL'" data-ng-model="chartAnalyze.compute">
+                                                        <option value="PERCENTAGE">Percentage scale</option>
+                                                        <option value="AVG_RATIO">Ratio to average</option>
+                                                        <option value="NORMAL">Normal</option>
+                                                        <option value="CUMULATIVE">Cumulative values</option>
+                                                        <option value="CUMULATIVE_PERCENTAGE">Cumulative percentage scale</option>
+                                                        <option value="DIFFERENCE">Differencial values</option>
+                                                    </select>
+                                                </div>
+                                            </li>
+                                            <li role="menuitem">
+                                                <div class="m-t-sm">                                                         
+                                                    <label> {{ 'locale-display-axis' | translate }} </label>
+                                                    <select class="form-control input-sm" name="displayAxis" data-ng-init="chartAnalyze.displayAxis = 'Left Axis'" data-ng-model="chartAnalyze.displayAxis">
+                                                        <option value="Left Axis">Left Axis</option>
+                                                        <option value="Right Axis">Right Axis</option>
+                                                    </select>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </span>
+                                    <span>{{list.name}}</span>
+                                    <a><i class="fa fa-trash pull-right"  data-ng-click="chartAnalyzeObject.delete(list, 'yaxis')"></i></a>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-xsm-2 no-padding" data-ng-if="selectedXaxis.length > 0 && selectedYaxis.length > 0">
+                            <button class="btn btn-info m-t-xs" title="{{ 'locale-publish' | translate }}" > <i class="fa fa-file-text m-r-xs"></i> {{ 'locale-publish' | translate }} </button>
+                        </div>
+                    </div>
+                    <div class="row m-b-md">
+                        <div class="col-md-1 col-sm-1 col-xsm-1">
+                            <label class="p-xs">{{ 'locale-by' | translate }}</label>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xsm-5">                                
+                            <div ui-sortable="sortableOptions" class="axis-container connected-apps-container" ng-model="selectedXaxis" ui-sortable-update="chartAnalyzeObject.generateChart()">
+                                <div class="btn-group" data-uib-dropdown  auto-close="outsideClick">
+                                    <a id="xAxis"  class="btn btn-default no-margins no-borders p-xs" type="button" data-uib-dropdown-toggle 
+                                       title="{{ 'locale-x-axis' | translate }}">
+                                        X <i class="fa fa-caret-down"></i> 
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-right p-xs" data-uib-dropdown-menu role="menu" aria-labelledby="xAxis">
+                                        <li role="menuitem">
+                                            <div class="checkbox checkbox-success">
+                                                <input class="form-control" name="showXAxisLabel" value="showXAxisLabel" type="checkbox" data-ng-model="chartAnalyze.showXAxisLabel">
+                                                <label for="showXAxisLabel">
+                                                    {{ 'locale-show-axis-label' | translate }}
+                                                </label>
+                                            </div>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control input-sm" placeholder="{{ 'locale-refresh' | translate }}">
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-white btn-sm" type="button"><i class="fa fa-refresh"></i></button>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <label class="bg-info-light no-padding m-r-sm" ng-repeat="list in selectedXaxis track by $index">
+
+                                    <span data-uib-dropdown  auto-close="outsideClick">
+                                        <a id="axisId" data-uib-dropdown-toggle 
+                                           title=" {{ 'locale-x-axis' | translate }}">
+                                            <i class="fa fa-caret-down m-r-xxs"></i> 
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-right p-xs" data-uib-dropdown-menu role="menu" aria-labelledby="axisId">
+                                            <li role="menuitem">
+                                                <div>                                                         
+                                                    <label> {{ 'locale-sorting' | translate }} </label>
+                                                    <select class="form-control input-sm" name="compute" data-ng-init="chartAnalyze.sorting = 'Natural ordering'" data-ng-model="chartAnalyze.sorting">
+                                                        <option value="Natural ordering">Natural ordering</option>
+                                                        <option value="Count of records, descending">Count of records, descending</option>
+                                                        <option value="Count of records, ascending">Count of records, ascending</option>
+                                                        <option value="Count of records, descending">Count of records, descending</option>
+                                                        <option value="Count of records, ascending">Count of records, ascending</option>
+                                                    </select>
+                                                </div>
+                                            </li>
+                                            <li role='menuitem'>    
+                                                <label class="m-t-sm">{{ 'locale-max-displayed-values' | translate }}</label>
+                                                <div class="input-group">                                                       
+                                                    <input type="number" class="form-control input-sm" data-ng-model="search">
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-white btn-sm" type="button"><i class="fa fa-refresh"></i></button>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li role="menuitem">
+                                                <label class="m-t-sm">{{ 'locale-others' | translate}} </label>
+                                                <div class="checkbox checkbox-success">
+                                                    <input class="form-control" name="groupsExtra" value="groupsExtra" type="checkbox" data-ng-model="chartAnalyze.groupsExtra">
+                                                    <label for="groupsExtra">
+                                                        {{ 'locale-group-extra-values-in-others-category' | translate }}
+                                                    </label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </span>
+                                    <span> {{list.name}} </span>
+                                    <a><i class="fa fa-trash pull-right" data-ng-click="chartAnalyzeObject.delete(list, 'xaxis')"></i></a>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-1 col-sm-2 col-xsm-1" data-ng-if="selectedXaxis.length > 0">
+                            <label class="p-xs"> {{ 'locale-and' | translate }} </label>
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xsm-4" data-ng-if="selectedXaxis.length > 0">                                
+                            <div ui-sortable="sortableOptions" class="axis-container connected-apps-container" data-ng-model="selectedGroupBars">
+                                <div class="btn-group" data-uib-dropdown  auto-close="outsideClick">
+                                    <a id="groupOfBar"  class="btn btn-default no-margins no-borders p-xs" type="button" data-uib-dropdown-toggle 
+                                       title="{{ 'locale-group-of-bar' | translate }}">
+                                        <i class="fa fa-tint"></i>  <i class="fa fa-caret-down"></i> 
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-right p-xs" data-uib-dropdown-menu role="menu" aria-labelledby="groupOfBar">
+                                        <li role="menuitem">
+                                            <div>                                                         
+                                                <label> {{ 'locale-palette' | translate }} </label>
+                                                <select class="form-control input-sm" name="compute" data-ng-init="chartAnalyze.palette = 'Default'" data-ng-model="chartAnalyze.palette">
+                                                    <option value="Default">Default</option>
+                                                    <option value="DSS Next">DSS Next</option>
+                                                    <option value="Pastel" selected="selected">Pastel</option>
+                                                    <option value="Corporate">Corporate</option>
+                                                </select>
+                                                <small class="text-info">{{ 'locale-add-other-color-palettes-with-plugins' | translate}}</small>
+                                            </div>
+                                        </li>
+                                        <li role="menuitem">
+                                            <div>                                                         
+                                                <label> {{ 'locale-opacity' | translate }} </label>
+                                                <input type="range" id="myRange" min="1" max="100">
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <label class="bg-info-light no-padding m-r-sm " ng-repeat="list in selectedGroupBars">
+                                    <span data-uib-dropdown  auto-close="outsideClick">
+                                        <a id="groupBarId" data-uib-dropdown-toggle 
+                                           title="{{ 'locale-menu' | translate }}">
+                                            <i class="fa fa-caret-down m-r-xxs"></i> 
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-right p-xs" data-uib-dropdown-menu role="menu" aria-labelledby="groupBarId">
+                                            <li role="menuitem">
+                                                <div>                                                         
+                                                    <label> {{ 'locale-sorting' | translate }} </label>
+                                                    <select class="form-control input-sm" name="sorting" data-ng-init="chartAnalyze.sorting = 'Natural ordering'" data-ng-model="chartAnalyze.sorting">
+                                                        <option value="Natural ordering">Natural ordering</option>
+                                                        <option value="Count of records, descending">Count of records, descending</option>
+                                                        <option value="Count of records, ascending">Count of records, ascending</option>
+                                                        <option value="Count of records, descending">Count of records, descending</option>
+                                                        <option value="Count of records, ascending">Count of records, ascending</option>
+                                                    </select>
+                                                </div>
+                                            </li>
+                                            <li role="menuitem">    
+                                                <label class="m-t-sm"> {{ 'locale-max-displayed-values' | translate }} </label>
+                                                <div class="input-group">                                                       
+                                                    <input type="number" class="form-control input-sm" data-ng-model="search">
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-white btn-sm" type="button"><i class="fa fa-refresh"></i></button>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li role="menuitem">
+                                                <label class="m-t-sm"> {{ 'locale-others' | translate}} </label>
+                                                <div class="checkbox checkbox-success">
+                                                    <input class="form-control" name="groupsExtra" value="groupsExtra" type="checkbox" data-ng-model="chartAnalyze.groupsExtra">
+                                                    <label for="groupsExtra">
+                                                        {{'locale-group-extra-values-in-others-category'| translate }}
+                                                    </label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </span>
+                                    <span> {{list.name}} </span>
+                                    <a><i class="fa fa-trash pull-right" data-ng-click=" chartAnalyzeObject.delete(list, 'groupBars')"></i> </a>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-1 col-xsm-1 no-padding" data-ng-if="selectedXaxis.length > 0 && selectedYaxis.length > 0">
+                            <div class="btn-group m-t-xs" data-uib-dropdown >
+                                <a id="downloadId"  class="btn btn-default" type="button" data-uib-dropdown-toggle 
+                                   title=" {{ 'locale-download' | translate }} ">
+                                    <i class="fa fa-download"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right" data-uib-dropdown-menu role="menu" aria-labelledby="downloadId">
+                                    <li role="menuitem"><a> {{ "locale-as-an-image" | translate }}</a></li>
+                                    <li role="menuitem"><a> {{ "locale-as-an-excel-document" | translate }}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="ibox borders no-shadow">
+                                <div class="ibox-title border-bottom">
+                                    <h5>{{ 'locale-charts' | translate }}</h5>
+                                    <div class="ibox-tools">
+                                        <a>
+                                            <i class="fa fa-cog" title="Basics" data-ng-click="chartAnalyzeObject.addChartOption()"></i>
+                                        </a>
+                                        <a>
+                                            <i class="fa fa-refresh" title="Refresh" data-ng-click="chartAnalyzeObject.refresh()"></i>
+                                        </a>
+                                        <a class="fullscreen-link" expand-screen>
+                                            <i class="fa fa-expand" title="Expand Screen"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="ibox-content">
+                                    <div class="sk-spinner sk-spinner-double-bounce" data-ng-if="chartAnalyzeElement.chartLoader">
+                                        <div class="sk-double-bounce1"></div>
+                                        <div class="sk-double-bounce2"></div>
+                                    </div>
+                                    <div class="bg-info-light p-md text-center no-step" data-ng-if="selectedXaxis.length == 0 || selectedYaxis.length == 0">
+                                        <h3>No Graph Found</h3>
+                                    </div>
+                                    <div id="chart" data-ng-show="selectedXaxis.length > 0 && selectedYaxis.length > 0"></div>
+                                    <div class="row m-t-md ">                                         
+                                        <div class="col-md-1 col-sm-1 col-xsm-2 borders chart-list no-padding m-l-xs"> 
+                                            <div class="pull-left m-xs">
+                                                <i class="fa fa-bar-chart text-success m-t-xs">
+
+                                                </i></div>
+                                            <div class="pull-right m-xs"> 
+                                                <div> 
+                                                    <a><i class="fa fa-trash"></i></a>
+                                                </div>
+                                                <div> 
+                                                    <a><i class="fa fa-file-text-o"></i></a>
+                                                </div>
+                                            </div>                                          
+                                        </div>                                        
+                                        <div class="col-md-1 col-sm-1 col-xsm-2 borders chart-list no-padding m-l-xs"> 
+                                            <div class="pull-left m-xs">
+                                                <i class="fa fa-bar-chart text-success m-t-xs"></i>
+                                            </div>
+                                            <div class="pull-right m-xs"> 
+                                                <div> 
+                                                    <a><i class="fa fa-trash"></i></a>
+                                                </div>
+                                                <div> 
+                                                    <a><i class="fa fa-file-text-o"></i></a>
+                                                </div>
+                                            </div>                                          
+                                        </div>
+                                        <div class="col-md-1 col-sm-1 col-xsm-2 borders chart-list no-padding m-l-xs"> 
+                                            <div class="pull-left m-xs">
+                                                <i class="fa fa-bar-chart text-success m-t-xs">
+                                                </i></div>
+                                            <div class="pull-right m-xs"> 
+                                                <div> 
+                                                    <a><i class="fa fa-trash"></i></a>
+                                                </div>
+                                                <div> 
+                                                    <a><i class="fa fa-file-text-o"></i></a>
+                                                </div>
+                                            </div>                                          
+                                        </div>
+                                        <div class="col-md-2 col-sm-2  col-xsm-3"> 
+                                            <button class="btn btn-success btn-sm m-t-sm" title="{{ 'locale-charts' | translate }}"> <i class="fa fa-plus"></i> {{ 'locale-charts' | translate }}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>  

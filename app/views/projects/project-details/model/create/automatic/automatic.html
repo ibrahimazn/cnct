@@ -1,0 +1,60 @@
+<div data-ng-controller="automaticCtrl">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-6 page-title">
+            <h2>Project Name - {{ 'locale-model' | translate }}</h2>
+        </div>
+    </div>
+    <div class="row wrapper page-breadcrumb">
+        <div class="col-lg-12">
+            <ol class="breadcrumb">
+                <li>
+                    <a data-ui-sref="index.user-dashboard"><i class="fa fa-home" aria-hidden="true"></i></a>
+                </li>
+                <li>
+                    <strong><a data-ui-sref="projects.grid">{{ 'locale-projects' | translate }}</a></strong>
+                </li>
+                <li>
+                    <strong><a data-ui-sref="project-details.summary">Project Name</a></strong>
+                </li>
+                <li>
+                    <strong><a data-ui-sref="model.list">{{ 'locale-model' | translate }}</a></strong>
+                </li>
+                <li class="active">
+                    {{ 'locale-config' | translate }}
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content">
+        <div class="ibox float-e-margins no-margins">
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <uib-tabset active="automaticTab" class="secondary-tab">
+                             <uib-tab index="0" data-ng-init="isActive = isActiveTab(0)" data-ng-click="setActiveTab(0)">
+                                <uib-tab-heading><span class="hidden-xs">{{ 'locale-new-model' | translate }}</span></uib-tab-heading>
+                                <div data-ng-include src="'views/projects/project-details/model/create/new-model.html'"></div>
+                            </uib-tab>
+                            <uib-tab index="1" data-ng-init="isActive = isActiveTab(1)" data-ng-click="setActiveTab(1)">
+                                <uib-tab-heading><span class="hidden-xs">{{ 'locale-algorithms' | translate }}</span></uib-tab-heading>
+                                <div data-ng-include src="'views/projects/project-details/model/create/automatic/algorithms.html'"></div>
+                            </uib-tab>
+                            <uib-tab index="2" data-ng-init="isActive = isActiveTab(2)" data-ng-click="setActiveTab(2)">
+                                <uib-tab-heading><span class="hidden-xs">{{ 'locale-sampling' | translate }} </span></uib-tab-heading>
+                                <div data-ng-include src="'views/projects/project-details/model/create/automatic/sampling.html'"></div>
+                            </uib-tab>
+                             <uib-tab index="3" data-ng-init="isActive = isActiveTab(3)" data-ng-click="setActiveTab(3)">
+                                <uib-tab-heading><span class="hidden-xs">{{ 'locale-features-prediction' | translate }} </span></uib-tab-heading>
+                                <div data-ng-include src="'views/projects/project-details/model/create/automatic/features-prediction.html'"></div>
+                            </uib-tab>
+                            <uib-tab index="4" data-ng-init="isActive = isActiveTab(4)" data-ng-click="setActiveTab(4)">
+                                <uib-tab-heading><span class="hidden-xs">{{ 'locale-input-features' | translate }} </span></uib-tab-heading>
+                                <div data-ng-include src="'views/projects/project-details/model/create/automatic/features.html'"></div>
+                            </uib-tab>
+                        </uib-tabset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

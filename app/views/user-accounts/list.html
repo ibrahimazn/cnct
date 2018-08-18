@@ -1,0 +1,97 @@
+<div data-ng-controller="userAccountCtrl" class="user-accounts">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-md-4 page-title">
+            <h2>{{ 'locale-user-accounts' | translate }}</h2>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-9 text-right page-search">
+            <div class="floating-add">
+                <a class="btn btn-success m-r-md" data-ng-click="userAccountObject.addUserAccount()"><i class="fa fa-plus"></i> {{ 'locale-new' | translate }}</a>
+                <!--<a class="btn btn-success" data-ng-click="userAccountObject.addLdapUser()"><i class="fa fa-plus"></i> {{ 'locale-import-from-ldap' | translate }}</a>-->
+                <a class="btn btn-success" ng-disabled="true"><i class="fa fa-plus"></i> {{ 'locale-import-from-ldap' | translate }}</a>
+            </div>
+            <div class="search-wrapper text-right">
+                <div class="input-group m-r-md">
+                    <input type="text" class="form-control" placeholder="{{ 'locale-search' | translate }}" data-ng-model="search" data-ng-change="userAccountObject.searchList(search, type)">
+                    <div class="input-group-btn">
+                        <button class="btn btn-white" type="button" data-ng-click="userAccountObject.searchList(search, type)"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="filter-wrapper m-r-md">
+                <select class="form-control" name="type" data-ng-model="type" data-ng-options="type for type in roles">
+                    <option value="">{{ "locale-select" | translate }}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row wrapper page-breadcrumb">
+        <div class="col-lg-12">
+            <ol class="breadcrumb">
+                <li>
+                    <a data-ui-sref="index.user-dashboard"><i class="fa fa-home" aria-hidden="true"></i></a>
+                </li>
+                <li class="active">
+                    {{ 'locale-user-accounts' | translate }}
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content">
+        <div class="ibox float-e-margins no-margins">
+            <div class="ibox-content no-padding loader-container">
+                <get-ancode-loader-container-overlay data-ng-if="userAccountElement.listLoader"></get-ancode-loader-container-overlay>
+                <table class="table table-bordered table-hover no-margins">
+                    <thead>
+
+                    <th><i data-ng-click="userAccountObject.changeSort('userName', paginationObject.currentPage, sort)" class="fa pull-right" data-ng-class="sort.descending && sort.column == 'userName' ? 'fa-sort-desc' : 'fa-sort-asc'"aria-hidden="true"></i>{{ 'locale-name' | translate }}</th>
+                    <th><i data-ng-click="userAccountObject.changeSort('email', paginationObject.currentPage, sort)" class="fa pull-right" data-ng-class="sort.descending && sort.column == 'email' ? 'fa-sort-desc' : 'fa-sort-asc'"aria-hidden="true"></i>{{ 'locale-email' | translate }}</th>
+                    <th><i data-ng-click="userAccountObject.changeSort('department', paginationObject.currentPage, sort)" class="fa pull-right" data-ng-class="sort.descending && sort.column == 'department' ? 'fa-sort-desc' : 'fa-sort-asc'"aria-hidden="true"></i>{{ 'locale-department' | translate }}</th>
+                    <th><i data-ng-click="userAccountObject.changeSort('userType', paginationObject.currentPage, sort)" class="fa pull-right" data-ng-class="sort.descending && sort.column == 'userType' ? 'fa-sort-desc' : 'fa-sort-asc'"aria-hidden="true"></i>{{ 'locale-user-type' | translate }}</th>
+                    <th>{{ 'locale-actions' | translate }}
+                    </th>
+                    </thead>
+                    <tbody>
+                        <!--<tr data-dir-paginate="userList in userAccountElement.userLists |orderBy:sortKey:reverse|filter:search|filter:type|itemsPerPage:listPerPage">-->
+                        <tr data-ng-repeat="userList in userAccountElement.userLists">
+                            <td>{{userList.userName}}</td>
+                            <td>{{userList.email}}</td>
+                            <td>{{userList.department.name}}</td>
+                            <td>
+                                <a class="btn btn-xs btn-info">{{userList.userType}}</a>
+                            </td>
+                            <td>
+                                <a data-ng-if="userList.id != 1" class="btn btn-light btn-sm" title="{{ 'locale-edit' | translate }}" data-ng-click="userAccountObject.edit('md', userList, $index)"><i class="fa fa-edit"></i></a>
+                                <a data-ng-if="userList.id != 1 && loginUser!=userList.userName" class="btn btn-light btn-sm" title="{{ 'locale-delete' | translate }}" data-ng-click="userAccountObject.delete('sm', userList)"><i class="fa fa-trash"></i></a>
+                                <!--<a data-ng-if="userList.id == 1" class="btn btn-light btn-sm" title="{{ 'locale-launch' | translate }}" data-ng-click="userAccountObject.launchFunction()"><i class="fa fa-rocket"></i></a>-->
+                            </td>
+                        </tr>
+                        <tr class="text-center" data-ng-if="userAccountElement.userLists.length == 0">
+                            <td colspan="5" valign="middle">{{ 'locale-no-record-found' | translate }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <pagination-content></pagination-content>
+        </div>
+        <!--        <div class="row">
+                    <div class="col-md-6 m-t-md">
+                        <div class="pull-left m-t-sm m-r-sm">Show</div>
+                        <div class="pull-left">
+                            <select class="form-control" name="type" data-ng-model="listPerPage">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                            </select>
+                        </div>
+                        <div class="pull-left m-t-sm m-l-sm">entries</div>
+                    </div>
+                    <div class="col-md-6">
+                        <dir-pagination-controls
+                            max-size="5"
+                            direction-links="true"
+                            boundary-links="true" class="pull-right">
+                        </dir-pagination-controls>
+                    </div>
+                </div>-->
+    </div>
+</div>

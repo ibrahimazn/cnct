@@ -1,0 +1,111 @@
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layouts/default.html}">
+
+<head>
+    <title>Rayhar - Admin Panel</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+
+        <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
+
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body class="login">
+    <div class="logo">test
+        <img th:src="@{/images/logo-login.png}" class="img-responsive center-block" alt="Rayhar" title="Rayhar" />
+    </div>
+
+
+
+    <div class="content" th:fragment="content">
+        <form th:action="@{/api/user/login}" method="POST" class="login-form">
+            <h3 class="form-title font-green">Sign In</h3>
+            <div class="form-group">
+                <label class="visible-ie8 visible-ie9">Email <span class="required">*</span> </label>
+                <input type="text" id="email" name="email"  th:placeholder="Email"
+                    class="form-control" />
+            </div>
+            <div class="">
+                <label class="visible-ie8 visible-ie9">Password</label>
+                <input type="password"  th:placeholder="Password"
+                id="password" name="password" class="form-control" /> <br />
+            </div>
+            <div class="alert alert-danger" align="center" th:if="${param.error}">
+                <p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block m-t-sm" name="Submit" value="Login" type="Submit" th:text="Login"></button>
+        </form>
+    </div>
+    <div class="copyright">
+       2018 &COPY; All rights reserved By <a target="_blank" href="http://rayhar.com/">Rayhar</a> | Powered By <a href="http://www.assistanz.com/" title="" target="_blank">Assistanz</a>
+       </div>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>SLMLP</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta content="" name="description" />
+
+        <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
+        <link th:href="@{/css/login.css}" rel="stylesheet" type="text/css" />
+
+        <link rel="shortcut icon" th:href="@{favicon.ico}" />
+    </head>
+    <!-- END HEAD -->
+
+    <body class="login-bg">
+        <!-- END LOGO -->
+
+        <!-- BEGIN LOGIN -->
+        <div class="login-wrapper">
+            <div class="middle-box loginscreen">
+                <form th:action="@{/api/user/login}" method="POST" id="login-form" name="loginForm">
+                    <div class="middle-box-header text-center"><h3>Login to SLMLP</h3></div>
+                    <div class="middle-box-content">
+                        <div class="form-group">
+                            <label> Username </label>
+                            <input type="text" class="form-control" placeholder="Username" name="email" required="">
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-6"><label> Password </label></div>
+
+                            </div>
+                            <input type="password" class="form-control" placeholder="Password"
+                            th:placeholder="Password" id="password" name="password" required>
+                        </div>
+                        <div class="row">
+                         <div class="col-xs-6"></div>
+                        <div class="col-xs-6 text-right"><a href="#"><small>Forgot Password ?</small></a></div>
+                        </div>
+                        <div class="alert alert-danger" align="center" th:if="${param.error}">
+		             	   <p style="font-size: 20; color: #FF1C19;">Username or Password invalid, please verify</p>
+			            </div>
+                    </div>
+                    <div class="middle-box-footer text-center">
+                        <div class="row">
+                            <!--  <div class="col-xs-6"><label class="m-t-xs"> <input type="checkbox" class="i-checks">  Remember me  </label></div>-->
+                            <div class="col-xs-offset-3 col-xs-6"><button type="submit"  name="Submit" value="Login" type="Submit" th:text="Login" class="btn btn-success btn-login">Login</button></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <p class="m-t text-center login-msg"> <small>Don't have an account yet ? <a href="register.html">Sign Up here</a></small> </p>
+        </div>
+    </body>
+    <!-- END BODY -->
+</html>
+

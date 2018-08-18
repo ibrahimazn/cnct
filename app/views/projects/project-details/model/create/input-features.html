@@ -1,0 +1,69 @@
+<div data-ng-controller="algorithmsCtrl">
+<!--    <ul class="list-unstyled algorithms" data-ng-hide="previewList">        
+        <li data-ng-repeat="featuresPredictionList in algorithmsElement.featuresPredictionLists">
+            <div class="checkbox checkbox-info checkbox-inline p-sm">
+                <input class="form-control"  name="{{featuresPredictionList.name}}" type="checkbox" data-ng-change="rolesPermissionsObject.optionToggled(roleGroup.permissions, roleGroup)" data-ng-model="permission.checked">
+                <label for="checkbox3">
+                    {{featuresPredictionList.name}}
+                </label>
+            </div>
+        </li>
+    </ul>
+    <div class="clearfix"></div>-->
+    <div class="row">
+        <div class="col-md-12 m-t-md">
+            <select data-ng-options="featuresPredictionList.name for featuresPredictionList in algorithmsElement.featuresPredictionLists" multiple ng-model="featuresPredictionList" bs-duallistbox></select>
+        </div>
+    </div>
+    <div class="scroll-body" slimscroll="{height: 340,size:4,distance:5}" data-ng-if="previewList">
+        <div class="table-responsive m-t-md">
+            <table class="table table-bordered table-hover no-margins">
+                <thead>
+                    <tr>
+                        <th>
+                            <div class="btn-group pull-left">Customer ID</div>
+                        </th>
+                        <th>
+                            <div class="btn-group pull-left">{{ 'locale-ip' | translate }}</div>
+                        </th>
+                        <th>
+                            <div class="btn-group pull-left">{{ 'locale-ip-country' | translate }}</div>
+                        </th>
+                        <th>
+                            <div class="btn-group pull-left">{{ 'locale-pages-visited' | translate }}</div>
+                        </th>
+                        <th>
+                            <div class="btn-group pull-left">{{ 'locale-campaign' | translate }}</div>
+                        </th>
+                        <th>
+                            <div class="btn-group pull-left">{{ 'locale-revenue' | translate }}</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="algorithmsPreviewList in algorithmsElement.algorithmsPreviewLists">
+                        <td>
+                            <span class="text-primary m-r-xs"><i class="fa fa-play-circle"></i></span> {{algorithmsPreviewList.customer_id}}
+                        </td>
+                        <td>{{algorithmsPreviewList.ip}}</td>                            
+                        <td> {{algorithmsPreviewList.ip_country}} </td>
+                        <td>{{algorithmsPreviewList.pages_visited}}</td>
+                        <td>{{algorithmsPreviewList.campain}}</td>                            
+                        <td> {{algorithmsPreviewList.revenue}} </td>
+                    </tr>
+                    <tr class="text-center" data-ng-if="algorithmsElement.algorithmsPreviewLists.length == 0">
+                        <td valign="middle" colspan="6">{{ 'locale-no-record-found' | translate }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row m-t-md">
+        <div class="col-md-12">
+            <a class="btn btn-success pull-right" data-ui-sref="model.list">{{ 'locale-save' | translate }}</a> 
+            <a class="btn btn-light pull-right m-r-md" data-ng-click=" algorithmsObject.previewList(false)" data-ng-if="previewList">{{ 'locale-close-preview' | translate }}</a>
+            <a class="btn btn-info pull-right m-r-md" data-ng-click=" algorithmsObject.previewList(true)" data-ng-hide="previewList">{{ 'locale-preview' | translate }}</a>
+        </div>
+    </div>
+</div>

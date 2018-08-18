@@ -101,8 +101,10 @@
                 <div class="form-group" data-ng-class="{'has-error': userAccountForm.userType.$invalid && userAccountForm.submitted}">
                     <label> {{ 'locale-user-type' | translate }} <span class="required"> * </span> </label>
                     <select name="userType" class="form-control"
-                            data-ng-model="userAccount.userType" ng-options="userType as userType.role for userType in roleList" required>
+                            data-ng-model="userAccount.userType" required>
                         <option value="">{{ "locale-select" | translate }}</option>
+                        <option value="ADMIN">{{ "locale-admin" | translate }}</option>
+                        <option value="USER">{{ "locale-user" | translate }}</option>
                     </select>
                     <div class="input-icon right"
                          data-ng-if="userAccountForm.userType.$invalid && userAccountForm.submitted">

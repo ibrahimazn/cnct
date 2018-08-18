@@ -1,0 +1,85 @@
+<div data-ng-controller="fileManagerDetailsCtrl" ng-init="initialPath()">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-6 page-title">
+            <h2>Project Name - {{ 'locale-file-manager' | translate }} - {{ 'locale-explore' | translate }}</h2>
+        </div>
+    </div>
+    <div class="row wrapper page-breadcrumb">
+        <div class="col-lg-12">
+            <ol class="breadcrumb">
+                <li>
+                    <a data-ui-sref="index.user-dashboard"><i class="fa fa-home" aria-hidden="true"></i></a>
+                </li>
+                <li>
+                    <strong><a data-ui-sref="projects.grid">{{ 'locale-projects' | translate }}</a></strong>
+                </li>
+                <li>
+                    <strong><a data-ui-sref="project-details.summary">{{project.name}}</a></strong>
+                </li>
+                <li>
+                    <strong><a data-ui-sref="file-manager.list">{{ 'locale-file-manager' | translate }}</a></strong>
+                </li>
+                <li class="active">
+                    {{ 'locale-explore-csv-table' | translate }}
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content">
+        <div class="ibox float-e-margins no-margins">
+            <div class="ibox-content explore-csv-wrapper">
+                <div class="row">
+                    <div class="col-md-2 col-sm-6">
+                        <label class="block m-t-sm">Selected CSV File</label>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <input type="text" readonly="true" class="form-control inline" ng-model='selectedCsvFile'>
+                    </div>
+                    <div class="col-md-1 col-sm-6">
+                        <button id="submitbutton" class="btn btn-success" type="button" data-ng-click="exploreCsvToTable()">{{ 'locale-show-records' | translate }}</button>
+                    </div>
+                    <div class="col-md-2 col-sm-6 text-right">
+                        <label class="block m-t-sm">{{ 'locale-filter-records' | translate }}</label>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon">{{ 'locale-from' | translate }}</div>
+                                    <input type="text" name="startFrom" class="form-control mw-50" data-ng-model="startFrom" id="records-from">
+                                    <div class="input-group-addon">{{ 'locale-limit' | translate }}</div>
+                                    <input type="text" name="limit" class="form-control mw-60" data-ng-model="limit" id="records-to">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="no-data text-center no-data-wrapper m-t-md" data-ng-if="!data">
+                            <img src="img/errors/no-records-found.png" alt="no records found" title="no records found"/>
+                            <h4>{{ 'locale-no-records-found' | translate }}</h4>
+                            <p>{{ 'locale-choose-csv-to-explore' | translate }}</p>
+                        </div>
+                        
+                        <div class="table-responsive m-t-md">
+                            <get-ancode-loader-container-overlay data-ng-if="exploreCsvLoader"></get-ancode-loader-container-overlay>
+                            <table class="table table-bordered table-hover no-margins">
+                                <tbody tagged-infinite-scroll="getMore()" tagged-infinite-scroll-disabled="disabled">
+                                    <tr data-ng-if='csvResult == ""'><td><h4><center>Please click the 'Show Records' Button to view the records</center></h4></td></tr>
+                                    <tr data-ng-if='totalCsvRecords == 0'><td>No Records Found</td></tr>
+                                    <tr data-ng-if='totalCsvRecords > 0' ng-repeat="x in csvResult | limitTo : limit : startFrom">
+                                        <td ng-repeat="y in x track by $index" >
+                                            {{ y}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

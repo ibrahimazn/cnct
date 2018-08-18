@@ -1,0 +1,22 @@
+[
+    {
+        "name": "RStudio_session",
+        "platform_tools": "R Studio"
+    },
+    {
+        "name": "Jupyter_session1",
+        "platform_tools": "Jupyter"
+    },
+    {
+        "name": "Jupyter_session2",
+        "platform_tools": "Jupyter"
+    },
+    {
+        "name": "Terminal",
+        "platform_tools": "Console"
+    },
+    {
+        "name": "RStudio_session",
+        "platform_tools": "R Studio"
+    }
+]

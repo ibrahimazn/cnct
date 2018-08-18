@@ -1,0 +1,45 @@
+<div data-ng-init="modelDetailsObject.getVersionsList(selectedModel)" class="wrapper wrapper-content m-l-n-sm m-r-n-sm">
+    <div class="ibox float-e-margins no-margins">
+        <div class="ibox-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive m-t-sm">
+                        <table class="table table-hover no-margins summary-list">
+                            <thead>
+                                <tr>
+                                    <th ng-click="versionObject.sort('time')">{{ 'locale-time' | translate }}
+                                        <span class="fa sort-icon pull-right" data-ng-class="sortKey == 'time' && reverse ? 'fa-chevron-up' : 'fa-chevron-down'"></span>
+                                    </th>
+                                    <th ng-click="versionObject.sort('version')">{{ 'locale-version' | translate }}
+                                        <span class="fa sort-icon pull-right" data-ng-class="sortKey == 'version' && reverse ? 'fa-chevron-up' : 'fa-chevron-down'"></span>
+                                    </th>
+                                    <th ng-click="versionObject.sort('modelFile')">Model File
+                                        <span class="fa sort-icon pull-right" data-ng-class="sortKey == 'modelFile' && reverse ? 'fa-chevron-up' : 'fa-chevron-down'"></span>
+                                    </th>
+                                    <!-- <th>{{ 'locale-actions' | translate }}</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-if="modelDetailsElement.versionLists && modelDetailsElement.versionLists.length > 0" data-ng-repeat="versionList in modelDetailsElement.versionLists">
+                                    <td>
+                                        {{versionList.createdAt | date:'dd-MM-yyyy HH:mm:ss'}}
+                                    </td>
+                                    <td>{{versionList.uuid}}</td>
+                                    <td>
+                                        {{versionList.modelFile}}
+                                    </td>
+                                    <!-- <td>
+                                        <a class="btn btn-light btn-xs" title="{{ 'locale-remove' | translate }}"><i class="fa fa-remove"></i></a>
+                                    </td> -->
+                                </tr>
+                                <tr data-ng-if="!modelDetailsElement.versionLists  || modelDetailsElement.versionLists.length == 0">
+                                    <td colspan="4"> {{ 'locale-no-record-found' | translate }} </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

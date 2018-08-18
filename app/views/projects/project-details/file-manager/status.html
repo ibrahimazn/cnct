@@ -1,0 +1,108 @@
+<div data-ng-controller="statusCtrl">
+    <div class="row wrapper border-bottom page-heading">
+        <div class="col-lg-6 page-title">
+            <h2>Project Name - {{ 'locale-selected-files' | translate }}</h2>
+        </div>
+        <div class="col-lg-6 text-right">
+            <div class="search-wrapper text-right">
+                <div class="input-group m-r-md">
+                    <input type="text" class="form-control" placeholder="{{ 'locale-search' | translate }}" data-ng-model="search">
+                    <div class="input-group-btn">
+                        <button class="btn btn-white" type="button"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row wrapper page-breadcrumb">
+        <div class="col-lg-12">
+            <ol class="breadcrumb">
+                <li>
+                    <a data-ui-sref="index.user-dashboard"><i class="fa fa-home" aria-hidden="true"></i></a>
+                </li>
+                <li>
+                    <strong><a data-ui-sref="projects.grid">{{ 'locale-projects' | translate }}</a></strong>
+                </li>
+                <li>
+                    <strong><a data-ui-sref="project-details.summary">Project Name</a></strong>
+                </li>
+                <li>
+                    <strong><a data-ui-sref="file-manager.list">{{ 'locale-file-manager' | translate }}</a></strong>
+                </li>
+                <li class="active">
+                    {{ 'locale-selected-files' | translate }}
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content">
+        <div class="ibox float-e-margins no-margins">
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-md-2 col-md-offset-10">
+                        <select class="form-control" name="type" ng-model="gitObject.branch" ng-change="branchSelected()" ng-options="branch.replace('refs/remotes/','').replace('refs/heads/','') for branch in branchList"></select>
+                    </div>
+                </div>
+                <div class="row m-t-sm">
+                    <div class="col-md-12 file-manager-area no-margin">
+                        <div class="clearfix">
+                            <div data-ng-if="fileManager.isLoading">
+                                <div class="text-center table-loader-content">
+                                    <img src="images/loading.gif" alt="loading" title="loading"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        <div class="checkbox checkbox-info no-margin">
+                                                            <input type="checkbox" id="nameCheckbox" aria-label="Single checkbox One"  data-ng-model="filesCheckAll" data-ng-click="filerManagerDetailsObject.checkAll(filesCheckAll,'fileManager')">
+                                                            <label for="nameCheckbox" class="font-bold">{{ 'locale-changes-to-be-commited' | translate }}</label>
+                                                        </div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr data-ng-class="filesCheckAll == true || filesCheckAll == true ? 'selected-row' : ''"  data-dir-paginate="fileStatusList in filerManagerElement.fileStatusLists | filter:search|itemsPerPage:itemsPerPage" >
+                                                    <td>
+                                                        <div class="checkbox pull-left checkbox-info no-margin">
+                                                            <!--<input type="checkbox" name="selectedFiles[]" value="{{filerManagerElement.fileStatusLists[$index].file}}" ng-checked="selectedFiles.indexOf(filerManagerElement.fileStatusLists[$index]) > -1" id="singleCheckbox{{$index}}" aria-label="Single checkbox One" ng-click="filerManagerDetailsObject.toggleSelection(filerManagerElement.fileStatusLists[$index])">-->
+                                                            <input type="checkbox" name="selectedFiles[]" data-ng-model="fileStatusList.checked" data-ng-change="filerManagerDetailsObject.optionToggled(filerManagerElement.fileStatusLists,'fileManager')" id="singleCheckbox{{$index}}" aria-label="Single checkbox One">
+                                                            <label for='singleCheckbox{{$index}}'>
+                                                                {{filerManagerElement.fileStatusLists[$index].file}} </label>
+                                                        </div>
+                                                        <span class="badge badge-danger badge-sm pull-right" data-ng-if="fileStatusList.status == 'Missing'">{{fileStatusList.status}}</span>
+                                                        <span class="badge badge-light badge-sm pull-right" data-ng-if="fileStatusList.status =='UntrackedFiles'">{{fileStatusList.status}}</span>
+                                                        <span class="badge badge-success badge-sm pull-right" data-ng-if="fileStatusList.status == 'Modified'">{{fileStatusList.status}}</span>
+                                                        <span class="badge badge-info badge-sm pull-right" data-ng-if="fileStatusList.status == 'Added'">{{fileStatusList.status}}</span>
+
+                                                    </td>
+                                                </tr>
+                                                <tr class="text-center" data-ng-if="filerManagerElement.fileStatusLists.length == 0">
+                                                    <td><span class="p-md"><h3>{{'locale-working-tree-clean' | translate }}</h3></span></td>
+                                                </tr>
+                                                <tr data-ng-if="filerManagerElement.fileStatusLists.length > 0">
+                                                    <td >
+                                                        <div class="pull-left">
+                                                            <textarea row="3" data-ng-model="gitObject.commitMessage" cols="100" placeholder="{{'locale-commit-message'| translate }}"></textarea>
+                                                        </div>
+                                                        <div class="pull-left">
+                                                            <a class="btn btn-success m-l-sm m-t-sm" ng-click="filerManagerDetailsObject.push(gitObject.commitMessage)" title="{{ 'locale-push' | translate }}"><i class="fa fa-arrow-circle-up m-r-xs"></i>{{ 'locale-push' | translate }}</a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

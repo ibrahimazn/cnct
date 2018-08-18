@@ -1,0 +1,246 @@
+<div data-ng-controller="projectsCtrl">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-12 page-title">
+            <h2>{{ 'locale-create-project' | translate }}</h2>
+        </div>
+    </div>
+    <div class="row wrapper page-breadcrumb">
+        <div class="col-lg-12">
+            <ol class="breadcrumb">
+                <li>
+                    <a data-ui-sref="index.user-dashboard"><i class="fa fa-home" aria-hidden="true"></i></a>
+                </li>
+                <li>
+                    <strong><a data-ui-sref="projects.grid">{{ 'locale-projects' | translate }}</a></strong>
+                </li>
+                <li class="active">
+                    {{ 'locale-create-project' | translate }}
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <!--        <form name="projectForm" data-ng-submit="projectsObject.save(projectForm.$valid, project)" novalidate>-->
+        <div class="ibox">
+            <div class="ibox-content no-padding">
+                <get-ancode-loader-full-overlay data-ng-if="projectsElement.createLoader"></get-ancode-loader-full-overlay>
+                <div class="project-create-wrapper">
+                    <div class="row">
+                        <div class="col-md-8 col-sm-6">
+                            <uib-tabset active="activeTab" class="content-tab project-create-tab" vertical="true">
+                                <uib-tab index="0" select="projectsObject.setActiveTab(0)">
+                                    <uib-tab-heading>
+                                        <i class="fa fa-edit" aria-hidden="true" title="{{ 'locale-general' | translate }}"></i>
+                                    </uib-tab-heading>
+                                    <div class="" >
+                                        <div data-ng-include src="'views/projects/create/general.html'"></div>
+                                    </div>
+                                </uib-tab>
+                                <uib-tab index="1" disable="tabActive >= 1 ?'':'true'">
+                                    <uib-tab-heading>
+                                        <i class="fa fa-external-link" aria-hidden="true" title="{{ 'locale-source-repo' | translate }}"></i>
+                                    </uib-tab-heading>
+                                    <div class="">
+                                        <div data-ng-include src="'views/projects/create/source-repo.html'"></div>
+                                    </div>
+                                </uib-tab>
+                                <uib-tab index="2" disable="tabActive >= 2 ?'':'true'">
+                                    <uib-tab-heading>
+                                        <i class="fa fa-rocket" aria-hidden="true" title="{{ 'locale-launchers' | translate }}"></i>
+                                    </uib-tab-heading>
+                                    <div class="" >
+                                        <div data-ng-include src="'views/projects/create/launchers.html'"></div>
+                                    </div>
+                                </uib-tab>
+                                <uib-tab index="3" disable="tabActive >= 3 ?'':'true'">
+                                    <uib-tab-heading>
+                                        <i class="fa fa-database" aria-hidden="true" title="{{ 'locale-dataset' | translate }}"></i>
+                                    </uib-tab-heading>
+                                    <div class="" >
+                                        <div data-ng-include src="'views/projects/create/dataset.html'"></div>
+                                    </div>
+                                </uib-tab>
+                                <uib-tab index="4" disable1="tabActive >= 4 ?'':'true'">
+                                    <uib-tab-heading>
+                                        <i class="fa fa-cogs" aria-hidden="true" title="{{ 'locale-training-engines' | translate }}"></i>
+                                    </uib-tab-heading>
+                                    <div class="" >
+                                        <div data-ng-include src="'views/projects/create/training-engines.html'"></div>
+                                    </div>
+                                </uib-tab>
+                                <uib-tab index="5" disable="tabActive >= 5 ?'':'true'">
+                                    <uib-tab-heading>
+                                        <i class="fa fa-star" aria-hidden="true" title="{{ 'locale-scoring-configuration' | translate }}"></i>
+                                    </uib-tab-heading>
+                                    <div class="" >
+                                        <div data-ng-include src="'views/projects/create/scoring-configuration.html'"></div>
+                                    </div>
+                                </uib-tab>
+                                <uib-tab index="6" disable="tabActive >= 6 ?'':'true'">
+                                    <uib-tab-heading>
+                                        <i class="fa fa-inbox" aria-hidden="true" title="{{ 'locale-deployment-configuration' | translate }}"></i>
+                                    </uib-tab-heading>
+                                    <div>
+                                        <div data-ng-include src="'views/projects/create/deployment-configuration.html'"></div>
+                                    </div>
+                                </uib-tab>
+                                <uib-tab index="7" disable="tabActive >= 7 ?'':'true'">
+                                    <uib-tab-heading>
+                                        <i class="fa fa-users" aria-hidden="true" title="{{ 'locale-team-members' | translate }}"></i>
+                                    </uib-tab-heading>
+                                    <div class="" >
+                                        <div data-ng-include src="'views/projects/create/team-members.html'"></div>
+                                    </div>
+                                </uib-tab>
+
+                            </uib-tabset>
+                        </div>
+                        <div class="col-md-4 col-sm-6">
+                            <div class="project-preview border-left">
+                                <div class="border-bottom">
+                                    <div class="project-general" data-ng-if="activeTab > 0 ? 'true' : ''">
+                                        <h5>{{(project.name) || 'Project'}}</h5>
+                                        <small>{{(project.deliveryDate) | date:'yyyy-MM-dd' || '15-04-18'}}</small>
+                                        <div class="project-des">{{(project.description) || 'No Description Found'}}</div>
+                                    </div>
+                                </div>
+                                <div class="scroll-body" slimscroll="{height: 513,size:4,distance:5}">
+                                    <div class="section-preview" data-ng-if="activeTab > 1 ? 'true' : ''">
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <h4>
+                                                    <i class="fa fa-external-link m-r-sm" aria-hidden="true"></i>
+                                                    {{ 'locale-source-repo' | translate }}
+                                                </h4>
+                                            </div>
+                                            <div class="col-md-3 text-right">
+                                                <a class="btn btn-light btn-xs" data-ng-click="projectsObject.setActiveTab(1)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            <li class="field-label">{{ 'locale-project-repository' | translate }}</li>
+                                            <li class="field-value">{{project.repository|| 'GIT'}}</li>
+                                            <li class="field-label">{{ 'locale-repo-url' | translate }}</li>
+                                            <li class="field-value">{{project.url|| 'https://git.assistanz.com/slmlp/slmlp-ui'}}</li>
+                                        </ul>
+                                    </div>
+                                    <div class="section-preview" data-ng-if="activeTab > 2 ? 'true' : ''">
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <h4>
+                                                    <i class="fa fa-rocket m-r-sm" aria-hidden="true"></i>
+                                                    {{ 'locale-launchers' | translate }}
+                                                </h4>
+                                            </div>
+                                            <div class="col-md-3 text-right">
+                                                <a class="btn btn-light btn-xs" data-ng-click="projectsObject.setActiveTab(2)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            <li class="field-label">{{ 'locale-launchers' | translate }}</li>
+                                            <li class="field-value" data-ng-repeat='launcher in launchersLists'>
+                                                {{launcher.checked ? launcher.name : ''}}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="section-preview" data-ng-if="activeTab > 3 ? 'true' : ''">
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <h4>
+                                                    <i class="fa fa-database m-r-sm" aria-hidden="true"></i>
+                                                    {{ 'locale-dataset' | translate }}
+                                                </h4>
+                                            </div>
+                                            <div class="col-md-3 text-right">
+                                                <a class="btn btn-light btn-xs" data-ng-click="projectsObject.setActiveTab(3)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                            </div>
+                                        </div>
+                                        <ul data-ng-repeat='dataSet in project.dataSets'>
+                                            <li class="field-label">{{ 'locale-dataset-name' | translate }}</li>
+                                            <li class="field-value">
+                                                {{dataSet.name}}
+                                            </li>
+                                            <li class="field-label">{{ 'locale-datasource' | translate }}</li>
+                                            <li class="field-value">
+                                                {{dataSet.dataSource.name}}
+                                            </li>
+                                        </ul>
+                                    </div>
+<!--                                    <div class="section-preview" data-ng-if="activeTab > 4 ? 'true' : ''">
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <h4>
+                                                    <i class="fa fa-cogs m-r-sm" aria-hidden="true"></i>
+                                                    {{ 'locale-training-engines' | translate }}
+                                                </h4>
+                                            </div>
+                                            <div class="col-md-3 text-right">
+                                                <a class="btn btn-light btn-xs" data-ng-click="projectsObject.setActiveTab(4)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            <li class="field-label">{{ 'locale-training-engines' | translate }}</li>
+                                            <li class="field-value" data-ng-repeat='trainingEngines in trainingEnginesLists'>
+                                                {{trainingEngines.checked ? trainingEngines.name : ''}}
+                                            </li>
+                                        </ul>
+                                    </div>-->
+                                    <div class="section-preview" data-ng-if="activeTab > 5 ? 'true' : ''">
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <h4>
+                                                    <i class="fa fa-star m-r-sm" aria-hidden="true"></i>
+                                                    {{ 'locale-model-scoring-config' | translate }}
+                                                </h4>
+                                            </div>
+                                            <div class="col-md-3 text-right">
+                                                <a class="btn btn-light btn-xs" data-ng-click="projectsObject.setActiveTab(5)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            <li class="field-label">{{ 'locale-publish-model-path' | translate }}</li>
+                                            <li class="field-value">{{project.modelPath|| 'Publish model path'}}</li>
+                                            <li class="field-label">{{ 'locale-application-path' | translate }}</li>
+                                            <li class="field-value">{{project.applicationPath|| 'Application path'}}</li>
+                                        </ul>
+                                    </div>
+                                    <div class="section-preview" data-ng-if="activeTab > 6 ? 'true' : ''">
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <h4>
+                                                    <i class="fa fa-inbox m-r-sm" aria-hidden="true"></i>
+                                                    {{ 'locale-deployment-configuration' | translate }}
+                                                </h4>
+                                            </div>
+                                            <div class="col-md-3 text-right">
+                                                <a class="btn btn-light btn-xs" data-ng-click="projectsObject.setActiveTab(6)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            <li class="field-label">{{ 'locale-platform' | translate }}</li>
+                                            <li class="field-value" data-ng-repeat='(key,value) in platformTools'>
+                                                 {{value.checked ? value.name : ''}}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="project-preview-footer border-left" data-ng-if="activeTab == 7">
+                                    <div class="clearfix">
+                                        <div class="col-md-6 no-padding">
+                                            <a class="btn btn-light block btn-lg no-radius" data-ng-click="projectsObject.cancel()">{{ 'locale-cancel' | translate }}</a>
+                                        </div>
+                                        <div class="col-md-6 no-padding">
+                                            <a data-ng-click="projectsObject.save(project)" class="btn btn-primary block btn-lg no-radius">{{ 'locale-create' | translate }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--</form>-->
+    </div>
+
+</div>

@@ -1,0 +1,51 @@
+<form role="form" id="projectSourceRepoForm" name="projectSourceRepoForm" novalidate data-ng-submit="projectsObject.checkValidation(projectSourceRepoForm, 2)">
+    <div class="project-create-form">
+        <div class="row m-t-md">
+            <div class="col-md-12">
+                <h2>{{ 'locale-source-repo' | translate }}</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group"
+                     data-ng-class="{'has-error': projectSourceRepoForm.projectRepository.$invalid && projectSourceRepoFormSubmitted}">
+                    <label> {{ 'locale-project-repository' | translate }}  <span class="required">*</span> </label>
+                    <select class="form-control" name="projectRepository" data-ng-model="project.repository" required>
+                        <option value=""> {{ 'locale-select' | translate }} </option>
+                        <option value="GIT">GIT</option>
+                        <option value="BIT_BUCKET">BIT_BUCKET</option>
+                    </select>
+                    <div class="input-icon right" data-ng-if="projectSourceRepoForm.projectRepository.$invalid && projectSourceRepoFormSubmitted">
+                        <i data-uib-tooltip="{{ 'locale-project-repository-is-required' | translate }}" data-tooltip-placement="left" class="fa fa-warning"></i>
+                    </div>
+                </div>
+<!--                <div class="form-group">
+                 <input type="text" name="url" data-ng-model="url" required ng-pattern="/(http|https)://+([\w-]+\.)+[\w-]+(/[\w- ;,./?%&=]*)?(\.git)/">
+                 <span ng-show="projectSourceRepoForm.url.$error.pattern">Not a valid number!</span>
+                 
+                 <span ng-show="projectSourceRepoForm.url.$error.required">This field is required!</span>
+        <input type="submit" class="btn"> 
+                </div>-->
+                <div class="form-group"
+                     data-ng-class="{'has-error': projectSourceRepoForm.url.$invalid && projectSourceRepoFormSubmitted}">
+                    <label> 
+                        {{ 'locale-repo-url' | translate }} <span class="required">*</span>
+                        <span class="help-block inline m-b-none m-l-sm"><i data-uib-tooltip="{{ 'locale-help-repo-url' | translate }}" data-tooltip-placement="top" class="fa fa-info-circle"></i></span>
+                    </label>
+                    <!--<input type="text" name="repoUrl" class="form-control" data-ng-model="project.url" required data-ng-pattern="/(http|https)://+([\w-]+\.)+[\w-]+(/[\w- ;,./?%&=]*)?/">-->
+                    <input type="text" name="url" class="form-control" data-ng-model="project.url" required data-ng-pattern="/(http|https)://+([\w-]+\.)+[\w-]+(/[\w- ;,./?%&=]*)?(\.git)/">
+<!--                    <input type="text" name="url" class="form-control" data-ng-model="project.url" required data-ng-pattern="project.repository=='GIT'?'/(http|https)://+([\w-]+\.)+[\w-]+(/[\w- ;,./?%&=]*)?(\.git)/':''">-->
+                    <div class="input-icon right" data-ng-if="projectSourceRepoForm.url.$invalid && projectSourceRepoFormSubmitted">
+                        <i data-ng-if="projectSourceRepoForm.url.$error.pattern" data-uib-tooltip="{{ 'locale-invalid-repo-url' | translate }}" data-tooltip-placement="left"
+                           class="fa fa-warning"></i>
+                        <i data-ng-if="projectSourceRepoForm.url.$error.required" data-uib-tooltip="{{ 'locale-repo-url-is-required' | translate }}" data-tooltip-placement="left"
+                           class="fa fa-warning"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="m-t-md">
+            <button type="submit" class="btn btn-dark btn-sm btn-shadow text-uppercase">{{ 'locale-next' | translate }}</button>
+        </div>
+    </div>
+</form>

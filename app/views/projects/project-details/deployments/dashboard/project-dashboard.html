@@ -1,0 +1,120 @@
+<div data-ng-controller="projectDashboardCtrl">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-6 page-title">
+            <h2>Project Name - {{ 'locale-project-dashboard' | translate }}</h2>
+        </div>
+        <div class="col-lg-6 text-right">
+            <div class="floating-add">
+                <a data-ui-sref="deployments.new-dashboard" class="btn btn-success disabled"><i class="fa fa-edit"></i> {{ 'locale-edit' | translate }}</a>
+            </div>  
+            <div class="search-wrapper text-right">
+                <div class="input-group m-r-md">
+                    <input type="text" class="form-control" placeholder="{{ 'locale-search' | translate }}" data-ng-model="search">
+                    <div class="input-group-btn">
+                        <button class="btn btn-white" type="button"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row wrapper page-breadcrumb">
+        <div class="col-lg-12">
+            <ol class="breadcrumb">
+                <li>
+                    <a data-ui-sref="index.user-dashboard"><i class="fa fa-home" aria-hidden="true"></i></a>
+                </li>
+                <li>
+                    <strong><a data-ui-sref="projects.grid">{{ 'locale-projects' | translate }}</a></strong>
+                </li>
+                <li>
+                    <strong><a data-ui-sref="project-details.summary">Project Name</a></strong>
+                </li>
+                <li>
+                    <strong><a data-ui-sref="deployments.list">{{ 'locale-deployments' | translate }}</a></strong>
+                </li>
+                <li class="active">
+                    {{ 'locale-project-dashboard' | translate }}
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content">
+<!--        <div class="row">
+            <div class="col-lg-8">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title border-bottom">
+                        <h5>{{ 'locale-chart' | translate }}</h5>
+                    </div>
+                    <div class="ibox-content">                        
+                        <div id="chart"></div> 
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title border-bottom">
+                        <h5>{{ 'locale-launchers' | translate }}</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="scroll-body" slimscroll="{height: 320,size:4,color:cccccc}">
+                            <ul class="form-list">
+                                <li data-ng-class="$first ? 'no-borders n-p-t' : ''" class="border-top" data-ng-repeat="launcherList in createDashboardElement.launchersLists">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <h5>{{launcherList.name}}</h5>
+                                            <small>
+                                                <span><i class="fa fa-wrench" aria-hidden="true"></i></span>
+                                                {{ launcherList.platformTools}}
+                                            </small>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>-->
+        <div class="row">
+            <div class="col-md-12 project-members">
+                <div class="ibox float-e-margins loader-container">
+                    <get-ancode-loader-container-overlay data-ng-if="createDashboardElement.listLoader"></get-ancode-loader-container-overlay>
+                    <div class="ibox-title border-bottom">
+                        <div class="row">
+                            <div class="col-md-6"><h5>{{ 'locale-predicted-dataset' | translate }}</h5></div>
+                            
+                            <div class="col-md-6 text-right model-accuracy"> 
+                                <span class="label label-info pull-right p-xxs">
+                                    <i class="fa fa-star m-r-xs"></i>
+                                    {{ createDashboardElement.deploymentList.scoringResult.accuracy | number : 2}}
+                                </span>
+                                <span class="m-t-xs m-r-sm block pull-right">{{ "locale-model-accuracy" | translate }} </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ibox-content no-margins no-padding">
+                        <div class="p-sm predicted-table">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover no-margins">
+                                    <thead>
+                                        <tr>
+                                            <th data-ng-repeat="heading in createDashboardElement.deploymentList.columns" data-ng-class="heading==createDashboardElement.deploymentList.predicted_column ? 'predicted-col': ''">
+                                                {{ heading }}
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-ng-repeat="dataList in createDashboardElement.deploymentList.data">
+                                            <td data-ng-repeat="data in dataList" data-ng-class="predictedColumn==$index ? 'predicted-col': ''">{{ data }}</td>
+                                        </tr>                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

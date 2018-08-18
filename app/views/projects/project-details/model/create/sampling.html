@@ -1,0 +1,191 @@
+<form role="form" id="trainValidation" name="trainValidation" novalidate data-ng-submit="checkValidation(trainValidation,1)">
+    <get-ancode-loader-container-overlay data-ng-if="modelCreateLoader"></get-ancode-loader-container-overlay>
+    <div class="m-t-md">
+        <div class="row">
+            <div data-ng-class="model.modelType == 'PREDEFINED' ? 'col-md-6':'col-md-12'" >
+                <div class="row m-b-lg" data-ng-if="model.modelType == 'PREDEFINED'">
+                    <div class="col-md-12">
+                        <h3 class="sub-title">{{'locale-train-validation'| translate}}</h3>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xsm-6">
+                        <div class="form-group"
+                             data-ng-class="{'has-error': trainValidation.name.$invalid && trainValidationSubmitted}">
+                            <label>{{ 'locale-policy' | translate }}</label>
+                            <select class="form-control m-t-sm" name="policy" data-ng-init="modelTrainValidation.policy = 'splitDataset'" data-ng-model="modelTrainValidation.policy">
+                                <option value="splitDataset">Split the Dataset</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xsm-6" data-ng-init="modelTrainValidation.noOfRecords=2">
+                        <div class="form-group"
+                             data-ng-class="{'has-error': trainValidation.noOfRecords.$invalid && trainValidationSubmitted}">
+                            <label>{{ 'locale-no-of-records' | translate }}</label>
+                            <input disabled type="number" name="noOfRecords" class="form-control m-t-sm" data-ng-model="modelTrainValidation.TrainNoOfRecords">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" >
+                    <div class="col-md-12" >
+                        <div class="bg-info-light p-sm m-t-lg">
+                            <h3 class="sub-title">{{ 'locale-sampling' | translate }}</h3>
+                            <div class="well"> If your dataset does not fit in your RAM, you may want to subsample the set on which splitting will be performed. </div>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-xsm-4">
+                                    <div class="form-group" data-ng-init="model.sampling.samplingMethod='firstRecords'"
+                                         data-ng-class="{'has-error': trainValidation.samplingMethod.$invalid && trainValidationSubmitted}">
+                                        <label>{{ 'locale-sampling-method' | translate }}</label>
+                                        <select class="form-control" name="samplingMethod" data-ng-model="model.sampling.samplingMethod">
+                                            <option value="firstRecords">First Records</option>
+                                            <option value="range">Range</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xsm-4" data-ng-if="model.sampling.samplingMethod == 'firstRecords' || modelTrainValidation.samplingMethod == 'lastRecords'">
+                                    <div class="form-group"
+                                         data-ng-class="{'has-error': trainValidation.noOfRecords.$invalid && trainValidationSubmitted}">
+                                        <label>{{ 'locale-no-of-records' | translate }}</label>
+                                        <input type="number" name="policy" class="form-control" data-ng-model="model.sampling.sampledRecords">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xsm-4" data-ng-if="model.sampling.samplingMethod == 'range'">
+                                    <div class="form-group"
+                                         data-ng-class="{'has-error': trainValidation.fromRange.$invalid && trainValidationSubmitted}">
+                                        <label>{{ 'locale-from-range' | translate }}</label>
+                                        <input type="number" name="fromRange" class="form-control" data-ng-model="model.sampling.from">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xsm-4" data-ng-if="model.sampling.samplingMethod == 'range'">
+                                    <div class="form-group"
+                                         data-ng-class="{'has-error': trainValidation.toRange.$invalid && trainValidationSubmitted}">
+                                        <label>{{ 'locale-to-range' | translate }}</label>
+                                        <input type="number" name="toRange" class="form-control" data-ng-model="model.sampling.to">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-ng-class="model.modelType == 'PREDEFINED' ? 'col-md-6':'col-md-12'">
+                <div class="row" data-ng-if="model.modelType == 'PREDEFINED'">
+                    <div class="col-md-12">
+                        <div class="bg-info-light p-sm">
+                            <h3 class="sub-title">{{ 'locale-hyper-parameters' | translate }}</h3>
+                            <div class="form-group"
+                                 data-ng-class="{'has-error': trainValidation.hyper.$invalid && trainValidationSubmitted}">
+                                <label>{{ 'locale-cross-validation-strategy' | translate }}</label>
+                                <select class="form-control" name="hyper" data-ng-init="modelTrainValidation.hyper = 'randomly'" data-ng-model="modelTrainValidation.hyper">
+                                    <option value="randomly">Randomly</option>
+                                    <option value="firstRecords">First Records</option>
+                                    <option value="lastRecords">Last Records</option>
+                                </select>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-xsm-4">
+                                    <div class="form-group"
+                                        data-ng-class="{'has-error': trainValidation.noOfFolds.$invalid && trainValidation.submitted}">
+                                       <label> {{ 'locale-number-of-folds' | translate }} </label>
+                                       <input type="number" name="noOfFolds" class="form-control" data-ng-model="modelTrainValidation.noOfFolds">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xsm-4">
+                                    <div class="form-group m-t-lg"
+                                        data-ng-class="{'has-error': trainValidation.stratified.$invalid && trainValidation.submitted}">
+                                       <label>  <input type="checkbox" name="stratified" class="js-switch" ui-switch="{color:'#62c466', size:'small'}"
+                                                       data-ng-model="modelTrainValidation.stratified"/>
+                                           <span class="m-l-sm">{{ 'locale-stratified' | translate }}</span> </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xsm-4">
+                                    <div class="form-group"
+                                        data-ng-class="{'has-error': trainValidation.parallelism.$invalid && trainValidation.submitted}">
+                                       <label> {{ 'locale-parallelism' | translate }} </label>
+                                       <input type="number" name="parallelism" class="form-control" data-ng-model="modelTrainValidation.parallelism">
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="bg-info-light p-sm m-t-sm">
+                            <h3 class="sub-title">{{ 'locale-splitting' | translate }}</h3>
+                            <div class="row" data-ng-if="model.modelType == 'PREDEFINED'">
+                                <div class="col-md-6 col-sm-6 col-xsm-6">
+                                    <div class="form-group"
+                                        data-ng-class="{'has-error': trainValidation.split.$invalid && trainValidationSubmitted}">
+                                       <label>{{ 'locale-split' | translate }}</label>
+                                       <select class="form-control" name="split" data-ng-init="modelTrainValidation.split = 'randomly'" data-ng-model="modelTrainValidation.split">
+                                           <option value="randomly">Randomly</option>
+                                           <option value="firstRecords">First Records</option>
+                                           <option value="lastRecords">Last Records</option>
+                                       </select>
+                                   </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xsm-6">
+                                    <div class="form-group m-t-lg"
+                                        data-ng-class="{'has-error': trainValidation.kFoldCrossTest.$invalid && trainValidation.submitted}">
+                                       <label class="m-l-sm"> <input type="checkbox" name="kFoldCrossTest" class="js-switch" ui-switch="{color:'#62c466', size:'small'}"
+                                                                     data-ng-model="modelTrainValidation.kFoldCrossTest"/>
+                                           <span class="m-l-sm"> {{ 'locale-kfold-cross-test' | translate }} </span></label>
+                                   </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-xsm-4">
+                                    <div class="form-group"
+                                        data-ng-class="{'has-error': trainValidation.trainRatio.$invalid && trainValidation.submitted}">
+                                       <label> {{ 'locale-train-ratio' | translate }} </label>
+                                       <input type="number" name="trainRatio" class="form-control" min="0" max="1" step="0.1" data-ng-change="model.sampling.testRatio = (1-model.sampling.trainRatio)" data-ng-model="model.sampling.trainRatio">
+                                   </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xsm-4">
+                                    <div class="form-group"
+                                        data-ng-class="{'has-error': trainValidation.testRatio.$invalid && trainValidation.Submitted}">
+                                       <label>{{ 'locale-test-ratio' | translate }}</label>
+                                       <input type="number" name="testRatio" class="form-control" min="0" max="1" step="0.1" data-ng-model="model.sampling.testRatio">
+                                   </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xsm-4">
+                                    <div class="form-group"
+                                        data-ng-class="{'has-error': trainValidation.randomSeed.$invalid && trainValidation.submitted}">
+                                       <label> {{ 'locale-random-seed' | translate }} </label>
+                                       <input type="number" name="randomSeed" class="form-control" min="0" step="0.1" data-ng-model="model.sampling.ramdomSeeds">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-ng-if="model.modelType == 'CUSTOM'" class="m-t-md col-md-12">
+                <div class="p-sm m-t-sm">
+                <h3 class="sub-title">{{ 'locale-launchers' | translate }}</h3>
+                <div class="scroll-body" slimscroll="{height: 300,size:4,distance:5}">
+                    <div class="row bg-info-light m-b-sm" data-ng-repeat="launcher in launchersLists">
+                        <div class="col-md-3 text-center"> 
+                            <img data-ng-if="launcher.appImage.platformTool.toLowerCase().indexOf('rstudio')>-1" src="img/launchers/rstudio.png" alt="rstudio" title="rstudio"/>
+                            <img data-ng-if="launcher.appImage.platformTool.toLowerCase().indexOf('jupyter')>-1" src="img/launchers/jupyter.png" alt="jupyter" title="jupyter"/>
+                        </div>
+                        <div class="col-md-6 text-center">
+                            <h3 class="p-xs"> {{ launcher.appImage.platformTool }}</h3>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <button class="btn btn-info" ng-click="setLancher(trainValidation, launcher)" type="submit" class="btn btn-success m-t-sm">{{ 'locale-create' | translate }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div data-ng-if="model.modelType == 'PREDEFINED'" class="row m-t-md">
+            <div class="col-md-12">
+                <a class="btn btn-info pull-right" data-ng-click="goToTab(3)">{{ 'locale-save-continue' | translate }} <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+    </div>
+</form>

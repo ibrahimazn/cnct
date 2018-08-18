@@ -68,4 +68,20 @@ public class GenericConstants {
   /** Creation failed. */
   public static final String FAILED = "FAILED";
 
+public static final Object SIMP_SESSION_ID = "sessionid";
+
+public static final Object HEADER_X_AUTH_LOGIN_TOKEN = null;
+
+public static final Object HEADER_X_TYPE = null;
+
+public static final Object HEADER_X_AUTH_DEPARTMENT_ID = null;
+
+public static final Object HEADER_X_AUTH_DOMAIN_ID = null;
+
+public static final Object HEADER_X_AUTH_USER_ID = null;
+
+public static final Object SIMP_MESSAGE_TYPE = null;
+
+public static final Object NATIVE_HEADERS = null;
+
 }

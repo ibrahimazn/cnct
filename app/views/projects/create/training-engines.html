@@ -1,0 +1,58 @@
+<form role="form" id="projectTrainingEnginesForm" name="projectTrainingEnginesForm" novalidate data-ng-submit="projectsObject.checkValidation(projectTrainingEnginesForm, 5)">
+    <div class="project-create-form training-engine-form">
+        <div class="row m-t-md">
+            <div class="col-md-8">
+                <h2>{{ 'locale-training-engines' | translate }}</h2>
+            </div>
+<!--            <div class="col-md-4 text-right">
+                <div class="checkbox checkbox-primary m-r-md">
+                    <input type="checkbox" id="singleCheckbox3" data-ng-model="project.trainingEngines.checkAll" data-ng-click="projectsObject.checkAll(project.trainingEngines.checkAll, 'trainingEngines')"
+                           aria-label="Single checkbox One">
+                    <label></label>
+                </div>
+            </div>-->
+        </div>
+<!--        <div data-ng-class="trainingEnginesLists.length > 5 ? '' : 'slim-scroll-height-auto'">
+            <div class="scroll-body" slimscroll="{height: 400,size:4,color:cccccc}">
+                <ul class="form-list">
+                    <li data-ng-class="trainingEnginesList.checked == true || project.trainingEngines.checkAll == true ? 'active' : ''" class="border-top" data-ng-repeat="trainingEnginesList in trainingEnginesLists">
+                        <div class="row">
+                            <div class="col-md-8 col-sm-6">
+                                <div class="row">
+                                    <div class="col-md-2 col-sm-3 no-p-r">
+                                        <img data-ng-if="trainingEnginesList.name.includes('tensor')" src="img/training-engines/tensorflow.png" alt="tennsorflow" title="tennsorflow" class="img-responsive"/>
+                                        <img data-ng-hide="trainingEnginesList.name.includes('tensor')" src="img/training-engines/other-train-engine.png" alt="other training engine" title="other training engine" class="img-responsive"/>
+                                    </div>
+                                    <div class="col-md-10 col-sm-9 no-p-r">
+                                        <h5>{{ trainingEnginesList.name}}</h5>
+                                        <small>
+                                            <span><i class="fa fa-wrench" aria-hidden="true"></i></span>
+                                            {{ trainingEnginesList.tools}}
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 text-right">
+                                <div class="checkbox checkbox-primary">
+                                    <input type="checkbox" data-ng-model="trainingEnginesList.checked"  data-ng-change="projectsObject.optionToggled(trainingEnginesLists, 'trainingEngines')"
+                                           aria-label="Single checkbox One">
+                                    <label></label>
+                                </div>
+                            </div>
+                            <div>
+                                <input type="hidden" data-ng-bind="projectTrainingEnginesObject.trainingEngines[$index] = trainingEnginesList" />
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>-->
+        <div>
+            <center><h4>{{ 'locale-no-records-found' | translate }}</h4></center>
+        </div>
+        <div class="m-t-lg">
+            <button class="btn btn-dark btn-sm btn-shadow text-uppercase" type="submit">{{ 'locale-next' | translate }}</button>
+        </div>
+    </div>
+
+</form>

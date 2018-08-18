@@ -1,0 +1,360 @@
+<div data-ng-controller="previewAnalyzeCtrl">
+    <div class="row m-t-lg">
+        <div class="col-md-8">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="scroll-body" slimscroll="{height: 400,size:4,distance:5}">
+                        <div class="table-responsive m-t-md preview-table">
+                            <table class="table table-bordered table-hover no-margins">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <div class="clearfix">
+                                                <div class="col-md-10 col-sm-9 col-xsm-9 preview-tabble-th no-padding">Customer ID</div>
+                                                <div class="col-md-2 col-xsm-3 col-xsm-3 no-padding text-right" data-uib-dropdown data-is-open="status.isopen" data-dropdown-append-to-body="true">
+                                                    <a id="customerId" type="button" class="" data-uib-dropdown-toggle 
+                                                       title="{{ 'locale-menu' | translate }}" ng-disabled="disabled">
+                                                        <i class="fa fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu dropdown-menu-right" data-uib-dropdown-menu role="menu" aria-labelledby="customerId">
+                                                        <li role="menuitem"><a><i class="fa fa-bar-chart m-r-xs"></i> {{ 'locale-analyze' | translate }}</a></li>
+                                                        <li role="menuitem"><a><i class="fa fa-cog m-r-xs"></i> {{ 'locale-edit-column-schema' | translate }}</a></li>
+                                                        <li role="menuitem"><a><i class="fa fa-filter m-r-xs"></i> {{ 'locale-filter' | translate }}</a></li>
+                                                        <li role="menuitem"><a><i class="fa fa-sort m-r-xs"></i> {{ 'locale-sort' | translate }}</a></li>
+                                                        <li role="menuitem"><a><i class="fa fa-star m-r-xs"></i> {{ 'locale-color-colum-by-value' | translate }}</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="clearfix">
+                                                <div class="col-md-10 col-sm-9 col-xsm-9 preview-tabble-th no-padding">{{ 'locale-ip' | translate }}</div>
+                                                <div class="col-md-2 col-xsm-3 col-xsm-3 no-padding text-right" data-uib-dropdown data-is-open="" data-dropdown-append-to-body="true">
+                                                    <a id="ip" type="button" class="" data-uib-dropdown-toggle 
+                                                       title="{{ 'locale-menu' | translate }}" ng-disabled="disabled">
+                                                        <i class="fa fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu dropdown-menu-right" data-uib-dropdown-menu role="menu" aria-labelledby="ip">
+                                                        <li role="menuitem"><a><i class="fa fa-bar-chart m-r-xs"></i> {{ 'locale-analyze' | translate }}</a></li>
+                                                        <li role="menuitem"><a><i class="fa fa-cog m-r-xs"></i> {{ 'locale-edit-column-schema' | translate }}</a></li>
+                                                        <li role="menuitem"><a><i class="fa fa-filter m-r-xs"></i> {{ 'locale-filter' | translate }}</a></li>
+                                                        <li role="menuitem"><a><i class="fa fa-sort m-r-xs"></i> {{ 'locale-sort' | translate }}</a></li>
+                                                        <li role="menuitem"><a><i class="fa fa-star m-r-xs"></i> {{ 'locale-color-colum-by-value' | translate }}</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="clearfix">
+                                                <div class="col-md-10 col-sm-9 col-xsm-9 preview-tabble-th no-padding">{{ 'locale-ip-country' | translate }}</div>
+                                                <div class="col-md-2 col-xsm-3 col-xsm-3 no-padding text-right" data-uib-dropdown data-is-open="" data-dropdown-append-to-body="true">
+                                                    <a id="ipCountry" type="button" class="" data-uib-dropdown-toggle 
+                                                       title="{{ 'locale-menu' | translate }}" ng-disabled="disabled">
+                                                        <i class="fa fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu dropdown-menu-right" data-uib-dropdown-menu role="menu" aria-labelledby="ipCountry">
+                                                        <li role="menuitem"><a><i class="fa fa-bar-chart m-r-xs"></i> {{ 'locale-analyze' | translate }}</a></li>
+                                                        <li role="menuitem"><a><i class="fa fa-cog m-r-xs"></i> {{ 'locale-edit-column-schema' | translate }}</a></li>
+                                                        <li role="menuitem"><a><i class="fa fa-filter m-r-xs"></i> {{ 'locale-filter' | translate }}</a></li>
+                                                        <li role="menuitem"><a><i class="fa fa-sort m-r-xs"></i> {{ 'locale-sort' | translate }}</a></li>
+                                                        <li role="menuitem"><a><i class="fa fa-star m-r-xs"></i> {{ 'locale-color-colum-by-value' | translate }}</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="clearfix">
+                                                <div class="col-md-10 col-sm-9 col-xsm-9 preview-tabble-th no-padding">{{ 'locale-pages-visited' | translate }}</div>
+                                                <div class="col-md-2 col-xsm-3 col-xsm-3 no-padding text-right" data-uib-dropdown data-is-open="" data-dropdown-append-to-body="true">
+                                                    <a id="pageVisited" type="button" class="" data-uib-dropdown-toggle 
+                                                       title="{{ 'locale-menu' | translate }}" ng-disabled="disabled">
+                                                        <i class="fa fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu dropdown-menu-right" data-uib-dropdown-menu role="menu" aria-labelledby="pageVisited">
+                                                        <li role="menuitem"><a><i class="fa fa-bar-chart m-r-xs"></i> {{ 'locale-analyze' | translate }}</a></li>
+                                                        <li role="menuitem"><a><i class="fa fa-cog m-r-xs"></i> {{ 'locale-edit-column-schema' | translate }}</a></li>
+                                                        <li role="menuitem"><a><i class="fa fa-filter m-r-xs"></i> {{ 'locale-filter' | translate }}</a></li>
+                                                        <li role="menuitem"><a><i class="fa fa-sort m-r-xs"></i> {{ 'locale-sort' | translate }}</a></li>
+                                                        <li role="menuitem"><a><i class="fa fa-star m-r-xs"></i> {{ 'locale-color-colum-by-value' | translate }}</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="clearfix">
+                                                <div class="col-md-10 col-sm-9 col-xsm-9 preview-tabble-th no-padding">{{ 'locale-campaign' | translate }}</div>
+                                                <div class="col-md-2 col-xsm-3 col-xsm-3 no-padding text-right" data-uib-dropdown data-is-open="" data-dropdown-append-to-body="true">
+                                                    <a id="campaign" type="button" class="" data-uib-dropdown-toggle 
+                                                       title="{{ 'locale-menu' | translate }}" ng-disabled="disabled">
+                                                        <i class="fa fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu dropdown-menu-right" data-uib-dropdown-menu role="menu" aria-labelledby="campaign">
+                                                        <li role="menuitem"><a><i class="fa fa-bar-chart m-r-xs"></i> {{ 'locale-analyze' | translate }}</a></li>
+                                                        <li role="menuitem"><a><i class="fa fa-cog m-r-xs"></i> {{ 'locale-edit-column-schema' | translate }}</a></li>
+                                                        <li role="menuitem"><a><i class="fa fa-filter m-r-xs"></i> {{ 'locale-filter' | translate }}</a></li>
+                                                        <li role="menuitem"><a><i class="fa fa-sort m-r-xs"></i> {{ 'locale-sort' | translate }}</a></li>
+                                                        <li role="menuitem"><a><i class="fa fa-star m-r-xs"></i> {{ 'locale-color-colum-by-value' | translate }}</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="clearfix">
+                                                <div class="col-md-10 col-sm-9 col-xsm-9 preview-tabble-th no-padding">{{ 'locale-revenue' | translate }}</div>
+                                                <div class="col-md-2 col-xsm-3 col-xsm-3 no-padding text-right" data-uib-dropdown data-is-open="" data-dropdown-append-to-body="true">
+                                                    <a id="revenue" type="button" class="" data-uib-dropdown-toggle 
+                                                       title="{{ 'locale-menu' | translate }}" ng-disabled="disabled">
+                                                        <i class="fa fa-ellipsis-v"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu dropdown-menu-right" data-uib-dropdown-menu role="menu" aria-labelledby="revenue">
+                                                        <li role="menuitem"><a><i class="fa fa-bar-chart m-r-xs"></i> {{ 'locale-analyze' | translate }}</a></li>
+                                                        <li role="menuitem"><a><i class="fa fa-cog m-r-xs"></i> {{ 'locale-edit-column-schema' | translate }}</a></li>
+                                                        <li role="menuitem"><a><i class="fa fa-filter m-r-xs"></i> {{ 'locale-filter' | translate }}</a></li>
+                                                        <li role="menuitem"><a><i class="fa fa-sort m-r-xs"></i> {{ 'locale-sort' | translate }}</a></li>
+                                                        <li role="menuitem"><a><i class="fa fa-star m-r-xs"></i> {{ 'locale-color-colum-by-value' | translate }}</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-ng-repeat="previewAnalyzeList in previewAnalyzeElement.previewAnalyzeLists">
+                                        <td>
+                                            <span class="text-primary m-r-xs"><i class="fa fa-play-circle"></i></span> {{previewAnalyzeList.customer_id}} </td>
+                                        <td>{{previewAnalyzeList.ip}}</td>                            
+                                        <td> {{previewAnalyzeList.ip_country}} </td>
+                                        <td>{{previewAnalyzeList.pages_visited}}</td>
+                                        <td>{{previewAnalyzeList.campain}}</td>                            
+                                        <td> {{previewAnalyzeList.revenue}} </td>
+                                    </tr>
+                                    <tr class="text-center" data-ng-if="previewAnalyzeElement.previewAnalyzeLists.length == 0">
+                                        <td valign="middle" colspan="6">{{ 'locale-no-record-found' | translate }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <uib-tabset active="previewAnalyzeTab" class="secondary-tab">
+                        <uib-tab index="0">
+                            <uib-tab-heading>{{ 'locale-script' | translate }}</uib-tab-heading>
+                            <div class="m-t-md">
+                                <div class="scroll-body" slimscroll="{height: 300,size:4,distance:0}">
+                                    <div class="bg-info-light p-md text-center no-step" data-ng-if="">
+                                        <h3>No step yet in your script</h3>
+                                    </div>
+                                    <div ui-sortable="sortableOptions" class="steps-list">
+                                        <div data-ng-repeat="step in previewAnalyzeElement.previewAnalyzeSteps track by $index" data-ng-class="disableStep ? 'disable-processer':''" class="sort-drag step">
+                                            <div class="row">
+                                                <div class="col-md-8 col-sm-8 col-xsm-8 step-name">
+                                                    <a href="" class="drag"><i class="fa fa-bars"></i></a> 
+                                                    <a href="" ng-click="toggleFilter(step)" title="{{step.name}}">{{step.name}}</a>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4 col-xsm-4 text-right">
+                                                    <a title="{{ 'locale-viewing-impact-of-this-step' | translate }}"><i class="fa fa-eye"></i></a>
+                                                    <a data-ng-click="disableStep = !disableStep" class="disable-step" title="{{ 'locale-disable-this-step' | translate }}"><i class="fa fa-power-off"></i></a>
+                                                    <a data-ng-click="previewAnalyzeObject.delete('sm', step)" title="{{ 'locale-delete-step' | translate }}"><i class="fa fa-trash"></i></a>
+                                                </div>
+                                            </div>
+                                            <div ng-show="step.toggle">
+                                                <form role="form" id="analyzeStepsForm" name="analyzeStepsForm" novalidate data-ng-submit="">
+                                                    <div class="step-options" data-ng-if="step.name == 'Filter rows/cells on value'">
+                                                        <div class="row">
+                                                            <div class="col-md-12 col-sm-6 col-xsm-6">
+                                                                <div class="form-group"
+                                                                    data-ng-class="{'has-error': analyzeStepsForm.action.$invalid && analyzeStepsForm.submitted}">
+                                                                    <label> {{ 'locale-action' | translate }} </label>
+                                                                    <select class="form-control" name="action" data-ng-init="filter.action = 'onlyKeepMatchingRows'" data-ng-model="filter.action">
+                                                                        <option value="onlyKeepMatchingRows">Only keep matching rows</option>
+                                                                        <option value="removeMatchingRows">Remove matching rows</option>
+                                                                        <option value="clearMatchingCells">Clear matching cells</option>
+                                                                        <option value="clearNonMatchingCells">Clear non matching cells</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 col-sm-6 col-xsm-6">
+                                                                <div class="form-group"
+                                                                    data-ng-class="{'has-error': analyzeStepsForm.matchMode.$invalid && analyzeStepsForm.submitted}">
+                                                                    <label> {{ 'locale-match mode' | translate }} </label>
+                                                                    <select class="form-control" name="matchMode" data-ng-init="filter.matchMode = 'completevalue'" data-ng-model="filter.matchMode">
+                                                                        <option value="completevalue">Complete value</option>
+                                                                        <option value="substring">Substring</option>
+                                                                        <option value="regularExpression">Regular expression</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 col-sm-6 col-xsm-6">
+                                                                <div class="form-group"
+                                                                    data-ng-class="{'has-error': analyzeStepsForm.normalizationMode.$invalid && analyzeStepsForm.submitted}">
+                                                                    <label> {{ 'locale-normalization-mode' | translate }} </label>
+                                                                    <select class="form-control" name="normalizationMode" data-ng-init="filter.normalizationMode = 'exact'" data-ng-model="filter.normalizationMode">
+                                                                        <option value="exact">Exact (no transformation)</option>
+                                                                        <option value="ignoreCase">Ignore case</option>
+                                                                        <option value="normalize">Normalize (ignore accents)</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="step-options" data-ng-if="step.name == 'Normalize measure'">
+                                                        <div class="form-group" data-ng-class="{'has-error': analyzeStepsForm.column.$invalid && analyzeStepsForm.submitted}">
+                                                            <label> {{ 'locale-column' | translate }} </label>
+                                                            <input type="text" name="column" class="form-control" data-ng-model="normalize.column">
+                                                       </div>
+                                                    </div>
+                                                    <div class="step-options" data-ng-if="step.name == 'Split column'">
+                                                        <div class="row">
+                                                            <div class="col-md-12 col-sm-6 col-xsm-6">
+                                                                <div class="form-group" data-ng-class="{'has-error': analyzeStepsForm.splitColumn.$invalid && analyzeStepsForm.submitted}">
+                                                                    <label> {{ 'locale-column' | translate }} </label>
+                                                                    <input type="text" name="splitColumn" class="form-control" data-ng-model="splitColumn.column">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 col-sm-6 col-xsm-6">
+                                                                <div class="form-group" data-ng-class="{'has-error': analyzeStepsForm.delimiter.$invalid && analyzeStepsForm.submitted}">
+                                                                    <label> {{ 'locale-delimiter' | translate }} </label>
+                                                                    <input type="text" name="delimiter" class="form-control" data-ng-model="splitColumn.delimiter">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 col-sm-6 col-xsm-6">
+                                                                <div class="form-group" data-ng-class="{'has-error': analyzeStepsForm.outputColumnsPrefix.$invalid && analyzeStepsForm.submitted}">
+                                                                    <label> {{ 'locale-output-columns-prefix' | translate }} </label>
+                                                                    <input type="text" name="outputColumnsPrefix" class="form-control" data-ng-model="splitColumn.outputColumnsPrefix">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 col-sm-6 col-xsm-6">
+                                                                <div class="form-group"
+                                                                    data-ng-class="{'has-error': analyzeStepsForm.outputAs.$invalid && analyzeStepsForm.submitted}">
+                                                                    <label> {{ 'locale-output-as' | translate }} </label>
+                                                                    <select class="form-control" name="outputAs" data-ng-init="splitColumn.outputAs = 'multipleColumns'" data-ng-model="splitColumn.outputAs">
+                                                                        <option value="array(JSON)">Array (JSON)</option>
+                                                                        <option value="multipleColumns">Multiple columns</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 col-sm-6 col-xsm-6">
+                                                                <div class="form-group no-margins" data-ng-class="{'has-error': analyzeStepsForm.truncate.$invalid && analyzeStepsForm.Submitted}">
+                                                                    <div class="checkbox checkbox-success">
+                                                                        <input class="form-control" name="truncate" value="truncate" type="checkbox" data-ng-model="splitColumn.truncate">
+                                                                        <label for="truncate">
+                                                                            {{ 'locale-truncate' | translate }}
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 col-sm-6 col-xsm-6">
+                                                                <div class="form-group no-margins" data-ng-class="{'has-error': analyzeStepsForm.keepEmptyChunks.$invalid && analyzeStepsForm.Submitted}">
+                                                                    <div class="checkbox checkbox-success">
+                                                                        <input class="form-control" name="keepEmptyChunks" value="keepEmptyChunks" type="checkbox" data-ng-model="splitColumn.keepEmptyChunks">
+                                                                        <label for="keepEmptyChunks">
+                                                                            {{ 'locale-keep-empty-chunks' | translate }}
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12 col-sm-12" data-ng-if="splitColumn.truncate">
+                                                                <div class="row border-top">
+                                                                    <div class="col-md-12 col-sm-6 col-xsm-6">
+                                                                        <div class="form-group m-t-sm" data-ng-class="{'has-error': analyzeStepsForm.maxNbColumnsToKeep.$invalid && analyzeStepsForm.submitted}">
+                                                                            <label> {{ 'locale-max-nb-columns-keep' | translate }} </label>
+                                                                            <input type="number" name="maxNbColumnsToKeep" class="form-control" data-ng-model="splitColumn.maxNbColumnsToKeep">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12 col-sm-6 col-xsm-6">
+                                                                        <div class="form-group m-t-sm"
+                                                                            data-ng-class="{'has-error': analyzeStepsForm.startingFrom.$invalid && analyzeStepsForm.submitted}">
+                                                                            <label> {{ 'locale-starting-from' | translate }} </label>
+                                                                            <select class="form-control" name="startingFrom" data-ng-init="splitColumn.startingFrom = 'beginning'" data-ng-model="splitColumn.startingFrom">
+                                                                                <option value="beginning">Beginning</option>
+                                                                                <option value="end">End</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-ng-click="previewAnalyzeObject.addNewStep('md')" class="btn btn-success btn-block"><i class="fa fa-plus-circle"></i> {{ 'locale-add-a-new-step' | translate }} </a>
+                            </div>
+                        </uib-tab>
+                        <uib-tab index="1">
+                            <uib-tab-heading>{{ 'locale-design-sample' | translate }}</uib-tab-heading>
+                            <div class="m-t-md">
+                                <div class="scroll-body m-b-sm" slimscroll="{height: 300,size:4,distance:0}">
+                                    <form role="form" id="designSampleForm" name="designSampleForm" novalidate data-ng-submit="analyzeObject.save(analyze)">
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-6 col-xsm-6">
+                                                <div class="form-group"
+                                                     data-ng-class="{'has-error': designSampleForm.samplingMethod.$invalid && designSampleForm.submitted}">
+                                                     <label> {{ 'locale-sampling-method' | translate }} </label>
+                                                     <select class="form-control" name="samplingMethod" data-ng-init="designSample.samplingMethod = 'firstRecords'" data-ng-model="designSample.samplingMethod">
+                                                         <option value=""> {{ 'locale-dataset' | translate }} </option>
+                                                         <option value="firstRecords">First records</option>
+                                                         <option value="randomNbRecords">Random (nb. records)</option>
+                                                         <option value="randomApproxRatio">Random (approx. ratio)</option>
+                                                         <option value="stratifiedNbRecords">Stratified (nb. records)</option>
+                                                     </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 col-sm-6 col-xsm-6">
+                                                <div class="form-group" data-ng-class="{'has-error': designSampleForm.noOfRecords.$invalid && designSampleForm.submitted}">
+                                                     <label> {{ 'locale-no-of-records' | translate }} </label>
+                                                     <input type="number" name="noOfRecords" class="form-control" data-ng-model="designSample.noOfRecords">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <h4 class="bg-info-light p-xxs"><span class="m-l-sm">{{ 'locale-filtering' | translate }}</span></h4>
+                                        <div class="form-group m-b-md" data-ng-class="{'has-error': designSampleForm.filterRecords.$invalid && createDatasetFormSubmitted}">
+                                            <div class="checkbox checkbox-success">
+                                                <input class="form-control" name="filterRecords" value="filterRecords" type="checkbox" data-ng-model="designSample.filterRecords">
+                                                <label for="filterRecords">
+                                                    {{ 'locale-filter-records' | translate }}
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <h4 class="bg-info-light p-xxs"><span class="m-l-sm">{{ 'locale-advanced' | translate }}</span></h4>
+                                        <div class="form-group" data-ng-class="{'has-error': designSampleForm.maxMemoryUsage.$invalid && createDatasetFormSubmitted}">
+                                            <div class="checkbox checkbox-success">
+                                                <input class="form-control" name="maxMemoryUsage" value="maxMemoryUsage" type="checkbox" data-ng-model="designSample.maxMemoryUsage">
+                                                <label for="maxMemoryUsage">
+                                                    {{ 'locale-enforce-max-sample-memory-usage' | translate }}
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" data-ng-if="designSample.maxMemoryUsage" 
+                                             data-ng-class="{'has-error': designSampleForm.noOfRecords.$invalid && designSampleForm.submitted}">
+                                             <label> {{ 'locale-no-of-records' | translate }} </label>
+                                             <input type="number" name="noOfRecords" class="form-control" data-ng-model="designSample.noOfRecords">
+                                        </div>
+                                        <div class="form-group"
+                                             data-ng-class="{'has-error': designSampleForm.autoRefreshSample.$invalid && createDatasetFormSubmitted}">
+                                            <div class="checkbox checkbox-success">
+                                                <input class="form-control" name="autoRefreshSample" value="autoRefreshSample" type="checkbox" data-ng-model="designSample.autoRefreshSample">
+                                                <label for="autoRefreshSample">
+                                                    {{ 'locale-auto-refresh-sample' | translate }}<br>
+                                                    <small class="m-t-xs block">{{ 'locale-auto-refresh-sample-info' | translate }}</small>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </form> 
+                                </div>
+                                <a href="" class="btn btn-success btn-block">{{ 'locale-save-refresh-sample' | translate }} </a>
+                            </div>
+                        </uib-tab>
+                    </uib-tabset>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+[
+    {
+        "name": "RStudio_session",
+        "platformTools": "R Studio",
+        "status": "Running"
+    },
+    {
+         "name": "Jupyter_session1",
+        "platformTools": "Jupyter",
+        "status": "Running"
+    },
+    {
+        "name": "Jupyter_session2",
+        "platformTools": "Jupyter",
+        "status": "Stopped"
+    },
+    {
+        "name": "Terminal",
+        "platformTools": "Console",
+        "status": "Running"
+    },
+    {
+         "name": "RStudio_session",
+        "platformTools": "R Studio",
+        "status": "Running"
+    },
+    {
+        "name": "RStudio_session",
+        "platformTools": "R Studio",
+        "status": "Running"
+    },
+    {
+        "name": "RStudio_session",
+        "platformTools": "R Studio",
+        "status": "Running"
+    },
+    {
+         "name": "Jupyter_session1",
+        "platformTools": "Jupyter",
+        "status": "Running"
+    }
+]

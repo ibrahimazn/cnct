@@ -1,0 +1,7 @@
+/target/
+.settings/org.eclipse.jdt.core.prefs
+.project
+.eclipse-pmd
+.settings/net.sf.jautodoc.prefs
+.settings/org.eclipse.jdt.ui.prefs
+

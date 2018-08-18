@@ -1,0 +1,22 @@
+<form role="form" id="publishForm" name="publishForm" novalidate>
+    <div class="modal-header" modaldraggable>
+        <button type="button" data-ng-click="cancel();" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><i class="fa fa-cloud-upload m-r-sm"></i>{{ 'locale-publish' | translate }}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group"
+                    data-ng-class="{'has-error': publishForm.datasetPath.$invalid && publishForm.submitted}">
+                   <label> {{ 'locale-url' | translate }} </label>
+                   <input type="text" name="url" class="form-control" ng-disabled="true"
+                          placeholder="root/dataSet/dataSet-1/az-dataset.csv" data-ng-model="publish.url">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-ng-click="cancel();">{{ 'locale-cancel' | translate }}</button>
+        <button type="submit" class="btn btn-info">{{ 'locale-publish' | translate }}</button>
+    </div>
+</form> 

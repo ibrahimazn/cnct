@@ -1,0 +1,54 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-6 page-title">
+        <h2>Project Name - {{ 'locale-model' | translate }}</h2>
+    </div>
+</div>
+<div class="row wrapper page-breadcrumb">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li>
+                <a data-ui-sref="index.user-dashboard"><i class="fa fa-home" aria-hidden="true"></i></a>
+            </li>
+            <li>
+                <strong><a data-ui-sref="projects.grid">{{ 'locale-projects' | translate }}</a></strong>
+            </li>
+            <li>
+                <strong><a data-ui-sref="project-details.summary">Project Name</a></strong>
+            </li>
+            <li>
+                <strong><a data-ui-sref="model.list">{{ 'locale-model' | translate }}</a></strong>
+            </li>
+            <li class="active">
+                {{ 'locale-details' | translate }}
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content" data-ng-controller="modelDetailsCtrl">
+    <uib-tabset active="modelDetailsTab" class="secondary-tab">
+        <uib-tab index="0">
+            <uib-tab-heading>{{ 'locale-summary' | translate }} </uib-tab-heading>
+            <div data-ng-include src="'views/projects/project-details/model/details/summary.html'"></div>
+        </uib-tab>
+        <uib-tab index="1">
+            <uib-tab-heading>{{ 'locale-dataset' | translate }} </uib-tab-heading>
+            <div data-ng-include src="'views/projects/project-details/model/details/dataset.html'"></div>
+        </uib-tab>
+        <uib-tab index="2">
+            <uib-tab-heading>{{ 'locale-input-features' | translate }} </uib-tab-heading>
+            <div data-ng-include src="'views/projects/project-details/model/details/input-schema.html'"></div>
+        </uib-tab>
+        <uib-tab index="3">
+            <uib-tab-heading>{{ 'locale-training' | translate }} </uib-tab-heading>
+            <div data-ng-include data-ng-click="modelDetailsObject.getTrainingJobsListByModel(1, selectedModel)" src="'views/projects/project-details/model/details/evaluation.html'"></div>
+        </uib-tab>
+        <uib-tab  index="4">
+            <uib-tab-heading>{{ 'locale-versions' | translate }} </uib-tab-heading>
+            <div data-ng-include src="'views/projects/project-details/model/details/versions.html'"></div>
+        </uib-tab>
+        <uib-tab index="5">
+            <uib-tab-heading>{{ 'locale-source' | translate }} </uib-tab-heading>
+            <div data-ng-click="modelDetailsObject.getSource(selectedModel)" data-ng-include src="'views/projects/project-details/model/details/source.html'"></div>
+        </uib-tab>
+    </uib-tabset>
+</div>

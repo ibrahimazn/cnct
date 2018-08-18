@@ -1,0 +1,122 @@
+[
+    {
+        "firstName": "Smith",
+        "lastName": "Smith",
+        "username": "Smith",
+        "email": "smith@gmail.com",
+        "password": "smith",
+        "mobilePhone": "5787545452",
+        "department": "OPS",
+        "userType": "Admin"
+    },
+    {
+        "firstName": "JK Rowling ",
+        "lastName": "Rowling ",
+        "username": "JK Rowling ",
+        "email": "JKRowling @gmail.com",
+        "password": "JK Rowling ",
+        "mobilePhone": "87457545452",
+        "department": "DEV",
+        "userType": "Admin"
+    },
+    {
+        "firstName": "Stephen ",
+        "lastName": "Stephen ",
+        "username": "Stephen ",
+        "email": "Stephen@gmail.com",
+        "password": "Stephen ",
+        "mobilePhone": "999999999",
+        "department": "DEV",
+        "userType": "Analyzer"
+    },
+    {
+        "firstName": "Rupert Grint",
+        "lastName": "Rupert Grint",
+        "username": "Rupert Grint",
+        "email": "RupertGrint@gmail.com",
+        "password": "RupertGrint",
+        "mobilePhone": "666666652",
+        "department": "DEV",
+        "userType": "QA"
+    },
+    {
+        "firstName": "Tom Felton",
+        "lastName": "Tom Felton",
+        "username": "Tom Felton",
+        "email": "TomFelton@gmail.com",
+        "password": "TomFelton",
+        "mobilePhone": "9768567456",
+        "department": "OPS",
+        "userType": "Admin"
+    },
+    {
+        "firstName": "Stephen King",
+        "lastName": "Stephen King",
+        "username": "Stephen King",
+        "email": "StephenKing@gmail.com",
+        "password": "StephenKing",
+        "mobilePhone": "989898989",
+        "department": "OPS",
+        "userType": "User"
+    },
+    {
+        "firstName": "Stephen",
+        "lastName": "Stephen Radcliffe",
+        "username": "Stephen Radcliffe",
+        "email": "StephenRadcliffe@gmail.com",
+        "password": "DanielRadcliffe",
+        "mobilePhone": "9888888888",
+        "department": "OPS",
+        "userType": "Admin"
+    },
+     {
+        "firstName": "Radcliffe",
+        "lastName": "Daniel Radcliffe",
+        "username": "Daniel Radcliffe",
+        "email": "DanielRadcliffe@gmail.com",
+        "password": "DanielRadcliffe",
+        "mobilePhone": "9888888888",
+        "department": "OPS",
+        "userType": "User"
+    },
+     {
+        "firstName": "Daniel",
+        "lastName": "Daniel Radcliffe",
+        "username": "Daniel Radcliffe",
+        "email": "DanielRadcliffe@gmail.com",
+        "password": "DanielRadcliffe",
+        "mobilePhone": "9888888888",
+        "department": "OPS",
+        "userType": "QA"
+    },
+     {
+        "firstName": "Daniel Radcliffe",
+        "lastName": "Daniel Radcliffe",
+        "username": "Daniel Radcliffe",
+        "email": "DanielRadcliffe@gmail.com",
+        "password": "DanielRadcliffe",
+        "mobilePhone": "9888888888",
+        "department": "OPS",
+        "userType": "Admin"
+    },
+    {
+        "firstName": "Potter",
+        "lastName": "Harry Potter",
+        "username": "Harry Potter",
+        "email": "HarryPotter@gmail.com",
+        "password": "Willam",
+        "mobilePhone": "565465465456",
+        "department": "DEV",
+        "userType": "Admin"
+    },
+    {
+        "firstName": "Harry Potter",
+        "lastName": "Harry Potter",
+        "username": "Harry Potter",
+        "email": "HarryPotter@gmail.com",
+        "password": "Willam",
+        "mobilePhone": "565465465456",
+        "department": "DEV",
+        "userType": "Admin"
+    }
+]

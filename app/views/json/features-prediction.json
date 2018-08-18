@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Customer ID",
+        "id":"0"
+    },
+    {
+        "name": "ip",
+        "id":"1"
+    },
+    {
+        "name": "IP Country",
+        "id":"2"
+    },
+    {
+        "name": "Campaign",
+        "id":"3"
+    },
+    {
+        "name": "Revenue",
+        "id":"4"
+    },
+    {
+        "name": "Customer ID",
+        "id":"0"
+    },
+    {
+        "name": "ip",
+        "id":"1"
+    },
+    {
+        "name": "IP Country",
+        "id":"2"
+    },
+    {
+        "name": "Campaign",
+        "id":"3"
+    },
+    {
+        "name": "Revenue",
+        "id":"4"
+    }
+]

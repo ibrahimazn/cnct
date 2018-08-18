@@ -1,0 +1,68 @@
+<div data-ng-controller="scoringDetailsCtrl">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-6 page-title">
+            <h2>Project Name - {{ 'locale-scoring' | translate }}</h2>
+        </div>
+    </div>
+    <div class="row wrapper page-breadcrumb">
+        <div class="col-lg-12">
+            <ol class="breadcrumb">
+                <li>
+                    <a data-ui-sref="index.user-dashboard"><i class="fa fa-home" aria-hidden="true"></i></a>
+                </li>
+                <li>
+                    <strong><a data-ui-sref="projects.grid">{{ 'locale-projects' | translate }}</a></strong>
+                </li>
+                <li>
+                    <strong><a data-ui-sref="project-details.summary">Project Name</a></strong>
+                </li>
+                <li>
+                    <strong><a data-ui-sref="scoring.list">{{ 'locale-scoring' | translate }}</a></strong>
+                </li>
+                <li>
+                    <strong>Name</strong>
+                </li>
+                <li class="active">
+                    {{ 'locale-details' | translate }}
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content loader-container">
+        <get-ancode-loader-container-overlay data-ng-if="scoringElement.scoreLoader"></get-ancode-loader-container-overlay>
+        <div class="row">
+            <div class="col-md-12">
+                <uib-tabset active="scoringTab" class="secondary-tab data-transformation">
+                    <uib-tab index="0">
+                        <uib-tab-heading>{{ 'locale-summary' | translate }} </uib-tab-heading>
+                        <div data-ng-include src="'views/projects/project-details/scoring/summary.html'"></div>
+                    </uib-tab>
+                    <uib-tab index="1">
+                        <uib-tab-heading>{{ 'Scoring Output' | translate }} </uib-tab-heading>
+                        <div data-ng-include src="'views/projects/project-details/scoring/predicted-data.html'"></div>
+                    </uib-tab>
+                </uib-tabset>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<div class="wrapper wrapper-content">
+    <div class="ibox float-e-margins no-margins">
+        <div class="ibox-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <uib-tabset active="modelDetailsTab" class="secondary-tab data-transformation">
+                        <uib-tab index="0">
+                            <uib-tab-heading><span class="hidden-xs">{{ 'locale-predicted-data' | translate }} </span></uib-tab-heading>
+                            <div data-ng-include src="'views/projects/project-details/deployments/scheduled-deployments/details/predicted-data.html'"></div>
+                        </uib-tab>
+                        <uib-tab index="1">
+                            <uib-tab-heading><span class="hidden-xs">{{ 'locale-chart' | translate }} </span></uib-tab-heading>
+                            <div data-ng-include src="'views/projects/project-details/analyze/charts.html'"></div>
+                        </uib-tab>
+                    </uib-tabset>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->

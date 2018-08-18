@@ -1,0 +1,130 @@
+<div data-ng-controller="createDashboardCtrl">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-md-6  page-title">
+            <h2>Project Name - {{ 'locale-dashboard' | translate }}</h2>
+        </div>
+        <div class="col-md-6 text-right">
+            <div class="floating-add m-l-sm">
+                <a data-ng-click="createDashboardObject.publishDashboard('md')" class="btn btn-success">
+                    <i class="fa fa-cloud-upload"></i> {{ 'locale-publish' | translate }}
+                </a>
+            </div>
+            <div class="floating-add">
+                <a data-ng-click="createDashboardObject.deployToServer('md')" class="btn btn-info">
+                    <i class="fa fa-inbox"></i> {{ 'locale-deploy-to-server' | translate }}
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row wrapper page-breadcrumb">
+        <div class="col-lg-12">
+            <ol class="breadcrumb">
+                <li>
+                    <a data-ui-sref="index.user-dashboard"><i class="fa fa-home" aria-hidden="true"></i></a>
+                </li>
+                <li>
+                    <strong><a data-ui-sref="projects.grid">{{ 'locale-projects' | translate }}</a></strong>
+                </li>
+                <li>
+                    <strong><a data-ui-sref="project-details.summary">Project Name</a></strong>
+                </li>
+                <li>
+                    <strong><a data-ui-sref="deployments.list">{{ 'locale-deployments' | translate }}</a></strong>
+                </li>
+                <li class="active">
+                    {{ 'locale-create-dashboard' | translate }}
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="ibox float-e-margins ">
+                    <div class="ibox-content">
+                        <div gridster="gridsterOpts">
+                            <ul>
+                                <li gridster-item="item" class="scroll" ng-repeat="item in standardItems" id="{{$index}}"> 
+                                    <div class="bg-info-light info-light-heading no-padding">
+                                        <h3 class="pull-left">{{item.name}} <a class="text-muted"><i class="fa fa-pencil m-l-sm" title="Edit"></i></a></h3>                                        
+                                        <a class="text-muted  pull-right"><i class="fa fa-trash" title="delete" data-ng-click="createDashboardObject.delete(item)"></i></a>
+                                        <a class="text-muted  pull-right"><i class="fa fa-copy" title="copy" data-ng-click="createDashboardObject.duplicateItem(item, $index)"></i></a>
+                                        <div class="clearfix"></div></div>                                        
+                                    <div id="chart{{$index}}"></div>                                    
+                                    <!--                                    <table  data-ng-if="$first" class="table table-bordered table-hover no-margins">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th>{{ 'locale-projects' | translate }}</th>
+                                                                                    <th>{{ 'locale-description' | translate }}</th>
+                                                                                    <th>{{ 'locale-collaboration' | translate }}</th>
+                                                                                    <th>{{ 'locale-deadline' | translate }}</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td> Creating Remarkable</td>
+                                                                                    <td>It is a long established fact that a reader will be distracted by the readable</td>
+                                                                                    <td>11</td>
+                                                                                    <td>10-11-17 </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td> Creating Remarkable</td>
+                                                                                    <td>It is a long established fact that a reader will be distracted by the readable</td>
+                                                                                    <td>11</td>
+                                                                                    <td>10-11-17 </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td> Creating Remarkable</td>
+                                                                                    <td>It is a long established fact that a reader will be distracted by the readable</td>
+                                                                                    <td>11</td>
+                                                                                    <td>10-11-17 </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>-->
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <div class="scroll-body" slimscroll="{height: 400,size:4,distance:0}">
+                            <ul class="dashboard-tiles">
+                                <li data-ng-repeat="dashboardTile in createDashboardElement.dashboardTilesLists">
+                                    <a data-ng-click="createDashboardObject.addTiles('md', dashboardTile)">
+                                        <div class="row">
+                                            <div class="col-md-2 col-sm-2 col-xsm-2 text-center">
+                                                <i data-ng-if="dashboardTile.icon == 'dataset'" class="fa fa-database m-t-xs"></i>
+                                                <i data-ng-if="dashboardTile.icon == 'chart'" class="fa fa-bar-chart m-t-xs"></i>
+                                                <i data-ng-if="dashboardTile.icon == 'comments'" class="fa fa-comment-o m-t-xs"></i>
+                                                <i data-ng-if="dashboardTile.icon == 'launchers'" class="fa fa-rocket m-t-xs"></i>
+                                                <i data-ng-if="dashboardTile.icon == 'metrics'" class="fa fa-asterisk m-t-xs"></i>
+                                                <i data-ng-if="dashboardTile.icon == 'model'" class="fa fa-cube m-t-xs"></i>
+                                                <i data-ng-if="dashboardTile.icon == 'folder'" class="fa fa-folder-o m-t-xs"></i>
+                                                <i data-ng-if="dashboardTile.icon == 'webapp'" class="fa fa-code m-t-xs"></i>
+                                                <i data-ng-if="dashboardTile.icon == 'report'" class="fa fa-file-excel-o m-t-xs"></i>
+                                                <i data-ng-if="dashboardTile.icon == 'project'" class="fa fa-tachometer m-t-xs"></i>
+                                                <i data-ng-if="dashboardTile.icon == 'scenario'" class="fa fa-list m-t-xs"></i>
+                                                <i data-ng-if="dashboardTile.icon == 'macro'" class="fa fa-table m-t-xs"></i>
+                                                <i data-ng-if="dashboardTile.icon == 'insight'" class="fa fa-eye m-t-xs"></i>
+                                                <i data-ng-if="dashboardTile.icon == 'text'" class="fa fa-file-text-o m-t-xs"></i>
+                                                <i data-ng-if="dashboardTile.icon == 'image'" class="fa fa-image m-t-xs"></i>
+                                                <i data-ng-if="dashboardTile.icon == 'web-content'" class="fa fa-desktop m-t-xs"></i>
+                                            </div>
+                                            <div class="col-md-10 col-sm-10 col-xsm-10">
+                                                <h3 class="no-margins">{{dashboardTile.name}}</h3>
+                                                <small>{{dashboardTile.des}}</small>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

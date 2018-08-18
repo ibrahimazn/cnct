@@ -4,26 +4,34 @@
 package com.appfiss.account.entity;
 
 import java.io.Serializable;
+import java.time.Instant;
+import java.util.Date;
+import java.util.UUID;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+// TODO: Auto-generated Javadoc
 /** Entity reference for the User. */
 @Entity
 @Table(name = "user")
 @EntityListeners(AuditingEntityListener.class)
 @SuppressWarnings("serial")
-public class User implements Serializable {
+public class User {
 
 	/** Id of the User. */
 	@Id
@@ -31,14 +39,17 @@ public class User implements Serializable {
 	@Column(name = "user_id")
 	private Long id;
 
+	/** The uuid. */
+	@Column(name = "uuid", columnDefinition = "VARCHAR(255)")
+	private String uuid;
+
 	/** Email id of the User. */
 	@Column(name = "email")
 	@Email(message = "*Please provide a valid Email")
 	private String email;
 
 	/** Password of the User. */
-	@Column(name = "password")
-	@Length(min = 5, message = "*Your password must have at least 5 characters")
+	@Column(name = "password", columnDefinition = "VARCHAR(255)")
 	private String password;
 
 	/** First name of the User. */
@@ -57,6 +68,10 @@ public class User implements Serializable {
 	@Column(name = "active")
 	private boolean active;
 
+	/** The status. */
+	@Column(name = "status")
+	private STATUS status;
+
 	/** Primary phone of the User. */
 	@Column(name = "primary_phone")
 	private String phone;
@@ -73,6 +88,12 @@ public class User implements Serializable {
 	@Column(name = "profile_img_file")
 	private String profileImgFile;
 
+	/** The created at. */
+	@Basic
+	@CreatedDate
+	@Column(name = "CREATED_AT", nullable = false, insertable = true, updatable = false, columnDefinition = "TIMESTAMP NOT NULL")
+	private Date createdAt;
+
 	/**
 	 * Set the firstName.
 	 *
@@ -84,7 +105,7 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * Get the id.
+	 * Gets the id.
 	 *
 	 * @return the id
 	 */
@@ -93,10 +114,10 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * Set the id.
+	 * Sets the id.
 	 *
 	 * @param id
-	 *            the id to set
+	 *            the new id
 	 */
 	public void setId(Long id) {
 		this.id = id;
@@ -285,7 +306,8 @@ public class User implements Serializable {
 	/**
 	 * Sets the active.
 	 *
-	 * @param active the new active
+	 * @param active
+	 *            the new active
 	 */
 	public void setActive(boolean active) {
 		this.active = active;
@@ -301,6 +323,76 @@ public class User implements Serializable {
 
 		/** The user. */
 		USER
+	}
+
+	/**
+	 * Enumeration user type for admin, user.
+	 */
+	public enum STATUS {
+
+		/** The enabled. */
+		ENABLED,
+
+		/** The disabled. */
+		DISABLED,
+
+		/** The deleted. */
+		DELETED
+	}
+
+	/**
+	 * Pre insert.
+	 */
+	@PrePersist
+	void preInsert() {
+		this.uuid = UUID.randomUUID().toString();
+		System.out.println(this.uuid);
+	}
+
+	/**
+	 * Gets the uuid.
+	 *
+	 * @return the uuid
+	 */
+	public String getUuid() {
+		return uuid;
+	}
+
+	/**
+	 * Sets the uuid.
+	 *
+	 * @param uuid
+	 *            the new uuid
+	 */
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
+
+	/**
+	 * Gets the created at.
+	 *
+	 * @return the created at
+	 */
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	/**
+	 * Sets the created at.
+	 *
+	 * @param createdAt
+	 *            the new created at
+	 */
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public STATUS getStatus() {
+		return status;
+	}
+
+	public void setStatus(STATUS status) {
+		this.status = status;
 	}
 
 }

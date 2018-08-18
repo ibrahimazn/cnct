@@ -1,0 +1,148 @@
+<div data-ng-controller="trainModelCtrl">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-6 page-title">
+            <h2>Project Name - {{ 'locale-new-train' | translate }}</h2>
+        </div>
+    </div>
+    <div class="row wrapper page-breadcrumb">
+        <div class="col-lg-12">
+            <ol class="breadcrumb">
+                <li>
+                    <a data-ui-sref="index.user-dashboard"><i class="fa fa-home" aria-hidden="true"></i></a>
+                </li>
+                <li>
+                    <strong><a data-ui-sref="projects.grid">{{ 'locale-projects' | translate }}</a></strong>
+                </li>
+                <li>
+                    <strong><a data-ui-sref="project-details.summary">Project Name</a></strong>
+                </li>
+                <li>
+                    <strong><a data-ui-sref="model.list">{{ 'locale-model' | translate }}</a></strong>
+                </li>
+                <li class="active">
+                    {{ 'locale-new-train' | translate }}
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content">
+        <div class="ibox float-e-margins no-margins">
+            <div class="ibox-content loader-container">
+                <get-ancode-loader-container-overlay data-ng-if="trainModelElement.startTrainingLoader"></get-ancode-loader-container-overlay>
+                <form role="form" id="trainingJobForm" name="trainingJobForm" novalidate>
+                    
+                    <div class="row m-t-md">
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group"
+                                        data-ng-class="{'has-error': trainingJobForm.type.$invalid && trainingJobForm.submitted}">
+                                       <label> {{ 'locale-model-type' | translate}}  <span class="required">*</span> </label>
+                                       <select class="form-control" name="type" data-ng-model="trainingJob.modelType" required>
+                                           <option value=""> {{ "locale-select" | translate }}</option>
+                                           <option value="CUSTOM"> Custom</option>
+                                           <option value="PREDEFINED">Predefined</option>
+                                       </select>
+                                       <div class="input-icon right" data-ng-if="trainingJobForm.type.$invalid && trainingJobForm.submitted">
+                                           <i data-uib-tooltip="{{ 'locale-model-type-is-required' | translate }}"
+                                              data-tooltip-placement="left" class="fa fa-warning"></i>
+                                       </div>
+                                   </div>
+                                </div>
+<!--                                <div class="col-md-4">
+                                     <div class="form-group"
+                                        data-ng-class="{'has-error': trainingJob.dataSet.$invalid && trainingJobForm.submitted}">
+                                       <label> {{ 'locale-dataset' | translate }} <span class="required">*</span> </label>
+
+                                       <select required="true" name="dataSource" class="form-control"
+                                               data-ng-model="trainingJob.dataSet" ng-options="dataSet as dataSet.name for dataSet in trainModelElement.datasetLists">
+                                           <option value="">{{ "locale-select" | translate }}</option>
+                                       </select>
+                                       <div class="input-icon right" data-ng-if="trainingJobForm.dataSet.$invalid && trainingJobForm.submitted">
+                                           <i data-uib-tooltip="{{ 'locale-data-source-is-required' | translate }}" data-tooltip-placement="left" class="fa fa-warning"></i>
+                                       </div>
+                                   </div>
+                                </div>-->
+
+
+
+<!--                                <div class="col-md-4">
+                                    <div class="form-group"
+                                         data-ng-class="{'has-error': trainModel.resourcePlan.$invalid && trainModelSubmitted}">
+                                        <label>{{ 'locale-resource-plan' | translate }}</label>
+                                        <select class="form-control" name="resourcePlan" data-ng-init="train.resourcePlan = '1gb1cpu'" data-ng-model="train.resourcePlan">
+                                            <option value="1gb1cpu">1 GB / 1 CPU</option>
+                                            <option value="2gb1cpu">2 GB / 1 CPU</option>
+                                            <option value="2gb2cpu">2 GB / 2 CPU</option>
+                                        </select>
+                                    </div>
+                                </div>-->
+
+                                 <div class="col-md-2">
+                                    <div class="form-group"
+                                         data-ng-class="{'has-error': trainingJobForm.testRatio.$invalid && trainingJobForm.submitted}">
+                                        <label>{{ 'locale-train-ratio' | translate }} <span class="required">*</span></label>
+                                        <input type="number" data-ng-init="trainModelElement.modelLists[0].sampling.trainRatio" required name="testRatio" class="form-control" min="0" max="1" step="0.1" data-ng-model="trainingJob.testRatio">
+                                        <div class="input-icon right"
+                                            data-ng-if="trainingJobForm.testRatio.$invalid && trainingJobForm.submitted">
+                                           <i data-uib-tooltip="{{ 'locale-ration-should-be-0-1' | translate }}"
+                                              data-tooltip-placement="left" class="fa fa-warning"></i>
+                                       </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group"
+                                         data-ng-class="{'has-error': trainingJobForm.outputPath.$invalid && trainingJobForm.submitted}">
+                                        <label>{{ 'locale-output-path' | translate }} <span class="required">*</span></label>
+                                        <input value="" readonly data-ng-click="trainingJobObject.openChooseFileWindow('lg', 'outputPath')" required type="text" name="outputPath" class="form-control" data-ng-model="trainingJob.outputPath">
+                                        <div class="input-icon right"
+                                            data-ng-if="trainingJobForm.outputPath.$invalid && trainingJobForm.submitted">
+                                           <i data-uib-tooltip="{{ 'locale-output-path-required' | translate }}"
+                                              data-tooltip-placement="left" class="fa fa-warning"></i>
+                                       </div>
+                                    </div>
+                                </div>
+
+<!--                                <div class="col-md-4">
+                                    <div class="form-group"
+                                         data-ng-class="{'has-error': modelForm.modelName.$invalid && modelForm.FormSubmitted}">
+                                        <label>{{ 'locale-choose-file' | translate }}</label>
+                                        <div class="from-control">
+                                            <a class="btn btn btn-dark"
+                                               data-ng-click="trainingJobObject.openChooseFileWindow('lg')"
+                                               data-ng-model="train.chooseFile">Choose File</a>
+                                            <p>{{ trainingJob.filePath }}</p>
+                                        </div>
+                                    </div>
+                                </div>-->
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <h3 class="sub-title">Model List</h3>
+                            <div class="scroll-body" slimscroll="{height: 100,size:4,distance:0}">
+                                <div class="row model-list" data-ng-repeat="modelList in trainModelElement.modelLists">
+                                    <div class="col-md-8">
+                                        {{modelList.name}}
+                                    </div>
+                                    <div class="col-md-4 text-right">
+                                        <a data-ng-hide="trainModelElement.modelLists.length == 1" data-ng-click="trainModelObject.delete(modelList)" title="{{ 'locale-delete-step' | translate }}"><i class="fa fa-trash"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="pull-right">
+                                <button class="btn btn-dark" data-ng-click="trainingJobObject.startTraining()">{{ 'locale-start-training' | translate }}</button>
+                                <a class="btn btn-light" data-ui-sref="model.list">{{ 'locale-cancel' | translate }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

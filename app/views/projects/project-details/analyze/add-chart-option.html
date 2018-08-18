@@ -1,0 +1,190 @@
+<form role="form" id="addNewStepForm" name="addNewStepForm" novalidate>
+    <div class="modal-header" modaldraggable>
+        <button type="button" data-ng-click="cancel();" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><i class="fa fa-plus-circle m-r-sm"></i>{{ 'locale-basics' | translate }}</h4>
+    </div>
+    <div class="modal-body no-padding">
+        <div class="row">
+            <div class="col-md-3 no-p-r">
+                <div class="library-list borders">
+                    <ul class="list-group elements-list">
+                        <li class="list-group-item" data-ng-click="showPrivilege(1)" data-ng-class="{ active: isSet(1) }">
+                            <a class="block">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        Bar
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="list-group-item" data-ng-click="showPrivilege(2)" data-ng-class="{ active: isSet(2) }">
+                            <a class="block">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        Lines & Curves
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="list-group-item" data-ng-click="showPrivilege(3)" data-ng-class="{ active: isSet(3) }">
+                            <a class="block">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        Pie & Donuts
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9 no-p-l">
+                <div class="chart-option borders" data-ng-show="isSet(1)">
+                    <div class="scroll-body p-md" slimscroll="{height: 339,size:4,distance:0}">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a> <i class="fa fa-bar-chart"></i></a> 
+                                    </div>
+                                    <div class="col-md-6 graph-type font-bold">
+                                        Histogram
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a> <i class="fa fa-align-left"></i></a> 
+                                    </div>
+                                    <div class="col-md-6 graph-type font-bold">
+                                        Bars
+                                    </div>
+                                </div>                                        
+                            </div> 
+                        </div>
+                        <div class="row m-t-md">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a> <i class="fa fa-list"></i></a> 
+                                    </div>
+                                    <div class="col-md-6 graph-type font-bold">
+                                        Stacked
+                                    </div>
+                                </div>                                        
+                            </div> 
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a> <i class="fa fa-bars"></i></a> 
+                                    </div>
+                                    <div class="col-md-6 graph-type font-bold">
+                                        Bars 100%
+                                    </div>
+                                </div>                                        
+                            </div> 
+                        </div>
+                        <div class="row m-t-md">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a> <i class="fa fa-bar-chart"></i></a> 
+                                    </div>
+                                    <div class="col-md-6 graph-type font-bold">
+                                        Stacked 100%
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a> <i class="fa fa-align-left"></i></a> 
+                                    </div>
+                                    <div class="col-md-6 graph-type font-bold">
+                                        Histogram 100%
+                                    </div>
+                                </div>                                        
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-option borders" data-ng-show="isSet(2)">
+                    <div class="scroll-body p-md" slimscroll="{height: 339,size:4,distance:0}">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a> <i class="fa fa-line-chart"></i></a> 
+                                    </div>
+                                    <div class="col-md-6 graph-type font-bold">
+                                        Lines
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a> <i class="fa fa-area-chart"></i></a> 
+                                    </div>
+                                    <div class="col-md-6 graph-type font-bold">
+                                        Stacked Area
+                                    </div>
+                                </div>                                        
+                            </div> 
+                        </div>
+                        <div class="row m-t-md">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a> <i class="fa fa-bar-chart"></i></a> 
+                                    </div>
+                                    <div class="col-md-6 graph-type font-bold">
+                                        Mix
+                                    </div>
+                                </div>                                        
+                            </div> 
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a> <i class="fa fa-line-chart"></i></a> 
+                                    </div>
+                                    <div class="col-md-6 graph-type font-bold">
+                                        Stacked Area 100%
+                                    </div>
+                                </div>                                        
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-option borders" data-ng-show="isSet(3)">
+                    <div class="scroll-body p-md" slimscroll="{height: 339,size:4,distance:0}">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a> <i class="fa fa-pie-chart"></i></a> 
+                                    </div>
+                                    <div class="col-md-6 graph-type font-bold">
+                                        Pie
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a> <i class="fa fa-circle-o-notch"></i></a> 
+                                    </div>
+                                    <div class="col-md-6 graph-type font-bold">
+                                        Donut
+                                    </div>
+                                </div>                                        
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form> 

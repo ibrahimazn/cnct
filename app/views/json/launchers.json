@@ -1,0 +1,34 @@
+[
+    {
+        "name": "R Studio + R",
+        "platformTools": "R Studio, R, Editor, Terminal"
+    },
+    {
+        "name": "Jupyter_session1",
+        "platformTools": "Jupyter"
+    },
+    {
+        "name": "R Jupyter +Python+ R",
+        "platformTools": "R, Python, Editor, Jupyter, Terminal"
+    },
+    {
+        "name": "Terminal",
+        "platformTools": "Console"
+    },
+    {
+        "name": "R + Python",
+        "platformTools": "R, Python, Editor, Terminal"
+    },
+    {
+        "name": "R Studio + Python",
+        "platformTools": "R Studio, Python, Editor, Terminal"
+    },
+    {
+        "name": "RStudio_session",
+        "platformTools": "R Studio"
+    },
+    {
+         "name": "Jupyter_session1",
+        "platformTools": "Jupyter"
+    }
+]

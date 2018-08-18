@@ -1,0 +1,72 @@
+<form role="form" id="onlinePrediction" name="onlinePrediction" novalidate>
+    <div class="m-t-md">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group"
+                    data-ng-class="{'has-error': onlinePrediction.name.$invalid && onlinePredictionSubmitted}">
+                    <label>{{ 'locale-name' | translate }}</label>
+                    <input type="text" name="name" class="form-control" data-ng-model="deployOnline.name">  
+                </div>
+                <div class="form-group"
+                    data-ng-class="{'has-error': onlinePrediction.pmmlFile.$invalid && onlinePredictionSubmitted}">
+                    <label>{{ 'locale-pmml-file' | translate }}</label>
+                    <input type="text" name="pmmlFile" class="form-control" data-ng-model="deployOnline.pmmlFile">  
+                </div>
+                <div class="form-group"
+                    data-ng-class="{'has-error': onlinePrediction.language.$invalid && onlinePredictionSubmitted}">
+                    <label>{{ 'locale-language' | translate }}</label>
+                    <select class="form-control m-t-sm" name="language" data-ng-init="deployOnline.language = 'r'" data-ng-model="deployOnline.language">
+                        <option value="r">R</option>
+                        <option value="rStudio">R Studio</option>
+                        <option value="python">Python</option>
+                    </select>  
+                </div>
+                <div class="form-group"
+                    data-ng-class="{'has-error': onlinePrediction.pathToDeploy.$invalid && onlinePredictionSubmitted}">
+                    <label>{{ 'locale-path-to-deploy' | translate }}</label>
+                    <input type="text" name="pathToDeploy" class="form-control" data-ng-model="deployOnline.pathToDeploy">  
+                </div>
+                <div class="m-t-md">
+                    <a class="btn btn-success" >{{ 'locale-deploy' | translate }}</a>
+                    <a class="btn btn-light" >{{ 'locale-cancel' | translate }}</a>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="bg-info-light form-box p-md">
+                    <div class="form-group"
+                        data-ng-class="{'has-error': onlinePrediction.sourceToDeploy.$invalid && onlinePredictionSubmitted}">
+                        <label> {{ 'locale-select-source-to-deploy' | translate }} </label>
+                        <select class="form-control m-t-sm" data-ng-init="deployOnline.sourceToDeploy = '/'" name="sourceToDeploy" data-ng-model="deployOnline.sourceToDeploy">
+                            <option value="/">/</option>
+                            <option value="dataset">dataset</option>
+                            <option value="ver1">ver1</option>
+                            <option value="ver2">ver2</option>
+                        </select>
+                    </div>
+                    <div class="hpanel">            
+                        <div class="panel-body tree-list">
+                            <ul>
+                                <li ng-repeat="file in fileManager.directories" ng-include="'filemanager'"></li>
+                                <!-- <li data-ng-show="isRestore" ng-repeat="file in fileManager.fileList.directoryList" ng-include="'filemanager'"></li> -->
+                            </ul>
+                            <script type="text/ng-template" id="filemanager">
+                                <a data-ng-if="!isRestore" href="javascript:void(0)" ng-click="fileManager.getSubFolders(file)">
+                                    <i class="fa fa-folder" data-ng-if="file.type=='folder'"></i>
+                                    <i class="fa fa-folder-open" data-ng-if="file.type=='folder-open'"></i> 
+                                    <i class="fa fa-file-text" data-ng-if="file.type=='file'"></i> 
+                                    <label for='{{ file.path}}'> {{ file.path }} </label>
+                                </a>
+                                <a data-ng-if="isRestore" href="javascript:void(0)" ng-click="fileManager.getSubFolders(file, selectedJob.jobId, isRestore, false)">
+                                    {{ file.path }}
+                                </a>
+                                <ul data-ng-if="file.sub" >
+                                    <li ng-repeat="file in file.sub" ng-include="'filemanager'"></li>
+                                </ul>
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

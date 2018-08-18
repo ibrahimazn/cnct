@@ -1,0 +1,42 @@
+[
+    {
+        "name": " rowLength",
+        "type":"string",
+        "id":"0"
+    },
+    {
+        "name": "ip",
+        "type":"char",
+        "id":"1"
+    },
+    {
+        "name": "ip_country",
+        "type":"char",
+        "id":"2"
+    },
+    {
+        "name": "revenue",
+        "type":"string",
+        "id":"3"
+    },
+    {
+        "name": "pages_visited",
+        "type":"string",
+        "id":"4"
+    },
+    {
+        "name": "support_machine",
+        "type":"char",
+        "id":"5"
+    },
+    {
+        "name": "stochastic_gradient",
+        "type":"string",
+        "id":"6"
+    },
+    {
+        "name": "revenue_count",
+        "type":"string",
+        "id":"7"
+    }
+]

@@ -1,0 +1,50 @@
+[
+    {
+        "customer_id": "23dasdDS",
+        "ip": "192.168.10.10",
+        "ip_country": "United States",
+        "pages_visited": "2.0",
+        "campain": "True",
+        "revenue": "134"
+    },
+    {
+        "customer_id": "e3dasdDS",
+        "ip": "192.168.10.14",
+        "ip_country": "China",
+        "pages_visited": "7.0",
+        "campain": "True",
+        "revenue": "123"
+    },
+    {
+        "customer_id": "efsef53dasdDS",
+        "ip": "192.168.10.16",
+        "ip_country": "United States",
+        "pages_visited": "8.0",
+        "campain": "False",
+        "revenue": "123"
+    },
+    {
+        "customer_id": "efgege3dasdDS",
+        "ip": "192.168.11.10",
+        "ip_country": "South Korea",
+        "pages_visited": "14.0",
+        "campain": "True",
+        "revenue": "132"
+    },
+    {
+        "customer_id": "efgege3dasdDS",
+        "ip": "192.168.11.10",
+        "ip_country": "South Korea",
+        "pages_visited": "14.0",
+        "campain": "True",
+        "revenue": "132"
+    },
+    {
+        "customer_id": "efgege3dasdDS",
+        "ip": "192.168.11.10",
+        "ip_country": "South Korea",
+        "pages_visited": "14.0",
+        "campain": "True",
+        "revenue": "132"
+    }
+]

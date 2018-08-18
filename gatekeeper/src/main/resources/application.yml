@@ -1,0 +1,41 @@
+server.contextPath: ${AUTH_CONTEXT:/auth}
+
+security:
+  basic:
+    enabled: false
+
+server:
+ port: ${AUTH_PORT:9090}
+keystore:
+  password: ${AUTH_SECRET:mySecretKey}
+
+
+---
+
+ldap:
+    url: ${LDAP_URL:ldap://192.168.231.30:389}
+    userDn: ${LDAP_DN:cn=ld-admin,dc=az-rnd,dc=local}
+    base: ${LDAP_BASE:dc=az-rnd,dc=local}
+    password: ${LDAP_PASS:l3tm3in}
+    enable: ${LDAP_ENABLE:true}
+    dnPatterns: uid={0},ou=SLMLP
+    groupSearchBase: ou=SLMLP
+    userSearchBase: ou=SLMLP
+    userDnDc: /dc=az-rnd,dc=local
+    dnPatternUid: uid={0}
+
+
+---
+
+# LDAP properties
+user:
+    account: ${AUTH_USER_ACCOUNT:slmlp}
+
+
+---
+
+# AES salt key
+aes:
+    salt:
+        secretKey: ${AES_SALT_KEY:DA97AA70B21ADCCA89708EFC05C7E2F2}
+

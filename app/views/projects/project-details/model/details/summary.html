@@ -1,0 +1,58 @@
+<div class="wrapper wrapper-content m-l-n-sm m-r-n-sm" data-ng-controller="modelDetailsCtrl">
+    <div class="ibox float-e-margins no-margins">
+        <div class="ibox-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive m-t-sm">
+                            <table class="table table-hover no-margins summary-list">
+                                <tbody>
+                                    <tr>
+                                        <td>Model Name</td>
+                                        <td class="bold">{{selectedModel.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Model Type</td>
+                                        <td class="bold">{{selectedModel.modelType}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Latest version</td>
+                                        <td class="bold">{{selectedModel.latestVersion || 'Model net yet saved'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Label column</td>
+                                        <td class="bold">{{selectedModel.target || 'Not selected'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Model Creation Date</td>
+                                        <td class="bold">{{selectedModel.createdAt | date:"dd-MM-yyyy hh:mm:ss"}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Runtime environment</td>
+                                        <td class="bold">{{selectedModel.runTime || 'Custom Notebook'}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Training / Validation Data split</td>
+                                        <td class="bold">Train: {{(selectedModel.sampling.trainRatio || '0') | number:2}}, Test: {{(selectedModel.sampling.testRatio || '0') | number:2 }}, Seed: {{(selectedModel.sampling.ramdomSeeds || '0') | number:2}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Link Source</td>
+                                        <td>
+                                            <a data-ng-if="!selectedModel.modelFileSrc" data-ng-click="modelDetailsObject.selectSourceScript('lg')" class="btn btn-info btn-xs">Select Source or Script</a>
+                                            <span data-ng-if="selectedModel.modelFileSrc"> {{selectedModel.modelFileSrc}}</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Saved Model</td>
+                                        <td>
+                                            <a data-ng-if="!selectedModel.modelFile" data-ng-click="modelDetailsObject.selectModelFile('lg')" class="btn btn-info btn-xs">Select Saved Model File</a>
+                                            <span data-ng-if="selectedModel.modelFile"> {{selectedModel.modelFile}} <a data-ng-click="modelDetailsObject.selectModelFile('lg')" class="btn btn-info btn-xs">Update Model</a></span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>

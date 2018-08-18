@@ -1,0 +1,82 @@
+[
+    {
+        "name": "Dataset",
+        "des": "Partial or whole datatable",
+        "icon": "dataset"
+    },
+    {
+        "name": "Chart",
+        "des": "Visualize data from your source",
+        "icon": "chart"
+    },
+    {
+        "name": "Comments",
+        "des": "Comment feed of an object",
+        "icon": "comments"
+    },
+    {
+        "name": "Launchers",
+        "des": "Code analysis",
+        "icon": "launchers"
+    },
+    {
+        "name": "Metrics",
+        "des": "Meta data about your source",
+        "icon": "metrics"
+    },
+    {
+        "name": "Saved model report",
+        "des": "Full report of a model",
+        "icon": "model"
+    },
+    {
+        "name": "Managed folder",
+        "des": "Display content of a folder",
+        "icon": "folder"
+    },
+    {
+        "name": "Webapp",
+        "des": "Display web app",
+        "icon": "webapp"
+    },
+    {
+        "name": "Report",
+        "des": "Display report",
+        "icon": "report"
+    },
+    {
+        "name": "Project activity",
+        "des": "Activity charts of a project",
+        "icon": "project"
+    },
+    {
+        "name": "Scenario",
+        "des": "Run button or activity report of a scenario",
+        "icon": "scenario"
+    },
+    {
+        "name": "Macro",
+        "des": "Run a DSS macro",
+        "icon": "macro"
+    },
+    {
+        "name": "Static insight",
+        "des": "Insight generated from code",
+        "icon": "insight"
+    },
+    {
+        "name": "Text",
+        "des": "Zone of text",
+        "icon": "text"
+    },
+    {
+        "name": "Image",
+        "des": "Upload an image",
+        "icon": "image"
+    },
+    {
+        "name": "Web Content",
+        "des": "Embedded web page",
+        "icon": "web-content"
+    }
+]

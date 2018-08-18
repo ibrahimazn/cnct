@@ -1,0 +1,38 @@
+<form role="form" id="cicdConfigForm" name="cicdConfigForm" novalidate>
+<!--    <div class="row m-t-md">
+        <div class="col-md-5">
+            <div class="form-group"
+                 data-ng-class="{'has-error': cicdConfigForm.cicdUrl.$invalid && cicdConfigForm.submitted}">
+                <label> {{ 'locale-cicd-url' | translate }} </label>
+                <input type="text" name="cicdUrl" class="form-control" data-ng-model="cicdConfig.cicdUrl">
+            </div>
+        </div>
+    </div>-->
+    <div class="row m-t-md">
+        <div class="col-md-4">
+            <div class="form-group"
+                 data-ng-class="{'has-error': cicdConfigForm.cicdUrl.$invalid && cicdConfigForm.submitted}">
+                <label> {{ 'locale-cicd-url' | translate }} </label>
+                <input type="text" name="cicdUrl" class="form-control" data-ng-model="cicdConfig.cicdUrl">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group"
+                 data-ng-class="{'has-error': cicdConfigForm.username.$invalid && cicdConfigForm.submitted}">
+                <label> {{ 'locale-username' | translate }} </label>
+                <input type="text" name="username" class="form-control" data-ng-model="cicdConfig.username">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group"
+                 data-ng-class="{'has-error': cicdConfigForm.password.$invalid && cicdConfigForm.submitted}">
+                <label> {{ 'locale-password' | translate }} </label>
+                <input type="password" name="password" class="form-control" data-ng-model="cicdConfig.password">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <button class="btn btn-success m-t-xs m-r-sm text-uppercase pull-right m-l-sm" type="submit">{{ 'locale-config' | translate }}</button>
+            <button class="btn btn-light m-t-xs text-uppercase pull-right" type="button">{{ 'locale-cancel' | translate }}</button>
+        </div>
+    </div>
+</form>

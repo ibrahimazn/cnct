@@ -1,0 +1,22 @@
+[
+    {
+        "name": "AZDatasetOutput",
+        "totalSize": "0.58 kb",
+        "type": "Datasource"
+    },
+    {
+        "name": "AZ_Dataset",
+        "totalSize": "5.2 mb",
+        "type": "Dataset"
+    },
+    {
+        "name": "AZ_Employee_DatasetOutput",
+        "totalSize": "1.1 mb",
+        "type": "Dataset"
+    },
+    {
+        "name": "AZ_Employee_Dataset",
+        "totalSize": "0.84 kb",
+        "type": "Datasource"
+    }
+]

@@ -1,0 +1,104 @@
+# Server properties
+server:
+    port: ${ACCOUNT_PORT:8080}
+    max-http-header-size: 10000000
+#    context-path: ${ACCOUNT_CONTEXT:/account}
+app:
+    authserver:
+        host: ${AUTH_HOST:localhost}
+        port: ${AUTH_PORT:9090}
+        url: http://${AUTH_HOST:localhost}:${AUTH_PORT:9090}/${AUTH_CONTEXT:auth}
+    containerserver:
+        host: ${CONTAINER_HOST:localhost}
+        port: ${CONTAINER_PORT:8083}
+        url: http://${CONTAINER_HOST:localhost}:${CONTAINER_PORT:8083}/${CONTAINER_CONTEXT:container}
+    gitconnector:
+        url: http://${GIT_FILE_HOST:localhost}:${GIT_FILE_PORT:8089}/${GIT_CONTEXT:git-connector}
+# Data source configuration
+spring:
+    # MYSQL data source properties
+    datasource:
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://${ANCODE_DB_HOST:localhost}:${ANCODE_DB_PORT:3306}/${ANCODE_DB_NAME:slmlp}?characterEncoding=utf8
+        username: ${ANCODE_DB_USERNAME:root}
+        password: ${ANCODE_DB_PASSWORD:l3tm3in}
+        testWhileIdle: true
+        timeBetweenEvictionRunsMillis: 60000
+        validationQuery: SELECT 1
+
+    jpa:
+        hibernate.ddl-auto: none
+        database: MYSQL
+        show-sql: true
+        hibernate:
+            ddl-auto: none
+            dialect: org.hibernate.dialect.MySQL5Dialect
+            naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
+            show_sql: ${ANCODE_DB_SHOW_SQL:true}
+            format_sql: ${ANCODE_DB_FORMAT_SQL:true}
+    
+    http:
+        multipart:
+            enabled: true
+            max-file-size: 100MB
+            max-request-size: 100MB            
+security:
+    oauth2:
+        resource:
+            userInfoUri: http://${AUTH_HOST:localhost}:${AUTH_PORT:9090}/${AUTH_CONTEXT:auth}/user
+            jwt:
+                keyUri: http://${AUTH_HOST:localhost}:${AUTH_PORT:9090}/${AUTH_CONTEXT:auth}/oauth/token_key
+     
+---
+zuul:
+#    prefix: /
+#    ignoredServices: '*'
+     host:
+         connect-timeout-millis: ${ZUUL_CONNECT_TIMEOUT:60000}
+         socket-timeout-millis: ${ZUUL_SOCKET_TIMEOUT:60000}
+  
+     routes:
+          auth-service:
+             path: ${AUTH_PATH:/auths/**}
+             url: ${AUTH_URL:http://localhost:9090}
+          container-service:
+              path: ${CONTAINER_PATH:/containers/**}
+              url: ${CONTAINER_URL:http://localhost:8083}
+              customSensitiveHeaders: true
+          gitconnector-service:
+              path: ${GIT_PATH:/gitapi/**}
+              url: ${GIT_URL:http://localhost:8089}
+     ws:
+         brokerages:
+             container-service:
+                 end-points: /container/container-ws
+                 brokers: /topic
+                 destination-prefixes: /ancode
+# Profile image properties
+profile:
+    image:
+        dir: ${PROFILE_IMAGE_DIR:/home/az.lan/azn0084/profiles/}
+fileimport:
+    temp:
+        dir: ${FILE_IMPORT_DIR:/home/az.lan/azn0084/profiles/}
+            
+---
+
+# AES salt key
+aes:
+    salt:
+        secretKey: ${AES_SALT_KEY:DA97AA70B21ADCCA89708EFC05C7E2F2}  
+         
+kubernete:
+#    agent: ${KUBE_AGENT:http://192.168.4.249:6100}
+    agent: ${KUBE_AGENT:http://35.200.232.220:6100}
+    secKey: ${KUBE_KEY:eVBaXmU5XcbMhdorUMpUO6eQI1Jv8pDK}
+    port: ${KUBE_FILE_PORT:6200}
+
+git:
+    function: ${GIT_FUNCTION_URL:10.160.0.2:31757/assistanz/gitfunctionv2}   
+    
+grafana:
+    url: ${GRAFANA_URL:http://35.200.232.220}
+    port: ${GRAFANA_PORT:32399}      
+    

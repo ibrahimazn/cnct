@@ -33,8 +33,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.appfiss.account.constants.GenericConstants;
 import com.appfiss.account.entity.User;
+import com.appfiss.account.entity.User.STATUS;
 import com.appfiss.account.entity.User.UserType;
 import com.appfiss.account.error.GenericException;
+import com.appfiss.account.security.EncryptionUtil;
 import com.appfiss.account.service.UserService;
 import com.appfiss.account.util.PagingAndSorting;
 import com.wordnik.swagger.annotations.ApiOperation;
@@ -45,7 +47,7 @@ import com.wordnik.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping("/api/user")
 public class UserController extends CRUDController<User> implements ApiController {
-	
+
 	/** Service reference for User. */
 	@Autowired
 	private UserService userService;
@@ -212,8 +214,7 @@ public class UserController extends CRUDController<User> implements ApiControlle
 	 */
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	@ResponseBody
-	public User handleFileUpload(@RequestParam(value = "departmentId") Long departmentId,
-			@RequestParam(required = false, value = "email") String email,
+	public User handleFileUpload(@RequestParam(required = false, value = "email") String email,
 			@RequestParam(value = "firstName") String firstName, @RequestParam(value = "lastName") String lastName,
 			@RequestParam(required = false, value = "mobilePhone") String mobilePhone,
 			@RequestParam(value = "password") String password, @RequestParam(value = "userType") String userType,
@@ -230,7 +231,7 @@ public class UserController extends CRUDController<User> implements ApiControlle
 			user.setLastName(lastName);
 		}
 		if (password != null) {
-			user.setPassword(password);
+			user.setPassword(EncryptionUtil.encrypt(password, secretKey));
 		}
 		if (mobilePhone != null) {
 			user.setPhone(mobilePhone);
@@ -243,6 +244,7 @@ public class UserController extends CRUDController<User> implements ApiControlle
 		}
 		user.setUserType(UserType.valueOf(userType.toUpperCase()));
 		user.setActive(true);
+		user.setStatus(STATUS.ENABLED);
 		user = userService.save(user);
 		return user;
 	}
@@ -311,6 +313,7 @@ public class UserController extends CRUDController<User> implements ApiControlle
 
 		user.setUserType(UserType.valueOf(userType.toUpperCase()));
 		user.setActive(true);
+		user.setStatus(STATUS.ENABLED);
 		user = userService.update(user);
 		return user;
 	}

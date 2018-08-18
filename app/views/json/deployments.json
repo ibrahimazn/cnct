@@ -1,0 +1,11 @@
+[
+    {
+        "modelnName": "Prediction (LARS) on iris_data_prepared_preparedj"
+    },
+    {
+        "modelnName": "Prediction (DECISION_TREE_CLASSIFICATION) on iris_data_prepared "
+    },
+    {
+        "modelnName": "Prediction (SCIKIT_MODEL) on iris_data_prepared "
+    }
+]

@@ -1,0 +1,14 @@
+<div class="modal-header" modaldraggable>
+    <button type="button" data-ng-click="cancel();" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title"><i class="fa fa-cloud-upload m-r-sm"></i>{{ 'locale-datasource-details' | translate }}</h4>
+</div>
+<div class="modal-body" >
+    <div class="filemanager-area">
+        <angular-filemanager ></angular-filemanager>
+        <div class="row m-t-md">
+            <div class="col-md-12">
+                    <a class="btn btn-success pull-right" data-ng-click="chooseFile()">{{ 'locale-ok' | translate }}</a>
+            </div>
+        </div>
+    </div>
+</div>

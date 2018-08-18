@@ -1,0 +1,18 @@
+[
+    {
+        "path": "dataset/ver1/sample.csv",
+        "checked":"true"
+    },
+    {
+        "path": "dataset/dataset.csv",
+        "checked":"true"
+    },
+    {
+        "path": "ver1/sample1.csv",
+        "checked":"true"
+    },
+    {
+        "path": "ver2/projects/project-details..csv",
+        "checked":"true"
+    }
+]

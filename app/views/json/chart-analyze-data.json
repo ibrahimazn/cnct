@@ -1,0 +1,27 @@
+[
+    {
+        "name": "count of records",
+        "type":"symbol",
+        "id":"0"
+    },
+    {
+        "name": "col_0",
+        "type":"char",
+        "id":"1"
+    },
+    {
+        "name": "col_1",
+        "type":"char",
+        "id":"2"
+    },
+    {
+        "name": "col_2",
+        "type":"char",
+        "id":"3"
+    },
+    {
+        "name": "col_3",
+        "type":"char",
+        "id":"4"
+    }
+]

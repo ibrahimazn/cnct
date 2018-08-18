@@ -1,0 +1,23 @@
+<div class="modal-body p-lg">
+    <div class="sa" data-ng-hide="confirm == false">
+        <div class="sa-warning">
+            <div class="sa-warning-body"></div>
+            <div class="sa-warning-dot"></div>
+        </div>
+    </div>
+    <div class="sa" data-ng-if="confirm == false">
+        <div class="sa-success">
+            <div class="sa-success-tip"></div>
+            <div class="sa-success-long"></div>
+            <div class="sa-success-placeholder"></div>
+            <div class="sa-success-fix"></div>
+        </div>
+    </div>
+    <div class="text-center">
+        <h2>Are you sure</h2>
+        <h4>Do you want to delete ?</h4>
+
+        <button type="button" class="btn btn-light m-t-lg" data-ng-click="cancel();">{{ 'locale-cancel' | translate }}</button>
+        <button type="submit" class="btn btn-danger m-t-lg" data-ng-click="confirm();">{{ 'locale-confirm' | translate }}</button>
+    </div>
+</div>

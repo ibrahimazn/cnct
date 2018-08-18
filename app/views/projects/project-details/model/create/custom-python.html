@@ -1,0 +1,41 @@
+<form role="form" id="userAccountForm" name="userAccountForm" novalidate>
+    <div class="modal-header" modaldraggable>
+        <button type="button" data-ng-click="cancel();" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" data-ng-hide="userAccountElement.updateButton"><i class="fa fa-plus-circle m-r-sm"></i>{{ 'locale-add-user' | translate }}</h4>
+        <h4 class="modal-title" data-ng-if="userAccountElement.updateButton"><i class="fa fa-edit m-r-sm"></i>{{ 'locale-edit-user' | translate }}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group"
+                     data-ng-class="{'has-error': modelForm.sampling.$invalid && modelForm.Submitted}">
+                    <label>{{ 'locale-sampling' | translate }}</label>
+                    <input type="text" name="sampling" class="form-control" data-ng-model="model.sampling">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group"
+                     data-ng-class="{'has-error': modelForm.modelLauncher.$invalid && modelForm.Submitted}">
+                    <label>{{ 'locale-launcher' | translate }}</label>
+                    <select class="form-control" name="modelLauncher" data-ng-init="model.modelLauncher = 'RStudioR'" data-ng-model="model.modelLauncher">
+                        <option value="RStudioR">R Studio + R</option>
+                        <option value="Jupyter">Jupyter</option>
+                        <option value="RPython">R + Python</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group"
+                     data-ng-class="{'has-error': modelForm.source.$invalid && modelForm.Submitted}">
+                    <label>{{ 'locale-source' | translate }}</label>
+                    <input type="text" name="source" class="form-control" data-ng-model="model.source">  
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <!--<div data-ng-if = "passwordMsg" class="alert alert-danger" role="alert">{{ 'locale-password-validation-message' | translate }}</div>-->
+        <button type="button" class="btn btn-default" data-ng-click="cancel();">{{ 'locale-cancel' | translate }}</button>
+        <button type="submit" class="btn btn-info" data-ng-click="cancel();">{{ 'locale-save' | translate }}</button>
+    </div>
+</form> 

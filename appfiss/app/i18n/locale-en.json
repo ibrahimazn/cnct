@@ -752,5 +752,11 @@
     "locale-volume-name" : "Volume Name",
     "locale-pvc-id" : "PVC",
     "locale-ldap-url" : "LDAP URL",
-    "locale-ldap-basedn" : "Base DN"
+    "locale-ldap-basedn" : "Base DN",
+    "locale-admin" : "ADMIN",
+    "locale-user" : "USER",
+    "locale-no-phone" : "Phone number not set ",
+    "locale-no-email" : "Email not set",
+    "locale-no-date" : "Date not set",
+    "locale-no-status" : "Status not set"
 }

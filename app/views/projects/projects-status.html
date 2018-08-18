@@ -1,0 +1,193 @@
+<div class="row wrapper border-bottom page-heading">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 page-title">
+        <h2>Project Name - {{ 'locale-project-status' | translate }}</h2>
+    </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
+        <div class="filter-wrapper m-r-md">
+            <select class="form-control" name="type" data-ng-model="type">
+                <option value="">Select Project</option>
+                <option>Creating Remarkable</option>
+                <option>Myspace</option>
+                <option>Space</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="row wrapper page-breadcrumb">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li>
+                <a data-ui-sref="index.user-dashboard"><i class="fa fa-home" aria-hidden="true"></i></a>
+            </li>
+            <li>
+                <strong><a data-ui-sref="projects.grid">{{ 'locale-projects' | translate }}</a></strong>
+            </li>
+            <li class="active">
+                {{ 'locale-project-status' | translate }}
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">   
+    <div class="row project-status-widget">
+        <div class="col-md-6">  
+            <div class="ibox">
+                <div class="bg-info-light no-padding"><h3>{{ 'locale-data-transformation' | translate }}</h3></div>
+                <div class="ibox-content"> 
+                    <div class="row p-md">
+                        <div class="col-lg-6 col-md-6 col-sm-6 border-right border-bottom p-xs">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-4 col-md-4">
+                                    <div class="rounded-50 bg-info"><i class="fa fa-database"></i></div>
+                                </div>
+                                <div class="col-lg-8 col-sm-8 col-md-8">
+                                    <h4>02</h4>
+                                    <h6>{{ 'locale-raw-datasets' | translate }}</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 border-bottom p-xs">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-4 col-md-4">
+                                    <div class="rounded-50 bg-info"><i class="fa fa-check-circle"></i></div>
+                                </div>
+                                <div class="col-lg-8 col-sm-8 col-md-8">
+                                    <h4>02</h4>
+                                    <h6>{{ 'locale-processed-datasets' | translate }}</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 border-right p-xs">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-4 col-md-4">
+                                    <div class="rounded-50 bg-info"><i class="fa fa-user-plus"></i></div>
+                                </div>
+                                <div class="col-lg-8 col-sm-8 col-md-8">
+                                    <h4>07</h4>
+                                    <h6>{{ 'locale-team-members' | translate }}</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 p-xs">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-4 col-md-4">
+                                    <div class="rounded-50 bg-info"><i class="fa fa-calendar"></i></div>
+                                </div>
+                                <div class="col-lg-8 col-sm-8 col-md-8">
+                                    <h4>07-02-18</h4>
+                                    <h6>{{ 'locale-due-date' | translate }}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="ibox">
+                <div class="bg-info-light no-padding"><h3>{{ 'locale-modeling' | translate }}</h3></div>
+                <div class="ibox-content">
+                    <div class="row p-md">
+                        <div class="col-lg-6 col-sm-6 border-right border-bottom p-xs">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-4 col-md-4">
+                                    <div class="rounded-50 bg-warning"><i class="fa fa-database"></i></div>
+                                </div>
+                                <div class="col-lg-8 col-sm-8 col-md-8">
+                                    <h4>02</h4>
+                                    <h6>{{ 'locale-datasets' | translate }}</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 border-bottom p-xs">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-4 col-md-4">
+                                    <div class="rounded-50 bg-warning"><i class="fa fa-cube"></i></div>
+                                </div>
+                                <div class="col-lg-8 col-sm-8 col-md-8">
+                                    <h4>02</h4>
+                                    <h6>{{ 'locale-models' | translate }}</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 border-right p-xs">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-4 col-md-4">
+                                    <div class="rounded-50 bg-warning"><i class="fa fa-user-plus"></i></div>
+                                </div>
+                                <div class="col-lg-8 col-sm-8 col-md-8">
+                                    <h4>03</h4>
+                                    <h6>{{ 'locale-team-members' | translate }}</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 p-xs">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-4 col-md-4">
+                                    <div class="rounded-50 bg-warning"><i class="fa fa-calendar"></i></div>
+                                </div>
+                                <div class="col-lg-8 col-sm-8 col-md-8">
+                                    <h4>-</h4>
+                                    <h6>{{ 'locale-due-date' | translate }}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+        <div class="col-md-12">
+            <div class="ibox">
+                <div class="bg-info-light no-padding"><h3>{{ 'locale-scoring' | translate }}</h3></div>
+                <div class="ibox-content">
+                    <div class="row p-md">
+                        <div class="col-lg-3 col-sm-3 border-right p-xs">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-4 col-md-4">
+                                    <div class="rounded-50 bg-success"><i class="fa fa-upload"></i></div>
+                                </div>
+                                <div class="col-lg-8 col-sm-8 col-md-8">
+                                    <h4>00</h4>
+                                    <h6>{{ 'locale-deployment' | translate }}</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-3 border-right p-xs">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-4 col-md-4">
+                                    <div class="rounded-50 bg-success"><i class="fa fa-play-circle"></i></div>
+                                </div>
+                                <div class="col-lg-8 col-sm-8 col-md-8">
+                                    <h4>00</h4>
+                                    <h6>{{ 'locale-build-progress' | translate }}</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-3 border-right p-xs">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-4 col-md-4">
+                                    <div class="rounded-50 bg-success"><i class="fa fa-user-plus"></i></div>
+                                </div>
+                                <div class="col-lg-8 col-sm-8 col-md-8">
+                                    <h4>02</h4>
+                                    <h6>{{ 'locale-team-members' | translate }}</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-3 p-xs">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-4 col-md-4">
+                                    <div class="rounded-50 bg-success"><i class="fa fa-calendar"></i></div>
+                                </div>
+                                <div class="col-lg-8 col-sm-8 col-md-8">
+                                    <h4>-</h4>
+                                    <h6>{{ 'locale-due-date' | translate }}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </div>       
+</div>

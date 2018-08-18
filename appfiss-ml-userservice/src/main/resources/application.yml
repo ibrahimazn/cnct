@@ -29,7 +29,7 @@ spring:
         database: MYSQL
         show-sql: true
         hibernate:
-            ddl-auto: create-drop
+            ddl-auto: update
             dialect: org.hibernate.dialect.MySQL5Dialect
             naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
             show_sql: ${APPFISS_DB_SHOW_SQL:true}
@@ -43,9 +43,9 @@ spring:
 security:
     oauth2:
         resource:
-            userInfoUri: http://${AUTH_HOST:localhost}:${AUTH_PORT:8087}/${AUTH_CONTEXT:auth}/user
+            userInfoUri: http://${AUTH_HOST:localhost}:${AUTH_PORT:9090}/${AUTH_CONTEXT:auth}/user
             jwt:
-                keyUri: http://${AUTH_HOST:localhost}:${AUTH_PORT:8087}/${AUTH_CONTEXT:auth}/oauth/token_key
+                keyUri: http://${AUTH_HOST:localhost}:${AUTH_PORT:9090}/${AUTH_CONTEXT:auth}/oauth/token_key
      
 ---
 zuul:
@@ -56,7 +56,7 @@ zuul:
      routes:
           auth-service:
              path: ${AUTH_PATH:/auths/**}
-             url: ${AUTH_URL:http://localhost:8087}
+             url: ${AUTH_URL:http://localhost:9090}
           deployment-service:
               path: ${CONTAINER_PATH:/deployment/**}
               url: ${CONTAINER_URL:http://localhost:8088}
@@ -72,7 +72,7 @@ zuul:
              container-service:
                  end-points: /container/container-ws
                  brokers: /topic
-                 destination-prefixes: /ancode
+                 destination-prefixes: /appfiss
 # Profile image properties
 profile:
     image:

@@ -1,0 +1,49 @@
+<form role="form" id="publishForm" name="publishForm" novalidate>
+    <div class="modal-header" modaldraggable>
+        <button type="button" data-ng-click="cancel();" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><i class="fa fa-cloud-upload m-r-sm"></i>{{ 'locale-publish' | translate }}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group"
+                     data-ng-class="{'has-error': publishForm.datasetName.$invalid && publishForm.submitted}">
+                    <label> {{ 'locale-publish-model-name' | translate }} </label>
+                    <select  ng-disabled="true" disabled class="form-control" name="datasetName" data-ng-init="publish.modelName = 'LARS on iris_data_prepared_preparedj'" data-ng-model="publish.modelName">
+                        <option value=""> {{ 'locale-select' | translate }} </option>
+                        <option value="LARS on iris_data_prepared_preparedj"> LARS on iris_data_prepared_preparedj</option>
+                        <option value="teraData">Tera Data</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group"
+                     data-ng-class="{'has-error': publishForm.modelPath.$invalid && publishForm.submitted}">
+                    <label> {{ 'locale-publish-model-path' | translate }} </label>
+                    <input type="text" name="modelPath" class="form-control" ng-disabled="true"
+                           placeholder="root/dataSet/dataSet-1/az-dataset.csv" data-ng-model="publish.modelPath">
+                </div>
+            </div>
+<!--            <div class="col-md-6">
+                <div class="form-group"
+                     data-ng-class="{'has-error': publishForm.destination.$invalid && publishForm.submitted}">
+                    <label> {{ 'locale-destination' | translate }} </label>
+                    <input type="text" name="destination" class="form-control" ng-disabled="true"
+                           placeholder="root/dataSet/dataSet-1/az-dataset.csv" data-ng-model="publish.destination">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group"
+                     data-ng-class="{'has-error': publishForm.path.$invalid && publishForm.submitted}">
+                    <label> {{ 'locale-path' | translate }} </label>
+                    <input type="text" name="path" class="form-control" ng-disabled="true"
+                           placeholder="root/dataSet/dataSet-1/az-dataset.csv" data-ng-model="publish.path">
+                </div>
+            </div>-->
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-ng-click="cancel();">{{ 'locale-cancel' | translate }}</button>
+        <button type="submit" class="btn btn-info" data-ng-click="cancel();">{{ 'locale-publish' | translate }}</button>
+    </div>
+</form> 

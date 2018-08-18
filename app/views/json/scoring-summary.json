@@ -1,0 +1,26 @@
+[
+    {
+        "label": "Prediction Name",
+        "value": "predictive-modeling-os"
+    },
+    {
+        "label": "Model",
+        "value": "model1"
+    },
+    {
+        "label": "Model version",
+        "value": "cf6c1e72-6d0f-4644-8e74-3ac1058d897b"
+    },
+    {
+        "label": "Dataset",
+        "value": "iris_training.csv"
+    },
+    {
+        "label": "Date",
+        "value": "1 Mar 2018, 12:48 PM"
+    },
+    {
+        "label": "Target Column",
+        "value": "COLUMN3"
+    }
+]

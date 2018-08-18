@@ -1,0 +1,302 @@
+<div data-ng-controller="userDashboardCtrl">
+    <div class="row wrapper border-bottom page-heading">
+        <div class="col-lg-12 page-title">
+            <h2>{{'locale-dashboard'| translate }}</h2>
+        </div>
+    </div>
+    <div class="row wrapper page-breadcrumb">
+        <div class="col-lg-12">
+            <ol class="breadcrumb">
+                <li class="active">
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight user-dashboard">
+        <div class="row dashboard-widget">
+            <div class="col-md-4 col-sm-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4">
+                                <div class="rounded-50 bg-info"><i class="fa fa-th"></i></div>
+                            </div>
+                            <div class="col-lg-9 col-md-8 col-sm-8 col-xs-8 mh-60">
+                                <h4>{{userDashboardElement.userProjectLists.length}}</h4>
+                                <h6>{{ 'locale-projects' | translate }}</h6>
+                            </div>
+                        </div>
+                        <div class="border-top m-t-sm dashboard-widget-footer">
+                            {{ 'locale-you-are-associated-with' | translate }} <b>{{userDashboardElement.userProjectLists.length}}</b> {{ 'locale-projects' | translate }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4">
+                                <div class="rounded-50 bg-success"><i class="fa fa-rocket"></i></div>
+                            </div>
+                            <div class="col-lg-9 col-md-8 col-sm-8 col-xs-8 mh-60">
+                                <h4>{{launchersCount}}</h4>
+                                <h6>{{ 'locale-launchers' | translate }}</h6>
+                            </div>
+                        </div>
+                        <div class="border-top m-t-sm dashboard-widget-footer">
+                            You have <b>{{launchersCount}}</b> Launchers
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ibox float-e-margins loader-container" >
+            <get-ancode-loader-container-overlay data-ng-if="userDashboardElement.graphLoader"></get-ancode-loader-container-overlay>
+            <div class="ibox-title border-bottom">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 m-t-xs">
+                        <h5>{{ "locale-usage-details"| translate }}</h5>
+                    </div>
+                    <!--                    <div class="col-md-2 col-sm-4">
+                                            <h4>Select the Usage</h4>
+                                        </div>-->
+                    <!--                    <div class="col-md-2 col-sm-4">
+                                            
+                                        </div>-->
+                    <div class="col-md-6 col-sm-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <select required="true" name="pod" class="form-control m-b-xs"
+                                        data-ng-model="pod" ng-options="pod as pod.name for pod in monitoringPodList" data-ng-change="userDashboardObject.showGraph('graph')">
+                                </select>
+                            </div>
+                            <div class="col-md-6 pull-right" data-ng-init="usageType = '2'">
+                                <select required="true" name="usageType" class="form-control m-b-xs"
+                                        data-ng-model="usageType" data-ng-change="userDashboardObject.showGraph('usage')">
+                                    <option value="2" selected="true">{{ "locale-cpu" | translate }}</option>
+                                    <option value="3">{{ "locale-memory" | translate }}</option>
+                                    <option value="5">{{ "locale-network" | translate }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ibox-content dashboard-graph">
+                <div  class="iframe-wrapper">
+                    <iframe scrolling="no" data-ng-src="{{graph}}" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="ibox float-e-margins loader-container">
+           <get-ancode-loader-container-overlay data-ng-if="userDashboardElement.logLoader"></get-ancode-loader-container-overlay> 
+            <div class="ibox-title border-bottom">
+                <div class="row">
+                    <div class="col-md-7 col-sm-8 m-t-xs">
+                        <h5>{{ 'locale-activities' | translate }}</h5>
+                    </div>
+                    <!--                    <div class="col-md-2 col-sm-4">
+                                            <h4>Select the Pod</h4>
+                                        </div>-->
+                    <div class="col-md-5 col-sm-4">
+                        <select required="true" name="podName" class="form-control m-b-xs"
+                                data-ng-model="podName" ng-options="pod as pod.name for pod in podList" data-ng-change="userDashboardObject.showGraph('logs')">
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <div class="text-center no-data" data-ng-if='podList.length == 0'>
+                    <h4>{{ 'locale-no-records-found' | translate }}</h4>
+                </div>
+                <div class="feed-activity-list" data-ng-if='podList.length != 0'>
+                    <div class="feed-element">
+                        <div class="iframe-activities-wrapper">
+                            <iframe scrolling="no" data-ng-src="{{logs}}" frameborder="0"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-members">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title border-bottom">
+                    <h5>{{ 'locale-projects' | translate }}</h5>
+                </div>
+                <div class="ibox-content no-margins no-padding">
+                    <div class="p-sm">
+                        <div data-ng-class="userDashboardElement.userProjectLists.length > 6 ? '' : 'slim-scroll-height-auto'">
+                            <div class="scroll-body" slimscroll="{height: 300,size:4,distance:0}">
+                                <div class="table-responsive">
+                                    <table class="table table-hover no-margins">
+                                        <tbody>
+                                            <tr data-dir-paginate="userProject in userDashboardElement.userProjectLists  |orderBy:sortKey:reverse|filter:search|filter:type|itemsPerPage:listPerPage">
+                                                <td class="col-min-widht-170">
+                                                    <span class="text-primary m-r-xs"><i class="fa fa-play-circle"></i></span> 
+                                                    <a data-ui-sref="project-details.summary">{{userProject.name}}</a>
+                                                </td>
+                                                <td class="col-min-widht-120"> 
+                                                    <span class="label label-light" data-ng-hide="userProject.createdUser.roles[0].role == 'Admin'">{{userProject.createdUser.roles[0].role}}</span>
+                                                    <span class="label label-success" data-ng-if="userProject.createdUser.roles[0].role == 'Admin'">{{userProject.createdUser.roles[0].role}}</span>
+                                                </td>
+                                                <td> 
+                                                    <span class="label label-light"><i class="fa fa-user"></i> {{userProject.projectUsers.length}}</span> 
+                                                </td>
+                                                <td>{{userProject.description}}</td>
+                                                <td class="col-min-widht-100">
+                                                    <a data-ui-sref="projects.create" class="btn btn-light btn-sm" title="{{ 'locale-edit' | translate }}"><i class="fa fa-edit"></i></a>
+                                                    <a class="btn btn-light btn-sm" title="{{ 'locale-delete' | translate }}" data-ng-click="userDashboardObject.delete('sm', $index)"><i class="fa fa-trash"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-ng-if="userDashboardElement.userProjectLists.length == 0">
+                            <center><h4>{{ 'locale-no-records-found' | translate }}</h4></center>                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--        <div class="row">
+                    <div class="col-lg-12 cpu-usage">
+                        <div class="ibox-content"><h3>Usage Details</h3></div>
+        
+                    </div>
+                    <div class="col-lg-12 ">
+                                        <div class="clearfix" data-ng-show="dashboardSmallLoader">
+                                            <div class="pull-left m-t-sm">
+                                                
+                                            </div>
+                                        </div>
+                        <div class="ibox float-e-margins" >
+                            <div class="ibox-content">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <select required="true" name="pod" class="form-control"
+                                                data-ng-model="pod" ng-options="pod as pod.name for pod in podList" data-ng-change="userDashboardObject.showGraph('graph')">
+                                            <option value="">{{ "locale-select-pod" | translate }}</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select required="true" name="usageType" class="form-control"
+                                                data-ng-model="usageType" data-ng-change="userDashboardObject.showGraph('usage')">
+                                            <option value="">{{ "locale-select-usage-type" | translate }}</option>
+                                            <option value="6">{{ "locale-cpu" | translate }}</option>
+                                            <option value="7">{{ "locale-memory" | translate }}</option>
+                                            <option value="8">{{ "locale-network" | translate }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                                                <div class="ibox-title border-bottom">
+                                                    <h5>{{ 'locale-cpu-usage' | translate }}</h5>
+                                                </div>
+                            <div class="ibox-content dashboard-graph">
+                                <div data-ng-if='podList.length == 0'>
+                                    <h3>No deployments available yet.</h3>
+                                </div>
+                                <div data-ng-show="dashboardSmallLoader"><get-dashboard-small-loader-image></get-dashboard-small-loader-image></div>
+                                <img src="img/cpu-chart.jpg" class="img-responsive">
+                                <div class="iframe-wrapper">
+                                    <iframe scrolling="no" data-ng-src="{{graph}}" frameborder="0"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="ibox-content"><h3>{{ 'locale-activities' | translate }}</h3></div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="ibox float-e-margins activities">
+                                <div class="ibox-title border-bottom">
+                                    <div class="pull-left">
+                                        <select required="true" name="podName" class="form-control"
+                                                data-ng-model="podName" ng-options="pod as pod.name for pod in podList" data-ng-change="userDashboardObject.showGraph('logs')">
+                                            <option value="">{{ "locale-select-pod" | translate }}</option>
+                                        </select>
+                                    </div>
+                                                            <div class="ibox-tools">
+                                                                <span class="label label-warning-light pull-right">06</span>
+                                                            </div>
+                                </div>
+                                <div class="ibox-content">
+                                    <div data-ng-if='podList.length == 0'>
+                                        <h3>No deployments available yet.</h3>
+                                    </div>
+                                    <div class="feed-activity-list">
+                                        <div class="feed-element">
+                                            <div class="iframe-activities-wrapper">
+                                                <iframe scrolling="no" data-ng-src="{{logs}}" frameborder="0"></iframe>
+                                            </div>
+                                        </div>
+        
+                                                                        <div class="feed-element">
+                                                                            <a data-ui-sref="user.profile" class="pull-left">
+                                                                                <div class="rounded-25 border-xs-danger text-danger">J</div>
+                                                                            </a>
+                                                                            <div class="media-body ">
+                                                                                <small class="pull-right m-l-md">2h ago</small>
+                                                                                <strong>Jamseer</strong> added <strong>Manikandan</strong>, <strong>Prakash</strong> to the project <strong>SLMLP</strong>. <br>
+                                                                                <small class="text-muted">Today 2:10 pm - 16.01.2018</small>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="feed-element">
+                                                                            <a data-ui-sref="user.profile" class="pull-left">
+                                                                                <div class="rounded-25 border-xs-danger text-danger">J</div>
+                                                                            </a>
+                                                                            <div class="media-body ">
+                                                                                <small class="pull-right m-l-md">2h ago</small>
+                                                                                <strong>Jamseer</strong> created a new Project called <strong>SLMLP</strong> site. <br>
+                                                                                <small class="text-muted">Today 2:05 pm - 16.01.2018</small>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="feed-element">
+                                                                            <a data-ui-sref="user.profile" class="pull-left">
+                                                                                <div class="rounded-25 border-xs-success text-success">S</div>
+                                                                            </a>
+                                                                            <div class="media-body ">
+                                                                                <small class="pull-right m-l-md">5h ago</small>
+                                                                                <strong>Safia</strong>  pushed to branch <strong>master</strong> at <strong>anCode / SLMLP-UI </strong>. <br>
+                                                                                <small class="text-muted">Yesterday 1:21 pm - 15.01.2018</small>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="feed-element">
+                                                                            <a data-ui-sref="user.profile" class="pull-left">
+                                                                                <div class="rounded-25 border-xs-success text-success">S</div>
+                                                                            </a>
+                                                                            <div class="media-body ">
+                                                                                <small class="pull-right m-l-md">23h ago</small>
+                                                                                <strong>Safia</strong>  created new dashboard called <strong>CPU Monitoring</strong> at <strong>anCode </strong> project. <br>
+                                                                                <small class="text-muted">2 days ago at 2:30 am - 11.06.2017</small>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="feed-element">
+                                                                            <a data-ui-sref="user.profile" class="pull-left">
+                                                                                <div class="rounded-25 border-xs-warning text-warning">P</div>
+                                                                            </a>
+                                                                            <div class="media-body ">
+                                                                                <small class="pull-right m-l-md">46h ago</small>
+                                                                                <strong>Prakash</strong>  added new role <strong>Data Analyst</strong> to <strong>Manikandan </strong> at <strong>anCode </strong> project. <br>
+                                                                                <small class="text-muted">3 days ago at 7:58 pm - 10.06.2017</small>
+                                                                            </div>
+                                                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 col-md-offset-4">
+                                            <a data-ui-sref="user.activities" class="btn btn-success btn-block m-t">{{ 'locale-view-all' | translate }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+    </div>
+</div>

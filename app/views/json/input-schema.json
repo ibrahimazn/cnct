@@ -1,0 +1,22 @@
+[
+    {
+        "column_name": "COLUMN1",
+        "column_type": "decimal(31,6)"
+    },
+    {
+        "column_name": "COLUMN2",
+        "column_type": "decimal(31,6)"
+    },
+    {
+        "column_name": "COLUMN3",
+        "column_type": "string"
+    },
+    {
+        "column_name": "COLUMN4",
+        "column_type": "string"
+    },
+    {
+        "column_name": "COLUMN5",
+        "column_type": "string"
+    }
+]

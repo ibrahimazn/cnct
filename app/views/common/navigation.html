@@ -1,0 +1,42 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul side-navigation class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+                <div class="profile-element" uib-dropdown>
+                    <a uib-dropdown-toggle href>
+                        <span class="clear">
+                            <span class="block m-t-xs">
+                                <strong class="font-bold">{{ mainObject.userName }}</strong>
+                         </span>
+                            <span class="text-muted text-xs block">{{ 'locale-admin' | translate }}<b class="caret"></b></span>
+                        </span>
+                    </a>
+                    <ul uib-dropdown-menu class="animated flipInX m-t-xs">
+                        <li><a data-ui-sref="user.profile">My Profile</a></li>
+                    </ul>
+                </div>
+                <div class="logo-element">
+                    SLMLP
+                </div>
+
+            </li>
+
+            <li data-ng-class="{active: $state.includes('index')}" title="{{ 'locale-dashboard' | translate }}">
+                <a data-ui-sref="index.user-dashboard"><i class="fa fa-tachometer"></i> <span class="nav-label">{{ 'locale-dashboard' | translate }}</span> </a>
+            </li>
+            <li data-ng-class="{active: $state.includes('projects')}" title="{{ 'locale-projects' | translate }}">
+                <a data-ui-sref="projects.grid"><i class="fa fa-th"></i> <span class="nav-label">{{ 'locale-projects' | translate }}</span></a>
+            </li>
+            <li data-ng-class="{active: $state.includes('department')}" title="{{ 'locale-business-unit' | translate }}">
+                <a data-ui-sref="department.list"><i class="fa fa-id-card"></i> <span class="nav-label">{{ 'locale-business-unit' | translate }}</span></a>
+            </li>
+            <li data-ng-class="{active: $state.includes('user-accounts')}" title="{{ 'locale-user-accounts' | translate }}">
+                <a data-ui-sref="user-accounts.list"><i class="fa fa-user-circle"></i> <span class="nav-label">{{ 'locale-user-accounts' | translate }}</span></a>
+            </li>
+            <li data-ng-class="{active: $state.includes('roles')}" title="{{ 'locale-roles' | translate }}">
+                <a data-ui-sref="roles.list"><i class="fa fa-bookmark"></i> <span class="nav-label">{{ 'locale-roles' | translate }}</span></a>
+            </li>
+        </ul>
+
+    </div>
+</nav>

@@ -1,0 +1,42 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-6 page-title">
+        <h2>Project Name - {{ 'locale-analyze' | translate }}</h2>
+    </div>
+</div>
+<div class="row wrapper page-breadcrumb">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li>
+                <a data-ui-sref="index.user-dashboard"><i class="fa fa-home" aria-hidden="true"></i></a>
+            </li>
+            <li>
+                <strong><a data-ui-sref="projects.grid">{{ 'locale-projects' | translate }}</a></strong>
+            </li>
+            <li>
+                <strong><a data-ui-sref="project-details.summary">Project Name</a></strong>
+            </li>
+            <li>
+                <strong><a data-ui-sref="analyze.list">{{ 'locale-analyze' | translate }}</a></strong>
+            </li>
+            <li class="active">
+                {{ 'locale-preview' | translate }}
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-md-12">
+            <uib-tabset active="modelDetailsTab" class="secondary-tab">
+                <uib-tab index="0">
+                        <uib-tab-heading>{{ 'locale-preview' | translate }}</uib-tab-heading>
+                    <div data-ng-include src="'views/projects/project-details/analyze/preview.html'"></div>
+                </uib-tab>
+                <uib-tab index="1">
+                    <uib-tab-heading>{{ 'locale-charts' | translate }}</uib-tab-heading>
+                    <div data-ng-include src="'views/projects/project-details/analyze/charts.html'"></div>
+                </uib-tab>
+            </uib-tabset>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="modal-header" modaldraggable>
+    <button type="button" data-ng-click="cancel();" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title"><i class="fa fa-plus-circle m-r-sm"></i>{{ 'locale-select-source' | translate }}</h4>
+</div>
+<div class="modal-body" data-ng-controller="fileManagerDetailsCtrl">
+    <div class="filemanager-area">
+        <angular-filemanager></angular-filemanager>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-ng-click="cancel();">{{ 'locale-cancel' | translate }}</button>
+    <button type="button" data-ng-click="selectSource();" class="btn btn-info">{{ 'locale-select' | translate }}</button>
+</div>

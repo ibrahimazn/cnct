@@ -1,0 +1,92 @@
+<div ui-view data-ng-controller="scoringDetailsCtrl">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-md-6 page-title">
+            <h2>{{project.name}} - {{ 'locale-scoring' | translate }}</h2>
+        </div>
+        <div class="col-md-6 text-right">
+            <div class="floating-add">
+                <a data-ng-click="scoringObject.scoreDataset('md')" class="btn btn-success">
+                     <i class="fa fa-plus"></i> {{ 'locale-new' | translate }}
+                </a>
+            </div>
+            <div class="search-wrapper text-right">
+                <div class="input-group m-r-md">
+                    <input type="text" class="form-control" placeholder="{{ 'locale-search' | translate }}" data-ng-model="search">
+                    <div class="input-group-btn">
+                        <button class="btn btn-white" type="button"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+<!--            <div class="pull-right">
+                <div class="btn-group m-t-md m-r-md" data-toggle="buttons">
+                    <label class="btn btn-success active" data-ng-click="online=false">
+                        <input type="radio" name="deploymentsType" value="online" data-ng-model="deploymentsType" checked> {{ 'locale-offline' | translate }}
+                    </label>
+                    <label class="btn btn-success" data-ng-click="online=true">
+                        <input type="radio" name="deploymentsType" value="offline" data-ng-model="deploymentsType"> {{ 'locale-online' | translate }}
+                    </label>
+                </div>
+            </div>-->
+        </div>
+    </div>
+    <div class="row wrapper page-breadcrumb">
+        <div class="col-lg-12">
+            <ol class="breadcrumb">
+                <li>
+                    <a data-ui-sref="index.user-dashboard"><i class="fa fa-home" aria-hidden="true"></i></a>
+                </li>
+                <li>
+                    <strong><a data-ui-sref="projects.grid">{{ 'locale-projects' | translate }}</a></strong>
+                </li>
+                <li>
+                    <strong><a data-ui-sref="project-details.summary">{{project.name}}</a></strong>
+                </li>
+                <li class="active">
+                    {{ 'locale-scoring' | translate }}
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content">
+        <div class="ibox float-e-margins no-margins">
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive m-t-md loader-container">
+                            <get-ancode-loader-container-overlay data-ng-if="scoringElement.listLoader"></get-ancode-loader-container-overlay>
+                            <table class="table table-bordered table-hover no-margins">
+                                <thead>
+                                    <tr>
+                                        <th ng-click="scoringObject.sort('modelnName')">{{ 'locale-name' | translate }}
+                                            <span class="fa sort-icon pull-right" data-ng-class="sortKey == 'modelnName' && reverse ? 'fa-chevron-up' : 'fa-chevron-down'"></span>
+                                        </th>
+                                        <th>{{ 'locale-model-version' | translate }}</th>
+                                        <th>{{ 'locale-actions' | translate }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-ng-if="scoringElement.scoringLists && scoringElement.scoringLists.length > 0" ng-repeat="scoringList in scoringElement.scoringLists">
+                                        <td>
+                                            <span class="text-primary m-r-xs"><i class="fa fa-play-circle"></i></span>
+                                            <a data-ui-sref="scoring.details({id1:{{scoringList.id}}})" data-ng-click="selectScore(scoringList);">{{ "Scoring-" + scoringList.model.name}}</a>
+                                        </td>
+                                        <td>{{ scoringList.model.latestVersion }}</td>
+                                        <td>
+                                            <!--<a class="btn btn-light btn-sm" title="{{ 'run score' | translate }}" data-ng-click="scoringObject.scoreModel(scoringList)"><i class="fa fa-play"></i></a>-->
+                                            <a class="btn btn-light btn-sm" title="{{ 'locale-delete' | translate }}" data-ng-click="scoringObject.delete('sm', scoringList)"><i class="fa fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr data-ng-if="!scoringElement.scoringLists || scoringElement.scoringLists.length == 0">
+                                        <td colspan="3"> {{ 'locale-no-record-found' | translate }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

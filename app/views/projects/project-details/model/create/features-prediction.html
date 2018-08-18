@@ -1,0 +1,112 @@
+<div data-ng-controller="algorithmsCtrl">
+    <div class="row">
+        <div class="col-md-12 m-t-md">
+            <select data-ng-options="featuresPredictionList.name for featuresPredictionList in algorithmsElement.featuresPredictionLists" multiple ng-model="featuresPredictionList" bs-duallistbox></select>
+        </div>
+    </div>
+    <div class="scroll-body" slimscroll="{height: 340,size:4,distance:5}" data-ng-if="previewList">
+        <div class="table-responsive m-t-md">
+            <table class="table table-bordered table-hover no-margins">
+                <thead>
+                    <tr>
+                        <th>
+                            <div class="btn-group pull-left">Customer ID</div>
+                            <div class="btn-group pull-right" data-uib-dropdown data-is-open="status.isopen" data-dropdown-append-to-body="true">
+                                <a id="customerId" type="button" class="" data-uib-dropdown-toggle 
+                                   title="{{ 'locale-menu' | translate }}" ng-disabled="disabled">
+                                    <i class="fa fa-ellipsis-v"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right" data-uib-dropdown-menu role="menu" aria-labelledby="customerId">
+                                    <li role="menuitem"><a><i class="fa fa-check"></i> {{ 'locale-select-features' | translate }}</a></li>
+                                </ul>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="btn-group pull-left">{{ 'locale-ip' | translate }}</div>
+                            <div class="btn-group pull-right" data-uib-dropdown data-is-open="" data-dropdown-append-to-body="true">
+                                <a id="ip" type="button" class="" data-uib-dropdown-toggle 
+                                   title="{{ 'locale-menu' | translate }}" ng-disabled="disabled">
+                                    <i class="fa fa-ellipsis-v"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right" data-uib-dropdown-menu role="menu" aria-labelledby="ip">
+                                    <li role="menuitem"><a><i class="fa fa-check"></i> {{ 'locale-select-features' | translate }}</a></li>
+                                </ul>
+                            </div>
+                        </th>
+                        <th class="active">
+                            <div class="btn-group pull-left">{{ 'locale-ip-country' | translate }}</div>
+                            <div class="btn-group pull-right" data-uib-dropdown data-is-open="" data-dropdown-append-to-body="true">
+                                <a id="ipCountry" type="button" class="" data-uib-dropdown-toggle 
+                                   title="{{ 'locale-menu' | translate }}" ng-disabled="disabled">
+                                    <i class="fa fa-ellipsis-v"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right" data-uib-dropdown-menu role="menu" aria-labelledby="ipCountry">
+                                    <li role="menuitem"><a><i class="fa fa-check"></i> {{ 'locale-select-features' | translate }}</a></li>
+                                </ul>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="btn-group pull-left">{{ 'locale-pages-visited' | translate }}</div>
+                            <div class="btn-group pull-right" data-uib-dropdown data-is-open="" data-dropdown-append-to-body="true">
+                                <a id="pageVisited" type="button" class="" data-uib-dropdown-toggle 
+                                   title="{{ 'locale-menu' | translate }}" ng-disabled="disabled">
+                                    <i class="fa fa-ellipsis-v"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right" data-uib-dropdown-menu role="menu" aria-labelledby="pageVisited">
+                                    <li role="menuitem"><a><i class="fa fa-check"></i> {{ 'locale-select-features' | translate }}</a></li>
+                                </ul>
+                            </div>
+                        </th>
+                        <th class="active">
+                            <div class="btn-group pull-left">{{ 'locale-campaign' | translate }}</div>
+                            <div class="btn-group pull-right" data-uib-dropdown data-is-open="" data-dropdown-append-to-body="true">
+                                <a id="campaign" type="button" class="" data-uib-dropdown-toggle 
+                                   title="{{ 'locale-menu' | translate }}" ng-disabled="disabled">
+                                    <i class="fa fa-ellipsis-v"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right" data-uib-dropdown-menu role="menu" aria-labelledby="campaign">
+                                    <li role="menuitem"><a><i class="fa fa-check"></i> {{ 'locale-select-features' | translate }}</a></li>
+                                </ul>
+                            </div>
+                        </th>
+                        <th>
+                            <div class="btn-group pull-left">{{ 'locale-revenue' | translate }}</div>
+                            <div class="btn-group pull-right" data-uib-dropdown data-is-open="" data-dropdown-append-to-body="true">
+                                <a id="revenue" type="button" class="" data-uib-dropdown-toggle 
+                                   title="{{ 'locale-menu' | translate }}" ng-disabled="disabled">
+                                    <i class="fa fa-ellipsis-v"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right" data-uib-dropdown-menu role="menu" aria-labelledby="revenue">
+                                    <li role="menuitem"><a><i class="fa fa-check"></i> {{ 'locale-select-features' | translate }}</a></li>
+                                </ul>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="algorithmsPreviewList in algorithmsElement.algorithmsPreviewLists">
+                        <td>
+                            <span class="text-primary m-r-xs"><i class="fa fa-play-circle"></i></span> {{algorithmsPreviewList.customer_id}}
+                        </td>
+                        <td>{{algorithmsPreviewList.ip}}</td>                            
+                        <td class="active"> {{algorithmsPreviewList.ip_country}} </td>
+                        <td>{{algorithmsPreviewList.pages_visited}}</td>
+                        <td class="active">{{algorithmsPreviewList.campain}}</td>                            
+                        <td> {{algorithmsPreviewList.revenue}} </td>
+                    </tr>
+                    <tr class="text-center" data-ng-if="algorithmsElement.algorithmsPreviewLists.length == 0">
+                        <td valign="middle" colspan="6">{{ 'locale-no-record-found' | translate }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row m-t-md">
+        <div class="col-md-12">
+            <a class="btn btn-info pull-right" data-ng-click="goToTab(4)">{{ 'locale-save-continue' | translate }} <i class="fa fa-arrow-circle-right"></i></a> 
+            <a class="btn btn-light pull-right m-r-md" data-ng-click=" algorithmsObject.previewList(false)" data-ng-if="previewList">{{ 'locale-close-preview' | translate }}</a>
+            <a class="btn btn-info pull-right m-r-md" data-ng-click=" algorithmsObject.previewList(true)" data-ng-hide="previewList">{{ 'locale-preview' | translate }}</a>
+        </div>
+    </div>
+</div>

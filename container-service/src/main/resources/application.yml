@@ -1,0 +1,73 @@
+# Server properties
+server:
+    port: ${CONTAINER_PORT:8083}
+    max-http-header-size: 10000000
+    context-path: ${CONTAINER_CONTEXT:/container}
+    
+kafka:
+    broker: ${BROKER_SERVER:35.200.192.228:9092}
+    topic: ${TOPIC:k8sevents}
+    groupId: ${KAFKA_GROUP:jamseer}
+    tensor:
+        topic: ${TOPIC:tensorflow-test}
+
+spring:
+    # MYSQL data source properties
+    datasource:
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://${ANCODE_DB_HOST:localhost}:${ANCODE_DB_PORT:3306}/${ANCODE_DB_NAME:slmlp}?characterEncoding=utf8
+        username: ${ANCODE_DB_USERNAME:root}
+        password: ${ANCODE_DB_PASSWORD:l3tm3in}
+        testWhileIdle: true
+        timeBetweenEvictionRunsMillis: 60000
+        validationQuery: SELECT 1
+        platform: mysql
+        data: ${DB_SCRIPT:classpath:/Dumps.sql}
+
+    jpa:
+        hibernate.ddl-auto: update
+        database: MYSQL
+        show-sql: true
+        hibernate:
+            ddl-auto: update
+            dialect: org.hibernate.dialect.MySQL5Dialect
+            naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
+            show_sql: ${ANCODE_DB_SHOW_SQL:true}
+            format_sql: ${ANCODE_DB_FORMAT_SQL:true}
+    http:
+        multipart:
+            enabled: true
+            max-file-size: 100MB
+            max-request-size: 100MB
+---
+
+# Profile image properties
+profile:
+    image:
+        dir: ${PROFILE_IMAGE_DIR:/home/az.lan/azn0202/profiles/}
+fileimport:
+    temp:
+        dir: ${FILE_IMPORT_DIR:/tmp/}
+            
+---
+
+# AES salt key
+aes:
+    salt:
+        secretKey: ${AES_SALT_KEY:DA97AA70B21ADCCA89708EFC05C7E2F2}
+
+kubernete:
+    agent: ${KUBE_AGENT:http://k8smaster.assistanz.com:6100}
+    secKey: ${KUBE_KEY:eVBaXmU5XcbMhdorUMpUO6eQI1Jv8pDK}
+    port: ${KUBE_FILE_PORT:6200}
+
+openfaas:
+    agent: ${OPENFAAS_AGENT:http://k8snode1.assistanz.com:31112/}
+
+git:
+    user: ${GIT_USER:ibrahim}
+    pass: ${GIT_PASS:l3tm3in@#$}
+    tensorflow: ${TENSOR_IMAGE:192.168.4.249:32117/assistanz/tensorflow-board-v1}
+    port: ${TENSOR_BOARD_PORT:6006}
+
+    

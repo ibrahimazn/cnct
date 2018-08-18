@@ -1,0 +1,169 @@
+<div data-ng-controller="deploymentsDetailsCtrl">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-6 page-title">
+            <h2>Project Name - {{ 'locale-model' | translate }}</h2>
+        </div>
+    </div>
+    <div class="row wrapper page-breadcrumb">
+        <div class="col-lg-12">
+            <ol class="breadcrumb">
+                <li>
+                    <a data-ui-sref="index.user-dashboard"><i class="fa fa-home" aria-hidden="true"></i></a>
+                </li>
+                <li>
+                    <strong><a data-ui-sref="projects.grid">{{ 'locale-projects' | translate }}</a></strong>
+                </li>
+                <li>
+                    <strong><a data-ui-sref="project-details.summary">Project Name</a></strong>
+                </li>
+                <li>
+                    <strong><a data-ui-sref="deployments.list">{{ 'locale-deployment' | translate }}</a></strong>
+                </li>
+                <li class="active">
+                    {{ 'locale-create' | translate }}
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content">
+        <div class="ibox float-e-margins no-margins">
+            <div class="ibox-content loader-container">
+                <get-ancode-loader-container-overlay data-ng-if="deploymentsElement.createLoader"></get-ancode-loader-container-overlay>
+                <form role="form" id="deploymentForm" name="deploymentForm" novalidate data-ng-submit="deploymentsObject.create()">
+                    
+                      <div class="row">
+                          <div class="col-md-4 col-sm-6 col-xsm-6">
+                              <div class="form-group"
+                                   data-ng-class="{'has-error': deploymentForm.model.$invalid && deploymentForm.submitted}">
+                                  <label>{{ 'locale-model' | translate }} <span class="required">*</span></label>
+                                  <select name="model" data-ng-change="deploymentsObject.getVersionList(deployment.model)" class="form-control" name="dataset"  data-ng-model="deployment.model" ng-options="model.name for model in deploymentsElement.modelList" required>
+                                        <option value="">{{ "locale-select" | translate }}</option>
+                                  </select>
+                                  <div class="input-icon right"
+                                       data-ng-if="deploymentForm.model.$invalid && deploymentForm.submitted">
+                                  <i data-uib-tooltip="{{ 'locale-model-is-required' | translate }}"
+                                     data-tooltip-placement="left" class="fa fa-warning"></i>
+                                 </div>
+                              </div>
+                              
+                              <div class="form-group"
+                                   data-ng-class="{'has-error': deploymentForm.modelVersion.$invalid && deploymentForm.submitted}">
+                                  <label>{{ 'locale-version' | translate }} <span class="required">*</span></label>
+                                  
+                                  <label class="label label-info block text-left p-xxs" data-ng-if="deploymentsElement.versionList.length > 0">File: {{ deploymentsElement.versionList[0].modelFile }}</label>
+                                    <select class="form-control" name="modelVersion"  data-ng-model="deployment.modelVersion" 
+                                            ng-options="version.uuid for version in deploymentsElement.versionList" required>
+                                        <option value="">{{ "locale-select" | translate }}</option>
+                                  </select>
+                                  <div class="input-icon right"
+                                       data-ng-if="deploymentForm.modelVersion.$invalid && deploymentForm.submitted">
+                                  <i data-uib-tooltip="{{ 'locale-model-version-is-required' | translate }}"
+                                     data-tooltip-placement="left" class="fa fa-warning"></i>
+                                 </div>
+                              </div>
+                          </div>
+                          
+                          <div class="col-md-4 col-sm-6 col-xsm-6">
+                              <div class="form-group"
+                                   data-ng-class="{'has-error': deploymentForm.datasetFile.$invalid && deploymentForm.submitted}">
+                                  <label> {{ 'locale-dataset-to-be-predicted' | translate }} <span class="required">*</span></label>
+                                    <div class="from-control">
+                                        <input class="form-control"
+                                               readonly required
+                                                name="datasetFile"
+                                           data-ng-click="deploymentsObject.openChooseFileWindow('lg', 'datasetFile')"
+                                           data-ng-model="deployment.datasetFile" 
+                                           value="Choose Dataset">
+                                  <div class="input-icon right"
+                                       data-ng-if="deploymentForm.datasetFile.$invalid && deploymentForm.submitted">
+                                  <i data-uib-tooltip="{{ 'locale-dataset-required' | translate }}"
+                                     data-tooltip-placement="left" class="fa fa-warning"></i>
+                                 </div>
+                              </div>
+                          </div>
+                              <div class="form-group"
+                                   data-ng-class="{'has-error': deploymentForm.sourceFile.$invalid && deploymentForm.submitted}">
+                                  <label> {{ 'locale-model-prediction' | translate }} <span class="required">*</span></label>
+                                    <div class="from-control">
+                                        <input class="form-control"
+                                               readonly required
+                                            name="sourceFile"
+                                           data-ng-click="deploymentsObject.openChooseFileWindow('lg', 'sourceFile')"
+                                           data-ng-model="deployment.sourceFile" 
+                                           value="Choose Source">
+                                  <div class="input-icon right"
+                                       data-ng-if="deploymentForm.sourceFile.$invalid && deploymentForm.submitted">
+                                  <i data-uib-tooltip="{{ 'locale-model-prediction-required' | translate }}"
+                                     data-tooltip-placement="left" class="fa fa-warning"></i>
+                                 </div>
+                              </div>
+                          </div>
+                        </div>
+                          
+                          
+                        <div class="col-md-4 col-sm-6 col-xsm-6">
+                            <div class="form-group"
+                                 data-ng-class="{'has-error': deploymentForm.launcher.$invalid && deploymentForm.submitted}">
+                                <label>{{ 'locale-runtime-env' | translate }} <span class="required">*</span></label>
+                                <select class="form-control" name="launcher"  data-ng-model="deployment.launcher" 
+                                          ng-options="launcher.name for launcher in deploymentsElement.imageList" required>
+                                      <option value="">{{ "locale-select" | translate }}</option>
+                                </select>
+                                <div class="input-icon right"
+                                     data-ng-if="deploymentForm.model.$invalid && deploymentForm.submitted">
+                                <i data-uib-tooltip="{{ 'locale-runtime-env-required' | translate }}"
+                                   data-tooltip-placement="left" class="fa fa-warning"></i>
+                               </div>
+                            </div>
+                            <div class="form-group"
+                                   data-ng-class="{'has-error': deploymentForm.predictionOutputUrl.$invalid && deploymentForm.submitted}">
+                                  <label> {{ 'locale-output-filename-path' | translate }} <span class="required">*</span></label>
+                                  <input type="text" readonly
+                                         name="predictionOutputUrl" 
+                                         data-ng-click="deploymentsObject.openChooseFileWindow('lg', 'predictionOutputUrl')"
+                                         class="form-control" data-ng-model="deployment.predictionOutputUrl" required>
+                                  <div class="input-icon right"
+                                       data-ng-if="deploymentForm.predictionOutputUrl.$invalid && deploymentForm.submitted">
+                                  <i data-uib-tooltip="{{ 'locale-output-path-required' | translate }}"
+                                     data-tooltip-placement="left" class="fa fa-warning"></i>
+                                 </div>
+                              </div>
+                        </div>
+                      </div>
+                        <div class="row">
+                            
+<!--                            <div class="col-md-4">
+                                <div class="form-group"
+                                    data-ng-class="{'has-error': deploymentForm.applicationPath.$invalid && deploymentForm.submitted}">
+                                    <label> {{ 'locale-application-path' | translate }} </label>
+                                    <input type="text" name="applicationPath" class="form-control" data-ng-model="deployment.applicationPath" required>
+                                </div>
+                            </div>-->
+                        </div>
+<!--                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label> {{ 'locale-type' | translate }} </label>
+                                    <div class="m-b-sm">
+                                        <div class="radio radio-info radio-inline">
+                                            <input type="radio" id="inlineRadio1" value="online" name="radioInline" checked="">
+                                            <label for="online"> Online </label>
+                                        </div>
+                                        <div class="radio radio-info radio-inline">
+                                            <input type="radio" id="inlineRadio2" value="offline" name="radioInline">
+                                            <label for="offline"> Offline </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+                        <div class="row">
+                              <div class="col-md-12">
+                                <button type="submit" class="btn btn-info">{{ 'locale-create' | translate }}</button>
+                              </div>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

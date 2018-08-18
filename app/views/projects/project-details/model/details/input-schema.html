@@ -1,0 +1,35 @@
+<div class="wrapper wrapper-content m-l-n-sm m-r-n-sm">
+    <div class="ibox float-e-margins no-margins">
+        <div class="ibox-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive m-t-sm">
+                        <table class="table table-hover no-margins summary-list">
+                            <thead>
+                                <tr>
+                                    <th ng-click="modelDatasetObject.sort('column_name')">
+                                        Column Name
+                                        <span class="fa sort-icon pull-right" data-ng-class="sortKey == 'column_name' && reverse ? 'fa-chevron-up' : 'fa-chevron-down'"></span>
+                                    </th>
+                                    <th ng-click="modelDatasetObject.sort('column_type')">
+                                        Column Type
+                                        <span class="fa sort-icon pull-right" data-ng-class="sortKey == 'column_type' && reverse ? 'fa-chevron-up' : 'fa-chevron-down'"></span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-if="selectedModel.modelType != 'CUSTOM'" data-dir-paginate="inputSchemaList in modelDetailsElement.inputSchemaLists |orderBy:sortKey:reverse|filter:search|filter:type|itemsPerPage:listPerPage">
+                                    <td>{{inputSchemaList.column_name}}</td>
+                                    <td class="bold">{{inputSchemaList.column_type}}</td>
+                                </tr>
+                                <tr data-ng-if="selectedModel.modelType == 'CUSTOM'">
+                                    <td colspan="2"> Custom model doesn't have this option </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

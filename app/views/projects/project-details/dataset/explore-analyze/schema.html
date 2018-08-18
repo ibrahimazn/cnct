@@ -1,0 +1,83 @@
+<form role="form" name="schema" id="submitted_form" novalidate>
+    <div class="row">
+        <div class="col-md-3 pull-right">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="{{ 'locale-search' | translate }}" data-ng-model="search">
+                <div class="input-group-btn">
+                    <button class="btn btn-white" type="button"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 pull-right">
+            <select class="form-control" name="type" data-ng-model="type">
+                <option value="">Select Type</option>
+                <option>double</option>
+                <option>string</option>
+                <option>bigint(64bit)</option>
+            </select>
+        </div>
+        <div class="col-md-2 pull-right">
+            <button class="btn btn-success" data-ng-click="exploreAnalyzeObject.addColumn()"><i class="fa fa-plus"></i> {{ 'locale-add-new-column' | translate }}</button>
+        </div>
+        <div class="col-md-12">
+            <div class="table-responsive m-t-md">
+                <table class="table table-bordered table-hover no-margins">
+                    <thead>
+                        <tr>
+                            <th>
+                                <div class="checkbox checkbox-info no-margin">
+                                    <input type="checkbox" id="singleCheckbox1" data-ng-model="schema.checkAll" aria-label="Single checkbox One">
+                                    <label></label>
+                                </div>                                
+                            </th>
+                            <th>{{ 'locale-name' | translate }}</th>
+                            <th>{{ 'locale-type' | translate }}</th>
+                            <th>{{ 'locale-actions' | translate }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-dir-paginate="schemaList in exploreAnalyzeElement.schemaLists |filter:search|filter:type|itemsPerPage:listPerPage">
+                            <td>
+                                <div class="checkbox checkbox-info no-margin">
+                                    <input type="checkbox" id="{{schemaList.id}}" data-ng-checked="schema.checkAll" aria-label="Single checkbox One">
+                                    <label></label>
+                                </div>                                
+                            </td>
+                            <td>
+                                <div>
+                                    <input type="text" class="form-control" data-ng-model="schemaList.name" placeholder="{{ 'locale-name' | translate }}">
+                                </div>
+                            </td>
+                            <td> 
+                                <span class="btn btn-info btn-md pull-left btn-min-width">{{schemaList.type}}</span>
+                                <select class="form-control pull-left input-small m-l-sm" name="type" data-ng-model="schemaList.autoDetect">
+                                    <option value="">Select Type</option>
+                                    <option>Auto Detect</option>
+                                </select>
+                            </td>
+                            <td>
+                                <a class="btn btn-light btn-sm" title="{{ 'locale-draggable' | translate }}"><i class="fa fa-arrows"></i></a>
+                                <a class="btn btn-light btn-sm" title="{{ 'locale-delete' | translate }}" data-ng-click="exploreAnalyzeObject.delete('sm', schemaList)"><i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                         <tr class="text-center" data-ng-if="exploreAnalyzeElement.schemaLists.length==0">
+                            <td valign="middle" colspan="6">{{ 'locale-no-record-found' | translate }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="form-actions m-t-lg">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <a class="btn btn-primary button-previous" data-ng-click="exploreAnalyzeObject.previousTab(0)">
+                    <i class="fa fa-angle-left" ></i> {{ 'locale-back' | translate }} </a>
+                <a class="btn btn-default button-cancel button-first"  data-ng-click="exploreAnalyzeObject.cancel()"> {{ 'locale-cancel' | translate }} </a>
+                <a class="btn btn-success button-next" data-ng-click="exploreAnalyzeObject.saveSchema(2)"> {{ 'locale-continue' | translate }}
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,715 @@
+<div data-ng-controller="algorithmsCtrl">
+    <div class="row m-t-lg">
+        <label class="col-md-2 col-sm-2 col-xsm-2 m-t-sm">{{ 'locale-model-type' | translate}}</label>
+        <div class="col-md-3 col-sm-3 col-xsm-3">
+            <select class="form-control" name="pythonModel" data-ng-init="model.modelType = 'predefined'" data-ng-model="model.modelType">
+                <option value="custom"> Custom</option>
+                <option value="predefined">Predefined</option>
+            </select>
+        </div>
+        <div class="col-md-7 col-sm-7 col-xsm-7">
+            <a class="btn btn-info pull-right" data-ng-click="goToTab(2)">{{ 'locale-save-continue' | translate }} <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <div class="row m-t-md" data-ng-if="model.modelType == 'predefined'">
+        <div class="col-md-4 col-sm-6 no-p-r">
+            <div class="panel panel-light no-radius">
+                <div class="panel-heading">
+                    <h4 class="no-margins">{{ 'locale-algorithms' | translate }}</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="scroll-body" slimscroll="{height: 300,size:4,distance:5}">
+                        <ul class="algorithms-list">
+                            <li class="border-bottom" data-ng-repeat="algorithms in algorithmsElement.algorithmsLists">
+                                <div class="clearfix" data-ng-click="algorithmsObject.tabSet(algorithms.selected, $index)">
+                                    <label>   <input type="checkbox" class="js-switch m-b-md" data-ng-model="algorithms.selected"
+                                                     ui-switch="{color:'#62c466', size:'small'}" data-ng-click="algorithmsObject.tabSet(algorithms.selected, $index)"/>
+                                        <span class="m-l-xs">{{ algorithms.name}}</span></label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 col-sm-6 no-p-l">
+            <div class="borders p-md">
+                <div class="scroll-body" slimscroll="{height: 315,size:4,distance:5}">
+                    <div data-ng-if="opentab0">
+                        <div class="bg-info-light p-sm">
+                            <h4 class="sub-title">Random Forest</h4>
+                            <div class="well no-margins">
+                                Decision Trees (DTs) are a non-parametric supervised learning method used for classification and regression. The goal is to create a model that predicts the value of a target variable by learning simple decision rules inferred from the data features.
+                            </div>
+                            <form role="form" class="form-horizontal" id="decisionTreeForm" name="decisionTreeForm" novalidate>
+                                <div class="p-md">
+                                    <div class="row">
+                                        <div class="col-md-6 col-xsm-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': decisionTreeForm.maximumDepth.$invalid && decisionTreeForm.submitted}">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xsm-10"><label class="m-t-xs"> {{ 'locale-maximum-depth' | translate }} </label></div>
+                                                    <div class="col-md-5 col-xsm-10"><input type="number" name="maximumDepth" class="form-control" data-ng-model="decisionTree.maximumDepth"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-xsm-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': decisionTreeForm.minSamplePerLeaf.$invalid && decisionTreeForm.submitted}">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xsm-10"><label> {{ 'locale-min-samples-per-leaf' | translate }} </label></div>
+                                                    <div class="col-md-5 col-xsm-10"><input type="number" name="minSamplePerLeaf" class="form-control" data-ng-model="decisionTree.minSamplePerLeaf"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 col-xsm-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': decisionTreeForm.criterion.$invalid && decisionTreeForm.submitted}">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xsm-10"><label class="m-t-xs"> {{ 'locale-criterion' | translate }} </label></div>
+                                                    <div class="col-md-5 col-xsm-10">
+                                                        <div class="checkbox checkbox-success">
+                                                            <input class="form-control" name="tryGini" value="tryGini" id="tryGini" type="checkbox"
+                                                                   data-ng-model="criterion.tryGini">
+                                                            <label for="tryGini">
+                                                                Try Gini
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox checkbox-success">
+                                                            <input class="form-control" name="tryEntropy" value="tryEntropy" id="tryEntropy" type="checkbox"
+                                                                   data-ng-model="criterion.tryEntropy">
+                                                            <label for="tryEntropy">
+                                                                Try Entropy
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-xsm-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': decisionTreeForm.splitStrategy.$invalid && decisionTreeForm.submitted}">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xsm-10"><label> {{ 'locale-split-strategy' | translate }} </label></div>
+                                                    <div class="col-md-5 col-xsm-10">
+                                                        <div class="checkbox checkbox-success">
+                                                            <input class="form-control" name="tryBest" value="tryBest" id="tryBest" type="checkbox"
+                                                                   data-ng-model="splitStrategy.tryBest">
+                                                            <label for="tryBest">
+                                                                Try Best
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox checkbox-success">
+                                                            <input class="form-control" name="tryRandom" value="tryRandom" id="tryRandom" type="checkbox"
+                                                                   data-ng-model="splitStrategy.tryRandom">
+                                                            <label for="tryRandom">
+                                                                Try Random
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div data-ng-if="opentab1">
+                        <div class="bg-info-light p-sm m-t-md">
+                            <h4 class="sub-title">Gradient Boosted Tree</h4>
+                            <div class="well no-margins">
+                                Decision Trees (DTs) are a non-parametric supervised learning method used for classification and regression. The goal is to create a model that predicts the value of a target variable by learning simple decision rules inferred from the data features.
+                            </div>
+                            <form role="form" class="form-horizontal" id="decisionTreeForm" name="decisionTreeForm" novalidate>
+                                <div class="p-md">
+                                    <div class="row">
+                                        <div class="col-md-6 col-xsm-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': decisionTreeForm.maximumDepth.$invalid && decisionTreeForm.submitted}">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xsm-10"><label class="m-t-xs"> {{ 'locale-maximum-depth' | translate }} </label></div>
+                                                    <div class="col-md-5 col-xsm-10"><input type="number" name="maximumDepth" class="form-control" data-ng-model="decisionTree.maximumDepth"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-xsm-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': decisionTreeForm.minSamplePerLeaf.$invalid && decisionTreeForm.submitted}">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xsm-10"><label> {{ 'locale-min-samples-per-leaf' | translate }} </label></div>
+                                                    <div class="col-md-5 col-xsm-10"><input type="number" name="minSamplePerLeaf" class="form-control" data-ng-model="decisionTree.minSamplePerLeaf"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 col-xsm-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': decisionTreeForm.criterion.$invalid && decisionTreeForm.submitted}">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xsm-10"><label class="m-t-xs"> {{ 'locale-criterion' | translate }} </label></div>
+                                                    <div class="col-md-5 col-xsm-10">
+                                                        <div class="checkbox checkbox-success">
+                                                            <input class="form-control" name="tryGini" value="tryGini" id="tryGini" type="checkbox"
+                                                                   data-ng-model="criterion.tryGini">
+                                                            <label for="tryGini">
+                                                                Try Gini
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox checkbox-success">
+                                                            <input class="form-control" name="tryEntropy" value="tryEntropy" id="tryEntropy" type="checkbox"
+                                                                   data-ng-model="criterion.tryEntropy">
+                                                            <label for="tryEntropy">
+                                                                Try Entropy
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-xsm-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': decisionTreeForm.splitStrategy.$invalid && decisionTreeForm.submitted}">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xsm-10"><label> {{ 'locale-split-strategy' | translate }} </label></div>
+                                                    <div class="col-md-5 col-xsm-10">
+                                                        <div class="checkbox checkbox-success">
+                                                            <input class="form-control" name="tryBest" value="tryBest" id="tryBest" type="checkbox"
+                                                                   data-ng-model="splitStrategy.tryBest">
+                                                            <label for="tryBest">
+                                                                Try Best
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox checkbox-success">
+                                                            <input class="form-control" name="tryRandom" value="tryRandom" id="tryRandom" type="checkbox"
+                                                                   data-ng-model="splitStrategy.tryRandom">
+                                                            <label for="tryRandom">
+                                                                Try Random
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div data-ng-if="opentab2">
+                        <div class="bg-info-light p-sm m-t-md">
+                            <h4 class="sub-title">XGBoost</h4>
+                            <div class="well no-margins">
+                                Decision Trees (DTs) are a non-parametric supervised learning method used for classification and regression. The goal is to create a model that predicts the value of a target variable by learning simple decision rules inferred from the data features.
+                            </div>
+                            <form role="form" class="form-horizontal" id="decisionTreeForm" name="decisionTreeForm" novalidate>
+                                <div class="p-md">
+                                    <div class="row">
+                                        <div class="col-md-6 col-xsm-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': decisionTreeForm.maximumDepth.$invalid && decisionTreeForm.submitted}">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xsm-10"><label class="m-t-xs"> {{ 'locale-maximum-depth' | translate }} </label></div>
+                                                    <div class="col-md-5 col-xsm-10"><input type="number" name="maximumDepth" class="form-control" data-ng-model="decisionTree.maximumDepth"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-xsm-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': decisionTreeForm.minSamplePerLeaf.$invalid && decisionTreeForm.submitted}">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xsm-10"><label> {{ 'locale-min-samples-per-leaf' | translate }} </label></div>
+                                                    <div class="col-md-5 col-xsm-10"><input type="number" name="minSamplePerLeaf" class="form-control" data-ng-model="decisionTree.minSamplePerLeaf"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 col-xsm-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': decisionTreeForm.criterion.$invalid && decisionTreeForm.submitted}">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xsm-10"><label class="m-t-xs"> {{ 'locale-criterion' | translate }} </label></div>
+                                                    <div class="col-md-5 col-xsm-10">
+                                                        <div class="checkbox checkbox-success">
+                                                            <input class="form-control" name="tryGini" value="tryGini" id="tryGini" type="checkbox"
+                                                                   data-ng-model="criterion.tryGini">
+                                                            <label for="tryGini">
+                                                                Try Gini
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox checkbox-success">
+                                                            <input class="form-control" name="tryEntropy" value="tryEntropy" id="tryEntropy" type="checkbox"
+                                                                   data-ng-model="criterion.tryEntropy">
+                                                            <label for="tryEntropy">
+                                                                Try Entropy
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-xsm-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': decisionTreeForm.splitStrategy.$invalid && decisionTreeForm.submitted}">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xsm-10"><label> {{ 'locale-split-strategy' | translate }} </label></div>
+                                                    <div class="col-md-5 col-xsm-10">
+                                                        <div class="checkbox checkbox-success">
+                                                            <input class="form-control" name="tryBest" value="tryBest" id="tryBest" type="checkbox"
+                                                                   data-ng-model="splitStrategy.tryBest">
+                                                            <label for="tryBest">
+                                                                Try Best
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox checkbox-success">
+                                                            <input class="form-control" name="tryRandom" value="tryRandom" id="tryRandom" type="checkbox"
+                                                                   data-ng-model="splitStrategy.tryRandom">
+                                                            <label for="tryRandom">
+                                                                Try Random
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div data-ng-if="opentab3">
+                        <div class="bg-info-light p-sm m-t-md">
+                            <h4 class="sub-title">Logistic Regression</h4>
+                            <div class="well no-margins">
+                                Decision Trees (DTs) are a non-parametric supervised learning method used for classification and regression. The goal is to create a model that predicts the value of a target variable by learning simple decision rules inferred from the data features.
+                            </div>
+                            <form role="form" class="form-horizontal" id="decisionTreeForm" name="decisionTreeForm" novalidate>
+                                <div class="p-md">
+                                    <div class="row">
+                                        <div class="col-md-6 col-xsm-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': decisionTreeForm.maximumDepth.$invalid && decisionTreeForm.submitted}">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xsm-10"><label class="m-t-xs"> {{ 'locale-maximum-depth' | translate }} </label></div>
+                                                    <div class="col-md-5 col-xsm-10"><input type="number" name="maximumDepth" class="form-control" data-ng-model="decisionTree.maximumDepth"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-xsm-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': decisionTreeForm.minSamplePerLeaf.$invalid && decisionTreeForm.submitted}">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xsm-10"><label> {{ 'locale-min-samples-per-leaf' | translate }} </label></div>
+                                                    <div class="col-md-5 col-xsm-10"><input type="number" name="minSamplePerLeaf" class="form-control" data-ng-model="decisionTree.minSamplePerLeaf"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 col-xsm-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': decisionTreeForm.criterion.$invalid && decisionTreeForm.submitted}">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xsm-10"><label class="m-t-xs"> {{ 'locale-criterion' | translate }} </label></div>
+                                                    <div class="col-md-5 col-xsm-10">
+                                                        <div class="checkbox checkbox-success">
+                                                            <input class="form-control" name="tryGini" value="tryGini" id="tryGini" type="checkbox"
+                                                                   data-ng-model="criterion.tryGini">
+                                                            <label for="tryGini">
+                                                                Try Gini
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox checkbox-success">
+                                                            <input class="form-control" name="tryEntropy" value="tryEntropy" id="tryEntropy" type="checkbox"
+                                                                   data-ng-model="criterion.tryEntropy">
+                                                            <label for="tryEntropy">
+                                                                Try Entropy
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-xsm-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': decisionTreeForm.splitStrategy.$invalid && decisionTreeForm.submitted}">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xsm-10"><label> {{ 'locale-split-strategy' | translate }} </label></div>
+                                                    <div class="col-md-5 col-xsm-10">
+                                                        <div class="checkbox checkbox-success">
+                                                            <input class="form-control" name="tryBest" value="tryBest" id="tryBest" type="checkbox"
+                                                                   data-ng-model="splitStrategy.tryBest">
+                                                            <label for="tryBest">
+                                                                Try Best
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox checkbox-success">
+                                                            <input class="form-control" name="tryRandom" value="tryRandom" id="tryRandom" type="checkbox"
+                                                                   data-ng-model="splitStrategy.tryRandom">
+                                                            <label for="tryRandom">
+                                                                Try Random
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div data-ng-if="opentab4">
+                        <div class="bg-info-light p-sm m-t-md">
+                            <h4 class="sub-title">Decision Tree</h4>
+                            <div class="well no-margins">
+                                Decision Trees (DTs) are a non-parametric supervised learning method used for classification and regression. The goal is to create a model that predicts the value of a target variable by learning simple decision rules inferred from the data features.
+                            </div>
+                            <form role="form" class="form-horizontal" id="decisionTreeForm" name="decisionTreeForm" novalidate>
+                                <div class="p-md">
+                                    <div class="row">
+                                        <div class="col-md-6 col-xsm-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': decisionTreeForm.maximumDepth.$invalid && decisionTreeForm.submitted}">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xsm-10"><label class="m-t-xs"> {{ 'locale-maximum-depth' | translate }} </label></div>
+                                                    <div class="col-md-5 col-xsm-10"><input type="number" name="maximumDepth" class="form-control" data-ng-model="decisionTree.maximumDepth"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-xsm-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': decisionTreeForm.minSamplePerLeaf.$invalid && decisionTreeForm.submitted}">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xsm-10"><label> {{ 'locale-min-samples-per-leaf' | translate }} </label></div>
+                                                    <div class="col-md-5 col-xsm-10"><input type="number" name="minSamplePerLeaf" class="form-control" data-ng-model="decisionTree.minSamplePerLeaf"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 col-xsm-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': decisionTreeForm.criterion.$invalid && decisionTreeForm.submitted}">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xsm-10"><label class="m-t-xs"> {{ 'locale-criterion' | translate }} </label></div>
+                                                    <div class="col-md-5 col-xsm-10">
+                                                        <div class="checkbox checkbox-success">
+                                                            <input class="form-control" name="tryGini" value="tryGini" id="tryGini" type="checkbox"
+                                                                   data-ng-model="criterion.tryGini">
+                                                            <label for="tryGini">
+                                                                Try Gini
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox checkbox-success">
+                                                            <input class="form-control" name="tryEntropy" value="tryEntropy" id="tryEntropy" type="checkbox"
+                                                                   data-ng-model="criterion.tryEntropy">
+                                                            <label for="tryEntropy">
+                                                                Try Entropy
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-xsm-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': decisionTreeForm.splitStrategy.$invalid && decisionTreeForm.submitted}">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xsm-10"><label> {{ 'locale-split-strategy' | translate }} </label></div>
+                                                    <div class="col-md-5 col-xsm-10">
+                                                        <div class="checkbox checkbox-success">
+                                                            <input class="form-control" name="tryBest" value="tryBest" id="tryBest" type="checkbox"
+                                                                   data-ng-model="splitStrategy.tryBest">
+                                                            <label for="tryBest">
+                                                                Try Best
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox checkbox-success">
+                                                            <input class="form-control" name="tryRandom" value="tryRandom" id="tryRandom" type="checkbox"
+                                                                   data-ng-model="splitStrategy.tryRandom">
+                                                            <label for="tryRandom">
+                                                                Try Random
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div data-ng-if="opentab5">
+                        <div class="bg-info-light p-sm m-t-md">
+                            <h4 class="sub-title">Support Vector Machine</h4>
+                            <div class="well no-margins">
+                                Decision Trees (DTs) are a non-parametric supervised learning method used for classification and regression. The goal is to create a model that predicts the value of a target variable by learning simple decision rules inferred from the data features.
+                            </div>
+                            <form role="form" class="form-horizontal" id="decisionTreeForm" name="decisionTreeForm" novalidate>
+                                <div class="p-md">
+                                    <div class="row">
+                                        <div class="col-md-6 col-xsm-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': decisionTreeForm.maximumDepth.$invalid && decisionTreeForm.submitted}">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xsm-10"><label class="m-t-xs"> {{ 'locale-maximum-depth' | translate }} </label></div>
+                                                    <div class="col-md-5 col-xsm-10"><input type="number" name="maximumDepth" class="form-control" data-ng-model="decisionTree.maximumDepth"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-xsm-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': decisionTreeForm.minSamplePerLeaf.$invalid && decisionTreeForm.submitted}">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xsm-10"><label> {{ 'locale-min-samples-per-leaf' | translate }} </label></div>
+                                                    <div class="col-md-5 col-xsm-10"><input type="number" name="minSamplePerLeaf" class="form-control" data-ng-model="decisionTree.minSamplePerLeaf"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 col-xsm-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': decisionTreeForm.criterion.$invalid && decisionTreeForm.submitted}">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xsm-10"><label class="m-t-xs"> {{ 'locale-criterion' | translate }} </label></div>
+                                                    <div class="col-md-5 col-xsm-10">
+                                                        <div class="checkbox checkbox-success">
+                                                            <input class="form-control" name="tryGini" value="tryGini" id="tryGini" type="checkbox"
+                                                                   data-ng-model="criterion.tryGini">
+                                                            <label for="tryGini">
+                                                                Try Gini
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox checkbox-success">
+                                                            <input class="form-control" name="tryEntropy" value="tryEntropy" id="tryEntropy" type="checkbox"
+                                                                   data-ng-model="criterion.tryEntropy">
+                                                            <label for="tryEntropy">
+                                                                Try Entropy
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-xsm-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': decisionTreeForm.splitStrategy.$invalid && decisionTreeForm.submitted}">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xsm-10"><label> {{ 'locale-split-strategy' | translate }} </label></div>
+                                                    <div class="col-md-5 col-xsm-10">
+                                                        <div class="checkbox checkbox-success">
+                                                            <input class="form-control" name="tryBest" value="tryBest" id="tryBest" type="checkbox"
+                                                                   data-ng-model="splitStrategy.tryBest">
+                                                            <label for="tryBest">
+                                                                Try Best
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox checkbox-success">
+                                                            <input class="form-control" name="tryRandom" value="tryRandom" id="tryRandom" type="checkbox"
+                                                                   data-ng-model="splitStrategy.tryRandom">
+                                                            <label for="tryRandom">
+                                                                Try Random
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div data-ng-if="opentab6">
+                        <div class="bg-info-light p-sm m-t-md">
+                            <h4 class="sub-title">Stochastic Gradient Descent</h4>
+                            <div class="well no-margins">
+                                Decision Trees (DTs) are a non-parametric supervised learning method used for classification and regression. The goal is to create a model that predicts the value of a target variable by learning simple decision rules inferred from the data features.
+                            </div>
+                            <form role="form" class="form-horizontal" id="decisionTreeForm" name="decisionTreeForm" novalidate>
+                                <div class="p-md">
+                                    <div class="row">
+                                        <div class="col-md-6 col-xsm-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': decisionTreeForm.maximumDepth.$invalid && decisionTreeForm.submitted}">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xsm-10"><label class="m-t-xs"> {{ 'locale-maximum-depth' | translate }} </label></div>
+                                                    <div class="col-md-5 col-xsm-10"><input type="number" name="maximumDepth" class="form-control" data-ng-model="decisionTree.maximumDepth"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-xsm-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': decisionTreeForm.minSamplePerLeaf.$invalid && decisionTreeForm.submitted}">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xsm-10"><label> {{ 'locale-min-samples-per-leaf' | translate }} </label></div>
+                                                    <div class="col-md-5 col-xsm-10"><input type="number" name="minSamplePerLeaf" class="form-control" data-ng-model="decisionTree.minSamplePerLeaf"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 col-xsm-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': decisionTreeForm.criterion.$invalid && decisionTreeForm.submitted}">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xsm-10"><label class="m-t-xs"> {{ 'locale-criterion' | translate }} </label></div>
+                                                    <div class="col-md-5 col-xsm-10">
+                                                        <div class="checkbox checkbox-success">
+                                                            <input class="form-control" name="tryGini" value="tryGini" id="tryGini" type="checkbox"
+                                                                   data-ng-model="criterion.tryGini">
+                                                            <label for="tryGini">
+                                                                Try Gini
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox checkbox-success">
+                                                            <input class="form-control" name="tryEntropy" value="tryEntropy" id="tryEntropy" type="checkbox"
+                                                                   data-ng-model="criterion.tryEntropy">
+                                                            <label for="tryEntropy">
+                                                                Try Entropy
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-xsm-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': decisionTreeForm.splitStrategy.$invalid && decisionTreeForm.submitted}">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xsm-10"><label> {{ 'locale-split-strategy' | translate }} </label></div>
+                                                    <div class="col-md-5 col-xsm-10">
+                                                        <div class="checkbox checkbox-success">
+                                                            <input class="form-control" name="tryBest" value="tryBest" id="tryBest" type="checkbox"
+                                                                   data-ng-model="splitStrategy.tryBest">
+                                                            <label for="tryBest">
+                                                                Try Best
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox checkbox-success">
+                                                            <input class="form-control" name="tryRandom" value="tryRandom" id="tryRandom" type="checkbox"
+                                                                   data-ng-model="splitStrategy.tryRandom">
+                                                            <label for="tryRandom">
+                                                                Try Random
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div data-ng-if="opentab7">
+                        <div class="bg-info-light p-sm m-t-md">
+                            <h4 class="sub-title">K Nearest Neighbors</h4>
+                            <div class="well no-margins">
+                                Decision Trees (DTs) are a non-parametric supervised learning method used for classification and regression. The goal is to create a model that predicts the value of a target variable by learning simple decision rules inferred from the data features.
+                            </div>
+                            <form role="form" class="form-horizontal" id="decisionTreeForm" name="decisionTreeForm" novalidate>
+                                <div class="p-md">
+                                    <div class="row">
+                                        <div class="col-md-6 col-xsm-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': decisionTreeForm.maximumDepth.$invalid && decisionTreeForm.submitted}">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xsm-10"><label class="m-t-xs"> {{ 'locale-maximum-depth' | translate }} </label></div>
+                                                    <div class="col-md-5 col-xsm-10"><input type="number" name="maximumDepth" class="form-control" data-ng-model="decisionTree.maximumDepth"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-xsm-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': decisionTreeForm.minSamplePerLeaf.$invalid && decisionTreeForm.submitted}">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xsm-10"><label> {{ 'locale-min-samples-per-leaf' | translate }} </label></div>
+                                                    <div class="col-md-5 col-xsm-10"><input type="number" name="minSamplePerLeaf" class="form-control" data-ng-model="decisionTree.minSamplePerLeaf"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 col-xsm-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': decisionTreeForm.criterion.$invalid && decisionTreeForm.submitted}">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xsm-10"><label class="m-t-xs"> {{ 'locale-criterion' | translate }} </label></div>
+                                                    <div class="col-md-5 col-xsm-10">
+                                                        <div class="checkbox checkbox-success">
+                                                            <input class="form-control" name="tryGini" value="tryGini" id="tryGini" type="checkbox"
+                                                                   data-ng-model="criterion.tryGini">
+                                                            <label for="tryGini">
+                                                                Try Gini
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox checkbox-success">
+                                                            <input class="form-control" name="tryEntropy" value="tryEntropy" id="tryEntropy" type="checkbox"
+                                                                   data-ng-model="criterion.tryEntropy">
+                                                            <label for="tryEntropy">
+                                                                Try Entropy
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-xsm-6">
+                                            <div class="form-group"
+                                                 data-ng-class="{'has-error': decisionTreeForm.splitStrategy.$invalid && decisionTreeForm.submitted}">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-xsm-10"><label> {{ 'locale-split-strategy' | translate }} </label></div>
+                                                    <div class="col-md-5 col-xsm-10">
+                                                        <div class="checkbox checkbox-success">
+                                                            <input class="form-control" name="tryBest" value="tryBest" id="tryBest" type="checkbox"
+                                                                   data-ng-model="splitStrategy.tryBest">
+                                                            <label for="tryBest">
+                                                                Try Best
+                                                            </label>
+                                                        </div>
+                                                        <div class="checkbox checkbox-success">
+                                                            <input class="form-control" name="tryRandom" value="tryRandom" id="tryRandom" type="checkbox"
+                                                                   data-ng-model="splitStrategy.tryRandom">
+                                                            <label for="tryRandom">
+                                                                Try Random
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-ng-if="model.modelType == 'custom'" class="m-t-md">
+        <h2>{{ 'locale-launchers' | translate }}</h2>
+        <div class="scroll-body" slimscroll="{height: 300,size:4,distance:5}">
+            <div class="row bg-info-light m-b-sm" data-ng-repeat="launcher in algorithmsElement.launchersLists">
+                <div class="col-md-3 text-center">
+                    <img data-ng-if="angular.lowercase(launcher.name).indexOf('rstudio')>-1" src="img/launchers/rstudio.png" alt="rstudio" title="rstudio"/>
+                    <img data-ng-if="angular.lowercase(launcher.name).indexOf('jupyter')>-1" src="img/launchers/jupyter.png" alt="jupyter" title="jupyter"/>
+                </div>
+                <div class="col-md-6 text-center">
+                    <h3 class="p-xs"> {{ launcher.name}}</h3>
+                </div>
+                <div class="col-md-3 text-center">
+                    <a data-ng-click="algorithmsObject.launchEditor(launcher)" class="btn btn-success m-t-sm">Launch</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

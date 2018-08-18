@@ -1,0 +1,95 @@
+<form role="form" id="publishForm" name="publishForm" novalidate>
+    <div class="modal-header" modaldraggable>
+        <button type="button" data-ng-click="cancel();" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><i class="fa fa-cloud-upload m-r-sm"></i>{{ 'locale-datasource-details' | translate }}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+             <div class="col-md-10" data-ng-if='publish.dataSourceAuthUrl == null'>
+                <div class="form-group"
+                     data-ng-class="{'has-error': publishForm.datasetName.$invalid && publishForm.submitted}">
+                    <label> {{ 'locale-datasource-url' | translate }} </label>
+                    <div class="input-group m-r-md">                   
+                        <input type="text" class="form-control" id="data-source-url" readonly  data-ng-model="publish.dataSourceUrl">
+                        <div class="input-group-btn">
+                            <button class="btn btn-white" type="button" data-ng-click="datasetObject.clipboard('data-source-url')"><i class="fa fa-clipboard"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" data-ng-if='publish.dataSourceAuthUrl != null'>
+                <div class="form-group"
+                     data-ng-class="{'has-error': publishForm.datasetName.$invalid && publishForm.submitted}">
+                    <label> {{ 'locale-datasource-url' | translate }} </label>
+                    <div class="input-group m-r-md">                   
+                        <input type="text" class="form-control" id="data-source-url" readonly  data-ng-model="publish.dataSourceUrl">
+                        <div class="input-group-btn">
+                            <button class="btn btn-white" type="button" data-ng-click="datasetObject.clipboard('data-source-url')"><i class="fa fa-clipboard"></i></button>
+                        </div>
+                    </div>
+                    <!--                    <select class="form-control" data-ng-disabled="publish.datasetName" name="datasetName" data-ng-init="publish.datasetName = 'amazonS3'" data-ng-model="publish.datasetName">
+                                            <option value=""> {{ 'locale-select' | translate }} </option>
+                                            <option value="amazonS3">Amazon S3</option>
+                                            <option value="teraData">Tera Data</option>
+                                        </select>-->
+                </div>
+            </div>
+            <div class="col-md-6" data-ng-if='{{publish.dataSourceAuthUrl != null}}'>
+                <label> {{ 'locale-auth-url' | translate }} </label>
+                <div class="input-group m-r-md">                   
+                    <input type="text" class="form-control" id="auth-url" readonly  data-ng-model="publish.dataSourceAuthUrl">
+                    <div class="input-group-btn">
+                        <button class="btn btn-white" type="button" data-ng-click="datasetObject.clipboard('auth-url')"><i class="fa fa-clipboard"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--        <div class="bg-light-sky-blue p-md" data-ng-if="dataSourceAdditionalParams.length < 5">
+                    <div class="row" data-ng-repeat="additionalParams in dataSourceAdditionalParams">
+                        <div class="col-md-6">
+                            <label> {{ 'locale-key' | translate }} </label>
+                            <div class="input-group">                   
+                                <input type="text" class="form-control" id="keyname" readonly placeholder="Key" data-ng-model="additionalParams.keyParam">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-white" type="button" data-ng-click="datasetObject.clipboard('keyname')"><i class="fa fa-clipboard"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label> {{ 'locale-value' | translate }} </label>
+                            <div class="input-group">                   
+                                <input type="text" class="form-control" id="valueId" readonly placeholder="value" data-ng-model="additionalParams.valueParam">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-white" type="button" data-ng-click="datasetObject.clipboard('valueId')"><i class="fa fa-clipboard"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+        <div data-ng-if='{{dataSourceAdditionalParams.length > 0}}' data-ng-class="dataSourceAdditionalParams.length > 5 ? '' : 'slim-scroll-height-auto'">
+            <div class="scroll-body form-divider-bg p-md" slimscroll="{height: 313,size:4,distance:5}">
+                <div class="row" data-ng-repeat="additionalParams in dataSourceAdditionalParams">
+                    <div class="col-md-6">
+                        <label> {{ 'locale-key' | translate }} </label>
+                        <div class="input-group">                   
+                            <input type="text" class="form-control" id="keyname" readonly placeholder="Key" data-ng-model="additionalParams.keyParam">
+                            <div class="input-group-btn">
+                                <button class="btn btn-white" type="button" data-ng-click="datasetObject.clipboard('keyname')"><i class="fa fa-clipboard"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label> {{ 'locale-value' | translate }} </label>
+                        <div class="input-group">                   
+                            <input type="text" class="form-control" id="valueId" readonly placeholder="Value" data-ng-model="additionalParams.valueParam">
+                            <div class="input-group-btn">
+                                <button class="btn btn-white" type="button" data-ng-click="datasetObject.clipboard('valueId')"><i class="fa fa-clipboard"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</form> 

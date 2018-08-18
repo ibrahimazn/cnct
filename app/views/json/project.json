@@ -1,0 +1,44 @@
+[
+    {
+        "projects": "Creating Remarkable",
+        "description": "It is a long established fact that a reader will be distracted by the readable ...",
+        "collaboration": "Owner 12",
+        "deadline": " 10-11-17",
+        "access": ["Data Transformation", "Modeling", "Scoring"]
+    },
+    {
+        "projects": "Space The...",
+        "description": "It is a long established fact that a reader will be distracted by the readable ...",
+        "collaboration": "11",
+        "deadline": "07-12-17",
+        "access": ["Modeling", "Scoring"]
+    },
+    {
+        "projects": "Myspace...",
+        "description": "It is a long established fact that a reader will be distracted by the readable ...",
+        "collaboration": "08",
+        "deadline": "07-12-17 ",
+        "access": ["Modeling"]
+    },
+    {
+        "projects": "Myspace...",
+        "description": "It is a long established fact that a reader will be distracted by the readable ...",
+        "collaboration": "08",
+        "deadline": "07-12-17 ",
+        "access": ["Modeling"]
+    },
+    {
+        "projects": "Myspace...",
+        "description": "It is a long established fact that a reader will be distracted by the readable ...",
+        "collaboration": "08",
+        "deadline": "07-12-17 ",
+        "access": ["Modeling"]
+    },
+    {
+        "projects": "Myspace...",
+        "description": "It is a long established fact that a reader will be distracted by the readable ...",
+        "collaboration": "08",
+        "deadline": "07-12-17 ",
+        "access": ["Modeling"]
+    }
+]

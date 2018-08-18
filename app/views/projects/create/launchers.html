@@ -1,0 +1,57 @@
+<form role="form" id="projectLaunchersForm" name="projectLaunchersForm" novalidate data-ng-submit="projectsObject.checkValidation(projectLaunchersForm, 3)">
+    <div class="project-create-form launchers-form">
+        <div class="row m-t-md">
+            <div class="col-md-8">
+                <h2>{{ 'locale-launchers' | translate }}</h2>
+            </div>
+            <div class="col-md-4 text-right">
+                <div class="checkbox checkbox-primary m-r-md">
+                    <input type="checkbox" data-ng-model="project.launchers.checkAll" data-ng-click="projectsObject.checkAll(project.launchers.checkAll, 'launchers')"
+                           aria-label="Single checkbox One">
+                    <label></label>
+                </div>
+            </div>
+        </div>
+        <div data-ng-class="launchersLists.length > 5 ? '' : 'slim-scroll-height-auto'">
+            <div class="scroll-body" slimscroll="{height: 400,size:4,color:cccccc}">
+                <ul class="form-list">
+                    <li data-ng-class="launcherList.checked == true || project.launchers.checkAll == true ? 'active' : ''" class="border-top" data-ng-repeat="launcherList in launchersLists">
+                        <div class="row">
+                            <div class="col-md-8 col-sm-6">
+                                <div class="row">
+                                    <div class="col-md-2 col-sm-3 no-p-r">
+                                        <img data-ng-if="launcherList.name.includes('rstudio')" src="img/launchers/rstudio.png" alt="rstudio" title="rstudio" class="img-responsive"/>
+                                        <img data-ng-if="launcherList.name.includes('jupyter')" src="img/launchers/jupyter.png" alt="jupyter" title="jupyter" class="img-responsive"/>
+                                        <img data-ng-hide="launcherList.name.includes('jupyter')||('rstudio')" src="img/launchers/other-launcher.png" alt="other launcher" title="other launcher" class="img-responsive"/>
+                                    </div>
+                                    <div class="col-md-10 col-sm-9 no-p-r">
+                                        <h5>{{ launcherList.platformTool}}</h5>
+<!--                                        <small>
+                                            <span><i class="fa fa-wrench" aria-hidden="true"></i></span>
+                                            {{ launcherList.platformTool}}
+                                        </small>-->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 text-right">
+                                <div class="checkbox checkbox-primary">
+                                    <input type="checkbox" id="{{launcherList.name}}" data-ng-model="launcherList.checked" data-ng-change="projectsObject.optionToggled(launchersLists, 'launchers')"
+                                        aria-label="Single checkbox One">
+                                        <label for="{{launcherList.name}}"></label>
+                                </div>
+                            </div>
+                            <div>
+                                <input type="hidden" data-ng-bind="projectLaunchersObject.launchers[$index] = launcherList" />
+                            </div>
+                            <!--ssd : {{launcherList}}-->
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="m-t-lg">
+            <!--<a class="btn btn-dark btn-sm btn-shadow text-uppercase" data-ng-click="projectLaunchersObject.save(projectLaunchersObject)">{{ 'locale-next' | translate }}</a>-->
+            <button class="btn btn-dark btn-sm btn-shadow text-uppercase">{{ 'locale-next' | translate }}</button>
+        </div>
+    </div>
+</form>

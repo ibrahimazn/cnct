@@ -1,0 +1,479 @@
+<form role="form" id="addTilesToDashboardForm" name="addTilesToDashboardForm" novalidate>
+    <div class="modal-header" modaldraggable>
+        <button type="button" data-ng-click="cancel();" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><i class="fa fa-plus-circle m-r-sm"></i>{{ 'locale-add' | translate }} {{dashboardTile.name}} {{ 'locale-to-dashboard' | translate }}</h4>
+    </div>
+    <div class="modal-body">
+        <div data-ng-if="dashboardTile.name == 'Dataset'" >
+            <div data-ng-if="!existingInsight">
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <a data-ng-click="createDashboardObject.toggle()" class="btn btn-success">
+                            <i class="fa fa-check-circle m-r-xs"></i> {{ 'locale-pick-existing-insight' | translate }}
+                        </a>
+                    </div>
+                </div>
+                <div class="form-group"
+                    data-ng-class="{'has-error': addTilesToDashboardForm.sourceDataset.$invalid && addTilesToDashboardForm.submitted}">
+                    <label> {{ 'locale-source-dataset' | translate }} </label>
+                    <select class="form-control" name="sourceDataset" data-ng-model="datasetTile.sourceDataset">
+                        <option value=""> {{ 'locale-dataset' | translate }} </option>
+                        <option value="crm_and_web_history_enriched">crm_and_web_history_enriched</option>
+                        <option value="web_history_prepared">web_history_prepared</option>
+                    </select>
+                </div>
+                <div class="form-group" data-ng-class="{'has-error': addTilesToDashboardForm.insightName.$invalid && addTilesToDashboardForm.submitted}">
+                    <label> {{ 'locale-insight-name' | translate }} </label>
+                    <input type="text" name="insightName" class="form-control" data-ng-model="datasetTile.insightName">
+                </div>
+            </div>
+            <div data-ng-if="existingInsight">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <a data-ng-click="createDashboardObject.toggle()" class="btn btn-light">
+                            <i class="fa fa-arrow-circle-left"></i> {{ 'locale-back' | translate }} 
+                        </a>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="{{ 'locale-search' | translate }}">
+                            <div class="input-group-btn">
+                                <button class="btn btn-white" type="button"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-t-md borders">
+                    <div class="scroll-body" slimscroll="{height: 300,size:4,distance:0}">
+                        <ul class="list-group elements-list list-group-striped">
+                            <li class="list-group-item" data-ng-repeat="datasetInsight in datasetInsightList">
+                                <a class="block">
+                                    <div class="row">
+                                        <div class="col-md-1 col-sm-1 text-info">
+                                            <i class="fa fa-database fa-fw m-r-sm"></i> 
+                                        </div>
+                                        <div class="col-md-10 col-sm-10">{{datasetInsight}}</div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div data-ng-if="dashboardTile.name == 'Chart'">
+            <div  data-ng-if="!existingInsight">
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <a data-ng-click="createDashboardObject.toggle()" class="btn btn-success">
+                            <i class="fa fa-check-circle m-r-xs"></i> {{ 'locale-pick-existing-insight' | translate }}
+                        </a>
+                    </div>
+                </div>
+                <div class="form-group"
+                    data-ng-class="{'has-error': addTilesToDashboardForm.sourceDataset.$invalid && addTilesToDashboardForm.submitted}">
+                    <label> {{ 'locale-source-dataset' | translate }} </label>
+                    <select class="form-control" name="sourceDataset" data-ng-model="chartTile.sourceDataset">
+                        <option value=""> {{ 'locale-dataset' | translate }} </option>
+                        <option value="crm_and_web_history_enriched">crm_and_web_history_enriched</option>
+                        <option value="web_history_prepared">web_history_prepared</option>
+                    </select>
+                </div>
+            </div>
+            <div  data-ng-if="existingInsight">
+                <div class="row">
+                    <div class="col-md-6">
+                        <a data-ng-click="createDashboardObject.toggle()" class="btn btn-light">
+                            <i class="fa fa-arrow-circle-left"></i> {{ 'locale-back' | translate }} 
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="{{ 'locale-search' | translate }}">
+                            <div class="input-group-btn">
+                                <button class="btn btn-white" type="button"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-t-md borders">
+                    <div class="scroll-body" slimscroll="{height: 300,size:4,distance:0}">
+                        <ul class="list-group elements-list list-group-striped">
+                            <li class="list-group-item" data-ng-repeat="chartInsight in chartInsightList">
+                                <a class="block">
+                                    <div class="row">
+                                        <div class="col-md-1 text-info">
+                                            <i class="fa fa-bar-chart fa-fw m-r-sm"></i> 
+                                        </div>
+                                        <div class="col-md-10">{{chartInsight}}</div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div data-ng-if="dashboardTile.name == 'Comments'">
+            <div  data-ng-if="!existingInsight">
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <a data-ng-click="createDashboardObject.toggle()" class="btn btn-success">
+                            <i class="fa fa-check-circle m-r-xs"></i> {{ 'locale-pick-existing-insight' | translate }}
+                        </a>
+                    </div>
+                </div>
+                <div class="form-group"
+                    data-ng-class="{'has-error': addTilesToDashboardForm.objectType.$invalid && addTilesToDashboardForm.submitted}">
+                    <label> {{ 'locale-object-type' | translate }} </label>
+                    <select class="form-control" name="objectType" data-ng-init="commentsTile.objectType = 'dataset'" data-ng-model="commentsTile.objectType">
+                        <option value="dataset">Dataset</option>
+                        <option value="recipe">Recipe</option>
+                        <option value="sqlNotebook">SQL notebook</option>
+                        <option value="analyzes">Analyzes</option>
+                        <option value="savedModel">Saved Model</option>
+                        <option value="insight">Insight</option>
+                        <option value="managedFolder">Managed Folder</option>
+                        <option value="scenario">Scenario</option>
+                        <option value="dashboard">Dashboard</option>
+                        <option value="webApp">Web app</option>
+                        <option value="report">Report</option>
+                    </select>
+                    
+                </div>
+                <div class="form-group"
+                    data-ng-class="{'has-error': addTilesToDashboardForm.sourceDataset.$invalid && addTilesToDashboardForm.submitted}">
+                    <label> {{ 'locale-source' | translate }} </label>
+                    <select class="form-control" name="source" data-ng-model="commentsTile.source">
+                        <option value=""> {{ 'locale-dataset' | translate }} </option>
+                        <option value="crm_and_web_history_enriched">crm_and_web_history_enriched</option>
+                        <option value="web_history_prepared">web_history_prepared</option>
+                    </select>
+                </div>
+                <div class="form-group" data-ng-class="{'has-error': addTilesToDashboardForm.insightName.$invalid && addTilesToDashboardForm.submitted}">
+                    <label> {{ 'locale-insight-name' | translate }} </label>
+                    <input type="text" name="insightName" class="form-control" data-ng-model="commentsTile.insightName">
+                </div>
+            </div>
+            <div  data-ng-if="existingInsight">
+                <div class="row">
+                    <div class="col-md-6">
+                        <a data-ng-click="createDashboardObject.toggle()" class="btn btn-light">
+                            <i class="fa fa-arrow-circle-left"></i> {{ 'locale-back' | translate }} 
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="{{ 'locale-search' | translate }}">
+                            <div class="input-group-btn">
+                                <button class="btn btn-white" type="button"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-t-md borders">
+                    <div class="scroll-body" slimscroll="{height: 300,size:4,distance:0}">
+                        <ul class="list-group elements-list list-group-striped">
+                            <li class="list-group-item" data-ng-repeat="commentsInsight in commentsInsightList">
+                                <a class="block">
+                                    <div class="row">
+                                        <div class="col-md-1 text-info">
+                                            <i class="fa fa-comment fa-fw m-r-sm"></i> 
+                                        </div>
+                                        <div class="col-md-10">{{commentsInsight}}</div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div data-ng-if="dashboardTile.name == 'Launchers'">
+            <div  data-ng-if="!existingInsight">
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <a data-ng-click="createDashboardObject.toggle()" class="btn btn-success">
+                            <i class="fa fa-check-circle m-r-xs"></i> {{ 'locale-pick-existing-insight' | translate }}
+                        </a>
+                    </div>
+                </div>
+                <div class="form-group"
+                    data-ng-class="{'has-error': addTilesToDashboardForm.sourceLauncher.$invalid && addTilesToDashboardForm.submitted}">
+                    <label> {{ 'locale-source-launcher' | translate }} </label>
+                    <select class="form-control" name="sourceLauncher" data-ng-init="launchersTile.sourceLauncher = 'RStudio_session'" data-ng-model="launchersTile.sourceLauncher">
+                        <option value="RStudio_session">RStudio_session</option>
+                        <option value="Jupyter_session1">Jupyter_session1</option>
+                        <option value="Jupyter_session2">Jupyter_session2</option>
+                        <option value="Terminal">Terminal</option>
+                        <option value="RStudio_session">RStudio_session</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox checkbox-success">
+                        <input class="form-control" name="alwaysLastExport" value="alwaysLastExport" type="checkbox" data-ng-model="launchersTile.alwaysLastExport">
+                        <label for="checkbox3">
+                            {{ 'locale-always-display-last-export' | translate }}
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group" data-ng-if="!launchersTile.alwaysLastExport">
+                    <div class="checkbox checkbox-success">
+                        <input class="form-control" name="createDisplayNewExport" value="createDisplayNewExport" type="checkbox" data-ng-model="launchersTile.createDisplayNewExport">
+                        <label for="checkbox3">
+                            {{ 'locale-create-display-new-export' | translate }}
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group" data-ng-if="launchersTile.alwaysLastExport">
+                    <div class="checkbox checkbox-success">
+                        <input class="form-control" name="createNewExportNow" value="createNewExportNow" type="checkbox" data-ng-model="launchersTile.createNewExportNow">
+                        <label for="checkbox3">
+                            {{ 'locale-create-new-export-now' | translate }}
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group" data-ng-class="{'has-error': addTilesToDashboardForm.insightName.$invalid && addTilesToDashboardForm.submitted}">
+                    <label> {{ 'locale-insight-name' | translate }} </label>
+                    <input type="text" name="insightName" class="form-control" data-ng-model="launchersTile.insightName">
+                </div>
+            </div>
+            <div  data-ng-if="existingInsight">
+                <div class="row">
+                    <div class="col-md-6">
+                        <a data-ng-click="createDashboardObject.toggle()" class="btn btn-light">
+                            <i class="fa fa-arrow-circle-left"></i> {{ 'locale-back' | translate }} 
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <input type="text" class="form-control">
+                            <div class="input-group-btn">
+                                <button class="btn btn-white" type="button"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-t-md borders">
+                    <div class="scroll-body" slimscroll="{height: 300,size:4,distance:0}">
+                        <ul class="list-group elements-list list-group-striped">
+                            <li class="list-group-item" data-ng-repeat="launchersInsight in launchersInsightList">
+                                <a class="block">
+                                    <div class="row">
+                                        <div class="col-md-1 text-info">
+                                            <i class="fa fa-rocket fa-fw m-r-sm"></i> 
+                                        </div>
+                                        <div class="col-md-10">{{launchersInsight}}</div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div data-ng-if="dashboardTile.name == 'Metrics'">
+            <div  data-ng-if="!existingInsight">
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <a data-ng-click="createDashboardObject.toggle()" class="btn btn-success">
+                            <i class="fa fa-check-circle m-r-xs"></i> {{ 'locale-pick-existing-insight' | translate }}
+                        </a>
+                    </div>
+                </div>
+                <div class="form-group"
+                    data-ng-class="{'has-error': addTilesToDashboardForm.type.$invalid && addTilesToDashboardForm.submitted}">
+                    <label> {{ 'locale-type' | translate }} </label>
+                    <select class="form-control" name="type" data-ng-init="metricsTile.objectType = 'savedModel'" data-ng-model="metricsTile.objectType">
+                        <option value="dataset">Dataset</option>
+                        <option value="savedModel">Saved Model</option>
+                        <option value="managedFolder">Managed Folder</option>
+                    </select>
+                    
+                </div>
+                <div class="form-group"
+                    data-ng-class="{'has-error': addTilesToDashboardForm.source.$invalid && addTilesToDashboardForm.submitted}">
+                    <label> {{ 'locale-source' | translate }} </label>
+                    <select class="form-control" name="source" data-ng-init="metricsTile.source='predictionDecesionTreeOn_iris_data_prepared'" data-ng-model="metricsTile.source">
+                        <option value="predictionDecesionTreeOn_iris_data_prepared">Prediction (DECISION_TREE_CLASSIFICATION) on iris_data_prepared</option>
+                        <option value="PredictionLarsOn_iris_data_prepared_preparedj">Prediction (LARS) on iris_data_prepared_preparedj</option>
+                        <option value="PredictionSkitModelOn_iris_data_prepared_preparedj">Prediction (LARS) on iris_data_prepared_preparedj</option>
+                    </select>
+                </div>
+                <div class="form-group"
+                    data-ng-class="{'has-error': addTilesToDashboardForm.metric.$invalid && addTilesToDashboardForm.submitted}">
+                    <label> {{ 'locale-metric' | translate }} </label>
+                    <select class="form-control" name="metric" data-ng-init="metricsTile.metric='auc'" data-ng-model="metricsTile.metric">
+                        <option value="auc">AUC</option>
+                        <option value="accuracy">accuracy</option>
+                        <option value="f1">F1</option>
+                        <option value="logLess">log.less</option>
+                        <option value="precision">Precision</option>
+                        <option value="recall">Recall</option>
+                    </select>
+                </div>
+                <div class="form-group" data-ng-class="{'has-error': addTilesToDashboardForm.insightName.$invalid && addTilesToDashboardForm.submitted}">
+                    <label> {{ 'locale-insight-name' | translate }} </label>
+                    <input type="text" name="insightName" class="form-control" data-ng-model="metricsTile.insightName">
+                </div>
+            </div>
+            <div  data-ng-if="existingInsight">
+                <div class="row">
+                    <div class="col-md-6">
+                        <a data-ng-click="createDashboardObject.toggle()" class="btn btn-light">
+                            <i class="fa fa-arrow-circle-left"></i> {{ 'locale-back' | translate }} 
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="{{ 'locale-search' | translate }}">
+                            <div class="input-group-btn">
+                                <button class="btn btn-white" type="button"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-t-md borders">
+                    <div class="scroll-body" slimscroll="{height: 300,size:4,distance:0}">
+                        <ul class="list-group elements-list list-group-striped">
+                            <li class="list-group-item" data-ng-repeat="metricInsight in metricInsightList">
+                                <a class="block">
+                                    <div class="row">
+                                        <div class="col-md-1 text-info">
+                                            <i class="fa fa-asterisk fa-fw m-r-sm"></i> 
+                                        </div>
+                                        <div class="col-md-10">{{metricInsight}}</div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div data-ng-if="dashboardTile.name == 'Saved model report'">
+            <div  data-ng-if="!existingInsight">
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <a data-ng-click="createDashboardObject.toggle()" class="btn btn-success">
+                            <i class="fa fa-check-circle m-r-xs"></i> {{ 'locale-pick-existing-insight' | translate }}
+                        </a>
+                    </div>
+                </div>
+                <div class="form-group"
+                    data-ng-class="{'has-error': addTilesToDashboardForm.sourceModel.$invalid && addTilesToDashboardForm.submitted}">
+                    <label> {{ 'locale-source-model' | translate }} </label>
+                    <select class="form-control" name="sourceModel" data-ng-init="metricsTile.sourceModel='predictionDecesionTreeOn_iris_data_prepared'" data-ng-model="savedModelReportTile.sourceModel">
+                        <option value="predictionDecesionTreeOn_iris_data_prepared">Prediction (DECISION_TREE_CLASSIFICATION) on iris_data_prepared</option>
+                        <option value="PredictionLarsOn_iris_data_prepared_preparedj">Prediction (LARS) on iris_data_prepared_preparedj</option>
+                        <option value="PredictionSkitModelOn_iris_data_prepared_preparedj">Prediction (LARS) on iris_data_prepared_preparedj</option>
+                    </select>
+                </div>
+                <div class="form-group"
+                    data-ng-class="{'has-error': addTilesToDashboardForm.modelVersion.$invalid && addTilesToDashboardForm.submitted}">
+                    <label> {{ 'locale-model-version' | translate }} </label>
+                    <select class="form-control" name="modelVersion" data-ng-init="metricsTile.modelVersion='alwaysShowActiveVersion'" data-ng-model="savedModelReportTile.modelVersion">
+                        <option value="alwaysShowActiveVersion">Always show active version</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                    </select>
+                </div>
+                <div class="form-group" data-ng-class="{'has-error': addTilesToDashboardForm.insightName.$invalid && addTilesToDashboardForm.submitted}">
+                    <label> {{ 'locale-insight-name' | translate }} </label>
+                    <input type="text" name="insightName" class="form-control" data-ng-model="savedModelReportTile.insightName">
+                </div>
+            </div>
+            <div  data-ng-if="existingInsight">
+                <div class="row">
+                    <div class="col-md-6">
+                        <a data-ng-click="createDashboardObject.toggle()" class="btn btn-light">
+                            <i class="fa fa-arrow-circle-left"></i> {{ 'locale-back' | translate }} 
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="{{ 'locale-search' | translate }}">
+                            <div class="input-group-btn">
+                                <button class="btn btn-white" type="button"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-t-md borders">
+                    <div class="scroll-body" slimscroll="{height: 300,size:4,distance:0}">
+                        <ul class="list-group elements-list list-group-striped">
+                            <li class="list-group-item" data-ng-repeat="savedModelReportInsight in savedModelReportInsightList">
+                                <a class="block">
+                                    <div class="row">
+                                        <div class="col-md-1 text-info">
+                                            <i class="fa fa-cube fa-fw m-r-sm"></i> 
+                                        </div>
+                                        <div class="col-md-10">{{savedModelReportInsight}}</div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div data-ng-if="dashboardTile.name == 'Static insight'">
+            <div >
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="{{ 'locale-search' | translate }}">
+                            <div class="input-group-btn">
+                                <button class="btn btn-white" type="button"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-t-md borders">
+                    <div class="scroll-body" slimscroll="{height: 300,size:4,distance:0}">
+                        <ul class="list-group elements-list list-group-striped">
+                            <li class="list-group-item" data-ng-repeat="staticInsight in staticInsightList">
+                                <a class="block">
+                                    <div class="row">
+                                        <div class="col-md-1 text-info">
+                                            <i class="fa fa-eye fa-fw m-r-sm"></i> 
+                                        </div>
+                                        <div class="col-md-10">{{staticInsight}}</div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div data-ng-if="dashboardTile.name == 'Text'">
+            <div >
+                <div class="form-group" data-ng-class="{'has-error': addTilesToDashboardForm.text.$invalid && addTilesToDashboardForm.submitted}">
+                    <label> {{ 'locale-text' | translate }} </label>
+                    <textarea class="form-control" rows="4" cols="50" name="text" data-ng-model="textTile.text"></textarea>
+                </div>
+            </div>
+        </div>
+        <div data-ng-if="dashboardTile.name == 'Image'">
+            <div>
+                <div class="form-group" data-ng-class="{'has-error': addTilesToDashboardForm.image.$invalid && addTilesToDashboardForm.submitted}">
+                    <label> {{ 'locale-image' | translate }} </label>
+                    <input type="file" id="myFile" data-ng-model="imageTile.image">
+                </div>
+            </div>
+        </div>
+        <div data-ng-if="dashboardTile.name == 'Web Content'">
+            <div>
+                <div class="form-group" data-ng-class="{'has-error': addTilesToDashboardForm.url.$invalid && addTilesToDashboardForm.submitted}">
+                    <label> {{ 'locale-url' | translate }} </label>
+                    <input type="text" name="url" class="form-control" data-ng-model="webContentTile.url">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-ng-click="cancel();">{{ 'locale-cancel' | translate }}</button>
+        <button type="submit" class="btn btn-info" data-ng-click="cancel();">{{ 'locale-add' | translate }}</button>
+    </div>
+</form> 

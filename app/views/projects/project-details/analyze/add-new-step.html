@@ -1,0 +1,61 @@
+<form role="form" id="addNewStepForm" name="addNewStepForm" novalidate>
+    <div class="modal-header" modaldraggable>
+        <button type="button" data-ng-click="cancel();" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><i class="fa fa-plus-circle m-r-sm"></i>{{ 'locale-add-a-new-step' | translate }}</h4>
+    </div>
+    <div class="modal-body">
+
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xsm-6 no-p-r">
+                <div class="library-list borders">
+                    <div class="border-bottom bg-info-light">
+                        <div class="m-l-md"><h4 class="no-margins">{{ 'locale-library' | translate }}</h4></div>
+                    </div>
+                    <ul class="list-group elements-list">
+                        <li class="list-group-item" data-ng-click="showPrivilege($index)" data-ng-class="{ active: isSet($index) }" data-ng-repeat="library in previewAnalyzeElement.steps.groups">
+                            <a class="block">
+                                <div class="row">
+                                    <div class="col-md-8 col-sm-8 col-xsm-8">
+                                        {{library.name}}
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 col-xsm-4 text-right">
+                                        {{library.processors.length}}
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xsm-6 no-p-l" data-ng-init="steps.groups = []">
+                <div class="processors-list borders" data-ng-show="isSet($index)" data-ng-repeat="library in previewAnalyzeElement.steps.groups">
+                    <div class="border-bottom bg-info-light">
+                        <div class="m-l-md"><h4 class="no-margins">{{library.name}} - {{ 'locale-processors' | translate }}</h4></div>
+                    </div>
+                    <div class="scroll-body" slimscroll="{height: 292,size:4,distance:0}">
+                        <ul class="list-group elements-list list-group-striped">
+                            <li class="list-group-item" data-ng-repeat="processor in library.processors">
+                                <a class="block" data-ng-click="previewAnalyzeObject.save(processor)">
+                                    <div class="row">
+                                        <div class="col-md-1 col-sm-1 col-xsm-1">
+                                            <i class="fa fa-filter fa-fw m-r-sm" data-ng-if="processor.type == 'Filter'"></i> 
+                                            <i class="fa fa-flag fa-fw m-r-sm" data-ng-if="processor.type == 'Flag'"></i> 
+                                            <i class="fa fa-trash fa-fw m-r-sm" data-ng-if="processor.type == 'Delete'"></i>
+                                            <i class="fa fa-flask fa-fw m-r-sm" data-ng-if="processor.type == 'Negate'"></i>
+                                            <i class="fa fa-scissors fa-fw m-r-sm" data-ng-if="processor.type == 'Split'"></i>
+                                            <i class="fa fa-expand fa-fw m-r-sm" data-ng-if="processor.type == 'Extract'"></i>
+                                            <i class="fa fa-chain-broken fa-fw m-r-sm" data-ng-if="processor.type == 'Unnest'"></i>
+                                            <i class="fa fa-flask fa-fw m-r-sm" data-ng-if="processor.type == 'Formula'"></i>
+                                        </div>
+                                        <div class="col-md-10 col-sm-10 col-xsm-10">{{processor.name}}</div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <input type="hidden" data-ng-bind="steps.groups[$index] = library" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form> 

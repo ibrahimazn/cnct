@@ -18,11 +18,11 @@
                 </div>
             </div>
             <div class="filter-wrapper m-r-md">
-                <select class="form-control" name="type" data-ng-model="type" data-ng-options="type for type in roles">
+                <select class="form-control" name="type" data-ng-model="type">
                     <option value="">All Status</option>
-                    <option value="suspended">Suspended</option>
-                    <option value="disabled">Disabled</option>
-                    <option value="deleted">Deleted</option>
+                    <option value="SUSPENDED">Suspended</option>
+                    <option value="DISABLED">Disabled</option>
+                    <option value="DELETED">Deleted</option>
 
                 </select>
             </div>
@@ -71,15 +71,15 @@
                                                 </tr>
                                             </tbody>
                                             <tbody data-ng-show="userAccountElement.userLists.length > 0">
-                                                <tr data-ng-repeat="userList in userAccountElement.userLists">
-                                                    <td data-ng-if="userList.status !== 'VERIFICATION_PENDING'" class="text-info"><a data-ng-click="userAccountObject.getUser($index)" ui-sref="user-accounts.dashboard({id: {{ userList.id}}})" class="text-primary">{{ userList.firstName}}</a></td>
-                                                    <td>{{userList.email}}</td>
-                                                    <td data-ng-if="userList.status !== 'VERIFICATION_PENDING'">{{userList.primaryPhone}}</td>
-                                                    <td>{{userList.createdDateTime * 1000| date:'yyyy-MM-dd HH:mm:ss'}}</td>
-                                                    <td>{{userList.status}}</td>
+                                                <tr class="font-bold" data-ng-repeat="userList in userAccountElement.userLists">
+                                                    <td><a  data-ng-click="userAccountObject.getUser($index)" ui-sref="user-accounts.dashboard({id: {{ userList.id}}})">{{ userList.firstName}}</a></td>
+                                                    <td data-ng-class="userList.email ? 'text-primary' : 'text-muted'">{{userList.email || ('locale-no-email' | translate) }}</td>
+                                                    <td data-ng-class="userList.primaryPhone ? 'text-primary' : 'text-muted'">{{userList.primaryPhone || ('locale-no-phone' | translate) }}</td>
+                                                    <td data-ng-class="userList.createdAt ? 'text-primary' : 'text-muted'">{{userList.createdAt | date:'yyyy-MM-dd HH:mm:ss'|| ('locale-no-date' | translate)}}</td>
+                                                    <td data-ng-class="userList.status ? 'text-primary' : 'text-muted'">{{userList.status || ('locale-no-status' | translate) }}</td>
                                                     <td>
                                                         <a has-permission="EDIT_USER" ui-sref="userLists.edit({id: {{ userList.id}}})" data-ng-if="userList.status !== 'VERIFICATION_PENDING'" class="btn btn-dark btn-circle" title="{{ 'locale-edit' | translate }}"><i class="fa fa-edit"></i></a>
-                                                        <a has-permission="DISABLE_USER" class="btn btn-dark btn-circle"  data-ng-if="userList.status == 'ENABLED' && userList.userType != 'ADMIN'" data-ng-click="disableUserResource(userList)" title="{{ 'locale-disable' | translate }}"><i class="fa fa-ban"></i></a>
+                                                        <a has-permission="DISABLE_USER" class="btn btn-dark btn-circle text-gray"  data-ng-if="userList.status == 'ENABLED' && userList.userType != 'ADMIN'" data-ng-click="disableUserResource(userList)" title="{{ 'locale-disable' | translate }}"><i class="fa fa-ban"></i></a>
                                                         <a has-permission="ENABLE_USER" class="btn btn-dark btn-circle" data-ng-if="userList.status == 'DISABLED' && userList.userType != 'ADMIN'" data-ng-click="enableUserAccount(userList)" title="{{ 'locale-enable' | translate }}"><i class="fa fa-check"></i></a>
                                                         <a has-permission="SUSPEND_USER" class="btn btn-dark btn-circle" data-ng-if="userList.status !== 'VERIFICATION_PENDING' && userList.status != 'SUSPENDED' && userList.status != 'DISABLED' && userList.userType != 'ADMIN'" data-ng-click="suspendUserResource(userList)" title="{{ 'locale-suspend' | translate }}"><i class="fa fa-minus-circle"></i></a>
                                                         <a has-permission="RESUME_USER" class="btn btn-dark btn-circle" data-ng-if="userList.status == 'SUSPENDED' && userList.userType != 'ADMIN'" data-ng-click="resumeUserResource(userList)" title="{{ 'locale-resume' | translate }}"><i class="fa fa-play-circle"></i></a>

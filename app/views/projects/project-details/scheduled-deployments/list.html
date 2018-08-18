@@ -1,0 +1,114 @@
+<div data-ng-controller="scheduledDeploymentsCtrl">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-6 col-sm-6 col-xsm-6 page-title">
+            <h2>Project Name - {{ 'locale-scheduled-deployments' | translate }}</h2>
+        </div>
+        <div class="col-lg-6 col-sm-6 col-xsm-6 text-right">
+            <div class="floating-add">
+                <a data-ng-click="scheduledDeploymentsObject.newScheduledDeployments('md')" class="btn btn-success">
+                    <i class="fa fa-plus"></i> {{ 'locale-new' | translate }}
+                </a>
+            </div>
+            <div class="search-wrapper text-right">
+                <div class="input-group m-r-md">
+                    <input type="text" class="form-control" placeholder="{{ 'locale-search' | translate }}" data-ng-model="search">
+                    <div class="input-group-btn">
+                        <button class="btn btn-white" type="button"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row wrapper page-breadcrumb">
+        <div class="col-lg-12">
+            <ol class="breadcrumb">
+                <li>
+                    <a data-ui-sref="index.user-dashboard"><i class="fa fa-home" aria-hidden="true"></i></a>
+                </li>
+                <li>
+                    <strong><a data-ui-sref="projects.grid">{{ 'locale-projects' | translate }}</a></strong>
+                </li>
+                <li>
+                    <strong><a data-ui-sref="project-details.summary">Project Name</a></strong>
+                </li>
+                <li class="active">
+                    {{ 'locale-scheduled-deployments' | translate }}
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content">
+        <div class="ibox float-e-margins no-margins">
+            <div class="ibox-content">
+                <div class="row" data-ng-hide="online">
+                    <div class="col-md-12">
+                        <div class="table-responsive m-t-md">
+                            <table class="table table-bordered table-hover no-margins">
+                                <thead>
+                                    <tr>
+                                        <th ng-click="scheduledDeploymentsObject.sort('name')">{{ 'locale-name' | translate }}
+                                            <span class="fa sort-icon pull-right" data-ng-class="sortKey == 'name' && reverse ? 'fa-chevron-up' : 'fa-chevron-down'"></span>
+                                        </th>                      
+                                        <th ng-click="scheduledDeploymentsObject.sort('time')">{{ 'locale-scheduled-time' | translate }}
+                                            <span class="fa sort-icon pull-right" data-ng-class="sortKey == 'time' && reverse ? 'fa-chevron-up' : 'fa-chevron-down'"></span>
+                                        </th>                      
+                                        <th ng-click="scheduledDeploymentsObject.sort('deploymentCount')">{{ 'locale-deployment-count' | translate }}
+                                            <span class="fa sort-icon pull-right" data-ng-class="sortKey == 'deploymentCount' && reverse ? 'fa-chevron-up' : 'fa-chevron-down'"></span>
+                                        </th>                      
+                                        <th ng-click="scheduledDeploymentsObject.sort('status')">{{ 'locale-status' | translate }}
+                                            <span class="fa sort-icon pull-right" data-ng-class="sortKey == 'status' && reverse ? 'fa-chevron-up' : 'fa-chevron-down'"></span>
+                                        </th>                      
+                                        <th>{{ 'locale-actions' | translate }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-dir-paginate="scheduledDeploymentsList in scheduledDeploymentsElement.scheduledDeploymentsLists |orderBy:sortKey:reverse|filter:search|filter:type|itemsPerPage:listPerPage">
+                                        <td>
+                                            <!--<span class="text-primary m-r-xs"><i class="fa fa-play-circle"></i></span>-->
+                                            {{scheduledDeploymentsList.name}}
+                                        </td>
+                                        <td>{{scheduledDeploymentsList.time}}</td>
+                                        <td>{{scheduledDeploymentsList.deploymentCount}}</td>
+                                        <td>
+                                            <span class="badge badge-success badge-sm" data-ng-if="scheduledDeploymentsList.status == 'Running'">{{scheduledDeploymentsList.status}}</span>
+                                            <span class="badge badge-info badge-sm" data-ng-if="scheduledDeploymentsList.status == 'Scheduled'">{{scheduledDeploymentsList.status}}</span>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-light btn-sm" title="{{ 'locale-edit' | translate }}" data-ng-click="scheduledDeploymentsObject.newScheduledDeployments('md')"><i class="fa fa-fw fa-edit"></i></a>
+                                            <a class="btn btn-light btn-sm" title="{{ 'locale-delete' | translate }}" data-ng-click="scheduledDeploymentsObject.delete('sm', modelList)"><i class="fa fa-fw fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row"> 
+                            <div class="col-md-6 m-t-md">
+                                <div class="pull-left m-t-sm m-r-sm">Show</div>
+                                <div class="pull-left">
+                                    <select class="form-control" name="type" data-ng-model="listPerPage">
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="20">20</option>
+                                    </select>
+                                </div>
+                                <div class="pull-left m-t-sm m-l-sm">entries</div>
+                            </div>
+                            <div class="col-md-6">
+                                <dir-pagination-controls
+                                    max-size="5"
+                                    direction-links="true"
+                                    boundary-links="true" class="pull-right">
+                                </dir-pagination-controls>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" data-ng-if="online">
+                    <div class="col-md-12">
+                        <div data-ng-include src="'views/projects/project-details/deployments/online.html'"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+<div>
+    <form role="form" id="projectForm" name="projectForm" novalidate>
+    <div class="project-create-form">
+        <div class="row m-t-md">
+            <div class="col-md-12">
+            <h2>{{ 'locale-general' | translate }}</h2>
+        </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group"
+                    data-ng-class="{'has-error': projectGeneralForm.projectName.$invalid && projectGeneralForm.submitted}">
+                   <label> {{ 'locale-project-name' | translate }} </label>
+                   <input type="text" name="projectName" class="form-control" data-ng-model="project.name">
+                   <div class="input-icon right"
+                        data-ng-if="projectGeneralForm.projectName.$invalid && projectGeneralForm.submitted">
+                       <i data-uib-tooltip="{{ 'locale-project-name-is-required' | translate }}" 
+                          data-tooltip-placement="left" class="fa fa-warning"></i>
+                   </div>
+                </div>
+                <div class="form-group">    
+                    <label> {{ 'locale-estimated-delivery-date' | translate }}</label>
+                    <div class="input-group">
+                        <input type="text" name="dateOfBirth" data-ng-click="projectsObject.openDatepicker('dateOfBirth')" 
+                               class="form-control" show-button-bar="false" 
+                               uib-datepicker-popup="{{ projectsElement.dateOptions.dateFormat}}" 
+                               data-ng-model="project.deliveryDate" is-open="projectsElement.dateOfBirthOpened" 
+                               datepicker-options="projectsElement.dateOptions" close-text="Close"/>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" 
+                                data-ng-click="projectsObject.openDatepicker('dateOfBirth')">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group" data-ng-class="{'has-error': projectGeneralForm.projectDescription.$invalid && projectGeneralForm.submitted}">
+                    <label> {{ 'locale-project-description' | translate }} </label>
+                    <textarea name="projectDescription" rows="2" class="form-control" data-ng-model="project.description"></textarea>
+                    <div class="input-icon right" data-ng-if="projectGeneralForm.projectDescription.$invalid && projectGeneralForm.submitted">
+                        <i data-uib-tooltip="{{ 'locale-project-description-is-required' | translate }}" 
+                        data-tooltip-placement="left" class="fa fa-warning"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="m-t-md">
+            <a class="btn btn-dark btn-sm btn-shadow text-uppercase" data-ng-click="projectsObject.update(projectForm, project)">{{ 'locale-next' | translate }}</a>
+        </div>
+    </div>
+</form>
+</div>

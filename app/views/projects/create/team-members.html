@@ -1,0 +1,78 @@
+<form role="form" id="teamMembersForm" name="teamMembersForm" novalidate  data-ng-submit="projectsObject.saveTeamMembers(teamMembersForm, teamMembers)">
+    <div class="project-create-form">
+        <div class="row m-t-md">
+            <div class="col-md-12">
+                <h2>{{ 'locale-team-members' | translate }}</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group"
+                     data-ng-class="{'has-error': teamMembersForm.userName.$invalid && teamMembersFormSubmitted}">
+                    <label> {{ 'locale-name' | translate }} <span class="required">*</span></label>
+                    <input type="text" name="userName" class="form-control" autocomplete="off" data-ng-model="teamMembers.userName" uib-typeahead="user.userName for user in users | filter:$viewValue | limitTo:10" required>
+                    <div class="input-icon right" data-ng-if="teamMembersForm.userName.$invalid && teamMembersFormSubmitted">
+                        <i data-uib-tooltip="{{ 'locale-name-is-required' | translate }}" data-tooltip-placement="left" class="fa fa-warning"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group"
+                     data-ng-class="{'has-error': teamMembersForm.role.$invalid && teamMembersFormSubmitted}">
+                    <label> {{ 'locale-role' | translate }}<span class="required">*</span> </label>
+                    <select required="true" name="role" class="form-control"
+                            data-ng-model="teamMembers.roleName" ng-options="role for role in roles">
+                        <option value="">{{ "locale-select" | translate }}</option>
+                    </select>
+                    <div class="input-icon right" data-ng-if="teamMembersForm.role.$invalid && teamMembersFormSubmitted">
+                        <i data-uib-tooltip="{{ 'locale-role-is-required' | translate }}" data-tooltip-placement="left" class="fa fa-warning"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-dark pull-right m-t-md" type="submit" data-ng-hide="updateTeamMemberBtn">{{ 'locale-add' | translate}}</button>
+                <button class="btn btn-dark pull-right m-t-md" type="button" data-ng-if="updateTeamMemberBtn" data-ng-click="projectsObject.updateTeamMembers(teamMembersForm, teamMembers)">{{ 'locale-update' | translate}}</button>
+                <button class="btn btn-default pull-right m-t-md m-r-sm" type="button" data-ng-click="projectsObject.cancelTemMembers()">{{ 'locale-cancel' | translate}}</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 m-t-md">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>{{ 'locale-name' | translate }}</th>
+                                <th>{{ 'locale-role' | translate }}</th>
+                                <th>{{ 'locale-actions' | translate }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-ng-if="projectsElement.teamMembersList.length == 0">
+                                <td>{{loginUser}}</td>
+                                <td>ADMIN</td>
+                                <td></td>
+                                    
+                            </tr>
+                            <tr data-ng-repeat="teamObj in projectsElement.teamMembersList">
+                                <td> {{teamObj.userName}}</td>
+                                <td>
+                                    {{teamObj.roleName}}
+                                </td>
+                                <td>
+                                    <input type="hidden" data-ng-bind="project.projectUsers[$index] = teamObj" />
+                                    <a class="btn btn-light btn-sm" title="{{ 'locale-delete' | translate }}" data-ng-if='projectsElement.teamMembersList.length>1' data-ng-click="projectsObject.deleteTeamMember(teamObj)"><i class="fa fa-trash"></i></a>
+                                    <a class="btn btn-light btn-sm" title="{{ 'locale-edit' | translate }}" data-ng-if='projectsElement.teamMembersList.length>1' data-ng-click="projectsObject.editTeamMembers(teamObj, $index)"><i class="fa fa-edit"></i></a>
+                                </td>
+                            </tr>
+<!--                            <tr data-ng-if="projectsElement.teamMembersList.length == 0" class="text-center">
+                                <td colspan="3"> No Record </td>
+                            </tr>-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>

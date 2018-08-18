@@ -29,7 +29,8 @@ function promiseAjax($http, appConfig, localStorageService) {
                 'Content-Type': 'application/json',
                 'Range': "items=0-9",
                 'Authorized': "true",
-                'Authorization': appConfig.TOKEN_BEARER + localStorageService.get("access_token"),
+                'Authorization': appConfig.TOKEN_BEARER 
+//                        + localStorageService.get("access_token"),
                 // 'x-auth-remember': localStorageService.get('userRememberMe')
             }
         };
@@ -115,7 +116,8 @@ function promiseAjax($http, appConfig, localStorageService) {
                      'Content-Type': undefined,
                      'Range': "items=0-9",
                      'Authorized': "true",
-                     "Authorization": appConfig.TOKEN_BEARER + localStorageService.get("access_token")
+                     "Authorization": appConfig.TOKEN_BEARER 
+//                             + localStorageService.get("access_token")
                      //'x-auth-remember': localStorageService.get('adminRememberMe')
                  }
             });
@@ -132,7 +134,8 @@ function promiseAjax($http, appConfig, localStorageService) {
                 'Content-Type': undefined,
                 'Range': "items=0-9",
                 'Authorized': "true",
-                "Authorization": appConfig.TOKEN_BEARER + localStorageService.get("access_token")
+                "Authorization": appConfig.TOKEN_BEARER 
+//                        + localStorageService.get("access_token")
                 //'x-auth-remember': localStorageService.get('adminRememberMe')
             }
         });

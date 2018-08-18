@@ -1,0 +1,29 @@
+<div data-ng-if="!commitView" class="ibox-content">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 m-t-sm m-b-sm">
+                        <div class="pull-left">
+                            <a class="btn btn-light  pull-right  m-r-md" data-ng-click="datasetObject.chooseView('data')">{{ 'locale-back' | translate }}</a>
+                        </div>
+                        <div class="pull-right disabled">
+                            <a disabled="disabled" class="btn btn-info pull-right" data-ng-click="datasetObject.publishDataset('md')" title="{{ 'locale-publish' | translate }}"><i class="fa fa-cloud-upload"></i> {{ 'locale-publish' | translate }}</a>
+                        </div>
+                        <div class="pull-right m-r-sm">
+                            <a class="btn btn-info pull-right" data-ng-click="datasetObject.importDataset('md')" title="{{ 'locale-import' | translate }}"><i class="fa fa-download"></i> {{ 'locale-import' | translate }}</a>
+                        </div>
+                        <div class="pull-right m-r-sm">
+                            <a data-ng-click="filerManagerDetailsObject.getFileManagerStatusList(selectedDataset)" class="btn btn-success pull-right"><i class="fa fa-arrow-circle-up m-r-xs"></i>{{ 'locale-push-to-repo' | translate }}</a>
+                        </div>
+                        <div class="pull-right m-r-sm">
+                            <a data-ng-click="filerManagerDetailsObject.gitPull('md', selectedDataset)" class="btn btn-success pull-right"><i class="fa fa-arrow-circle-down m-r-xs"></i>{{ 'locale-pull' | translate }}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                <div class="col-md-12 col-sm-12">
+                        <div class="filemanager-area">
+                            <angular-filemanager-data file-navigator="fileNavigator"></angular-filemanager-data>
+                        </div>
+                </div>
+        </div>
+</div>
+<div data-ng-if="commitView" data-ng-include src="'views/projects/project-details/dataset/status.html'"></div>

@@ -1,0 +1,133 @@
+<div data-ng-controller="continuousIntegrationCtrl">
+    <div class="row m-t-md">
+        <div class="col-md-12">
+            <h3 class="text-uppercase">{{ 'locale-latest-builds' | translate }}</h3>
+        </div>
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover no-margins">
+                    <thead>
+                        <tr>
+                            <th ng-click="continuousIntegrationObject.sort('name')">{{ 'locale-name' | translate }}
+                                <span class="fa sort-icon pull-right" data-ng-class="sortKey == 'name' && reverse ? 'fa-chevron-up' : 'fa-chevron-down'"></span>
+                            </th>
+                            <th ng-click="continuousIntegrationObject.sort('version')">{{ 'locale-version' | translate }}
+                                <span class="fa sort-icon pull-right" data-ng-class="sortKey == 'platformTools' && reverse ? 'fa-chevron-up' : 'fa-chevron-down'"></span>
+                            </th>
+                            <th ng-click="continuousIntegrationObject.sort('state')">{{ 'locale-state' | translate }}
+                                <span class="fa sort-icon pull-right"  data-ng-class="sortKey == 'status' && reverse ? 'fa-chevron-up' : 'fa-chevron-down'"></span>
+                            </th>                       
+                            <th>{{ 'locale-actions' | translate }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-dir-paginate="continuousIntegrationList in continuousIntegrationElement.continuousIntegrationLists |orderBy:sortKey:reverse|itemsPerPage:listPerPage">
+                            <td>{{continuousIntegrationList.name}}</td>
+                            <td> 
+                                <span class="badge badge-info badge-sm">{{continuousIntegrationList.version}}</span>
+                            </td>
+                            <td>
+                                <span class="text-info m-b-xs font-bold" data-ng-if="continuousIntegrationList.state == 'Deploying'">{{continuousIntegrationList.state}}</span>
+                                <span class="text-success font-bold" data-ng-if="continuousIntegrationList.state == 'Completed'">{{continuousIntegrationList.state}}</span>
+                                <div data-ng-if="continuousIntegrationList.state == 'Deploying'"><uib-progressbar class="progress-striped active progress-small no-margins" value="88" type="info"></uib-progressbar></div>
+                            </td>
+                            <td>
+                                <a class="btn btn-success btn-sm" title="{{ 'locale-download' | translate }}" data-ng-if="continuousIntegrationList.state == 'Completed'"><i class="fa fa-download"></i></a>
+                                <a class="btn btn-danger btn-sm" title="{{ 'locale-stop' | translate }}" data-ng-if="continuousIntegrationList.state == 'Deploying'"><i class="fa fa-stop"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>  
+    <div class="row m-t-md integration-pipeline m-b-lg">
+        <div class="col-md-12">
+            <h3 class="text-uppercase">{{ 'locale-integration-pipeline' | translate }}</h3>
+        </div>  
+        <div class="col-md-12 m-t-lg">
+            <div class="row">
+                <div class="col-md-4 col-sm-5 col-xsm-5">
+                    <div class="row">
+                        <div class="col-md-5 col-sm-6 col-xsm-6">
+                            <div class="text-uppercase p-lg shadow font-bold">{{ 'locale-artifact' | translate }}</div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xsm-6">
+                            <button type="button" class="btn btn-info btn-arrow-right font-bold m-l-lg m-t-sm text-uppercase">{{ 'locale-deploy' | translate }}</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-6 col-xsm-5">
+                    <div class="row pipeline-phase">
+                        <div class="col-md-7">
+                            <div class="row shadow text-uppercase p-xs">
+                                <div class="col-md-8 col-sm-8 col-xsm-7">
+                                    <label class=" m-t-xs font-bold"> {{ 'locale-integration' | translate }}</label>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xsm-5">
+                                    <button class="btn btn-danger btn-circle-sm pull-right m-l-sm" type="button"><i class="fa fa-repeat"></i></button>
+                                    <button class="btn btn-success btn-circle-sm pull-right" type="button"><i class="fa fa-play"></i></button>
+                                </div> 
+                            </div> 
+                            <div class="arrow-line"></div>
+                            <div class="arrow-down"></div>
+                        </div>
+                        <div class="col-md-5 m-t-xs pipeline-history">
+                            <div class="text-success text-uppercase font-bold m-l-md m-l-md" >{{'locale-completed'|translate}}</div>
+                            <div class="text-muted m-l-md m-l-md">2 Days ago</div>
+                        </div>
+                    </div>
+                    <div class="row pipeline-phase">
+                        <div class="col-md-7">
+                            <div class="row shadow text-uppercase p-xs">
+                                <div class="col-md-8 col-sm-8 col-xsm-7">
+                                    <label class=" m-t-xs font-bold"> {{ 'locale-staging-qa' | translate }}</label>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xsm-5">
+                                    <button class="btn btn-danger btn-circle-sm pull-right m-l-sm" type="button"><i class="fa fa-repeat"></i></button>
+                                    <button class="btn btn-success btn-circle-sm pull-right" type="button"><i class="fa fa-play"></i></button>
+                                </div> 
+                            </div> 
+                            <div class="arrow-line"></div>
+                            <div class="arrow-down"></div>
+                        </div>
+                        <div class="col-md-5 m-t-xs pipeline-history">
+                            <div class="text-success text-uppercase font-bold m-l-md" >{{'locale-completed'|translate}}</div>
+                            <div class="text-muted m-l-md">8 Days ago</div>
+                        </div>
+                    </div>
+                    <div class="row pipeline-phase">
+                        <div class="col-md-7 no-padding">
+                            <uib-progressbar class="shadow progress-striped active no-margins min-height-50" value="88" type="success">
+                                <label class="p-sm font-bold custom-font-size">{{ 'locale-uat' | translate }} </label>
+                            </uib-progressbar>
+                            <div class="arrow-line"></div>
+                            <div class="arrow-down"></div>
+                        </div>
+                        <div class="col-md-5 m-t-xs pipeline-history">
+                            <div class="text-warning text-uppercase font-bold m-l-md" >{{'locale-build-moving'|translate}}</div>
+                            <div class="text-muted m-l-md">60% Progressing</div>
+                        </div>
+                    </div>
+                    <div class="row pipeline-phase">
+                        <div class="col-md-7">
+                            <div class="row shadow text-uppercase p-xs">
+                                <div class="col-md-8 col-sm-8 col-xsm-7">
+                                    <label class=" m-t-xs font-bold"> {{ 'locale-production' | translate }}</label>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xsm-5">
+                                    <button class="btn btn-danger btn-circle-sm pull-right m-l-sm" type="button"><i class="fa fa-repeat"></i></button>
+                                    <button class="btn btn-success btn-circle-sm pull-right" type="button"><i class="fa fa-play"></i></button>
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="col-md-5 m-t-xs pipeline-history">
+                            <div class="text-success text-uppercase font-bold m-l-md" >{{'locale-completed'|translate}}</div>
+                            <div class="text-muted m-l-md">5 Days ago</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

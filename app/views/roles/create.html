@@ -1,0 +1,97 @@
+<div data-ng-controller="rolesPermissionsCtrl">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-12 page-title">
+            <h2>{{ 'locale-add-role' | translate }}</h2>
+        </div>
+    </div>
+    <div class="row wrapper page-breadcrumb">
+        <div class="col-lg-12">
+            <ol class="breadcrumb">
+                <li>
+                    <a data-ui-sref="index.user-dashboard"><i class="fa fa-home" aria-hidden="true"></i></a>
+                </li>
+                <li>
+                    <strong><a data-ui-sref="roles.list">{{ 'locale-roles' | translate }}</a></strong>
+                </li>
+                <li class="active">
+                   {{ 'locale-add-role' | translate }}
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">  
+        <div class="ibox float-e-margins role-privilege">
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="bg-info-light m-b-md">
+                            <div class="form-group no-margins row">
+                                <div class="col-md-2 col-sm-2 col-xs-2 text-center"><label class="m-t-sm">{{ 'locale-role-name' | translate }}</label></div>
+                                <div class="col-md-4 col-sm-4 col-xs-4 no-p-l">
+                                    <input type="text" name="roleName" class="form-control" data-ng-model="role.name">
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <div class="row m-t-sm">
+                                        <div class="block col-md-5 col-sm-5 col-xs-5 font-bold">{{ 'locale-all-permissions' | translate }}</div>
+                                        <div class="switch col-md-7 col-sm-7 col-xs-7">
+                                            <div class="onoffswitch">
+                                                <input type="checkbox" data-ng-click="rolesPermissionsObject.checkAllGroup(allPermissions)" data-ng-model="allPermissions" class="onoffswitch-checkbox" id="all-permissions">
+                                                <label class="onoffswitch-label" for="all-permissions">
+                                                    <span class="onoffswitch-inner"></span>
+                                                    <span class="onoffswitch-switch"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-6 no-p-r">
+                        <div class="role-modules borders">
+                            <div class="border-bottom"><h4>{{ 'locale-modules' | translate }}</h4></div>
+                            <ul class="list-group elements-list">
+                                <li class="list-group-item" ng-class="{ active: isSet($index) }" data-ng-repeat="roleGroup in rolesPermissionsElement.role.groups">
+                                    <div class="row">
+                                        <a class="block col-md-8 col-sm-8 col-xs-8" ng-click="showPrivilege($index)">{{roleGroup.name}}</a>
+                                        <div class="switch col-md-4 col-sm-4 col-xs-4">
+                                            <div class="onoffswitch">
+                                                <input type="checkbox" data-ng-change="rolesPermissionsObject.checkGroup(roleGroup,$index)" ng-model="isAllChecked['group' + roleGroup.id]" class="onoffswitch-checkbox" id="{{roleGroup.name}}">
+                                                <label class="onoffswitch-label" for="{{roleGroup.name}}">
+                                                    <span class="onoffswitch-inner"></span>
+                                                    <span class="onoffswitch-switch"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-sm-6 col-xs-6 no-p-l" data-ng-init="role.groups = []">
+                        <div class="role-permissions borders" ng-show="isSet($index)" data-ng-repeat="roleGroup in rolesPermissionsElement.role.groups">
+                            <div class="border-bottom"><h4>{{ 'locale-permissions' | translate }} - {{roleGroup.name}}</h4></div>
+                            <div class="p-md">
+                                <ul>
+                                    <li data-ng-repeat="permission in roleGroup.permissions">
+                                        <div class="checkbox checkbox-info">
+                                            <input class="form-control"  name="{{permission.name}}" type="checkbox" data-ng-change="rolesPermissionsObject.optionToggled(roleGroup.permissions, roleGroup)" data-ng-model="permission.checked">
+                                            <label for="checkbox3">
+                                                {{permission.name}}
+                                            </label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <input type="hidden" data-ng-bind="role.groups[$index] = roleGroup" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-footer text-right">
+            <button type="button" class="btn btn-default">{{ 'locale-cancel' | translate }}</button>
+            <button type="submit" class="btn btn-info m-l-sm" data-ng-click="rolesPermissionsObject.save(role)">{{ 'locale-add' | translate }}</button>
+        </div>
+    </div>
+</div>

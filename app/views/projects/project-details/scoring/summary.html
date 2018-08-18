@@ -1,0 +1,46 @@
+<div class="wrapper wrapper-content m-l-n-sm m-r-n-sm">
+    <div class="ibox float-e-margins no-margins">
+        <div class="ibox-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive m-t-sm">
+                            <table class="table table-hover no-margins summary-list">
+                                <tbody>
+                                    <tr>
+                                        <td>Name</td>
+                                        <td class="bold">{{ "Scoring-" + selectedScore.model.name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Model Name</td>
+                                        <td class="bold">{{selectedScore.model.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Model version</td>
+                                        <td class="bold">{{selectedScore.modelVersion.uuid }}</td>
+                                    </tr>
+                                    <!-- <tr>
+                                        <td>Label column</td>
+                                        <td class="bold">{{selectedModel.target || 'Not selected'}}</td>
+                                    </tr> -->
+                                    <tr>
+                                        <td>Model Creation Date</td>
+                                        <td class="bold">{{selectedScore.createdAt | date:"dd-MM-yyyy hh:mm:ss"}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dataset</td>
+                                        <td class="bold">{{selectedScore.datasetFile}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Model File</td>
+                                        <td>
+                                            <span data-ng-if="selectedScore.model.modelFile"> {{selectedScore.model.modelFile}} </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+[
+    {
+        "name": "LARS on iris_data_prepared_preparedj",
+        "time":"10.7.17 12:20:12",
+        "deploymentCount":"12",
+        "status":"Scheduled"
+    },
+    {
+        "name": "DECISION_TREE_CLASSIFICATION on iris_data_prepared",
+        "time":"06.7.17 1:20:12",
+        "deploymentCount":"06",
+        "status":"Running"
+    },
+    {
+        "name": "SCIKIT_MODEL on iris_data_prepared ",
+        "time":"02.7.17 12:20:12",
+        "deploymentCount":"02",
+        "status":"Scheduled"
+    }
+]

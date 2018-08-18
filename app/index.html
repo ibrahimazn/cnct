@@ -1,0 +1,206 @@
+<!--
+* SLMLP - Project Management App
+* Version 2.7.1
+*
+-->
+
+<!DOCTYPE html>
+<html ng-app="slmlp">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="title" content="">
+        <meta name="description" content="">
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+        <!-- Page title set in pageTitle directive -->
+        <title page-title></title>
+
+        <!-- Google Open Sans -->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+
+        <!-- build:css(.) styles/vendor.css -->
+        <!-- bower:css -->
+        <!-- Font awesome -->
+        <link href="../bower_components/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+
+        <!-- Bootstrap -->
+        <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../bower_components/DataTables/media/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="../bower_components/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet">
+        <link href="../bower_components/DataTables/media/css/jquery.dataTables.css" rel="stylesheet" type="text/css"/>
+        <link href="../bower_components/DataTables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../bower_components/select2/select2.css" rel="stylesheet" type="text/css"/>
+        <link href="../bower_components/switchery/dist/switchery.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../bower_components/c3/c3.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../bower_components/angular-toastr/dist/angular-toastr.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../bower_components/angular-gridster/dist/angular-gridster.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../bower_components/bootstrap-duallistbox/dist/bootstrap-duallistbox.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../bower_components/ng-tags-input/ng-tags-input.min.css" rel="stylesheet" type="text/css"/>
+
+        <link href="css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+        <link href="css/plugins/jquery-ui/jquery-ui.css" rel="stylesheet">
+        <!-- File Upload CSS files -->
+        <link href="css/plugins/jasny-bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <!-- Main slmlp CSS files -->
+        <!-- endbower -->
+        <!-- endbuild -->
+
+
+        <!-- build:css({.tmp,app}) styles/style.css -->
+        <link href="styles/animate.css" rel="stylesheet">
+        <!-- Formwizard -->
+        <link href="css/plugins/form-wizard-plugins.min.css" rel="stylesheet" type="text/css"/>
+        <link href="styles/style.css" rel="stylesheet">
+        <!--<link href="styles/custom-style.css" rel="stylesheet">-->
+        <!-- endbuild -->
+
+
+
+    </head>
+
+    <!-- ControllerAs syntax -->
+    <!-- Main controller with serveral data used in slmlp theme on diferent view -->
+    <body ng-controller="MainCtrl as main" class="md-skin skin-1 {{ main.bodyClasses }}">
+
+        <!-- Main view  -->
+        <div ui-view></div>
+
+
+        <!-- build:js(.) scripts/vendor.js -->
+
+        <!-- jQuery and Bootstrap -->
+        <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="../bower_components/jquery-ui/jquery-ui.min.js"></script>
+        <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- MetsiMenu -->
+        <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+        <!-- Peace JS -->
+        <script src="../bower_components/pace/pace.min.js"></script>
+        <script src="../bower_components/d3/d3.min.js" charset="utf-8"></script>
+        <script src="../bower_components/c3/c3.min.js"></script>
+        <!-- Angular scripts-->
+        <!--<script src="../bower_components/angular/angular.min.js"></script>-->
+        <script src="../bower_components/angular/angular.min.js" type="text/javascript"></script>
+        <script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+        <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+        <script src="../bower_components/angular-cookies/angular-cookies.min.js"></script>
+        <script src="../bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+        <script src="../bower_components/angular-translate/angular-translate.js"></script>
+        <script src="../bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.min.js"></script>
+        <script src="../bower_components/angular-translate-storage-local/angular-translate-storage-local.min.js"></script>
+        <script src="../bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+
+        <script src="../bower_components/angular-slimscroll/angular-slimscroll.js" type="text/javascript"></script>
+        <script src="../bower_components/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+
+        <script src="../bower_components/select2/select2.js" type="text/javascript"></script>
+        <script src="../bower_components/angular-ui-select2/src/select2.js" type="text/javascript"></script>
+
+        <script src="../bower_components/switchery/dist/switchery.min.js" type="text/javascript"></script>
+        <script src="../bower_components/ng-switchery/src/ng-switchery.js" type="text/javascript"></script>
+        <script src="../bower_components/c3-angular/c3-angular.min.js"></script>
+        <script src="../bower_components/angular-ui-sortable/sortable.min.js" type="text/javascript"></script>
+
+        <script src="../bower_components/angular-animate/angular-animate.min.js" type="text/javascript"></script>
+        <script src="../bower_components/angular-toastr/dist/angular-toastr.tpls.js" type="text/javascript"></script>
+
+        <script src="../bower_components/javascript-detect-element-resize/jquery.resize.js" type="text/javascript"></script>
+        <script src="../bower_components/angular-gridster/dist/angular-gridster.min.js" type="text/javascript"></script>
+        <script src="../bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+        <script src="scripts/util/sockjs-0.3.4.js" type="text/javascript"></script>
+        <script src="scripts/util/stomp.js" type="text/javascript"></script>
+        <!-- File Upload JS files -->
+        <script src="scripts/plugins/jasny-bootstrap.min.js" type="text/javascript"></script>
+
+        <script src="../bower_components/bootstrap-duallistbox/dist/jquery.bootstrap-duallistbox.min.js" type="text/javascript"></script>
+        <script src="../bower_components/angular-bootstrap-duallistbox/dist/angular-bootstrap-duallistbox.min.js" type="text/javascript"></script>
+
+        <script src="../bower_components/tagged-infinite-scroll/src/taggedInfiniteScroll.js" type="text/javascript"></script>
+        <script src="../bower_components/ng-tags-input/ng-tags-input.min.js" type="text/javascript"></script>
+        <script src="../bower_components/angular-sanitize/angular-sanitize.js" type="text/javascript"></script>
+        <!-- <script src="../bower_components/angular-filemanager/dist/angular-filemanager.min.js"></script> -->
+
+        <!-- Angular Components -->
+        <!--                      -->
+        <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <!-- Custom and plugin javascript -->
+        <script src="scripts/slmlp.js"></script>
+
+        <!-- Pagination -->
+        <script src="scripts/dirPagination.js"></script>
+
+        <!-- Anglar App Script -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/config.js"></script>
+
+        <script src="scripts/directives.js"></script>
+        <!-- endbuild -->
+
+        <!-- BEGIN App Services -->
+        <script src="scripts/services/slmlpService.js" type="text/javascript"></script>
+        <script src="scripts/services/appConfig.js" type="text/javascript"></script>
+        <script src="scripts/services/websocket.js" type="text/javascript"></script>
+        <script src="scripts/services/dialogService.js" type="text/javascript"></script>
+        <script src="scripts/services/dateService.js" type="text/javascript"></script>
+        <script src="scripts/services/crudService.js" type="text/javascript"></script>
+        <script src="scripts/services/globalConfig.js" type="text/javascript"></script>
+        <script src="scripts/services/promiseAjax.js" type="text/javascript"></script>
+        <script src="scripts/services/utilService.js" type="text/javascript"></script>
+        <script src="scripts/util/fileManagerConfig.js" type="text/javascript"></script>
+        <script src="scripts/util/filters.js" type="text/javascript"></script>
+        <script src="scripts/util/item.js" type="text/javascript"></script>
+        <script src="scripts/util/chmod.js" type="text/javascript"></script>
+        <script src="scripts/util/apihandler.js" type="text/javascript"></script>
+        <script src="scripts/util/apimiddleware.js" type="text/javascript"></script>
+        <script src="scripts/util/filenavigator.js" type="text/javascript"></script>
+        <!--<script src="scripts/util/translations.js" type="text/javascript"></script>-->
+        <script src="scripts/util/selector-controller.js" type="text/javascript"></script>
+        <!--<script src="js/services/focusInvalidFieldService.js" type="text/javascript"></script>-->
+        <!-- END App Services -->
+
+
+        <!-- BEGIN App Controllers -->
+        <script src="scripts/MainCtrl.js"></script>
+        <script src="scripts/controllers/department/department.js" type="text/javascript"></script>
+        <script src="scripts/controllers/user-account/userAccount.js" type="text/javascript"></script>
+        <script src="scripts/controllers/roles/rolesPermissions.js" type="text/javascript"></script>
+        <script src="scripts/controllers/projects/projects.js" type="text/javascript"></script>
+        <script src="scripts/controllers/userDashboard.js" type="text/javascript"></script>
+        <script src="scripts/controllers/projects/datasetconfig.js" type="text/javascript"></script>
+
+        <script src="scripts/controllers/projects/project-details/projectDetails.js" type="text/javascript"></script>
+        <script src="scripts/controllers/projects/project-details/dataset.js" type="text/javascript"></script>
+        <script src="scripts/controllers/projects/project-details/exploreAnalyze.js" type="text/javascript"></script>
+        <script src="scripts/controllers/projects/project-details/launchers.js" type="text/javascript"></script>
+        <script src="scripts/controllers/projects/project-details/analyze.js" type="text/javascript"></script>
+        <script src="scripts/controllers/projects/project-details/jobs.js" type="text/javascript"></script>
+        <script src="scripts/controllers/projects/project-details/algorithms.js" type="text/javascript"></script>
+        <script src="scripts/controllers/projects/project-details/model.js" type="text/javascript"></script>
+        <script src="scripts/controllers/projects/project-details/deployments.js" type="text/javascript"></script>
+        <script src="scripts/controllers/projects/project-details/continuousIntegration.js" type="text/javascript"></script>
+        <script src="scripts/controllers/projects/project-details/onlinePrediction.js" type="text/javascript"></script>
+        <script src="scripts/controllers/projects/project-details/fileManager.js" type="text/javascript"></script>
+        <script src="scripts/controllers/projects/project-details/trainModel.js" type="text/javascript"></script>
+        <script src="scripts/controllers/projects/project-details/features.js" type="text/javascript"></script>
+        <script src="scripts/controllers/projects/project-details/automatic.js" type="text/javascript"></script>
+        <script src="scripts/controllers/projects/project-details/previewAnalyze.js" type="text/javascript"></script>
+        <script src="scripts/controllers/projects/project-details/chartAnalyze.js" type="text/javascript"></script>
+        <script src="scripts/controllers/projects/project-details/dashboard.js" type="text/javascript"></script>
+        <script src="scripts/controllers/projects/project-details/createDashboard.js" type="text/javascript"></script>
+        <script src="scripts/controllers/projects/project-details/projectDashboard.js" type="text/javascript"></script>
+        <script src="scripts/controllers/projects/project-details/scheduledDeployments.js" type="text/javascript"></script>
+        <script src="scripts/controllers/projects/project-details/status.js" type="text/javascript"></script>
+        <script src="scripts/controllers/projects/project-details/scoring.js" type="text/javascript"></script>
+        <script src="scripts/controllers/userActivities.js" type="text/javascript"></script>
+        <script src="scripts/controllers/userProfile.js" type="text/javascript"></script>
+        <script src="scripts/controllers/projects/project-details/fileManagerList.js" type="text/javascript"></script>
+        <script src="scripts/translations.js"></script>
+        <!-- END APP Controllers -->
+    </body>
+</html>

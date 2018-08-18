@@ -1,0 +1,72 @@
+<div class="loader-container">
+    <get-ancode-loader-container-overlay data-ng-if="modelDetailsElement.listLoader"></get-ancode-loader-container-overlay>
+<div class="row">
+    <div class="col-md-12 m-t-md">
+        <a class="btn btn-info  pull-right" data-ng-disabled="true" >
+            <!-- data-ng-click="modelDetailsObject.publishDataset('md')" -->
+            <i class="fa fa-cloud-upload"></i> {{ 'locale-publish' | translate }}
+        </a>
+        <a class="btn btn-success  pull-right m-r-sm" data-ng-click="modelDetailsObject.trainingDataset()">
+             {{ 'locale-add-new-training' | translate }}
+        </a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive m-t-md">
+            <table class="table table-bordered table-hover no-margins">
+                <thead>
+                    <tr>
+                        <th class="text-center">
+                            <div class="checkbox checkbox-success no-margin">
+                                <input type="checkbox" data-ng-model="checkAllModel" data-ng-click="modelDetailsObject.checkAll(checkAllModel)" aria-label="Single checkbox One">
+                                <label></label>
+                            </div>
+                        </th>
+                        <th ng-click="modelDetailsObject.sort('name')">{{ 'locale-name' | translate }}
+                            <span class="fa sort-icon pull-right" data-ng-class="sortKey == 'name' && reverse ? 'fa-chevron-up' : 'fa-chevron-down'"></span>
+                        </th>
+                        <th ng-click="modelDetailsObject.sort('algorithm')">{{ 'locale-algorithm' | translate }}
+                            <span class="fa sort-icon pull-right" data-ng-class="sortKey == 'algorithm' && reverse ? 'fa-chevron-up' : 'fa-chevron-down'"></span>
+                        </th>
+                        <th ng-click="modelDetailsObject.sort('creation')">{{ 'locale-creation' | translate }}
+                            <span class="fa sort-icon pull-right"  data-ng-class="sortKey == 'creation' && reverse ? 'fa-chevron-up' : 'fa-chevron-down'"></span>
+                        </th>
+                        <th>{{ 'locale-actions' | translate }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-if="modelDetailsElement.modelLists && modelDetailsElement.modelLists.length > 0" data-dir-paginate="modelList in modelDetailsElement.modelLists |orderBy:sortKey:reverse|filter:search|filter:type|itemsPerPage:listPerPage">
+                        <td class="text-center">
+                            <div class="checkbox checkbox-success no-margin">
+                                <input type="checkbox" data-ng-model="modelList.checked" data-ng-change="modelDetailsObject.optionToggled(modelDetailsElement.modelLists)" aria-label="Single checkbox One">
+                                <label></label>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="text-primary m-r-xs"><i class="fa fa-play-circle"></i></span>
+                            <a data-ui-sref="model.details" ng-click="modelDetailsObject.selectModel(modelList)">{{modelList.name}}</a>
+                        </td>
+                        <td>
+                            <span class="badge badge-info badge-sm">{{modelList.algorithm}}</span>
+                        </td>
+                        <td>
+                            {{modelList.createdAt | date:'dd-MM-yyyy' }}
+                        </td>
+                        <td>
+                            <!-- <a class="btn btn-light btn-sm" title="{{ 'locale-edit' | translate }}" data-ui-sref="model.create" ><i class="fa fa-fw fa-edit"></i></a> -->
+                            <a class="btn btn-light btn-sm" title="{{ 'locale-delete' | translate }}" data-ng-click="modelDetailsObject.delete('sm', modelList)"><i class="fa fa-fw fa-trash"></i></a>
+                            <!--<a class="btn btn-dark btn-sm" title="{{ 'locale-config' | translate }}" data-ui-sref="model.automatic"><i class="fa fa-cog"></i></a>-->
+                        </td>
+                    </tr>
+                    <tr data-ng-if="!modelDetailsElement.modelLists || modelDetailsElement.modelLists.length == 0">
+                        <td colspan="5"> {{ 'locale-no-record-found' | translate }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <pagination-content></pagination-content>
+        </div>
+
+    </div>
+</div>
+</div>

@@ -713,6 +713,11 @@
     "locale-ml-platform" : "ML Platforms",
     "locale-configuration" : "Configurations",
     "locale-vault" : "Credential Vault",
-    "locale-activity" : "Activity"
-
+    "locale-activity" : "Activity",
+    "locale-admin" : "ADMIN",
+    "locale-user" : "USER",
+    "locale-no-phone" : "Phone number not set ",
+    "locale-no-email" : "Email not set",
+    "locale-no-date" : "Date not set",
+    "locale-no-status" : "Status not set"
 }

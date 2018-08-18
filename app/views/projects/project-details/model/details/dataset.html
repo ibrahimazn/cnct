@@ -1,0 +1,46 @@
+<div class="wrapper wrapper-content m-l-n-sm m-r-n-sm">
+    <div class="ibox float-e-margins no-margins">
+        <div class="ibox-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive m-t-sm">
+                        <table class="table table-hover no-margins summary-list">
+                            <thead>
+                                <tr>
+                                    <th ng-click="modelDatasetObject.sort('dataset_name')">{{ 'locale-dataset-name' | translate }}
+                                        <span class="fa sort-icon pull-right" data-ng-class="sortKey == 'dataset_name' && reverse ? 'fa-chevron-up' : 'fa-chevron-down'"></span>
+                                    </th>
+                                    <th ng-click="modelDatasetObject.sort('file_type')">{{ 'locale-file-type' | translate }}
+                                        <span class="fa sort-icon pull-right" data-ng-class="sortKey == 'file_type' && reverse ? 'fa-chevron-up' : 'fa-chevron-down'"></span>
+                                    </th>
+                                    <th ng-click="modelDatasetObject.sort('created_by')">{{ 'locale-created-by' | translate }}
+                                        <span class="fa sort-icon pull-right" data-ng-class="sortKey == 'created_by' && reverse ? 'fa-chevron-up' : 'fa-chevron-down'"></span>
+                                    </th>
+                                    <th ng-click="modelDatasetObject.sort('last_modified_by')">{{ 'locale-last-modified-by' | translate }}
+                                        <span class="fa sort-icon pull-right"  data-ng-class="sortKey == 'last_modified_by' && reverse ? 'fa-chevron-up' : 'fa-chevron-down'"></span>
+                                    </th>
+                                    <!-- <th>{{ 'locale-actions' | translate }}</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="text-primary m-r-xs"><i class="fa fa-play-circle"></i></span>
+                                        <a data-ui-sref="model.details-predict">{{selectedModel.datasetFile}}</a>
+                                    </td>
+                                    <td>{{selectedModel.dataSet.file_type || 'CSV'}}</td>
+                                    <td>{{selectedModel.createdBy}}</td>
+                                    <td>{{selectedModel.createdAt | date: 'dd-MM-yyyy HH:mm:ss'}}</td>
+                                    <!-- <td>
+                                        <a class="btn btn-light btn-xs" title="{{ 'locale-download' | translate }}"><i class="fa fa-download"></i></a>
+                                        <a class="btn btn-dark btn-xs" title="{{ 'locale-remove' | translate }}"><i class="fa fa-remove"></i></a>
+                                    </td> -->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

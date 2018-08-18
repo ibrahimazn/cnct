@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Access Forbidden</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="row">
+                <form class="col-md-2 col-sm-2 pull-right" style="margin-top:20px" th:action="@{/logout}" method="get">
+                    <button class="btn btn-md btn-info btn-block" name="registration"
+                        type="Submit">Logout</button>
+                </form>
+            </div>
+            <div class="access-denied">
+                <div class="panel-group" style="margin-top:20px">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading text-center">
+                           <!--  <span th:utext="${userName}"></span> -->
+                        </div>
+                        <div class="panel-body text-center">
+                            <span class="text-danger"><i class="fa fa-user-times"></i></span>
+                            <h1 class="admin-message-text text-danger">Access Forbidden</h1>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

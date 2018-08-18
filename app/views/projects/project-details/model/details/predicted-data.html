@@ -1,0 +1,51 @@
+<div data-ng-controller="exploreAnalyzeCtrl">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive m-t-sm">
+                <table class="table table-bordered table-hover no-margins">
+                    <thead>
+                        <tr>
+                            <th class="text-center"></th>
+                            <th ng-click="exploreAnalyzeObject.sort('model')">{{ 'locale-model' | translate }}
+                                <span class="fa sort-icon pull-right" data-ng-class="sortKey == 'model' && reverse ? 'fa-chevron-up' : 'fa-chevron-down'"></span>
+                            </th>
+                            <th ng-click="exploreAnalyzeObject.sort('dataset')">{{ 'locale-dataset' | translate }}
+                                <span class="fa sort-icon pull-right" data-ng-class="sortKey == 'dataset' && reverse ? 'fa-chevron-up' : 'fa-chevron-down'"></span>
+                            </th>
+                            <th ng-click="exploreAnalyzeObject.sort('platform')">{{ 'locale-platform-tools' | translate }}
+                                <span class="fa sort-icon pull-right" data-ng-class="sortKey == 'platform' && reverse ? 'fa-chevron-up' : 'fa-chevron-down'"></span>
+                            </th>
+                            <th ng-click="exploreAnalyzeObject.sort('progress')">{{ 'locale-progress' | translate }}
+                                <span class="fa sort-icon pull-right"  data-ng-class="sortKey == 'progress' && reverse ? 'fa-chevron-up' : 'fa-chevron-down'"></span>
+                            </th>                       
+                            <th>{{ 'locale-actions' | translate }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-dir-paginate="exploreDataList in exploreAnalyzeElement.trainingJobsLists |orderBy:sortKey:reverse|filter:search|filter:type|itemsPerPage:listPerPage">
+                            <td class="text-center">
+                                <div class="checkbox checkbox-success no-margin">
+                                    <input type="checkbox" id="singleCheckbox2" ng-checked="analyze.checkAll" data-ng-model="analyzelist.checked" aria-label="Single checkbox One">
+                                    <label></label>
+                                </div>
+                            </td>
+                            <td>{{exploreDataList.model}}</td>
+                            <td>{{exploreDataList.dataset}}</td>
+                            <td> 
+                                <span class="badge badge-info badge-sm">{{exploreDataList.platform}}</span>
+                            </td>
+                            <td>
+                                <span class="badge badge-success badge-sm" data-ng-if="exploreDataList.progress == 'Done'">{{exploreDataList.progress}}</span>
+                                <span class="badge badge-danger badge-sm" data-ng-if="exploreDataList.progress == 'In Progress'">{{exploreDataList.progress}}</span>
+                            </td>
+                            <td>
+                                <a class="btn btn-light btn-sm" title="{{ 'locale-stop' | translate }}"><i class="fa fa-ban"></i></a>
+                                <a class="btn btn-dark btn-sm" title="{{ 'locale-terminal' | translate }}" data-ng-if="exploreDataList.progress == 'Done'"><i class="fa fa-desktop"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

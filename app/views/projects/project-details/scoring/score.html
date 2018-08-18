@@ -1,0 +1,191 @@
+<form data-ng-show="!scoringElement.chooseFiles" role="form" id="scoreForm" name="scoreForm" novalidate data-ng-submit="scoringObject.save(scoreForm)">
+    <div class="modal-header" modaldraggable>
+        <button type="button" data-ng-click="cancel();" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><i class="fa fa-plus-circle m-r-sm"></i>{{ 'locale-score-dataset' | translate }}</h4>
+    </div>
+    <div class="modal-body">
+        <get-ancode-loader-full-overlay data-ng-if="scoringElement.scoreLoader"></get-ancode-loader-full-overlay>
+        <div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group"
+                        data-ng-class="{'has-error': scoreForm.predictionModel.$invalid && scoreFormSubmitted}">
+                        <label> {{ 'locale-model' | translate }} <span class="required">*</span> </label>
+                        <select class="form-control" name="predictionModel" data-ng-change="scoringObject.selectModel(scoringObj.model)"  data-ng-model="scoringObj.model" ng-options="model.name for model in scoringElement.modelLists" required>
+                            <option value="">{{ "locale-select" | translate }}</option>
+                        </select>
+                        <div class="input-icon right"
+                             data-ng-if="scoreForm.predictionModel.$invalid && scoreFormSubmitted">
+                        <i data-uib-tooltip="{{ 'model is required' | translate  }}"
+                           data-tooltip-placement="left" class="fa fa-warning"></i>
+                       </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group"
+                        data-ng-class="{'has-error': scoreForm.version.$invalid && scoreFormSubmitted}">
+                        <label> {{ 'locale-version' | translate }} <span class="required">*</span> </label>
+                        <select class="form-control" name="version"  data-ng-model="scoringObj.modelVersion" ng-options="modelVersion.version for modelVersion in scoringElement.versionLists" required>
+                            <option value="">{{ "locale-select" | translate }}</option>
+                        </select>
+                        <div class="input-icon right"
+                             data-ng-if="scoreForm.version.$invalid && scoreFormSubmitted">
+                        <i data-uib-tooltip="{{ 'model version is required' | translate  }}"
+                           data-tooltip-placement="left" class="fa fa-warning"></i>
+                       </div>
+                    </div>
+                </div>
+                <!-- <div class="col-md-5">
+                    <div class="form-group"
+                        data-ng-class="{'has-error': scoreForm.targetColumn.$invalid && scoreFormSubmitted}">
+                        <label> {{ 'locale-target-column' | translate }}  <span class="required">*</span> </label>
+                        <input type="text" name="targetColumn" data-ng-model="scoringObj.targetColumn" class="form-control" autocomplete="off" uib-typeahead="column.columnName for column in columns | filter:$viewValue | limitTo:10" required>
+                        <div class="input-icon right"
+                             data-ng-if="scoreForm.targetColumn.$invalid && scoreFormSubmitted">
+                        <i data-uib-tooltip="{{ 'Target column is required' | translate  }}"
+                           data-tooltip-placement="left" class="fa fa-warning"></i>
+                       </div>
+                    </div>
+                </div> -->
+                <div class="col-md-5">
+                    <div class="form-group"
+                        data-ng-class="{'has-error': scoreForm.splitRatio.$invalid && scoreFormSubmitted}">
+                        <label> {{ 'locale-split-ratio' | translate }}  <span class="required">*</span> </label>
+                        <input type="number" name="splitRatio" min="0" max="1" step="0.1" data-ng-model="scoringObj.splitRatio" class="form-control" required>
+                        <div class="input-icon right"
+                             data-ng-if="scoreForm.splitRatio.$invalid && scoreFormSubmitted">
+                        <i data-uib-tooltip="{{ 'Split ratio is required' | translate  }}"
+                           data-tooltip-placement="left" class="fa fa-warning"></i>
+                       </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" data-ng-if="false">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label> {{ 'locale-feature-columns' | translate }} </label>
+                        <tags-input ng-model="tags">
+                            <auto-complete source="loadTags($query)"></auto-complete>
+                        </tags-input>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group"
+                        data-ng-class="{'has-error': scoreForm.datasetTobeScored.$invalid && scoreFormSubmitted}">
+                        <label> {{ 'locale-datasets-tobe-scored' | translate }} <span class="required">*</span> </label>
+                        <input type="text" name="datasetTobeScored" class="form-control" ng-focus="chooseDataset('data')"  data-ng-model="scoringObj.datasetFile" required data-ng-pattern="/[\w- ;,./?%&=]*?/">
+                        <div class="input-icon right"
+                             data-ng-if="scoreForm.datasetTobeScored.$invalid && scoreFormSubmitted">
+                        <i data-uib-tooltip="{{ 'Select prediction data' | translate }}"
+                           data-tooltip-placement="left" class="fa fa-warning"></i>
+                       </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group"
+                        data-ng-class="{'has-error': scoreForm.destination.$invalid && scoreFormSubmitted}">
+                        <label> {{ 'locale-select-source' | translate }} <span class="required">*</span> </label>
+                        <input type="text" name="destination" class="form-control" ng-focus="chooseFile('output')"  data-ng-model="scoringObj.scoreFile" required data-ng-pattern="/[\w- ;,./?%&=]*?/" >
+                        <div class="input-icon right"
+                             data-ng-if="scoreForm.destination.$invalid && scoreFormSubmitted">
+                        <i data-uib-tooltip="{{ 'Select script ' | translate }}"
+                           data-tooltip-placement="left" class="fa fa-warning"></i>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+<!--        <div class="row">
+            <div class="col-md-6 no-padding">
+                <div class="panel panel-default panel-light no-radius">
+                    <div class="panel-heading">
+                        <i class="fa fa-sign-in m-r-xs" aria-hidden="true"></i> {{ 'locale-input-dataset' | translate }}
+                    </div>
+                    <div class="panel-body mh-250">
+                        <div class="form-group"
+                            data-ng-class="{'has-error': scoreForm.inputDataset.$invalid && scoreFormSubmitted}">
+                            <label> {{ 'locale-input-dataset' | translate }} </label>
+                            <select class="form-control" name="inputDataset" data-ng-model="score.inputDataset">
+                                <option value=""> {{ 'locale-select' | translate }} </option>
+                                <option value="crm_and_web_history_enriched">crm_and_web_history_enriched</option>
+                                <option value="web_history_prepared">web_history_prepared</option>
+                            </select>
+                        </div>
+                        <div class="form-group"
+                            data-ng-class="{'has-error': scoreForm.predictionModel.$invalid && scoreFormSubmitted}">
+                            <label> {{ 'locale-prediction-model' | translate }} </label>
+                            <select class="form-control" name="predictionModel" data-ng-model="score.predictionModel">
+                                <option value=""> {{ 'locale-select' | translate }} </option>
+                                <option value="crm_and_web_history_enriched">crm_and_web_history_enriched</option>
+                                <option value="web_history_prepared">web_history_prepared</option>
+                            </select>
+                        </div>
+                        <div class="form-group"
+                            data-ng-class="{'has-error': scoreForm.features.$invalid && scoreFormSubmitted}">
+                            <label> {{ 'locale-features' | translate }} </label>
+                            <select class="form-control" name="features" data-ng-init="score.features='rowLength'" data-ng-model="score.features">
+                                <option value="rowLength">rowLength</option>
+                                <option value="ip_country">ip_country</option>
+                                <option value="revenue">revenue</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 no-padding">
+                <div class="panel panel-default panel-light no-radius">
+                    <div class="panel-heading">
+                        <i class="fa fa-sign-out m-r-xs" aria-hidden="true"></i> {{ 'locale-output-dataset' | translate }}
+                    </div>
+                    <div class="panel-body mh-250">
+                        <div class="form-group"
+                            data-ng-class="{'has-error': scoreForm.outputDatasetName.$invalid && scoreFormSubmitted}">
+                            <label> {{ 'locale-name' | translate }} </label>
+                            <input type="text" name="outputDatasetName" class="form-control" data-ng-model="score.outputDatasetName">
+                        </div>
+                        <div class="form-group"
+                            data-ng-class="{'has-error': scoreForm.outputDatasetStoreInto.$invalid && scoreFormSubmitted}">
+                            <label> {{ 'locale-store-into' | translate }} </label>
+                            <select class="form-control" name="outputDatasetStoreInto" data-ng-model="score.outputDatasetStoreInto">
+                                <option value=""> {{ 'locale-select' | translate }} </option>
+                                <option value="filesystem_managed">filesystem_managed</option>
+                            </select>
+                        </div>
+                        <div class="form-group"
+                            data-ng-class="{'has-error': scoreForm.outputDatasetFormat.$invalid && scoreFormSubmitted}">
+                            <label> {{ 'locale-format' | translate }} </label>
+                            <select class="form-control" name="outputDatasetFormat" data-ng-model="score.outputDatasetFormat">
+                                <option value=""> {{ 'locale-format' | translate }} </option>
+                                <option value="csv">CSV</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>-->
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-ng-click="cancel();">{{ 'locale-cancel' | translate }}</button>
+        <button type="submit" class="btn btn-info">{{ 'locale-create' | translate }}</button>
+    </div>
+</form>
+<div data-ng-show="scoringElement.chooseFiles" class="row">
+    <div class="ibox-content mw-900">
+        <div class="filemanager-area">
+            <div class="filemanager-area">
+                <angular-filemanager></angular-filemanager>
+                <div class="row m-t-md">
+                    <div class="col-md-12">
+                        <a class="btn btn-success pull-right" data-ng-click="fileChoosed()">{{ 'locale-ok' | translate }}</a>
+                        <a class="btn btn-light  pull-right  m-r-md" data-ng-click="scoringElement.chooseFiles = false">{{ 'locale-back' | translate }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

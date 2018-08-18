@@ -1,0 +1,32 @@
+[
+    {
+        "model": "regression.py",
+        "dataset": "usr/dataset1/census.csv",
+        "runtime_environment": "Tensorflow",
+        "training_date": "1 Mar 2018, 12:05:11 pm"
+    },
+    {
+        "model": "classifier.py",
+        "dataset": "usr/dataset1/census.csv",
+        "runtime_environment": "spark-2.0",
+        "training_date": "26 Feb 2018, 07:26:01 am"
+    },
+    {
+        "model": "regression.py",
+        "dataset": "usr/dataset1/census.csv",
+        "runtime_environment": "Tensorflow",
+        "training_date": "25 Feb 2018, 12:05:11 pm"
+    },
+    {
+        "model": "classifier.py",
+        "dataset": "usr/dataset1/census.csv",
+        "runtime_environment": "spark-2.0",
+        "training_date": "23 Feb 2018, 07:26:01 am"
+    },
+    {
+        "model": "regression.py",
+        "dataset": "usr/dataset1/census.csv",
+        "runtime_environment": "spark-2.0",
+        "training_date": "19 Feb 2018, 12:05:11 pm"
+    }
+]

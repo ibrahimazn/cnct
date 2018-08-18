@@ -1,0 +1,25 @@
+<form role="form" id="analyzeForm" name="analyzeForm" novalidate data-ng-submit="analyzeObject.save(analyze)">
+    <div class="modal-header" modaldraggable>
+        <button type="button" data-ng-click="cancel();" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><i class="fa fa-plus-circle m-r-sm"></i>{{ 'locale-add-new-analyze' | translate }}</h4>
+    </div>
+    <div class="modal-body">
+       <div class="form-group" data-ng-class="{'has-error': analyzeForm.analyzeName.$invalid && analyzeForm.submitted}">
+            <label> {{ 'locale-analyze-name' | translate }} </label>
+            <input type="text" name="analyzeName" class="form-control" data-ng-model="analyze.analyzeName">
+        </div>
+        <div class="form-group"
+            data-ng-class="{'has-error': analyzeForm.storageType.$invalid && analyzeForm.submitted}">
+            <label> {{ 'locale-dataset' | translate }} </label>
+            <select class="form-control" name="analyzeDataset" data-ng-model="analyze.analyzeDataset">
+                <option value=""> {{ 'locale-dataset' | translate }} </option>
+                <option value="crm_and_web_history_enriched">crm_and_web_history_enriched</option>
+                <option value="web_history_prepared">web_history_prepared</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-ng-click="cancel();">{{ 'locale-cancel' | translate }}</button>
+        <button type="submit" class="btn btn-info">{{ 'locale-add' | translate }}</button>
+    </div>
+</form> 

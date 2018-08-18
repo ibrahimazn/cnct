@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-md-12">
+        <uib-tabset active="onlineDeploymentsTab" class="secondary-tab data-transformation">
+            <uib-tab index="0">
+                <uib-tab-heading><span>{{ 'locale-online-prediction' | translate }}</span></uib-tab-heading>
+                <div data-ng-controller="onlinePredictionCtrl" data-ng-include src="'views/projects/project-details/deployments/online/online-prediction.html'"></div>
+            </uib-tab>
+            <uib-tab index="1">
+                <uib-tab-heading><span>{{ 'locale-continuous-integration' | translate }}</span></uib-tab-heading>
+                <div data-ng-controller="continuousIntegrationCtrl" data-ng-include src="'views/projects/project-details/deployments/online/continuous-integration.html'"></div>
+            </uib-tab>
+            <uib-tab index="2">
+                <uib-tab-heading><span>{{ 'locale-cicd-config' | translate }} </span></uib-tab-heading>
+                <div data-ng-include src="'views/projects/project-details/deployments/online/cicd-config.html'"></div>
+            </uib-tab>
+        </uib-tabset>
+    </div>
+</div>

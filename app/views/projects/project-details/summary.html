@@ -1,0 +1,100 @@
+<div data-ng-controller="projectsCtrl">
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-12 page-title">
+            <h2>{{projectRef.name}} - {{ 'locale-summary' | translate }}</h2>
+        </div>
+    </div>
+    <div class="row wrapper page-breadcrumb">
+        <div class="col-lg-12">
+            <ol class="breadcrumb">
+                <li>
+                    <a data-ui-sref="index.user-dashboard"><i class="fa fa-home" aria-hidden="true"></i></a>
+                </li>
+                <li>
+                    <strong><a data-ui-sref="projects.grid">{{ 'locale-projects' | translate }}</a></strong>
+                </li>
+                <li>
+                    <strong><a data-ui-sref="project-details.summary">{{projectRef.name}}</a></strong>
+                </li>
+                <li class="active">
+                    {{ 'locale-summary' | translate }}
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">  
+        <div class="ibox">
+            <div class="ibox-content no-padding">
+                <div class="row">
+                    <div class="col-md-8 col-sm-6 project-details border-right">
+                        <div class="p-md">
+                            <h2>{{projectRef.name}}</h2>
+                            <div class="label label-light">{{projectRef.deliveryDate | date:'yyyy-MM-dd'}}</div>
+                            <p class="project-des m-t-md">{{projectRef.description}}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 project-members no-p-l">
+                        <div class="bg-info-light no-padding custom-heading"><h3>Project Members</h3></div>
+                        <div class="p-sm">
+                            <div class="scroll-body" slimscroll="{height: 150,size:4,distance:0}">
+                                <ul class="list-group clear-list">
+                                    <li class="list-group-item fist-item" data-ng-repeat="member in projectRef.projectUsers">
+                                        <span class="pull-right">
+                                            <span class="badge badge-light">{{member.roleName}}</span>
+                                        </span>
+                                        <span class="label label-default m-r-sm">{{$index+1}}</span> {{member.userName}}
+                                        <!--<span class="label label-success m-l-sm">{{(member.roleName=='ADMIN') ? 'Owner':'Member'}}</span>-->
+                                        <span class="label label-success m-l-sm" data-ng-if='adminUserId==member.userId'>{{(adminUserId==projectRef.createdUserId)?'Owner':''}}</span>
+                                        <span class="label label-success m-l-sm" data-ng-if='adminUserId!=member.userId'>{{(member.userId==projectRef.createdUserId)?'Owner':''}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row report-widget">
+            <div class="col-md-6 col-sm-6 col-xsm-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5> {{ 'locale-datasets' | translate }}</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins text-primary"><i class="fa fa-database m-r-sm"></i> {{projectRef.dataSets.length}} </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xsm-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>{{ 'locale-launchers' | translate }}</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins text-info"><i class="fa fa-rocket m-r-sm"></i> {{projectRef.launchers.length}}</h1>
+                    </div>
+                </div>
+            </div>
+<!--            <div class="col-md-3 col-sm-6 col-xsm-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>{{ 'locale-model' | translate }}</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins text-success"><i class="fa fa-cube m-r-sm"></i>  03</h1>
+                    </div>
+                </div>
+            </div>-->
+<!--            <div class="col-md-3 col-sm-6 col-xsm-6">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>{{ 'locale-analyzes' | translate }}</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins text-danger"><i class="fa fa-line-chart m-r-sm"></i> 07</h1>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+    </div>
+</div>

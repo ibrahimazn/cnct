@@ -1,0 +1,27 @@
+[
+    {
+        "name": "LARS on iris_data_prepared_preparedj",
+        "algorithm": "Random Forest",
+        "creation": "6 hours ago"
+    },
+    {
+        "name": "DECISION_TREE_CLASSIFICATION on iris_data_prepared ",
+        "algorithm": "Gradient Boosted Tree",
+        "creation": "18 hours ago"
+    },
+    {
+        "name": "SCIKIT_MODEL on iris_data_prepared ",
+        "algorithm": "Logistic Regression",
+        "creation": "2 days ago"
+    },
+    {
+        "name": "LARS on iris_data_prepared_preparedj",
+        "algorithm": "Random Forest",
+        "creation": "6 hours ago"
+    },
+    {
+        "name": "DECISION_TREE_CLASSIFICATION on iris_data_prepared ",
+        "algorithm": "Gradient Boosted Tree",
+        "creation": "18 hours ago"
+    }
+]

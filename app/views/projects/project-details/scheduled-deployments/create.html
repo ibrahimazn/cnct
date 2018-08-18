@@ -1,0 +1,90 @@
+<form role="form" id="newScheduledDeploymentsForm" name="newScheduledDeploymentsForm" novalidate data-ng-submit="scheduledDeploymentsObject.save(scheduledDeployments)">
+    <div class="modal-header" modaldraggable>
+        <button type="button" data-ng-click="cancel();" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><i class="fa fa-plus-circle m-r-sm"></i>{{ 'locale-new-scheduled-deployments' | translate }}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xsm-6">
+                <div class="form-group"
+                     data-ng-class="{'has-error': newScheduledDeploymentsForm.name.$invalid && newScheduledDeploymentsForm.submitted}">
+                    <label> {{ 'locale-name' | translate }} </label>
+                    <input type="text" name="name" class="form-control" data-ng-model="scheduledDeployments.name">
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xsm-6">
+                <div class="form-group"
+                     data-ng-class="{'has-error': newScheduledDeploymentsForm.datset.$invalid && newScheduledDeploymentsForm.submitted}">
+                    <label> {{ 'locale-dataset' | translate }} </label>
+                    <select class="form-control" name="dataset" data-ng-init="scheduledDeployments.dataset='crm_and_web_history_enriched'" data-ng-model="scheduledDeployments.dataset">
+                        <option value="crm_and_web_history_enriched">crm_and_web_history_enriched</option>
+                        <option value="web_history_prepared">web_history_prepared</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xsm-6">
+                <div class="form-group"
+                     data-ng-class="{'has-error': newScheduledDeploymentsForm.type.$invalid && newScheduledDeploymentsForm.submitted}">
+                    <label> {{ 'locale-type' | translate }} </label>
+                    <select class="form-control" name="type" data-ng-init="scheduledDeployments.type='daily'" data-ng-model="scheduledDeployments.type">
+                        <option value="oneTimeOnly">One time only</option>
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                    </select>
+                </div>
+                <div class="form-group"
+                     data-ng-class="{'has-error': newScheduledDeploymentsForm.outputPath.$invalid && newScheduledDeploymentsForm.submitted}">
+                    <label> {{ 'locale-output-path' | translate }} </label>
+                    <input type="text" name="outputPath" class="form-control" data-ng-model="scheduledDeployments.outputPath">
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xsm-6">
+                <div class="form-group"
+                     data-ng-class="{'has-error': newScheduledDeploymentsForm.scheduledTime.$invalid && newScheduledDeploymentsForm.submitted}">
+                    <label> {{ 'locale-scheduled-time' | translate }} </label>
+                    <div uib-timepicker ng-change="" hour-step="1" minute-step="01" show-meridian="false" ng-model="scheduledDeployments.time"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xsm-6">
+                <div class="form-group"
+                     data-ng-class="{'has-error': newScheduledDeploymentsForm.sourceCode.$invalid && newScheduledDeploymentsForm.submitted}">
+                    <label> {{ 'locale-source-code' | translate }} </label>
+                    <input type="text" name="sourceCode" class="form-control" data-ng-model="scheduledDeployments.sourceCode">
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xsm-6">
+                <div class="form-group"
+                     data-ng-class="{'has-error': newScheduledDeploymentsForm.outputFormat.$invalid && newScheduledDeploymentsForm.submitted}">
+                    <label> {{ 'locale-output-format' | translate }} </label>
+                    <select name="userType" class="form-control" data-ng-init="scheduledDeployments.outputFormat='csv'" data-ng-model="scheduledDeployments.outputFormat">
+                        <option value="csv">CSV</option>
+                        <option value="xlsx">XLSX</option>
+                        <option value="excel">EXCEL</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group"
+                     data-ng-class="{'has-error': newScheduledDeploymentsForm.model.$invalid && newScheduledDeploymentsForm.submitted}">
+                    <label> {{ 'locale-model' | translate }} </label>
+                    <select class="form-control" name="model" data-ng-init="scheduledDeployments.model='predictionDecesionTreeOn_iris_data_prepared'" data-ng-model="scheduledDeployments.model">
+                        <option value="predictionDecesionTreeOn_iris_data_prepared">Prediction (DECISION_TREE_CLASSIFICATION) on iris_data_prepared</option>
+                        <option value="PredictionLarsOn_iris_data_prepared_preparedj">Prediction (LARS) on iris_data_prepared_preparedj</option>
+                        <option value="PredictionSkitModelOn_iris_data_prepared_preparedj">Prediction (LARS) on iris_data_prepared_preparedj</option>
+                    </select>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-ng-click="cancel();">{{ 'locale-cancel' | translate }}</button>
+        <button type="submit" class="btn btn-info" data-ng-hide="scheduledDeploymentsElement.updateButton">{{ 'locale-schedule' | translate }}</button>
+        <button type="submit" class="btn btn-info" data-ng-if="scheduledDeploymentsElement.updateButton">{{ 'locale-update' | translate }}</button>
+    </div>
+</form> 

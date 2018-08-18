@@ -1,0 +1,43 @@
+<div class="modal-header" modaldraggable>
+    <button type="button" data-ng-click="cancel();" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title"><i class="fa fa-rocket m-r-sm"></i>{{ 'locale-starting-launcher' | translate }}</h4>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="text-center">
+            {{'locale-launcher-confimation'  | translate }}
+        </div>
+        <div class="p-sm m-t-sm">
+        <h3 class="sub-title">{{ 'locale-launchers' | translate }}</h3>
+        <div class="scroll-body" slimscroll="{height: 300,size:4,distance:5}">
+            <div data-ng-if="launchLists.length > 0" class="row bg-info-light m-b-sm" data-ng-repeat="launcher in launchersLists">
+                <div class="col-md-3 text-center">
+                    <img data-ng-if="launcher.appImage.platformTool.toLowerCase().indexOf('rstudio')>-1" src="img/launchers/rstudio.png" alt="rstudio" title="rstudio"/>
+                    <img data-ng-if="launcher.appImage.platformTool.toLowerCase().indexOf('jupyter')>-1" src="img/launchers/jupyter.png" alt="jupyter" title="jupyter"/>
+                </div>
+                <div class="col-md-6 text-center">
+                    <h3 class="p-xs"> {{ launcher.appImage.platformTool }}</h3>
+                </div>
+                <div class="col-md-3 text-center">
+                    <button class="btn btn-info" ng-click="startLauncher(launcher)" type="button" class="btn btn-success m-t-sm">{{ 'locale-launch' | translate }}</button>
+                </div>
+            </div>
+            <div data-ng-if="launchLists.length == 0" class="row bg-info-light m-b-sm" data-ng-repeat="launcher in launchersLists">
+                <div class="col-md-3 text-center">
+                    <img data-ng-if="launcher.platformTool.toLowerCase().indexOf('rstudio')>-1" src="img/launchers/rstudio.png" alt="rstudio" title="rstudio"/>
+                    <img data-ng-if="launcher.platformTool.toLowerCase().indexOf('jupyter')>-1" src="img/launchers/jupyter.png" alt="jupyter" title="jupyter"/>
+                </div>
+                <div class="col-md-6 text-center">
+                    <h3 class="p-xs"> {{ launcher.platformTool }}</h3>
+                </div>
+                <div class="col-md-3 text-center">
+                    <button class="btn btn-info" ng-click="startLauncher(launcher)" type="button" class="btn btn-success m-t-sm">{{ 'locale-launch' | translate }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-info" ng-click="cancel()" type="button" class="btn btn-success m-t-sm">{{ 'locale-cancel' | translate }}</button>
+</div>

@@ -1,0 +1,22 @@
+[
+    {
+        "file": "AZDatasetOutput",
+        "totalSize": "0.58 kb",
+        "readWritePermission": "Enabled"
+    },
+    {
+        "file": "AZ_Dataset",
+        "totalSize": "5.2 mb",
+        "readWritePermission": "Disabled"
+    },
+    {
+        "file": "AZ_Employee_DatasetOutput",
+        "totalSize": "1.1 mb",
+        "readWritePermission": "Enabled"
+    },
+    {
+        "file": "AZ_Employee_Dataset",
+        "totalSize": "0.84 kb",
+        "readWritePermission": "Enabled"
+    }
+]

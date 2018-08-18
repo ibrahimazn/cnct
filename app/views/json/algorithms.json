@@ -1,0 +1,34 @@
+[
+    {
+        "name": " Random Forest",
+        "id":"0"
+    },
+    {
+        "name": "Gradient Boosted Tree",
+        "id":"1"
+    },
+    {
+        "name": "XGBoost",
+        "id":"2"
+    },
+    {
+        "name": "Logistic Regression",
+        "id":"3"
+    },
+    {
+        "name": "Decision Tree",
+        "id":"4"
+    },
+    {
+        "name": "Support Vector Machine",
+        "id":"5"
+    },
+    {
+        "name": "Stochastic Gradient Descent",
+        "id":"6"
+    },
+    {
+        "name": "K Nearest Neighbors",
+        "id":"7"
+    }
+]

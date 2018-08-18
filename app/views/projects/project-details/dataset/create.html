@@ -1,0 +1,169 @@
+<form role="form" id="createDatasetForm" name="createDatasetForm" novalidate data-ng-submit="datasetObject.save(dataset)">
+    <div class="modal-header" modaldraggable>
+        <button type="button" data-ng-click="cancel();" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><i class="fa fa-plus-circle m-r-sm"></i>{{ 'locale-create-dataset' | translate }}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xsm-6">
+                <div class="form-group"
+                     data-ng-class="{'has-error': createDatasetForm.datasetName.$invalid && createDatasetFormSubmitted}">
+                    <label>{{ 'locale-dataset-name' | translate }}</label>
+                    <input type="text" name="datasetName" class="form-control" data-ng-model="dataset.datasetName">
+                    <div class="input-icon right" 
+                         data-ng-if="createDatasetForm.datasetName.$invalid && createDatasetFormSubmitted">
+                        <i data-uib-tooltip="{{ 'locale-dataset-name-is-required' | translate }}" data-tooltip-placement="left" 
+                           class="fa fa-warning"></i>
+                    </div>  
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xsm-6">
+                <div class="form-group"
+                     data-ng-class="{'has-error': createDatasetForm.dataSource.$invalid && createDatasetFormSubmitted}">
+                    <label> {{ 'locale-data-source' | translate }} </label>
+                    <select class="form-control" name="dataSource" data-ng-init="dataset.dataSource = 'amazonS3'" data-ng-model="dataset.dataSource">
+                        <option value=""> {{ 'locale-select' | translate }} </option>
+                        <option value="amazonS3">Amazon S3</option>
+                        <option value="teraData">Tera Data</option>
+                    </select>
+                    <div class="input-icon right" data-ng-if="createDatasetForm.dataSource.$invalid && createDatasetFormSubmitted">
+                        <i data-uib-tooltip="{{ 'locale-type-is-required' | translate }}" data-tooltip-placement="left" class="fa fa-warning"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h4 class="bg-info-light p-sm">{{ 'locale-config' | translate }}</h4>
+        <uib-tabset class="secondary-tab">
+            <uib-tab>
+                <uib-tab-heading>{{ 'locale-data-source' | translate }}</uib-tab-heading>
+                <div class="m-t-md">
+                    <div class="row">                            
+                        <div class="col-md-6 col-xsm-6">
+                            <div class="form-group"
+                                 data-ng-class="{'has-error': createDatasetForm.url.$invalid && createDatasetFormSubmitted}">
+                                <label> {{ 'locale-datasource-url' | translate }} </label>
+                                <input type="url" name="url" class="form-control" data-ng-model="dataset.url">
+                                <div class="input-icon right"
+                                     data-ng-if="createDatasetForm.url.$invalid && createDatasetFormSubmitted">
+                                    <i data-uib-tooltip="{{ 'locale-url-is-required' | translate }}" data-tooltip-placement="left"
+                                       class="fa fa-warning"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xsm-6">
+                            <div class="form-group"
+                                 data-ng-class="{'has-error': createDatasetForm.authUrlInput.$invalid && createDatasetFormSubmitted}">
+                                <label>{{ 'locale-auth-url' | translate }}</label>
+                                <input type="text" name="authUrlInput" class="form-control" data-ng-model="dataset.authUrlInput">
+                                <div class="input-icon right" 
+                                     data-ng-if="createDatasetForm.authUrlInput.$invalid && createDatasetFormSubmitted">
+                                    <i data-uib-tooltip="{{ 'locale-url-is-required' | translate }}" data-tooltip-placement="left" 
+                                       class="fa fa-warning"></i>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-info-light p-sm">
+                        <h4 class="sub-title">{{ 'locale-additional-parameters' | translate }} </h4>
+                        <!--<div class="scroll-body" slimscroll="{height: 75,size:4,distance:5}">-->
+                        <div data-ng-repeat="inputAdditionalParameter in inputAdditionalParameters">
+                            <div class="row m-b-sm">
+                                <div class="col-sm-5 col-xsm-5"><input class="form-control" name="keyName" data-ng-model="inputAdditionalParameter.keyName" placeholder="KEY NAME" type="text"></div>
+                                <div class="col-sm-5 col-xsm-5">
+                                    <input class="form-control" name="keyValue" data-ng-model="inputAdditionalParameter.keyValue" placeholder="Value" type="text" data-ng-class="{'error': userGroupForm.userEmail.$invalid && formSubmitted}">
+                                </div>
+                                <div class="col-sm-1"><a class="btn btn-success m-t-xs pull-left btn-xs"  data-ng-if="$index == 0" data-ng-click="datasetObject.addMoreInputAdditionalParameters()"><i class="fa fa-plus"></i></a>
+                                    <a class="btn btn-danger m-t-xs pull-left btn-xs" data-ng-if="$index != 0"data-ng-click="datasetObject.deleteOneInputAdditionalParameters(inputAdditionalParameter)"><i class="fa fa-times"></i></a></div>
+                            </div>
+                        </div>
+                        <!--</div>-->
+                    </div>                        
+                    <div class="col-md-12">
+                        <div class="form-group m-b-md" data-ng-class="{'has-error': createDatasetForm.projectType.$invalid && createDatasetFormSubmitted}">
+                            <div class="checkbox checkbox-success pull-right">
+                                <input class="form-control" name="autoDiscover" value="autoDiscover" type="checkbox" data-ng-model="projectagree.autoDiscover">
+                                <label for="checkbox3">
+                                    Auto Discover
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </uib-tab>
+            <uib-tab>
+                <uib-tab-heading>{{ 'locale-dataset-destination' | translate }}</uib-tab-heading>
+                <div class="m-t-lg">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xsm-6">
+                            <div class="form-group" 
+                                 data-ng-class="{'has-error': createDatasetForm.type.$invalid && createDatasetFormSubmitted}">
+                                <label> {{ 'locale-storage-type' | translate }} </label>
+                                <select class="form-control" name="type" data-ng-init="dataset.storageType = 's3'" data-ng-model="dataset.storageType">
+                                    <option value=""> {{ 'locale-select' | translate }} </option>
+                                    <option value="s3">S3</option>
+                                    <option value="git">GIT</option>
+                                </select>
+                                <div class="input-icon right" data-ng-if="createDatasetForm.type.$invalid && createDatasetFormSubmitted">
+                                    <i data-uib-tooltip="{{ 'locale-type-is-required' | translate }}" data-tooltip-placement="left" class="fa fa-warning"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xsm-6">
+                            <div class="form-group" 
+                                 data-ng-class="{'has-error': createDatasetForm.type.$invalid && createDatasetFormSubmitted}">
+                                <label> {{ 'locale-dataset-ver-limit' | translate }} </label>
+                                <select class="form-control" name="type" data-ng-init="dataset.datasetVerLimit = '1'" data-ng-model="dataset.datasetVerLimit">
+                                    <option value=""> {{ 'locale-select' | translate }} </option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                                <div class="input-icon right" data-ng-if="createDatasetForm.type.$invalid && createDatasetFormSubmitted">
+                                    <i data-uib-tooltip="{{ 'locale-type-is-required' | translate }}" data-tooltip-placement="left" class="fa fa-warning"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-xsm-6">
+                            <div class="form-group"
+                                 data-ng-class="{'has-error': createDatasetForm.publishUrl.$invalid && createDatasetFormSubmitted}">
+                                <label> {{ 'locale-publish-url' | translate }} </label>
+                                <input type="url" name="url" class="form-control" data-ng-model="dataset.url">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xsm-6">
+                            <div class="form-group"
+                                 data-ng-class="{'has-error': createDatasetForm.authUrlInput.$invalid && createDatasetFormSubmitted}">
+                                <label>{{ 'locale-auth-url' | translate }}</label>
+                                <input type="text" name="authUrlInput" class="form-control" data-ng-model="dataset.authUrlInput">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-info-light p-sm">
+                        <h4 class="sub-title">{{ 'locale-additional-parameters' | translate }} </h4>
+                        <!--<div class="scroll-body" slimscroll="{height: 75,size:4,distance:5}">-->
+                        <div data-ng-repeat="outputAdditionalParameter in outputAdditionalParameters">
+                            <div class="row m-b-sm">
+                                <div class="col-sm-5 col-xsm-5"><input class="form-control" name="keyName" data-ng-model="outputAdditionalParameter.keyName" placeholder="KEY NAME" type="text"></div>
+                                <div class="col-sm-5 col-xsm-5">
+                                    <input class="form-control" name="keyValue" data-ng-model="outputAdditionalParameter.keyValue" placeholder="Value" valid-email type="text" data-ng-class="{'error': userGroupForm.userEmail.$invalid && formSubmitted}">
+                                </div>
+                                <div class="col-sm-1"><a class="btn btn-success m-t-xs pull-left btn-xs"  data-ng-if="$index == 0" data-ng-click="datasetObject.addMoreOutputAdditionalParameters()"><i class="fa fa-plus"></i></a>
+                                    <a class="btn btn-danger m-t-xs pull-left btn-xs" data-ng-if="$index != 0"data-ng-click="datasetObject.deleteOneOutputAdditionalParameters(outputAdditionalParameter)"><i class="fa fa-times"></i></a></div>
+                            </div>
+                        </div>
+                        <!--</div>-->
+                    </div>
+                </div>
+            </uib-tab>
+        </uib-tabset>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-ng-click="cancel();">{{ 'locale-cancel' | translate }}</button>
+        <button type="submit" class="btn btn-info">{{ 'locale-create' | translate }}</button>
+    </div>
+</form> 

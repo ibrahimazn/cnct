@@ -1,0 +1,43 @@
+<form role="form" id="deployToServerForm" name="deployToServerForm" novalidate data-ng-submit="analyzeObject.save(analyze)">
+    <div class="modal-header" modaldraggable>
+        <button type="button" data-ng-click="cancel();" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><i class="fa fa-inbox m-r-sm"></i>{{ 'locale-deploy-to-server' | translate }}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group" data-ng-class="{'has-error': deployToServerForm.server.$invalid && deployToServerForm.submitted}">
+                    <label> {{ 'locale-server' | translate }} </label>
+                    <input type="text" name="server" class="form-control" data-ng-model="deployServer.server">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group"
+                    data-ng-class="{'has-error': deployToServerForm.plan.$invalid && deployToServerForm.Submitted}">
+                    <label>{{ 'locale-plan' | translate }}</label>
+                    <select class="form-control" name="plan" data-ng-init="deployServer.plan = '1gb1cpu'" data-ng-model="deployServer.plan">
+                        <option value="1gb1cpu">1 GB / 1 CPU</option>
+                        <option value="2gb1cpu">2 GB / 1 CPU</option>
+                        <option value="2gb2cpu">2 GB / 2 CPU</option>
+                    </select>  
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group" data-ng-class="{'has-error': deployToServerForm.source.$invalid && deployToServerForm.submitted}">
+                    <label> {{ 'locale-source' | translate }} </label>
+                    <input type="text" name="source" class="form-control" data-ng-model="deployServer.source">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group" data-ng-class="{'has-error': deployToServerForm.apiEndPoint.$invalid && deployToServerForm.submitted}">
+                    <label> {{ 'locale-api-end-point' | translate }} </label>
+                    <input type="text" name="apiEndPoint" class="form-control" data-ng-model="deployServer.apiEndPoint">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-ng-click="cancel();">{{ 'locale-cancel' | translate }}</button>
+        <button type="submit" class="btn btn-info">{{ 'locale-deploy' | translate }}</button>
+    </div>
+</form> 

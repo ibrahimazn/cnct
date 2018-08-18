@@ -1,4 +1,4 @@
-function userAccountCtrl($scope, appfissService, $http, localStorageService, $window, $state, toastr) {
+function userAccountCtrl($scope, appfissService, $http, localStorageService, $stateParams, $window, $state, toastr) {
     /** Generic object for the controller. */
     $scope.userAccountObject = {};
     $scope.global = appfissService.appConfig;
@@ -18,10 +18,16 @@ function userAccountCtrl($scope, appfissService, $http, localStorageService, $wi
         $scope.reverse = !$scope.reverse; //if true make it false and vice versa
     }
     $scope.userAccountObject = {
-        getUser : function(index) {
-          $http.get("views/json/userAccount.json").success(function(result){
+        getUser: function (index) {
+            var hasResult = appfissService.crudService.read("user", index)
+            hasResult.then(function (result) {
+                $scope.user = result;
+            }).catch(function (result) {
+
+            });
+            $http.get("views/json/userAccount.json").success(function (result) {
                 $scope.user = result[index];
-            });  
+            });
         },
         // ADD USER
         addUserAccount: function (size) {
@@ -62,8 +68,6 @@ function userAccountCtrl($scope, appfissService, $http, localStorageService, $wi
                                             if ($scope.userAccountForm.$valid && !$scope.imageError) {
                                                 $scope.userAccountElement.createLoader = true;
                                                 var formData = new FormData();
-                                                user.departmentId = user.department.id;
-                                                user.userType = user.userType.role;
                                                 angular.forEach(user, function (obj, key) {
                                                     if (!angular.isUndefined(obj)) {
                                                         formData.append(key, obj);
@@ -132,7 +136,7 @@ function userAccountCtrl($scope, appfissService, $http, localStorageService, $wi
                                 }
                             });
                             $scope.userAccount = angular.copy(userAccountObj);
-			    $scope.userAccount.profImage = 'http://' + $window.location.hostname + ':8080/' + 'resources/' + $scope.userAccount.profileImgFile;
+                            $scope.userAccount.profImage = 'http://' + $window.location.hostname + ':8080/' + 'resources/' + $scope.userAccount.profileImgFile;
                             $scope.userAccountElement.updateButton = true;
                             $scope.userAccountElement.editedIndex = index;
                             $scope.userAccountObject.update = function (form, user) {
@@ -243,7 +247,7 @@ function userAccountCtrl($scope, appfissService, $http, localStorageService, $wi
         },
 
         list: function (pageNumber) {
-            
+
             $scope.userAccountElement.listLoader = true;
             var limit = (angular.isUndefined($scope.paginationObject.limit)) ? appfissService.appConfig.CONTENT_LIMIT : $scope.paginationObject.limit;
             if ($scope.quicksearch == null || angular.isUndefined($scope.quicksearch)) {
@@ -264,13 +268,13 @@ function userAccountCtrl($scope, appfissService, $http, localStorageService, $wi
                 $scope.paginationObject.totalItems = result.totalItems;
                 $scope.paginationObject.pagingMethod = $scope.userAccountObject.list;
             });
-            
-            $http.get("views/json/userAccount.json").success(function(result){
+
+            $http.get("views/json/userAccount.json").success(function (result) {
                 $scope.userAccountElement.userLists = result;
                 $scope.userAccountElement.listLoader = false;
             });
-            
-            
+
+
         },
 
         searchList: function (quicksearch, type) {
@@ -307,9 +311,12 @@ function userAccountCtrl($scope, appfissService, $http, localStorageService, $wi
                 editLoader: false,
                 listLoader: false,
             };
+            if (!angular.isUndefined($stateParams.id)) {
+                $scope.userAccountObject.getUser($stateParams.id);
+            }
             $scope.userAccountElement.userLists = [];
             $scope.userAccountObject.list(1);
-            $scope.userAccountObject.getUser(0);
+            // $scope.userAccountObject.getUser(0);
         }
     }
 

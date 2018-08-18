@@ -1,0 +1,20 @@
+/*Login Screen*/
+.login-wrapper, .signup-wrapper{margin: 0 auto;}
+.login-wrapper label, .signup-wrapper label {font-weight: 400; color:#676a6c;}
+.login-wrapper h3, .signup-wrapper h3{margin-top: 5px; font-weight: 600; font-size: 16px;}
+.loginscreen{background-color: #ffffff;}
+.login-bg{background: #0283cc; padding: 80px 0 130px 0;}
+.middle-box{width: 450px !important; margin: 0 auto; max-width: 700px; padding-top: 0px; border: 10px solid #0570ac; background: #ffffff;}
+.signup-wrapper .middle-box{width: 700px !important;}
+.middle-box-content{padding: 50px; border-bottom: 1px solid #dde0e8; border-top: 1px solid #dde0e8;}
+.wrapper-content .nav > li.active > a{border-radius: 0px;}
+.middle-box-content a{color: #0283cc; text-decoration: none;}
+.middle-box-content a:hover{}
+.middle-box-header{background-color: #f0f5f7; border-bottom: 1px solid #ffffff; padding: 10px 0 5px 0;}
+.middle-box-footer{background-color: #f0f5f7; border-bottom: 1px solid #ffffff; padding: 15px 50px 0px 50px}
+.login-msg{color: #ffffff; font-size: 14px; margin-top: 15px;}
+.login-msg a{color: #ffffff; text-decoration: underline;}
+.login-msg a:hover{color: #ffffff; text-decoration: none;}
+.btn-login {width: 100% !important; margin-bottom: 15px;}
+.btn-register {width: 100% !important; margin-bottom: 15px;}
+.m-t-xs{margin-top: 5px;}

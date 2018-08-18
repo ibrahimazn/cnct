@@ -1,0 +1,67 @@
+<div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive m-t-sm">
+                <get-ancode-loader-container-overlay data-ng-if="modelDetailsElement.trainingJobsLoader"></get-ancode-loader-container-overlay>
+                <table class="table table-bordered table-hover no-margins">
+                    <thead>
+                        <tr>
+                            <th class="text-center"></th>
+                            <th ng-click="modelDetailsObject.sortTraining('model')">{{ 'locale-model' | translate }}
+                                <span class="fa sort-icon pull-right" data-ng-class="sortTrainingKey == 'model' && sortTrainingreverse ? 'fa-chevron-up' : 'fa-chevron-down'"></span>
+                            </th>
+                            <th ng-click="modelDetailsObject.sortTraining('dataset')">{{ 'locale-dataset' | translate }}
+                                <span class="fa sort-icon pull-right" data-ng-class="sortTrainingKey == 'dataset' && sortTrainingreverse ? 'fa-chevron-up' : 'fa-chevron-down'"></span>
+                            </th>
+                            <th ng-click="modelDetailsObject.sortTraining('platform')">{{ 'locale-platform-tools' | translate }}
+                                <span class="fa sort-icon pull-right" data-ng-class="sortTrainingKey == 'platform' && sortTrainingreverse ? 'fa-chevron-up' : 'fa-chevron-down'"></span>
+                            </th>
+
+                            <th>{{ 'locale-actions' | translate }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-if="modelDetailsElement.trainingJobsLists && modelDetailsElement.trainingJobsLists.length > 0" data-dir-paginate="trainingJobsList in modelDetailsElement.trainingJobsLists |orderBy:sortKey:reverse|filter:search|filter:type|itemsPerPage:listPerPage">
+                            <td class="text-center">
+                                <div class="checkbox checkbox-success no-margin">
+                                    <input type="checkbox" id="singleCheckbox2" data-ng-model="trainingJobsList.checked" aria-label="Single checkbox One">
+                                    <label></label>
+                                </div>
+                            </td>
+                            <td>{{trainingJobsList.models[0].name}}</td>
+                            <td>{{trainingJobsList.filePath}}</td>
+                            <td>
+                                <span class="badge badge-info badge-sm">{{trainingJobsList.trainingEngine.name}}</span>
+                            </td>
+                            <td>
+                                <a class="btn btn-light btn-sm" title="{{ 'locale-stop' | translate }}"><i class="fa fa-ban"></i></a>
+                                <a class="btn btn-dark btn-sm" title="{{ 'locale-terminal' | translate }}" target="_blank" href="{{trainingJobsList.tensorBoardUrl}}"><i class="fa fa-desktop"></i></a>
+                            </td>
+                        </tr>
+                        <tr data-ng-if="!modelDetailsElement.trainingJobsLists || modelDetailsElement.trainingJobsLists.length == 0">
+                            <td colspan="5"> {{ 'locale-no-record-found' | translate }}</td>
+                        </tr>
+
+                        <!-- <tr data-dir-paginate="trainingJobsList in modelDetailsElement.trainingJobsLists2 |orderBy:sortKey:reverse|filter:search|filter:type|itemsPerPage:listPerPage">
+                            <td class="text-center">
+                                <div class="checkbox checkbox-success no-margin">
+                                    <input type="checkbox" id="singleCheckbox2" data-ng-model="trainingJobsList.checked" aria-label="Single checkbox One">
+                                    <label></label>
+                                </div>
+                            </td>
+                            <td>{{trainingJobsList.model}}</td>
+                            <td>{{trainingJobsList.dataset}}</td>
+                            <td>
+                                <span class="badge badge-info badge-sm">{{trainingJobsList.platform}}</span>
+                            </td>
+                            <td>
+                                <a class="btn btn-light btn-sm" title="{{ 'locale-stop' | translate }}"><i class="fa fa-ban"></i></a>
+                                <a class="btn btn-dark btn-sm" title="{{ 'locale-terminal' | translate }}" data-ng-if="trainingJobsList.progress == 'Done'"><i class="fa fa-desktop"></i></a>
+                            </td>
+                        </tr> -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

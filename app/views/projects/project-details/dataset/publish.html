@@ -1,0 +1,54 @@
+<form role="form" id="publishForm" name="publishForm" novalidate>
+    <div class="modal-header" modaldraggable>
+        <button type="button" data-ng-click="cancel();" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><i class="fa fa-cloud-upload m-r-sm"></i>{{ 'locale-publish' | translate }}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group"
+                    data-ng-class="{'has-error': publishForm.datasetName.$invalid && publishForm.submitted}">
+                   <label> {{ 'locale-dataset-name' | translate }} </label>
+                   <select class="form-control" data-ng-disabled="publish.datasetName" name="datasetName" data-ng-init="publish.datasetName='amazonS3'" data-ng-model="publish.datasetName">
+                        <option value=""> {{ 'locale-select' | translate }} </option>
+                        <option value="amazonS3">Amazon S3</option>
+                        <option value="teraData">Tera Data</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="form-group"
+                    data-ng-class="{'has-error': publishForm.datasetPath.$invalid && publishForm.submitted}">
+                   <label> {{ 'locale-dataset-path' | translate }} </label>
+                   <input type="text" name="datasetPath" class="form-control" ng-disabled="true"
+                          placeholder="root/dataSet/dataSet-1/az-dataset.csv" data-ng-model="publish.datasetPath">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group"
+                    data-ng-class="{'has-error': publishForm.storageType.$invalid && publishForm.submitted}">
+                    <label> {{ 'locale-storage-type' | translate }} </label>
+                    <select class="form-control" name="storageType" data-ng-disabled="publish.storageType" data-ng-init="publish.storageType='git'" data-ng-model="publish.storageType">
+                        <option value=""> {{ 'locale-select' | translate }} </option>
+                        <option value="s3">S3</option>
+                        <option value="git">GIT</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="form-group"
+                    data-ng-class="{'has-error': publishForm.storageLocation.$invalid && publishForm.submitted}">
+                   <label> {{ 'locale-storage-location' | translate }} </label>
+                   <input type="text" name="storageLocation" ng-disabled="true" 
+                          class="form-control" placeholder="root/dataSet/ver1" data-ng-model="publish.storageLocation">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-ng-click="cancel();">{{ 'locale-cancel' | translate }}</button>
+        <button type="submit" class="btn btn-info">{{ 'locale-publish' | translate }}</button>
+    </div>
+</form> 

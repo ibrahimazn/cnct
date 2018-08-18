@@ -1,0 +1,147 @@
+<div class="row wrapper border-bottom page-heading">
+    <div class="col-lg-6 page-title">
+        <h2>Project Name - {{ 'locale-resource-usage' | translate }}</h2>
+    </div>
+    <div class="col-lg-6 text-right">
+        <div class="filter-wrapper m-r-md">
+            <select class="form-control" name="type" data-ng-model="type">
+                <option value="">Select Project</option>
+                <option>Creating Remarkable</option>
+                <option>Myspace</option>
+                <option>Space</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="row wrapper page-breadcrumb">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li>
+                <a data-ui-sref="index.user-dashboard"><i class="fa fa-home" aria-hidden="true"></i></a>
+            </li>
+            <li>
+                <strong><a data-ui-sref="projects.grid">{{ 'locale-projects' | translate }}</a></strong>
+            </li>
+            <li class="active">
+                {{ 'locale-resource-usage' | translate }}
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row dashboard-widget">
+        <div class="col-lg-4 col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-4">
+                            <div class="rounded-50 bg-success"><i class="fa fa-hdd-o"></i></div>
+                        </div>
+                        <div class="col-lg-9 col-sm-8">
+                            <h4>09 <small>(GB)</small></h4>
+                            <h6>{{ 'locale-disk-usage' | translate }}</h6>
+                        </div>
+                    </div>
+                    <div class="border-top m-t-sm dashboard-widget-footer">
+                        Used <b class="text-success">09 GB</b> out of <b>10 GB</b>
+                        <uib-progressbar class="progress-striped progress-small active" max="10" value="3" type="success"></uib-progressbar>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-4">
+                            <div class="rounded-50 bg-info"><i class="fa fa-paper-plane"></i></div>
+                        </div>
+                        <div class="col-lg-9 col-sm-8">
+                            <h4>03</h4>
+                            <h6>{{ 'locale-launchers' | translate }}</h6>
+                        </div>
+                    </div>
+                    <div class="border-top m-t-sm dashboard-widget-footer">
+                        Used <b class="text-info">03</b> out of <b>12</b>
+                        <uib-progressbar class="progress-striped progress-small active" max="12" value="5" type="info"></uib-progressbar>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-4">
+                            <div class="rounded-50 bg-purple"><i class="fa fa-cogs"></i></div>
+                        </div>
+                        <div class="col-lg-9 col-sm-8">
+                            <h4>04</h4>
+                            <h6>{{ 'locale-engines' | translate }}</h6>
+                        </div>
+                    </div>
+                    <div class="border-top m-t-sm dashboard-widget-footer">
+                        Used <b class="text-purple">04</b> out of <b>06</b>
+                        <uib-progressbar class="progress-striped progress-small active" max="6" value="4" type="purple"></uib-progressbar>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-4">
+                            <div class="rounded-50 bg-warning"><i class="fa fa-tasks"></i></div>
+                        </div>
+                        <div class="col-lg-9 col-sm-8">
+                            <h4>12</h4>
+                            <h6>{{ 'locale-cpu' | translate }}</h6>
+                        </div>
+                    </div>
+                    <div class="border-top m-t-sm dashboard-widget-footer">
+                        Used <b class="text-warning">12 GB</b> out of <b>15 GB</b>
+                        <uib-progressbar class="progress-striped progress-small active" max="15" value="12" type="warning"></uib-progressbar>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-4">
+                            <div class="rounded-50 bg-gray"><i class="fa fa-save"></i></div>
+                        </div>
+                        <div class="col-lg-9 col-sm-8">
+                            <h4>05</h4>
+                            <h6>{{ 'locale-memory' | translate }}</h6>
+                        </div>
+                    </div>
+                    <div class="border-top m-t-sm dashboard-widget-footer">
+                        Used <b class="text-gray">05 GB</b> out of <b>12 GB</b>
+                        <uib-progressbar class="progress-striped progress-small active" max="12" value="05" type="gray"></uib-progressbar>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content resource-widget">
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-4">
+                            <div class="rounded-50 bg-danger"><i class="fa fa-play-circle"></i></div>
+                        </div>
+                        <div class="col-lg-9 col-sm-8">
+                            <h4>03</h4>
+                            <h6>{{ 'locale-builds' | translate }}</h6>
+                        </div>
+                    </div>
+                    <div class="border-top m-t-sm dashboard-widget-footer">
+                        <b class="text-danger">03</b> Builds Completed
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

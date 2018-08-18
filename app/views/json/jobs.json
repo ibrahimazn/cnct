@@ -1,0 +1,44 @@
+[
+    {
+        "source": "regression.py",
+        "dataset": "usr/dataset1/census.csv",
+        "platform": "Tensorflow",
+        "progress": "Done"
+    },
+    {
+        "source": "classifier.py",
+        "dataset": "usr/dataset1/census.csv",
+        "platform": "Tensorflow",
+        "progress": "In Progress"
+    },
+    {
+        "source": "regression.py",
+        "dataset": "usr/dataset1/census.csv",
+        "platform": "Tensorflow",
+        "progress": "Done"
+    },
+    {
+        "source": "classifier.py",
+        "dataset": "usr/dataset1/census.csv",
+        "platform": "Tensorflow",
+        "progress": "Done"
+    },
+    {
+        "source": "regression.py",
+        "dataset": "usr/dataset1/census.csv",
+        "platform": "Tensorflow",
+        "progress": "Done"
+    },
+    {
+        "source": "classifier.py",
+        "dataset": "usr/dataset1/census.csv",
+        "platform": "Tensorflow",
+        "progress": "Done"
+    },
+    {
+        "source": "regression.py",
+        "dataset": "usr/dataset1/census.csv",
+        "platform": "Tensorflow",
+        "progress": "Done"
+    }
+]

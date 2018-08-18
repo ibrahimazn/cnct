@@ -1,0 +1,22 @@
+[
+    {
+        "departmentName": "OPS",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisc ingelit, sed do eiusmod tempor aliqua..."
+    },
+    {
+        "departmentName": "DEV",
+        "description": "All ipsum dolor sit amet, consectetur adipisc ingelit, sed do eiusmod tempor aliqua..."
+    },
+    {
+        "departmentName": "DEV",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisc ingelit, sed do eiusmod tempor aliqua..."
+    },
+    {
+        "departmentName": "DevOPS",
+        "description": "Small ipsum dolor sit amet, consectetur adipisc ingelit, sed do eiusmod tempor aliqua..."
+    },    
+    {
+        "departmentName": "DevOPS",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisc ingelit, sed do eiusmod tempor aliqua..."
+    }
+]

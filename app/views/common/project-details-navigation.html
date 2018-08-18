@@ -1,0 +1,73 @@
+<nav class="navbar-default navbar-static-side" role="navigation" data-ng-controller="datasetCtrl">
+    <div class="sidebar-collapse">
+        <ul side-navigation class="nav metismenu" id="side-menu">
+            <li class="nav-header">
+                <div class="profile-element" uib-dropdown>
+                    <a uib-dropdown-toggle href>
+                        <span class="clear">
+                            <span class="block m-t-xs">
+                                <strong class="font-bold">{{ mainObject.userName}}</strong>
+                            </span>
+                            <span class="text-muted text-xs block">{{ 'locale-admin' | translate }}<b class="caret"></b></span>
+                        </span>
+                    </a>
+                    <ul uib-dropdown-menu class="animated flipInX m-t-xs">
+                        <li><a data-ui-sref="user.profile">{{ 'locale-my-profile' | translate }}</a></li>
+                    </ul>
+                </div>
+                <div class="logo-element">
+                    SLMLP
+                </div>
+
+            </li>
+            <li data-ng-class="{active: $state.includes('project-details')}" title="{{ 'locale-home' | translate }}">
+                <a class="bg-info-light" data-ui-sref="projects.grid" title="{{ 'locale-home' | translate }}">
+                    <i class="text-primary"><i class="fa fa-arrow-circle-left"></i></i>
+                    <span class="nav-label text-primary font-bold text-uppercase">{{ 'locale-home' | translate }}</span>
+                </a>
+            </li>
+            <li data-ng-class="{active: $state.includes('project-details')}" title="{{ 'locale-summary' | translate }}">
+                <a data-ui-sref="project-details.summary({id:{{projectId}}})" title="{{ 'locale-summary' | translate }}"><i class="fa fa-file-text"></i> <span class="nav-label">{{ 'locale-summary' | translate }}</span></a>
+            </li>
+            <li data-ng-class="{active: $state.includes('dataset')}" title="{{ 'locale-dataset' | translate }}">
+                <a data-ui-sref="dataset.lists({id:{{projectId}}})" title="{{ 'locale-dataset' | translate }}"><i class="fa fa-database"></i> <span class="nav-label">{{ 'locale-dataset' | translate }}</span></a>
+            </li>
+            <li data-ng-class="{active: $state.includes('file-manager')}" title="{{ 'locale-file-manager' | translate }}">
+                <a data-ui-sref="file-manager.list" title="{{ 'locale-file-manager' | translate }}"><i class="fa fa-sitemap"></i> <span class="nav-label">{{ 'locale-file-manager' | translate }}</span></a>
+            </li>
+            <li data-ng-class="{active: $state.includes('launchers')}" title="{{ 'locale-launchers' | translate }}">
+                <a data-ui-sref="launchers.list" title="{{ 'locale-launchers' | translate }}"><i class="fa fa-rocket"></i> <span class="nav-label">{{ 'locale-launchers' | translate }}</span></a>
+            </li>
+            <li data-ng-class="{active: $state.includes('analyze')}" title="{{ 'locale-analyze' | translate }}">
+                <a data-ui-sref="analyze.list" title="{{ 'locale-analyze' | translate }}"><i class="fa fa-line-chart"></i> <span class="nav-label">{{ 'locale-analyze' | translate }}</span></a>
+            </li>
+            <li data-ng-class="{active: $state.includes('model')}" data-ng-click="resetModelTabActive()" title="{{ 'locale-model' | translate }}">
+                <a data-ui-sref="model.list" title="{{ 'locale-model' | translate }}"><i class="fa fa-cube"></i> <span class="nav-label">{{ 'locale-model' | translate }}</span></a>
+            </li>
+            <li data-ng-class="{active: $state.includes('scoring')}" title="{{ 'locale-scoring' | translate }}">
+                <a data-ui-sref="scoring.list" title="{{ 'locale-scoring' | translate }}"><i class="fa fa-star"></i> <span class="nav-label">{{ 'locale-scoring' | translate }}</span></a>
+            </li>
+             <li data-ng-class="{active: $state.includes('deployments')}" title="{{ 'locale-deployments' | translate }}">
+                <a data-ui-sref="deployments.list" title="{{ 'locale-deployments' | translate }}"><i class="fa fa-inbox"></i> <span class="nav-label">{{ 'locale-deployments' | translate }}</span></a>
+            </li>
+<!--            <li data-ng-class="{active: $state.includes('deployments')}" title="{{ 'locale-deployments' | translate }}">
+                <a data-ui-sref="deployments.list" title="{{ 'locale-deployments' | translate }}">
+                    <i class="fa fa-inbox"></i> <span class="nav-label">{{ 'locale-deployments' | translate }}</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level collapse" ng-class="{in: $state.includes('dashboards')}">
+                                        <li data-ui-sref-active="active"><a data-ui-sref="deployments.list">{{ 'locale-prediction' | translate }}</a></li>
+                                        <li data-ui-sref-active="active"><a data-ui-sref="deployments.scheduled-deployments">{{ 'locale-scheduled-deployments' | translate }}</a></li>
+                    <li data-ui-sref-active="active"><a data-ui-sref="deployments.dashboard">{{ 'locale-dashboard' | translate }}</a></li>
+                </ul>
+            </li>-->
+            <li data-ng-class="{active: $state.includes('scheduled-deployments')}" title="{{ 'locale-scheduled-deployments' | translate }}">
+                <a data-ui-sref="scheduled-deployments.list" title="{{ 'locale-scheduled-deployments' | translate }}"><i class="fa fa-cog"></i> <span class="nav-label">{{ 'locale-scheduled-deployments' | translate }}</span></a>
+            </li>
+            <li data-ng-class="{active: $state.includes('logs')}" title="{{ 'locale-logs' | translate }}">
+                <a data-ui-sref="logs.log" title="{{ 'locale-logs' | translate }}"><i class="fa fa-file-text"></i> <span class="nav-label">{{ 'locale-logs' | translate }}</span></a>
+            </li>
+        </ul>
+
+    </div>
+</nav>

@@ -1,0 +1,128 @@
+<div class="m-t-lg" data-ng-controller="exploreAnalyzeCtrl">
+    <div class="ibox float-e-margins no-margins">
+        <div class="ibox-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive m-t-md">
+                        <table class="table table-bordered table-hover no-margins">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <div class="btn-group pull-left">Customer ID</div>
+                                        <div class="btn-group pull-right" data-uib-dropdown data-is-open="status.isopen" data-dropdown-append-to-body="true">
+                                            <a id="customerId" type="button" class="" data-uib-dropdown-toggle 
+                                               title="{{ 'locale-menu' | translate }}" ng-disabled="disabled">
+                                                <i class="fa fa-ellipsis-v"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right" data-uib-dropdown-menu role="menu" aria-labelledby="customerId">
+                                                <li role="menuitem"><a><i class="fa fa-bar-chart m-r-xs"></i> {{ 'locale-analyze' | translate }}</a></li>
+                                                <li role="menuitem"><a><i class="fa fa-cog m-r-xs"></i> {{ 'locale-edit-column-schema' | translate }}</a></li>
+                                                <li role="menuitem"><a><i class="fa fa-filter m-r-xs"></i> {{ 'locale-filter' | translate }}</a></li>
+                                                <li role="menuitem"><a><i class="fa fa-sort m-r-xs"></i> {{ 'locale-sort' | translate }}</a></li>
+                                                <li role="menuitem"><a><i class="fa fa-star m-r-xs"></i> {{ 'locale-color-colum-by-value' | translate }}</a></li>
+                                            </ul>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="btn-group pull-left">{{ 'locale-ip' | translate }}</div>
+                                        <div class="btn-group pull-right" data-uib-dropdown data-is-open="" data-dropdown-append-to-body="true">
+                                            <a id="ip" type="button" class="" data-uib-dropdown-toggle 
+                                               title="{{ 'locale-menu' | translate }}" ng-disabled="disabled">
+                                                <i class="fa fa-ellipsis-v"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right" data-uib-dropdown-menu role="menu" aria-labelledby="ip">
+                                                <li role="menuitem"><a><i class="fa fa-bar-chart m-r-xs"></i> {{ 'locale-analyze' | translate }}</a></li>
+                                                <li role="menuitem"><a><i class="fa fa-cog m-r-xs"></i> {{ 'locale-edit-column-schema' | translate }}</a></li>
+                                                <li role="menuitem"><a><i class="fa fa-filter m-r-xs"></i> {{ 'locale-filter' | translate }}</a></li>
+                                                <li role="menuitem"><a><i class="fa fa-sort m-r-xs"></i> {{ 'locale-sort' | translate }}</a></li>
+                                                <li role="menuitem"><a><i class="fa fa-star m-r-xs"></i> {{ 'locale-color-colum-by-value' | translate }}</a></li>
+                                            </ul>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="btn-group pull-left">{{ 'locale-ip-country' | translate }}</div>
+                                        <div class="btn-group pull-right" data-uib-dropdown data-is-open="" data-dropdown-append-to-body="true">
+                                            <a id="ipCountry" type="button" class="" data-uib-dropdown-toggle 
+                                               title="{{ 'locale-menu' | translate }}" ng-disabled="disabled">
+                                                <i class="fa fa-ellipsis-v"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right" data-uib-dropdown-menu role="menu" aria-labelledby="ipCountry">
+                                                <li role="menuitem"><a><i class="fa fa-bar-chart m-r-xs"></i> {{ 'locale-analyze' | translate }}</a></li>
+                                                <li role="menuitem"><a><i class="fa fa-cog m-r-xs"></i> {{ 'locale-edit-column-schema' | translate }}</a></li>
+                                                <li role="menuitem"><a><i class="fa fa-filter m-r-xs"></i> {{ 'locale-filter' | translate }}</a></li>
+                                                <li role="menuitem"><a><i class="fa fa-sort m-r-xs"></i> {{ 'locale-sort' | translate }}</a></li>
+                                                <li role="menuitem"><a><i class="fa fa-star m-r-xs"></i> {{ 'locale-color-colum-by-value' | translate }}</a></li>
+                                            </ul>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="btn-group pull-left">{{ 'locale-pages-visited' | translate }}</div>
+                                        <div class="btn-group pull-right" data-uib-dropdown data-is-open="" data-dropdown-append-to-body="true">
+                                            <a id="pageVisited" type="button" class="" data-uib-dropdown-toggle 
+                                               title="{{ 'locale-menu' | translate }}" ng-disabled="disabled">
+                                                <i class="fa fa-ellipsis-v"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right" data-uib-dropdown-menu role="menu" aria-labelledby="pageVisited">
+                                                <li role="menuitem"><a><i class="fa fa-bar-chart m-r-xs"></i> {{ 'locale-analyze' | translate }}</a></li>
+                                                <li role="menuitem"><a><i class="fa fa-cog m-r-xs"></i> {{ 'locale-edit-column-schema' | translate }}</a></li>
+                                                <li role="menuitem"><a><i class="fa fa-filter m-r-xs"></i> {{ 'locale-filter' | translate }}</a></li>
+                                                <li role="menuitem"><a><i class="fa fa-sort m-r-xs"></i> {{ 'locale-sort' | translate }}</a></li>
+                                                <li role="menuitem"><a><i class="fa fa-star m-r-xs"></i> {{ 'locale-color-colum-by-value' | translate }}</a></li>
+                                            </ul>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="btn-group pull-left">{{ 'locale-campaign' | translate }}</div>
+                                        <div class="btn-group pull-right" data-uib-dropdown data-is-open="" data-dropdown-append-to-body="true">
+                                            <a id="campaign" type="button" class="" data-uib-dropdown-toggle 
+                                               title="{{ 'locale-menu' | translate }}" ng-disabled="disabled">
+                                                <i class="fa fa-ellipsis-v"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right" data-uib-dropdown-menu role="menu" aria-labelledby="campaign">
+                                                <li role="menuitem"><a><i class="fa fa-bar-chart m-r-xs"></i> {{ 'locale-analyze' | translate }}</a></li>
+                                                <li role="menuitem"><a><i class="fa fa-cog m-r-xs"></i> {{ 'locale-edit-column-schema' | translate }}</a></li>
+                                                <li role="menuitem"><a><i class="fa fa-filter m-r-xs"></i> {{ 'locale-filter' | translate }}</a></li>
+                                                <li role="menuitem"><a><i class="fa fa-sort m-r-xs"></i> {{ 'locale-sort' | translate }}</a></li>
+                                                <li role="menuitem"><a><i class="fa fa-star m-r-xs"></i> {{ 'locale-color-colum-by-value' | translate }}</a></li>
+                                            </ul>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div class="btn-group pull-left">{{ 'locale-revenue' | translate }}</div>
+                                        <div class="btn-group pull-right" data-uib-dropdown data-is-open="" data-dropdown-append-to-body="true">
+                                            <a id="revenue" type="button" class="" data-uib-dropdown-toggle 
+                                               title="{{ 'locale-menu' | translate }}" ng-disabled="disabled">
+                                                <i class="fa fa-ellipsis-v"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-right" data-uib-dropdown-menu role="menu" aria-labelledby="revenue">
+                                                <li role="menuitem"><a><i class="fa fa-bar-chart m-r-xs"></i> {{ 'locale-analyze' | translate }}</a></li>
+                                                <li role="menuitem"><a><i class="fa fa-cog m-r-xs"></i> {{ 'locale-edit-column-schema' | translate }}</a></li>
+                                                <li role="menuitem"><a><i class="fa fa-filter m-r-xs"></i> {{ 'locale-filter' | translate }}</a></li>
+                                                <li role="menuitem"><a><i class="fa fa-sort m-r-xs"></i> {{ 'locale-sort' | translate }}</a></li>
+                                                <li role="menuitem"><a><i class="fa fa-star m-r-xs"></i> {{ 'locale-color-colum-by-value' | translate }}</a></li>
+                                            </ul>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat="exploreDataList in exploreAnalyzeElement.exploreDataLists">
+                                    <td>
+                                        <span class="text-primary m-r-xs"><i class="fa fa-play-circle"></i></span> {{exploreDataList.customer_id}} </td>
+                                    <td>{{exploreDataList.ip}}</td>                            
+                                    <td> {{exploreDataList.ip_country}} </td>
+                                    <td>{{exploreDataList.pages_visited}}</td>
+                                    <td>{{exploreDataList.campain}}</td>                            
+                                    <td> {{exploreDataList.revenue}} </td>
+                                </tr>
+                                <tr class="text-center" data-ng-if="exploreAnalyzeElement.exploreDataLists.length == 0">
+                                    <td valign="middle" colspan="6">{{ 'locale-no-record-found' | translate }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
